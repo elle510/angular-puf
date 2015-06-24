@@ -1,0 +1,79 @@
+[
+	{
+		"text": "Icons",
+		"id": "icon",
+		"icon": "fa-github",
+        "children": [
+            { "text": "Font Awesome", 		"id": "icon_fa", 	"icon": "fa fa-flag", "route": "fontAwesome" },
+            { "text": "Polestar Icon Font", "id": "icon_psif", 	"icon": "fa fa-flag", "route": "psIconFont" }
+        ]
+    },
+    {
+        "text": "Components",
+        "id": "comp",
+        "icon": "fa fa-flag",
+        "children": [
+        	{ "text": "Elements", 	"id": "comp_elements", "icon": "fa fa-flag",
+        		"children": [
+            		{ "text": "Button", 			"id": "comp_button", 			"icon": "fa fa-flag", 	"route": "button"  },
+            		{ "text": "button dropdown", 	"id": "comp_button_dropdown", 	"icon": "fa fa-flag", 	"route": "buttonDropdown" },
+            		{ "text": "Modal", 				"id": "comp_modal", 			"icon": "fa fa-flag", 	"route": "modal" }
+            	]
+        	},
+        	{ "text": "Forms", 		"id": "comp_forms", 	"icon": "fa fa-flag",
+        		"children": [
+            		{ "text": "TextInput", 		"id": "form_textinput", 		"icon": "fa fa-flag", 		"route": "textinput"  },
+            		{ "text": "TextArea", 		"id": "form_textarea", 			"icon": "fa fa-flag", 		"route": "textarea"  },
+            		{ "text": "CheckBox", 		"id": "form_checkbox", 			"icon": "fa fa-flag", 		"route": "checkbox"  },
+            		{ "text": "Radio", 			"id": "form_radio", 			"icon": "fa fa-flag", 		"route": "radio"  },
+            		{ "text": "Select", 		"id": "form_select", 			"icon": "fa fa-flag", 		"route": "select"  },
+            		{ "text": "DatePicker", 	"id": "form_datepicker", 		"icon": "fa fa-flag", 		"route": "datepicker"  },
+            		{ "text": "Stepper", 		"id": "form_stepper", 			"icon": "fa fa-flag", 		"route": "stepper"  },
+            		{ "text": "Validation", 	"id": "comp_validation", 		"icon": "fa fa-flag", 		"route": "validation"  },
+            		{ "text": "Wizard", 		"id": "comp_wizard", 			"icon": "fa fa-flag", 		"route": "wizard"  },
+            		{ "text": "Upload", 		"id": "comp_upload", 			"icon": "fa fa-flag", 		"route": "upload"  }
+            	]
+        	},
+        	{ "text": "Table", 		"id": "comp_table", 	"icon": "fa fa-table", 	"route": "table"  },
+        	{ "text": "Tree", 		"id": "comp_tree", 		"icon": "fa fa-flag", 	"route": "tree"  },
+            { "text": "Tab", 		"id": "comp_tabs", 		"icon": "fa fa-flag", 	"route": "tab" }
+        ]
+    },
+    {
+        "text": "Layouts",
+        "id": "layout",
+        "icon": "fa fa-flag",
+        "children": [
+            { "text": "layout1", 		"id": "layout_1", 		"icon": "fa fa-flag" },
+            { "text": "layout2", 		"id": "layout_2", 		"icon": "fa fa-flag" },
+            { "text": "Main Layout", 	"id": "layout_main", 	"icon": "fa fa-flag",
+            	"children": [
+            		{ "text": "Portal Type", "id": "layout_main_portal", "icon": "fa fa-flag" }
+            	]
+            }
+        ]
+    },
+    {
+        "text": "Data Visualization",
+        "id": "dv",
+        "icon": "fa fa-flag",
+        "children": [
+            { "text": "Chart", 	"id": "dv_chart", "icon": "fa fa-flag",
+        		"children": [
+            		{ "text": "Line Chart", 	"id": "chart_line", 	"icon": "fa fa-flag", 	"route": "line-chart"  },
+            		{ "text": "Column Chart", 	"id": "chart_column", 	"icon": "fa fa-flag", 	"route": "column-chart" },
+            		{ "text": "Pie Chart", 		"id": "chart_pie", 		"icon": "fa fa-flag", 	"route": "pie-chart" }
+            	]
+        	},
+            { "text": "Topology", "id": "dv_topology", "icon": "fa fa-flag" }
+        ]
+    },
+    {
+        "text": "Templete",
+        "id": "temp",
+        "children": [
+            { "text": "CRUD", "id": "temp_crud" },
+            { "text": "A Type", "id": "temp_aType" }
+        ]
+    }
+]

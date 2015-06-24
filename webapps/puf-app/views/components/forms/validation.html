@@ -1,0 +1,80 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default -->
+			<div class="row">
+				Password
+			</div>
+			<div class="row">
+				<form name="elementForm" class="form-horizontal">
+					<div class="form-group">
+						<label for="input_password" class="col-md-2 control-label">비밀번호</label>
+	    				<div class="col-md-10 form-inline">
+	      					<input id="input_password" name="input_password" type="password" ng-model="password" class="form-control" placeholder="비밀번호를 입력하세요." ps-password-validate required>
+	    				</div>
+			  		</div>
+			  		<div class="form-group">
+						<label for="input_password1" class="col-md-2 control-label">비밀번호</label>
+	    				<div class="col-md-10">
+	      					<input id="input_password1" name="input_password1" type="password" ng-model="password1" class="form-control" placeholder="비밀번호를 입력하세요." ps-password-validate required>
+	    				</div>
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="password_validate_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="password_validate_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form name="elementForm" class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="input_password" class="col-md-2 control-label"&gt;비밀번호&lt;/label&gt;
+    &lt;div class="col-md-10 form-inline"&gt;
+      &lt;input id="input_password" name="input_password" type="password" ng-model="password" class="form-control" placeholder="비밀번호를 입력하세요." ps-password-validate required&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="form-group"&gt;
+    &lt;label for="input_password1" class="col-md-2 control-label"&gt;비밀번호&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;input id="input_password1" name="input_password1" type="password" ng-model="password1" class="form-control" placeholder="비밀번호를 입력하세요." ps-password-validate required&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#password_validate_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

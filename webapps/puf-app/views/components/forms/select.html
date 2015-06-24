@@ -1,0 +1,74 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default -->
+			<div class="row">
+				Select(콤보박스)
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">항목</label>
+						<div class="col-md-10">
+							<ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+							<select ng-model="myColor1" ng-options="color.code as color.name for color in colors"></select>
+<!-- 						<button ng-click="selectHide()">hide</button>	 -->
+						</div>
+			  		</div>
+			  		<div class="col-md-5">
+			  			myColor : {{myColor}}
+						myColor1 : {{myColor1}}
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="select_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="select_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"&gt;&lt;/ps-select&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#select_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

@@ -1,0 +1,24 @@
+{
+  "name": "puf",
+  "version": "1.0.0",
+  "description": "polestar ui framework",
+  "main": "puf.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.6.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.11.4",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hrahn@nkia.co.kr (Ahn Hyung-Ro)",
+  "license": "ISC"
+}

@@ -1,0 +1,4 @@
+[
+  { "id" : "icon_root_1", "text" : "Root 1", "children" : true, "type" : "root" , "icon" : "fa fa-book"},
+  { "id" : "icon_root_2", "text" : "Root 2", "type" : "root" }
+]

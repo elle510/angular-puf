@@ -1,0 +1,133 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default -->
+			<div class="row">
+				라디오버튼
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">항목</label>
+						<div class="col-md-10">
+							<ps-radio name="name1" ng-model="radioValue1" value="red"> Radio1</ps-radio>
+							<ps-radio name="name1" ng-model="radioValue1" ng-value="specialValue"> Radio2</ps-radio>
+							<ps-radio name="name1" ng-model="radioValue1" value="blue"> Radio3</ps-radio>
+						</div>				
+			  		</div>
+		  			<div class="col-md-5">
+			  			radioValue1: {{radioValue1}}
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="radio_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="radio_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-radio name="name1" ng-model="radioValue1" value="red"&gt; Radio1&lt;/ps-radio&gt;
+      &lt;ps-radio name="name1" ng-model="radioValue1" ng-value="specialValue"&gt; Radio2&lt;/ps-radio&gt;
+      &lt;ps-radio name="name1" ng-model="radioValue1" value="blue"&gt; Radio3&lt;/ps-radio&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+$scope.radioValue1 = 'blue';
+$scope.specialValue = {
+  "id": "12345",
+  "value": "green"
+};
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#radio_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start inline -->
+			<div class="row">
+				Inline 라디오버튼
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">항목</label>
+						<div class="col-md-10">
+							<ps-radio name="name2" ng-model="radioValue2" value="seoul" inline="true"> Seoul</ps-radio>
+							<ps-radio name="name2" ng-model="radioValue2" value="newyork" inline="true"> New York</ps-radio>
+							<ps-radio name="name2" ng-model="radioValue2" value="london" inline="true"> London</ps-radio>
+						</div>					
+			  		</div>
+		  			
+		  			<div class="col-md-5">
+			  			radioValue2: {{radioValue2}}
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="radio_inline_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="radio_inline_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-radio name="name2" ng-model="radioValue2" value="seoul" inline="true"&gt; Seoul&lt;/ps-radio&gt;
+      &lt;ps-radio name="name2" ng-model="radioValue2" value="newyork" inline="true"&gt; New York&lt;/ps-radio&gt;
+      &lt;ps-radio name="name2" ng-model="radioValue2" value="london" inline="true"&gt; London&lt;/ps-radio&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+$scope.radioValue2 = 'seoul';
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#radio_inline_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end inline -->
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

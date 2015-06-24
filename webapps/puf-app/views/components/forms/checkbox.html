@@ -1,0 +1,208 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default -->
+			<div class="row">
+				체크박스
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">항목</label>
+						<div class="col-md-10">
+							<ps-checkbox name="name1" ng-model="checkValue1"> Check1</ps-checkbox>
+			      			<ps-checkbox name="name2" ng-model="checkValue2" ng-true-value="YES" ng-false-value="NO"> Y/N</ps-checkbox>
+			      			<ps-checkbox name="name3" ng-model="checkValue3" ng-change="change()"> ngChange</ps-checkbox>
+			      			<ps-checkbox disabled> Check4</ps-checkbox>
+						</div>
+			  		</div>
+			  		<div class="col-md-5">
+			  			checkValue1: {{checkValue1}}
+						checkValue2: {{checkValue2}}
+						change: {{changeText}}
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="check_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="check_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-checkbox name="name1" ng-model="checkValue1"&gt; Check1&lt;/ps-checkbox&gt;
+      &lt;ps-checkbox name="name2" ng-model="checkValue2" ng-true-value="YES" ng-false-value="NO"&gt; Y/N&lt;/ps-checkbox&gt;
+      &lt;ps-checkbox name="name3" ng-model="checkValue3" ng-change="change()"&gt; ngChange&lt;/ps-checkbox&gt;
+      &lt;ps-checkbox disabled&gt; Check4&lt;/ps-checkbox&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#check_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start inline -->
+			<div class="row">
+				Inline 체크박스
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">항목</label>
+						<div class="col-md-10">
+							<ps-checkbox name="inName1" ng-model="inValue1" inline="true"> inValue1</ps-checkbox>
+			      			<ps-checkbox name="inName2" ng-model="inValue2" inline="true" ng-true-value="YES" ng-false-value="NO"> Y/N</ps-checkbox>
+			      			<ps-checkbox name="inName3" ng-model="inValue3" inline="true"> inValue3</ps-checkbox>
+			      			<ps-checkbox name="inName4" ng-model="inValue4" inline="true"> inValue4</ps-checkbox>
+						</div>
+			  		</div>
+		  			
+			  		<div class="col-md-5">
+			  			inValue1: {{inValue1}}
+						inValue2: {{inValue2}}
+						inValue3: {{inValue3}}
+						inValue4: {{inValue4}}
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="check_inline_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="check_inline_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-checkbox name="name1" ng-model="checkValue1" inline="true"&gt; inValue1&lt;/ps-checkbox&gt;
+      &lt;ps-checkbox name="name2" ng-model="checkValue2" inline="true" ng-true-value="YES" ng-false-value="NO"&gt; Y/N&lt;/ps-checkbox&gt;
+      &lt;ps-checkbox name="name3" ng-model="checkValue3" inline="true" ng-change="change()"&gt; ngChange&lt;/ps-checkbox&gt;
+      &lt;ps-checkbox disabled&gt; Check4&lt;/ps-checkbox&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#check_inline_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end inline -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start switch -->
+			<div class="row">
+				Switch 체크박스
+			</div>
+			<div class="row">
+				class-name : switch
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">항목</label>
+						<div class="col-md-10">
+							<ps-checkbox name="name_switch1" ng-model="checkSwitchValue1" class-name="switch"></ps-checkbox>
+						</div>
+			  		</div>
+			  		<div class="col-md-5">
+			  			checkSwitchValue1: {{checkSwitchValue1}}
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="check_switch_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="check_switch_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-checkbox name="name_switch1" ng-model="checkSwitchValue1" class-name="switch"&gt; Check1&lt;/ps-checkbox&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#check_switch_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end switch -->
+		<div class="vspace-12" />
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

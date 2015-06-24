@@ -1,0 +1,145 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default -->
+			<div class="row">
+				Datepicker
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">날짜 입력</label>
+						<div class="col-md-5">
+							<ps-datetimepicker id="fromDate" name="fromDate" api="dtapi"></ps-datetimepicker>
+						</div>
+			  		</div>
+			  		<div class="col-md-5">
+			  			<div class="row">
+			  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDate()">getDate</button>
+			  			</div>
+			  			<div class="row">
+			  				선택한 날짜 : {{date_string}}
+			  			</div>
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="datepicker_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="datepicker_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;날짜 입력&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-datetimepicker id="fromDate" options="datetimepicker_options" api="dtapi"&gt;&lt;/ps-datetimepicker&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#datepicker_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start range -->
+			<div class="row">
+				Datepicker 기간 입력
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<div class="form-group col-md-7">
+		    			<label class="col-md-2 control-label">기간 입력</label>
+						<div class="col-md-5">
+							<ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"></ps-datetimepicker>
+						</div>
+						<div class="col-md-5">
+							<ps-datetimepicker id="toDate" name="toDate" api="api_to_range"></ps-datetimepicker>
+						</div>
+			  		</div>
+			  		<div class="col-md-5">
+			  			<div class="row">
+			  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDateRange()">getDateRange</button>
+			  			</div>
+			  			<div class="row">
+			  				From Date : {{from_date_string}}
+			  				To Date : {{to_date_string}}
+			  			</div>
+			  		</div>
+		  		</form>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="datepicker_range_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="datepicker_range_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;기간 입력&lt;/label&gt;
+    &lt;div class="col-md-5"&gt;
+      &lt;ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"&gt;&lt;/ps-datetimepicker&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-5"&gt;
+      &lt;ps-datetimepicker id="toDate" name="toDate" api="api_to_range"&gt;&lt;/ps-datetimepicker&gt;
+    &lt;/div>
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#datepicker_range_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end range -->
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>
