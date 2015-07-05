@@ -4,7 +4,257 @@
 	</div>
 	
 	<div class="page-body">
-		모달
+		<div class="row"><!-- start sm modal -->
+			<div class="row">
+				<h5>SM Modal</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#smModal">
+		  				sm modal
+					</button>
+				</div>
+				
+				<!-- SM Modal -->
+				<ps-modal id="smModal" size="sm">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		작은 모달창
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        		<button type="button" class="btn btn-primary">Save changes</button>
+		      		</div>
+		    	</ps-modal>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="modal_sm_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="modal_sm_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;div class="col-md-12"&gt;
+    &lt;button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#smModal"&gt;
+      sm modal
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  <!-- SM Modal -->
+  &lt;ps-modal id="smModal" size="sm"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;button type="button" class="close" data-dismiss="modal"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;span class="sr-only"&gt;Close&lt;/span&gt;&lt;/button&gt;
+      &lt;h4 class="modal-title" id="myModalLabel"&gt;Modal title&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+      작은 모달창
+    &lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
+      &lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/ps-modal&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// js
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#modal_sm_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end sm modal -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start modal -->
+			<div class="row">
+				<h5>Modal</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal">
+		  				modal
+					</button>
+				</div>
+				
+				<!-- Modal -->
+				<ps-modal id="modal">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		모달창
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        		<button type="button" class="btn btn-primary">Save changes</button>
+		      		</div>
+		    	</ps-modal>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="modal_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="modal_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="tree_contextmenu" options="treeContextOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// js
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#modal_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end modal -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start lg modal -->
+			<div class="row">
+				<h5>LG Modal</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#lgModal">
+		  				lg modal
+					</button>
+				</div>
+				
+				<!-- LG Modal -->
+				<ps-modal id="lgModal" size="lg">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		큰 모달창
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        		<button type="button" class="btn btn-primary">Save changes</button>
+		      		</div>
+		    	</ps-modal>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="modal_lg_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="modal_lg_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="tree_contextmenu" options="treeContextOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// js
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#modal_lg_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end lg modal -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start backdrop modal -->
+			<div class="row">
+				<h5>Backdrop Modal</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#backdropModal">
+		  				backdrop modal
+					</button>
+				</div>
+				
+				<!-- Backdrop Modal -->
+				<ps-modal id="backdropModal" backdrop="static">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		Backdrop 모달창
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        		<button type="button" class="btn btn-primary">Save changes</button>
+		      		</div>
+		    	</ps-modal>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="modal_backdrop_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="modal_backdrop_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="tree_contextmenu" options="treeContextOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// js
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#modal_backdrop_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end backdrop modal -->
+		<div class="vspace-12" />
+		
 	</div>
 	
 	<div class="page-footer">
