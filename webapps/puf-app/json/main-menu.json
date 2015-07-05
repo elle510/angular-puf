@@ -34,7 +34,7 @@
             		{ "text": "Upload", 		"id": "comp_upload", 			"icon": "fa fa-flag", 		"route": "upload"  }
             	]
         	},
-        	{ "text": "Table", 		"id": "comp_table", 	"icon": "fa fa-table", 	"route": "table"  },
+        	{ "text": "Grid", 		"id": "comp_grid", 	"icon": "fa fa-table", 	"route": "grid"  },
         	{ "text": "Tree", 		"id": "comp_tree", 		"icon": "fa fa-flag", 	"route": "tree"  },
             { "text": "Tab", 		"id": "comp_tabs", 		"icon": "fa fa-flag", 	"route": "tab" }
         ]

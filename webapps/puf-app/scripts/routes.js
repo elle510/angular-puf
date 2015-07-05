@@ -48,7 +48,7 @@ define([
 	                	.state('wizard', 		route.ui_resolve('/wizard', 		'/components/forms/', 		'wizard'))
 	                	.state('upload', 		route.ui_resolve('/upload', 		'/components/forms/', 		'upload'))
 	                	
-	                	.state('table', 		route.ui_resolve('/table', 			'/components/table/', 		'table'))
+	                	.state('grid', 			route.ui_resolve('/grid', 			'/components/grid/', 		'grid'))
 	                	.state('tree', 			route.ui_resolve('/tree', 			'/components/tree/', 		'tree'))
 	                	.state('tab', 			route.ui_resolve('/tab', 			'/components/tab/', 		'tab'));
 	                	/*

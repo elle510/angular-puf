@@ -4,7 +4,306 @@
 	</div>
 	
 	<div class="page-body">
-		트리
+		<div class="row">
+			jsTree 데모: <a href="http://www.jstree.com/demo/" target="blank">http://www.jstree.com/demo/</a>
+		</div>
+		<div class="vspace-12" />
+		<div class="row"><!-- start default -->
+			<div class="row">
+				<h5>Tree #1</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+<!-- 					<h5>Tree #1</h5> -->
+					<ps-tree options="treeOptions"></ps-tree>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tree_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree options="treeOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+var data = [
+  { "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },
+  { "id" : "ajson2", "parent" : "#", "text" : "Root node 2" },
+  { "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },
+  { "id" : "ajson4", "parent" : "ajson2", "text" : "Child 2" }          
+];
+		
+$scope.treeOptions = {'core': {
+  'data': data
+}};
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tree_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start load server -->
+			<div class="row">
+				<h5>load nodes from the server(ajax)</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-tree id="ajax_tree" options="treeUrlOptions"></ps-tree>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_load_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tree_load_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="ajax_tree" options="treeUrlOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+$scope.treeUrlOptions = {
+  'core': {
+    'data': {
+			'url': function (node) {
+				return node.id === '#' ? 'json/ajax_demo_roots.json' : 'json/ajax_demo_children.json';
+			},
+			//'url': 'json/ajax_demo_roots.json',
+			'type': 'POST',
+			'dataType': 'json',
+			'contentType': 'application/json; charset=utf-8',
+			'cache': false,
+			'beforeSend': function (xhr) { 
+				if (xhr.overrideMimeType) { 
+					xhr.overrideMimeType("application/json"); 
+				} 
+			},
+			'data': function (node) {
+				return { 'id' : node.id };
+			}
+    }
+  }
+};
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tree_load_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end load server -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start load on demand server -->
+			<div class="row">
+				<h5>load nodes on demand from the server</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-tree id="onDemand_tree" options="treeUrlOptions"></ps-tree>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_ondemand_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tree_ondemand_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="onDemand_tree" options="treeUrlOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tree_ondemand_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end load on demand server -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start icon -->
+			<div class="row">
+				<h5>Icon Tree</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-tree id="ajax_icon_tree" options="treeIconOptions"></ps-tree>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_icon_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tree_icon_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="ajax_icon_tree" options="treeIconOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+$scope.treeIconOptions = {
+  "plugins" : ["types"],
+  'core': {
+    'data': {
+      'url': function (node) {
+        return node.id === '#' ? 'json/tree_icon_roots.json' : 'json/tree_icon_children.json';
+      },
+      'type': 'POST',
+      'dataType': 'json',
+      'contentType': 'application/json; charset=utf-8',
+      'cache': false,
+      'beforeSend': function (xhr) { 
+        if (xhr.overrideMimeType) { 
+          xhr.overrideMimeType("application/json"); 
+        } 
+      },
+      'data': function (node) {
+        return { 'id' : node.id };
+      }
+    }
+  },
+  "types" : {
+    "#" : {
+      "max_children" : 1, 
+      "max_depth" : 4, 
+      "valid_children" : ["root"]
+    },
+    "root" : {
+      "icon" : "/ng/images/icon/sminfoicon.png",
+      "valid_children" : ["default"]
+    },
+    "default" : {
+      "icon" : "fa fa-book",
+      "valid_children" : ["default", "file"]
+    },
+    "file" : {
+      "icon" : "glyphicon glyphicon-file",
+      "valid_children" : []
+    }
+  }
+};
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tree_icon_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end icon -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start context-menu -->
+			<div class="row">
+				<h5>Tree context-menu</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-tree id="tree_contextmenu" options="treeContextOptions"></ps-tree>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_contextmenu_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tree_contextmenu_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="tree_contextmenu" options="treeContextOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+$scope.treeContextOptions = {
+  "plugins" : ["contextmenu"],
+  'core': {
+    'data': {
+      'url': function (node) {
+        return node.id === '#' ? 'json/tree_roots.json' : 'json/tree_children.json';
+      },
+      'type': 'POST',
+      'dataType': 'json',
+      'contentType': 'application/json; charset=utf-8',
+      'cache': false,
+      'beforeSend': function (xhr) { 
+        if (xhr.overrideMimeType) { 
+	      xhr.overrideMimeType("application/json"); 
+	    } 
+      },
+      'data': function (node) {
+        return { 'id' : node.id };
+      }
+    }
+  }
+};
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tree_contextmenu_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end contextMenu -->
+		<div class="vspace-12" />
 	</div>
 	
 	<div class="page-footer">

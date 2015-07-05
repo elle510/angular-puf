@@ -2,7 +2,7 @@
  * puf
  * hrahn@nkia.co.kr (Ahn Hyung-Ro)
 
- * Version: 1.0.0 - 2015-04-04
+ * Version: 1.0.0 - 2015-07-04
  * License: ISC
  */
 
@@ -480,7 +480,7 @@ angular.module('ps.directives.grid', [])
         scope: {
         	gridId: 	'@',
         	pagerId:	'@',
-        	dClass:		'@',
+        	className:	'@',
         	options: 	'=',
             data:   	'=?',
             insert: 	'=?',
@@ -488,14 +488,14 @@ angular.module('ps.directives.grid', [])
         },
         template: function (element, attrs) {
 			/*
-			var temp = '<div class="' + attrs.dClass + '">' +
+			var temp = '<div class="' + attrs.className + '">' +
 							'<table id="' + attrs.gridId + '"></table>' +
 							'<div id="' + attrs.pagerId + '"></div>' +
 						'</div>';
 			*/
         	var temp;
-			if(angular.isDefined(attrs.dClass)) {
-				temp = '<div class="' + attrs.dClass + '"></div>';
+			if(angular.isDefined(attrs.className)) {
+				temp = '<div class="' + attrs.className + '"></div>';
 			}else {
 				temp = '<div></div>';
 			}

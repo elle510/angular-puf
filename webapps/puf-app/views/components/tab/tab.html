@@ -4,7 +4,56 @@
 	</div>
 	
 	<div class="page-body">
-		탭
+		<div class="row"><!-- start default -->
+			<div class="row">
+				<h5>Tab</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="stepper_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="stepper_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-stepper name="name1" ng-model="stepperValue" min="0" max="100" step="5"&gt;&lt;/ps-stepper&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#stepper_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
 	</div>
 	
 	<div class="page-footer">

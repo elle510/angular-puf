@@ -1,0 +1,73 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row">
+			jqGrid 데모: <a href="http://www.trirand.com/blog/jqgrid/jqgrid.html" target="blank">http://www.trirand.com/blog/jqgrid/jqgrid.html</a>
+		</div>
+		<div class="vspace-12" />
+		<div class="row"><!-- start default -->
+			<div class="row">
+				Default Grid
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					Grid Title
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-grid options="options" data="data" grid-id="gridId1" pager-id="pagerId1" class-name="smooth"></ps-grid>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="grid_default_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="grid_default_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;div class="col-md-12"&gt;
+    Grid Title
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-md-12"&gt;
+    &lt;ps-grid options="options" grid-id="gridId1" pager-id="pagerId1" class-name="smooth"&gt;&lt;/ps-grid&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#grid_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>
