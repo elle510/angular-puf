@@ -11,6 +11,17 @@
 		<ps-tab heading="Long Justified">Long Labeled Justified content</ps-tab>
 	</ps-tabset>
  * 
+ * <ps-tabset>
+   stacked (Defaults: false) : Whether tabs appear vertically stacked.
+   justified (Defaults: false) : Whether tabs fill the container and have a consistent width.
+   type (Defaults: 'tabs') : Navigation type. Possible values are 'tabs' and 'pills'.
+ * 
+ * <ps-tab>
+   heading or <tab-heading> : Heading text or HTML markup.
+   active  (Defaults: false) : Whether tab is currently selected.
+   disable  (Defaults: false) : Whether tab is clickable and can be activated. Note that this was previously the disabled attribute, which is now deprecated.
+   select() (Defaults: null) : An optional expression called when tab is activated.
+   deselect() (Defaults: null) : An optional expression called when tab is deactivated.
  */
 
 angular.module('ps.directives.tabs', [])
@@ -64,8 +75,8 @@ angular.module('ps.directives.tabs', [])
 		 },
 		 controller: 'TabsetController',
 		 controllerAs: 'tabsetCtrl',
-		 template: '<div>' +
-		    			'<ul class="nav nav-{{type || \'tabs\'}}" ng-class="{\'nav-stacked\': vertical, \'nav-justified\': justified}" ng-transclude></ul>' +
+		 template: '<div ng-class="{\'tabs-left\': vertical}">' +
+		    			'<ul class="nav nav-{{type || \'tabs\'}}" ng-class="{\'nav-stacked\': stacked, \'nav-justified\': justified}" ng-transclude></ul>' +
 		    			'<div class="tab-content">' +
 		    				'<div class="tab-pane" ' +
 		    					 'ng-repeat="tab in tabs" ' +
@@ -77,9 +88,18 @@ angular.module('ps.directives.tabs', [])
 		    		'</div>',
 //		 templateUrl: 'template/tabs/tabset.html',
 		 link: function(scope, element, attrs) {
-			 scope.vertical = angular.isDefined(attrs.vertical) ? scope.$parent.$eval(attrs.vertical) : false;
+			 scope.stacked = angular.isDefined(attrs.stacked) ? scope.$parent.$eval(attrs.stacked) : false;
 			 scope.justified = angular.isDefined(attrs.justified) ? scope.$parent.$eval(attrs.justified) : false;
+			 scope.vertical = angular.isDefined(attrs.vertical) ? scope.$parent.$eval(attrs.vertical) : false;
 			 
+			 if(angular.isDefined(attrs.height)) {
+				 console.log(attrs.height);
+				 console.log($('.tab-pane'));
+//	    		 element.find('.tab-pane').css("height", attrs.height);
+//	    		 element.find('.tab-pane').css({height: attrs.height});
+				 $('.tab-pane').css({height: attrs.height});
+	    	}  	
+			
 			 /*
 			 scope.addTabFunc = function(tab) {
 				console.log('addTab');

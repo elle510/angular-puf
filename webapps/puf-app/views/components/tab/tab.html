@@ -9,30 +9,112 @@
 				<h5>Tab</h5>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
-					
+				<div class="row col-md-12">
+					<button class="btn btn-default btn-sm" ng-click="tabs[0].active = true">Select second tab</button>
+    				<button class="btn btn-default btn-sm" ng-click="tabs[1].active = true">Select third tab</button>
+				</div>
+				<div class="row">
+					<ps-tabset class="col-md-12">
+		    			<ps-tab heading="Static title">
+		    				Static content
+		    				
+		    			</ps-tab>
+		    			<ps-tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+		      			{{tab.content}}
+		    			</ps-tab>
+		    			<ps-tab select="alertMe()">
+		      				<ps-tab-heading>
+		        				<i class="glyphicon glyphicon-bell"></i> Alert!
+		      				</ps-tab-heading>
+		      				I've got an HTML heading, and a select callback. Pretty cool!
+		    			</ps-tab>
+		  			</ps-tabset>
 				</div>
 			</div>
 			<div class="row">
 				<div>
 				
 					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="stepper_default_code">소스 보기</a>	
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tab_default_code">소스 보기</a>	
 					<div style="display:none">
 					
-						<div id="stepper_default_code">
+						<div id="tab_default_code">
 						
 							<ps-tabset>
 	    						<ps-tab heading="HTML코드">
 	    							<pre class="prettyprint linenums">
-&lt;form class="form-horizontal"&gt;
-  &lt;div class="form-group"&gt;
-    &lt;label class="col-md-2 control-label"&gt;항목&lt;/label&gt;
-    &lt;div class="col-md-10"&gt;
-      &lt;ps-stepper name="name1" ng-model="stepperValue" min="0" max="100" step="5"&gt;&lt;/ps-stepper&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/form&gt;
+&lt;div class="row"&gt;
+  &lt;ps-tabset class="col-md-12"&gt;
+    &lt;ps-tab heading="Static title"&gt;
+      Static content
+    &lt;/ps-tab&gt;
+    &lt;ps-tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled"&gt;
+      {{tab.content}}
+    &lt;/ps-tab&gt;
+    &lt;ps-tab select="alertMe()"&gt;
+      &lt;ps-tab-heading&gt;
+        &lt;i class="glyphicon glyphicon-bell"&gt;&lt;/i&gt; Alert!
+      &lt;/ps-tab-heading&gt;
+      I've got an HTML heading, and a select callback. Pretty cool!
+    &lt;/ps-tab&gt;
+  &lt;/ps-tabset&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+$scope.tabs = [
+  { title:'Dynamic Title 1', content:'Dynamic content 1' },
+  { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+];
+
+$scope.alertMe = function() {
+  setTimeout(function() {
+    alert('You\'ve selected the alert tab!');
+  });
+};
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tab_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start tab vertical -->
+			<div class="row">
+				Vertical Tab
+			</div>
+			<div class="row">
+<!-- 				<div class="col-md-12"> -->
+					<ps-tabset vertical="true" height="100">
+			    		<ps-tab heading="Vertical 1">Vertical content 1</ps-tab>
+			    		<ps-tab heading="Vertical 2">Vertical content 2</ps-tab>
+			  		</ps-tabset>
+<!-- 			  	</div> -->
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tab_vertical_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tab_vertical_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;ps-tabset vertical="true"&gt;
+    &lt;ps-tab heading="Vertical 1"&gt;Vertical content 1&lt;/ps-tab&gt;
+    &lt;ps-tab heading="Vertical 2"&gt;Vertical content 2&lt;/ps-tab&gt;
+  &lt;/ps-tabset&gt;
+&lt;/div&gt;
 									</pre>
 	    						</ps-tab>
 	    						<ps-tab heading="JS코드">
@@ -47,11 +129,164 @@ code
 	  						</ps-tabset>
 	  						
 						</div>
-						<a href="#stepper_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+						<a href="#tab_vertical_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
 					</div>
 				</div>
 			</div>
-		</div><!-- end default -->
+		</div><!-- end tab vertical -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start tab pills -->
+			<div class="row">
+				Tab(pills)
+			</div>
+			<div class="row">
+<!-- 				<div class="col-md-12"> -->
+					<ps-tabset type="pills">
+			    		<ps-tab heading="Vertical 1">Vertical content 1</ps-tab>
+			    		<ps-tab heading="Vertical 2">Vertical content 2</ps-tab>
+			  		</ps-tabset>
+<!-- 			  	</div> -->
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tab_pills_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tab_pills_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;ps-tabset type="pills"&gt;
+    &lt;ps-tab heading="Vertical 1"&gt;Vertical content 1&lt;/ps-tab&gt;
+    &lt;ps-tab heading="Vertical 2"&gt;Vertical content 2&lt;/ps-tab&gt;
+  &lt;/ps-tabset&gt;
+&lt;/div&gt;			
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tab_pills_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end tab pills -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start tab stacked pills -->
+			<div class="row">
+				Stacked Tab(pills)
+			</div>
+			<div class="row">
+<!-- 				<div class="col-md-12"> -->
+					<ps-tabset stacked="true" type="pills">
+			    		<ps-tab heading="Stacked 1">Stacked content 1</ps-tab>
+			    		<ps-tab heading="Stacked 2">Stacked content 2</ps-tab>
+			  		</ps-tabset>
+<!-- 			  	</div> -->
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tab_stacked_pills_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tab_stacked_pills_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;ps-tabset stacked="true" type="pills"&gt;
+    &lt;ps-tab heading="Stacked 1"&gt;Stacked content 1&lt;/ps-tab&gt;
+    &lt;ps-tab heading="Stacked 2"&gt;Stacked content 2&lt;/ps-tab&gt;
+  &lt;/ps-tabset&gt;
+&lt;/div&gt;			
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tab_stacked_pills_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end tab stacked pills -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start justified tab -->
+			<div class="row">
+				Justified Tab
+			</div>
+			<div class="row">
+				<ps-tabset justified="true">
+		    		<ps-tab heading="Justified">Justified content</ps-tab>
+		    		<ps-tab heading="SJ">Short Labeled Justified content</ps-tab>
+		    		<ps-tab heading="Long Justified">Long Labeled Justified content</ps-tab>
+		  		</ps-tabset>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tab_justified_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="tab_justified_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;ps-tabset justified="true"&gt;
+    &lt;ps-tab heading="Justified">Justified content&lt;/ps-tab&gt;
+    &lt;ps-tab heading="SJ">Short Labeled Justified content&lt;/ps-tab&gt;
+    &lt;ps-tab heading="Long Justified">Long Labeled Justified content&lt;/ps-tab&gt;
+  &lt;/ps-tabset&gt;
+&lt;/div&gt;		
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#tab_justified_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end justified tab -->
 		<div class="vspace-12" />
 		
 	</div>
