@@ -15,6 +15,7 @@
    stacked (Defaults: false) : Whether tabs appear vertically stacked.
    justified (Defaults: false) : Whether tabs fill the container and have a consistent width.
    type (Defaults: 'tabs') : Navigation type. Possible values are 'tabs' and 'pills'.
+   contentHeight (Defaults: null) : .tab-pane height
  * 
  * <ps-tab>
    heading or <tab-heading> : Heading text or HTML markup.
@@ -63,7 +64,7 @@ angular.module('ps.directives.tabs', [])
 		//tab.onRemove();
 	};
 }])
-.directive('psTabset', function() {
+.directive('psTabset', ['$compile', function($compile) {
 	 return {
 		 restrict: 'EA',
 		 transclude: true,
@@ -81,6 +82,7 @@ angular.module('ps.directives.tabs', [])
 		    				'<div class="tab-pane" ' +
 		    					 'ng-repeat="tab in tabs" ' +
 		    					 'ng-class="{active: tab.active}"' +
+		    					 'ng-style="{height: contentHeight}"' +
 		    					 'ps-tab-content-transclude="tab">' +
 		    					 	'<div ng-if="tab.templateUrl" ng-include="tab.templateUrl"></div>' +
 		    				'</div>' +
@@ -92,13 +94,14 @@ angular.module('ps.directives.tabs', [])
 			 scope.justified = angular.isDefined(attrs.justified) ? scope.$parent.$eval(attrs.justified) : false;
 			 scope.vertical = angular.isDefined(attrs.vertical) ? scope.$parent.$eval(attrs.vertical) : false;
 			 
-			 if(angular.isDefined(attrs.height)) {
-				 console.log(attrs.height);
-				 console.log($('.tab-pane'));
+			 if(angular.isDefined(attrs.contentHeight)) {
+//				 console.log(attrs.contentHeight);
+//				 console.log($('.tab-pane'));
 //	    		 element.find('.tab-pane').css("height", attrs.height);
 //	    		 element.find('.tab-pane').css({height: attrs.height});
-				 $('.tab-pane').css({height: attrs.height});
-	    	}  	
+//				 $compile($('.tab-pane').css({height: attrs.height}))(scope);
+				 scope.contentHeight = scope.$parent.$eval(attrs.contentHeight);
+	    	}
 			
 			 /*
 			 scope.addTabFunc = function(tab) {
@@ -118,7 +121,7 @@ angular.module('ps.directives.tabs', [])
              };
 		 }
 	 };
-})
+}])
 .directive('psTab', ['$parse', function($parse) {
 	return {
 	    require: '^psTabset',
