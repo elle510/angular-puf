@@ -69,6 +69,7 @@ require.config({
         'bootstrap-select': '../puf/libs/plugins/bootstrap-select.min',
         'jquery-cookie': '../puf/libs/plugins/jquery.cookie',
         'jquery-form': '../puf/libs/plugins/jquery.form.min',
+        'jquery-steps': '../puf/libs/plugins/jquery.steps.min',
         
         // google-code-prettify
         'prettify': '../puf/libs/prettify',
@@ -103,7 +104,8 @@ require.config({
             deps: ['jquery']
         },
         'puf': {
-        	deps: ['jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 'moment', 'bootstrap-select', 'jquery-form', 'ps-locale_ko']
+        	deps: ['ps-locale_ko', 'jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 
+        	       'moment', 'bootstrap-select', 'jquery-form', 'jquery-steps']
         },
         'jqgrid': {
         	// jquery를 빼도 불러오기니 하는데 로딩순서가 달라진다.

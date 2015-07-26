@@ -4,7 +4,53 @@
 	</div>
 	
 	<div class="page-body">
-		마법사
+		<div class="row"><!-- start default wizard -->
+			<div class="row">
+				<h5>Default Wizard</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-wizard id="default_wizard" options="defaultOptions">
+						<h1>First Step</h1>
+    					<div>First Content</div>
+ 
+    					<h1>Second Step</h1>
+    					<div>Second Content</div>
+					</ps-wizard>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+				
+					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
+					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="default_wizard_code">소스 보기</a>	
+					<div style="display:none">
+					
+						<div id="default_wizard_code">
+						
+							<ps-tabset>
+	    						<ps-tab heading="HTML코드">
+	    							<pre class="prettyprint linenums">
+&lt;div class="col-md-12"&gt;
+  &lt;ps-tree id="onDemand_tree" options="treeUrlOptions"&gt;&lt;/ps-tree&gt;
+&lt;/div&gt;
+									</pre>
+	    						</ps-tab>
+	    						<ps-tab heading="JS코드">
+	    							<pre class="prettyprint linenums">
+
+									</pre>
+	    						</ps-tab>
+	  						</ps-tabset>
+	  						
+						</div>
+						<a href="#default_wizard_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
+					</div>
+				</div>
+			</div>
+		</div><!-- end default wizard -->
+		<div class="vspace-12" />
+		
 	</div>
 	
 	<div class="page-footer">

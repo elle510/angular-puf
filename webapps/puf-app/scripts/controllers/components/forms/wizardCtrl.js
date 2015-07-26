@@ -6,7 +6,9 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Wizard";
 		
-		
+		$scope.defaultOptions = {
+    		
+        };
     };
     
 	app.register.controller('wizardCtrl', ['$scope', '$location', controller]);
