@@ -10,17 +10,26 @@
 **/
 $ps_locale = {};
 $.extend($ps_locale,{
-	validators : {
-		passwordErrorMsg: "Enter at least 8 characters, numbers",
-		ipErrorMsg: "No records to view",
-		loadtext: "Loading...",
-		pgtext : "Page {0} of {1}"
+	cancel: 'Cancel',
+	finish: 'Finish',
+	next: 'Next',
+	prev: 'Previous',
+	loading: 'Loading ...',
+	validators: {
+		passwordErrorMsg: 'Enter at least 8 characters, numbers',
+		ipErrorMsg: 'No records to view',
+		loadtext: 'Loading...',
+		pgtext : 'Page {0} of {1}'
 	},
-	grid : {
-		recordtext: "View {0} - {1} of {2}",
-        emptyrecords: "No records to view",
-        loadtext: "Loading...",
-        pgtext : "Page {0} of {1}"
+	grid: {
+		recordtext: 'View {0} - {1} of {2}',
+        emptyrecords: 'No records to view',
+        loadtext: 'Loading...',
+        pgtext : 'Page {0} of {1}'
+	},
+	wizard: {
+		current: "current step:",
+		pagination: "Pagination"
 	}
 });
 })(jQuery);

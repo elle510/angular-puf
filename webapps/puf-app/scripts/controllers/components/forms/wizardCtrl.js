@@ -7,7 +7,7 @@ define(['app'], function(app) {
 		$scope.pageTitle = "Form Wizard";
 		
 		$scope.defaultOptions = {
-    		
+				
         };
     };
     
