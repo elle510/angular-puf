@@ -59,6 +59,7 @@ angular.module('ps.directives.grid', [])
             defaults = {
         		mtype: 'POST',
         		datatype: "json",
+        		styleUI : 'Bootstrap',
         		/*
         		jsonReader: {
 					page: function (obj) { return obj.page; },

@@ -111,7 +111,7 @@ require.config({
         	// jquery를 빼도 불러오기니 하는데 로딩순서가 달라진다.
         	// jquery를 빼면 grid.locale을 제일 먼저 불러오고 jquery, jquery-ui 순서
         	// jquery 있으면 jquery, grid.locale, jquery-ui 순서
-            deps: ['jquery','jquery-ui','plugins/jqgrid/i18n/grid.locale-en'],
+            deps: ['jquery','jquery-ui','plugins/jqgrid/i18n/grid.locale-en','bootstrap'],
             exports: 'jQuery.fn.jqgrid'
         },
         'jstree': {
