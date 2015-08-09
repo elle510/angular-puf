@@ -1,6 +1,6 @@
 'use strict';
 
-//requireJS 모듈 선언 - [xeusApp 앵귤러 모듈]
+//requireJS 모듈 선언 - [pufApp 앵귤러 모듈]
 define([
 		'angular', // 앵귤러 모듈을 사용하기 위해 임포트		
 		'angular-ui-router',
