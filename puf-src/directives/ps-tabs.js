@@ -129,7 +129,7 @@ angular.module('ps.directives.tabs', [])
 	    replace: true,
 //	    templateUrl: 'template/tabs/tab.html',
 	    template: '<li ng-class="{active: active, disabled: disabled}">' +
-	    			'<a ng-click="select()" ps-tab-heading-transclude>{{heading}}</a><a ng-if="removable" ng-click="onRemove()">X</a>' +
+	    			'<a ng-click="select()" ps-tab-heading-transclude>{{heading}}</a><a ng-if="removable" ng-click="onRemove()" class="pull-right">X</a>' +
 	    		  '</li>',
 	    transclude: true,
 	    scope: {

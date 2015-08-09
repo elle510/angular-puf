@@ -28,7 +28,7 @@ angular.module('ps.directives.modal', [])
 		 transclude: true,
 		 replace: true,
 		 scope: {
-			 modalClass: '@',
+			 className: '@',
 			 size: '@',
 			 backdrop: '@'
 		 },
@@ -39,7 +39,7 @@ angular.module('ps.directives.modal', [])
 		    			'</div>' +
 		    		'</div>',
 		 link: function (scope, element, attrs) {
-			 element.addClass(attrs.modalClass || '');
+			 element.addClass(attrs.className || '');
 		     scope.size = attrs.size;
 		     
 		     if(attrs.backdrop == 'static') {

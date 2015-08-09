@@ -35,6 +35,7 @@ define([
 	                	.state('button', 			route.ui_resolve('/button', 			'/components/elements/', 	'button'))
 	                	.state('buttonDropdown', 	route.ui_resolve('/button-dropdown', 	'/components/elements/', 	'buttonDropdown'))
 	                	.state('modal', 			route.ui_resolve('/modal', 				'/components/elements/', 	'modal'))
+	                	.state('panel', 			route.ui_resolve('/panel', 				'/components/elements/', 	'panel'))
 	                	
 	                	// Forms
 	                	.state('textinput', 	route.ui_resolve('/textinput', 		'/components/forms/', 		'textinput'))
