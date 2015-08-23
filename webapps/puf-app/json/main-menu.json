@@ -46,12 +46,7 @@
         "icon": "fa fa-flag",
         "children": [
             { "text": "layout1", 		"id": "layout_1", 		"icon": "fa fa-flag" },
-            { "text": "layout2", 		"id": "layout_2", 		"icon": "fa fa-flag" },
-            { "text": "Main Layout", 	"id": "layout_main", 	"icon": "fa fa-flag",
-            	"children": [
-            		{ "text": "Portal Type", "id": "layout_main_portal", "icon": "fa fa-flag" }
-            	]
-            }
+            { "text": "layout2", 		"id": "layout_2", 		"icon": "fa fa-flag" }
         ]
     },
     {
@@ -70,11 +65,21 @@
         ]
     },
     {
-        "text": "Templete",
+        "text": "Template",
         "id": "temp",
         "children": [
             { "text": "CRUD", "id": "temp_crud" },
-            { "text": "A Type", "id": "temp_aType" }
+            { "text": "Main", "id": "temp_main",
+            	"children": [
+            		{ "text": "Type1", 			"id": "main_type1", 	"icon": "fa fa-flag",	"url": "" },
+            		{ "text": "Portal Type", 	"id": "main_portal", 	"icon": "fa fa-flag" }
+            	] 
+            },
+            { "text": "Login", "id": "temp_login",
+            	"children": [
+            		{ "text": "Type1", 			"id": "login_type1", 	"icon": "fa fa-flag" }
+            	] 
+            }
         ]
     }
 ]
