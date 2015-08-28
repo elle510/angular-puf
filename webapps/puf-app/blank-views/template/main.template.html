@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Main Layout</title>
+
+<link rel="stylesheet" href="../../../puf/styles/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../puf/styles/font-awesome.min.css" />
+<link rel="stylesheet" href="../../../puf/styles/font-polestar.min.css" />
+<link rel="stylesheet" href="../../../puf/styles/common.min.css" />
+
+<!-- <link rel="stylesheet" href="puf/styles/themes/xeus-theme.css" type="theme" /> -->
+<link rel="stylesheet" href="main.template.css" type="theme" />
+
+<style type="text/css">
+
+/* header, footer, section, aside, nav, article, 
+div.header, div.footer, div.section, div.aside, div.nav, div.article, */
+#logo, #nav, #user, 
+#left_top, #left,
+#right_top, #right,
+#search, #breadcrumbs, #content, #bottom,
+#footer {
+  border: 1px solid #000000;
+}
+
+#logo, #nav, #user, 
+#left_top, #search, #top, #right_top,
+#left_sidebar, #breadcrumbs, #content, #bottom, #right,
+#footer {
+	text-align: center;
+}
+
+#logo {
+	width: 250px;
+}
+
+#search {
+	padding: 50px 0px;
+}
+
+#left {
+	padding: 350px 0px;
+}
+#right {
+	padding: 350px 0px;
+}
+
+#content {
+	padding: 350px 0px;
+}
+
+#bottom {
+	padding: 100px 0px;
+}
+
+/* #header {
+	text-align: center;
+	line-height: 100px;
+}
+
+#nav div.pull-right {
+	border: solid;
+	 height: 100%;
+	display: inline-block !important;
+	    vertical-align: middle !important;
+}
+*/
+
+</style>
+
+</head>
+<body>
+	
+<div id="wrap">
+	<div id="header">
+		<div id="logo">Logo</div>
+		<!-- <div id="nav" class="nav">Nav</div> -->
+		<div id="nav">
+			<div class="row">
+				<div class="col-md-8">
+					Nav
+				</div>
+				<div class="col-md-4">
+					<div class="pull-right">
+						<select id="themeSelect" onchange="$.loadCSS($(this).val())">
+							<option value='main.template.css'>Default Theme</option>
+					        <!-- <option value='puf/styles/themes/light-portalSimple-theme.css'>light-portalSimple-theme</option> -->
+					        <option value='main.portal.template.css'>Portal Theme</option>
+					    </select>
+				   	</div>
+			   	</div>
+			</div>
+		</div>
+		<div id="user">User</div>
+	</div>
+	
+	<div id="main">
+		<div id="left_sidebar">
+			<div id="left_top"><p>Left Top
+				Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				<br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br>
+				<br>Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				Left Top<br>
+				Left Top</p></div>
+			<div id="left">Left</div>
+		</div>
+		<div id="center">
+			<div id="search">Search</div>
+			<!-- <div id="top">Top</div> -->
+			<div id="breadcrumbs">Breadcrumbs</div>
+			<div id="content">Content</div>
+			<div id="bottom">Bottom</div>
+		</div>
+		<div id="right_sidebar">
+			<div id="right_top">Right Top<br>
+				Right Top<br>Right Top<br>Right Top<br>Right Top<br>Right Top<br>
+				Right Top<br>Right Top<br>Right Top<br>Right Top<br>Right Top<br>Right Top<br>
+				Right Top<br>Right Top<br>Right Top<br>Right Top<br>Right Top<br>
+				Right Top<br>Right Top<br>Right Top<br>Right Top<br>Right Top<br>Right Top<br>
+			</div>
+			<div id="right">Right</div>
+		</div>
+	</div>
+	
+	<div id="footer">Footer</div>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" src="../../../puf/libs/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../../../puf/libs/jquery-ui-1.10.4.custom.min.js"></script>
+	
+<!-- bootstrap -->
+<script type="text/javascript" src="../../../puf/libs/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+/*
+	$(document).ready(function() {
+		
+	});
+*/
+	
+	$(function(){
+		$("#themeSelect").val($("link[type='theme']").attr("href"));
+	});
+	
+	$.loadCSS = function(themeURL) {
+		if(themeURL) {
+			$("link[type='theme']").attr("href", themeURL);
+		}else {
+			alert("테마 URL 정보 오류");
+		}
+	}
+</script>
+
+</body>
+</html>
