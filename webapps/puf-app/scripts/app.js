@@ -26,7 +26,7 @@ define([
 		var app = angular.module('pufApp', ['ui.router', 'ps.routeResolver', 'ps.puf']);
 		
 		// 공통 컨트롤러 설정 - 모든 컨트롤러에서 공통적으로 사용하는 부분들 선언
-		app.controller('CommonController', function($scope, $state, $location) {
+		app.controller('CommonController', function($scope, $state, $window, $location) {
 		
 			// 스타일시트 업데이트
 			$scope.$on('updateCSS', function(event, args) {
@@ -156,6 +156,9 @@ define([
 						//$scope.go(json.route);
 					}
 					
+        		}else if(angular.isDefined(json.url)) {
+//        			$window.location.href = json.url;
+        			$window.open(json.url);
         		}
 				event.stopPropagation();
 				event.stopImmediatePropagation();

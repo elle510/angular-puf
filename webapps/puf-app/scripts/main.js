@@ -14,7 +14,7 @@ require.config({
     만약 data-main 속성이 사용되었다면, 그 경로가 baseUrl이 된다.
     data-main 속성은 require.js를 위한 특별한 속성으로 require.js는 스크립트 로딩을 시작하기 위해 이 부분을 체크한다.
 */
-    baseUrl:'./',
+    baseUrl:'/puf/',
  
 /*
     paths: 
@@ -31,53 +31,53 @@ require.config({
     paths:{
  
     	// 뒤에 js 확장자는 생략한다.
-        'text': '../puf/libs/text', // HTML 데이터를 가져올때 text! 프리픽스를 붙여준다.
-        'jquery': '../puf/libs/jquery-1.11.0.min',
-        'jquery-ui': '../puf/libs/jquery-ui-1.10.4.custom.min',
-        'angular': '../puf/libs/angular.min',
-        'angular-route': '../puf/libs/angular-route.min',
-        'bootstrap': '../puf/libs/bootstrap.min',
-        'angular-ui-router': '../puf/libs/angular-ui-router.min',
-        'ui-router-tabs': '../puf/libs/ui-router-tabs',
+        'text': 'puf/libs/text', // HTML 데이터를 가져올때 text! 프리픽스를 붙여준다.
+        'jquery': 'puf/libs/jquery-1.11.0.min',
+        'jquery-ui': 'puf/libs/jquery-ui-1.10.4.custom.min',
+        'angular': 'puf/libs/angular.min',
+        'angular-route': 'puf/libs/angular-route.min',
+        'bootstrap': 'puf/libs/bootstrap.min',
+        'angular-ui-router': 'puf/libs/angular-ui-router.min',
+        'ui-router-tabs': 'puf/libs/ui-router-tabs',
         
         // d3
-        'd3': '../puf/libs/d3.min',
-        'd3-layout': '../puf/libs/d3.layout',
+        'd3': 'puf/libs/d3.min',
+        'd3-layout': 'puf/libs/d3.layout',
         
         // puf
-        'puf': '../puf/scripts/puf.min',
+        'puf': 'puf/scripts/puf.min',
         
         // i18n
-        'ps-locale_en': '../puf/scripts/i18n/ps-locale_en.min',
-        'ps-locale_ko': '../puf/scripts/i18n/ps-locale_ko.min',
+        'ps-locale_en': 'puf/scripts/i18n/ps-locale_en.min',
+        'ps-locale_ko': 'puf/scripts/i18n/ps-locale_ko.min',
         
         // ps-ngRoute-resolver
-        'ps-route-resolver': '../puf/scripts/ps-route-resolver.min',
-        'ps-ngRoute-resolver': '../puf/scripts/ps-ngRoute-resolver.min',
+        'ps-route-resolver': 'puf/scripts/ps-route-resolver.min',
+        'ps-ngRoute-resolver': 'puf/scripts/ps-ngRoute-resolver.min',
         
         // ps-common
-        'ps-common': '../puf/libs/ps-common',
+        'ps-common': 'puf/libs/ps-common',
         
         // jquery plugins
-        'plugins': '../puf/libs/plugins',
-        'jqgrid': '../puf/libs/plugins/jqgrid/jquery.jqGrid.min',
-        'jstree': '../puf/libs/plugins/jstree.min',
-//      'jqtree': '../puf/libs/plugins/tree.jquery',
-        'datetimepicker': '../puf/libs/plugins/bootstrap-datetimepicker.min',
-        'daterangepicker': '../puf/libs/plugins/daterangepicker',
-        'moment': '../puf/libs/plugins/moment.min',
-        'bootstrap-select': '../puf/libs/plugins/bootstrap-select.min',
-        'jquery-cookie': '../puf/libs/plugins/jquery.cookie',
-        'jquery-form': '../puf/libs/plugins/jquery.form.min',
-        'jquery-steps': '../puf/libs/plugins/jquery.steps.min',
+        'plugins': 'puf/libs/plugins',
+        'jqgrid': 'puf/libs/plugins/jqgrid/jquery.jqGrid.min',
+        'jstree': 'puf/libs/plugins/jstree.min',
+//      'jqtree': 'puf/libs/plugins/tree.jquery',
+        'datetimepicker': 'puf/libs/plugins/bootstrap-datetimepicker.min',
+        'daterangepicker': 'puf/libs/plugins/daterangepicker',
+        'moment': 'puf/libs/plugins/moment.min',
+        'bootstrap-select': 'puf/libs/plugins/bootstrap-select.min',
+        'jquery-cookie': 'puf/libs/plugins/jquery.cookie',
+        'jquery-form': 'puf/libs/plugins/jquery.form.min',
+        'jquery-steps': 'puf/libs/plugins/jquery.steps.min',
         
         // google-code-prettify
-        'prettify': '../puf/libs/prettify',
+        'prettify': 'puf/libs/prettify',
         
         // app scripts
-        'app': 'scripts/app',
-        'routes': 'scripts/routes',
-        'service': 'scripts/services'
+        'app': 'puf-app/scripts/app',
+        'routes': 'puf-app/scripts/routes',
+        'service': 'puf-app/scripts/services'
     },
  
 /*

@@ -1,0 +1,257 @@
+/* CSS Main Default */
+/* * {
+  margin: 0;
+  padding: 0;
+}*/
+body {
+/*   background: #BBCFE8; */
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #333;
+  font-size: 14px;
+}
+
+.wrap {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: #fff;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+/* header 영역
+----------------------------------*/
+/*div.header*/
+.header {
+/* 	position: relative; */
+  	height: 50px;
+  	margin: 0;
+  	border: 1px solid /*transparent*/;
+/*   display: -webkit-flex; */
+/*   display: flex; */
+/*   -webkit-flex-flow: row; */
+/*   flex-flow: row; */
+}
+.logo {
+	float: left;
+  	width: 200px;
+  	height: 100%;
+  	border: 1px solid;
+}
+/*div.navbar*/
+.navibar {
+/* 	width: auto; */
+	height: 100%;
+	border: 1px solid;
+    margin: 0;
+/*     position: relative; */
+/*     clear: both; */
+}
+
+.navibar .navibar-nav {
+/* 	width: auto; */
+	height: 100%;
+/* 	display: block !important; */
+	float: left;
+	border: 1px solid;
+}
+
+.navibar .navibar-right {
+    float: right !important;
+}
+.navibar .navibar-right .dropdown-menu {
+ 	right: 0;
+    left: auto;
+}
+.navibar .navibar-right .dropdown-menu-left {
+    right: auto;
+    left: 0;
+}
+     
+.user {
+  width: 100%;
+  height: 30px;
+  display: block !important;
+/*   right: 0; */
+/*   left: auto; */
+/*   float: right !important; */
+}
+
+.btn-renew {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  height: 25px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+.btn-renew:active,
+.btn-renew.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.btn-logout {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  height: 25px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+/* main 영역
+----------------------------------*/
+#main {
+  margin: 0;
+  display: -webkit-flex;
+  display: flex;
+}
+#left_sidebar {
+  width: 350px;
+}
+#center {
+  margin: 0 auto;
+  -webkit-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* left_sidebar 영역
+----------------------------------*/
+#left_top {
+/*   max-height: 250px; */
+  height: 400px;
+  overflow: auto;
+}
+/* center 영역
+----------------------------------*/
+#breadcrumbs {
+  height: 30px;
+}
+
+/* footer 영역
+----------------------------------*/
+/*div#footer*/
+#footer {
+  text-align: right;
+  height: 50px;
+/*   margin: 0 auto; */
+}
+a.sidebar-link {
+  display: none;
+}
+a.nav-link {
+  display: none;
+}
+
+/* Phones
+----------------------------------*/
+@media screen and (max-width: 767px) {
+  #wrap {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  #main {
+    display: block;
+  }
+  #sidebar {
+    position: absolute;
+    top: 0;
+    width: 85%;
+    height: 100%;
+    left: -85%;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  #wrap.active {
+    left: 85%;
+  }
+  #right-columns {
+    width: auto;
+  }
+}
+
+/* Tablets
+----------------------------------*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #sidebar {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    left: -50%;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  #main {
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    overflow: visible;
+  }
+  #main.active {
+    left: 50%;
+  }
+}
+
+/* Phones & Tablets 
+----------------------------------*/
+@media screen and (max-width: 991px) {
+  body {
+    background: #FFFFFF;
+    overflow-x: hidden;
+    font-size: 2em;
+  }
+  #wrap {
+    width: 100%;
+  }
+  a.sidebar-link {
+    float: left;
+    display: block;
+    padding: 0 1em;
+  }
+  a.nav-link {
+    float: right;
+    display: block;
+    padding: 0 1em;
+  }
+  #header {
+    top: 0;
+  }
+  #nav {
+    clear: both;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    top: auto;
+    overflow: hidden;
+    max-height: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  #nav.active {
+    max-height: 55em;
+  }
+}
+
+/* Desktops
+----------------------------------*/
+/*
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  
+}
+*/
+/* Wide Desktops
+----------------------------------*/
+/*
+@media screen and (min-width: 1200px) {
+  
+}
+*/
