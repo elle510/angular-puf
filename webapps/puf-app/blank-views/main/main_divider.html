@@ -29,6 +29,32 @@
     bottom: 0; 
     background-color: gray;
 }
+
+
+
+
+
+.vDivider {
+    display : inline-block;
+    width : 10px;
+    height : 100px;
+    vertical-align : top;
+    color : #806000;
+    background-color : #b0d0c0;
+    float: left;
+    cursor: e-resize;
+}
+
+.left {
+	float: left;
+	width: 300px;
+	background-color : #1CED54;
+}
+.right {
+	float: left;
+/* 	margin-left: 302px; */
+	background-color : #ED841C;
+}
 </style>
 
 </head>
@@ -46,10 +72,14 @@ This can improve performance significantly when the splitter contains complex co
     <div class="resizable resizable2"></div>
 </div> -->
 
-<div id="content">
-	<div id="WorkRequests"></div>
-	<div id="Divider" style="height:10px; padding:5px; cursor:n-resize;"><hr /></div>
-	<div id="WorkRequest_Ajax"></div>
+<div id="WorkRequests"></div>
+<div id="Divider" style="height:10px; padding:5px; cursor:n-resize;"><hr /></div>
+<div id="WorkRequest_Ajax"></div>
+
+<div>
+	<div class="left">Left</div>
+	<div class="vDivider"></div>
+	<div class="right">Right Right Right Right</div>
 </div>
 
 
@@ -57,7 +87,7 @@ This can improve performance significantly when the splitter contains complex co
 <script type="text/javascript" src="../../../puf/libs/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="../../../puf/libs/jquery-ui-1.10.4.custom.min.js"></script>
 <script type="text/javascript" src="../../../puf/libs/plugins/jquery.cookie.js"></script>
-<script type="text/javascript" src="../../../puf/libs/plugins/splitter.js"></script>
+<script type="text/javascript" src="../../../puf/libs/plugins/splitter.min.js"></script>
 
 <script type="text/javascript">
 
@@ -93,7 +123,7 @@ function ResizePage(divPosition) {
     // Math
     var minPercent = totalHeight * 0.25;
     var minBuffer = totalHeight * 0.05;
-    var topHeight = divPosition.top - $("#content").position().top;
+    var topHeight = divPosition.top;// - $("#content").position().top;
     var bottomHeight = (totalHeight - divPosition.top);
 
     // Check Drag
@@ -116,7 +146,35 @@ function ResizePage(divPosition) {
     return validDrag;
 }
 
-$("#Divider").draggable({ axis: "y", drag: function (event, ui) { return ResizePage($(this).position()); } });
+function test(ui) {
+	console.log(ui);
+	/* console.log('left width : ' + $('.left').width());
+	console.log('right width : ' + $('.right').width());
+	console.log('left outerWidth : ' + $('.left').outerWidth());
+	console.log('right outerWidth : ' + $('.right').outerWidth()); */
+	
+	
+	console.log('ui.offset.left) : ' + ui.offset.left);
+	
+	
+	//uiPosition.left = Math.min( 100, uiPosition.left );
+	
+	/* var leftWidth = $('.left').width() + ui.position.left;
+	var rightWidth = $('.right').width() - ui.position.left; */
+	
+	var leftWidth = ui.offset.left;
+	
+	$('.left').width(leftWidth);
+	console.log('left width : ' + $('.left').width());
+	
+}
+//$("#Divider").draggable({ axis: "y", drag: function (event, ui) { return ResizePage($(this).position()); } });
+$(".vDivider").draggable({ axis: "x", 
+	drag: function( event, ui ) {
+		test(ui);
+    	//ui.position.left = Math.min( 100, ui.position.left );
+  	}
+});
 
 </script>
 </body>
