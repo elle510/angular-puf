@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>jQuery Vertical splitter</title>
+
+<style type="text/css">
+.wrap {
+    width: 100%;
+    border: 1px brown solid;
+    font-size: 0;
+}
+.resizable {
+    width: 50%;
+    height: 120px;
+    padding: 0.5em;
+    background-color: coral;
+    display: inline-block;
+}
+.resizable2 {
+    background-color: lightblue;
+}
+.ui-resizable-e { 
+    cursor: e-resize; 
+    width: 16px; 
+    right: -5px; 
+    top: 0; 
+    bottom: 0; 
+    background-color: gray;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Javascript Splitter</h1>
+<p>
+This example demonstrates the use of an <em>outline</em> splitbar that reduces the number of reflows required.
+When the mouse is used to move the splitbar, the actual splitbar is not repositioned until the mouse is released.
+This can improve performance significantly when the splitter contains complex content.
+</p>
+
+<!-- <div class="wrap">
+    <div class="resizable resizable1"></div>
+    <div class="resizable resizable2"></div>
+</div> -->
+
+<div id="content">
+	<div id="WorkRequests"></div>
+	<div id="Divider" style="height:10px; padding:5px; cursor:n-resize;"><hr /></div>
+	<div id="WorkRequest_Ajax"></div>
+</div>
+
+
+<!-- <script data-main="../../scripts/main" type="text/javascript" src="../../../puf/libs/require.js"></script> -->
+<script type="text/javascript" src="../../../puf/libs/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../../../puf/libs/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="../../../puf/libs/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../../puf/libs/plugins/splitter.js"></script>
+
+<script type="text/javascript">
+
+/* $(function () 
+{
+    $(".resizable1").resizable(
+    {
+        autoHide: true,
+        handles: 'e',
+        resize: function(e, ui) 
+        {
+            var parent = ui.element.parent();
+            var remainingSpace = parent.width() - ui.element.outerWidth(),
+                divTwo = ui.element.next(),
+                divTwoWidth = (remainingSpace - (divTwo.outerWidth() - divTwo.width()))/parent.width()*100+"%";
+                divTwo.width(divTwoWidth);
+        },
+        stop: function(e, ui) 
+        {
+            var parent = ui.element.parent();
+            ui.element.css(
+            {
+                width: ui.element.width()/parent.width()*100+"%",
+            });
+        }
+    });
+}); */
+
+var totalHeight = $("#Divider").parent().height();
+function ResizePage(divPosition) {
+    var validDrag = true;
+
+    // Math
+    var minPercent = totalHeight * 0.25;
+    var minBuffer = totalHeight * 0.05;
+    var topHeight = divPosition.top - $("#content").position().top;
+    var bottomHeight = (totalHeight - divPosition.top);
+
+    // Check Drag
+    if (topHeight < minPercent) {
+        validDrag = false;
+        $("#WorkRequests").height(minPercent + minBuffer);
+    }
+
+    if (bottomHeight < minPercent) {
+        validDrag = false;
+        $("#WorkRequest_Ajax").height(minPercent + minBuffer);
+    }
+
+    // Set Heights
+    if (validDrag) {
+        $("#WorkRequests").height(topHeight);
+        $("#WorkRequest_Ajax").height(bottomHeight);
+    }
+
+    return validDrag;
+}
+
+$("#Divider").draggable({ axis: "y", drag: function (event, ui) { return ResizePage($(this).position()); } });
+
+</script>
+</body>
+</html>

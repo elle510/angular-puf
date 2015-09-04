@@ -60,17 +60,21 @@ require.config({
         
         // jquery plugins
         'plugins': 'puf/libs/plugins',
+        'moment': 'puf/libs/plugins/moment.min',
+        'jquery-cookie': 'puf/libs/plugins/jquery.cookie',
         'jqgrid': 'puf/libs/plugins/jqgrid/jquery.jqGrid.min',
         'jstree': 'puf/libs/plugins/jstree.min',
 //      'jqtree': 'puf/libs/plugins/tree.jquery',
         'datetimepicker': 'puf/libs/plugins/bootstrap-datetimepicker.min',
         'daterangepicker': 'puf/libs/plugins/daterangepicker',
-        'moment': 'puf/libs/plugins/moment.min',
         'bootstrap-select': 'puf/libs/plugins/bootstrap-select.min',
-        'jquery-cookie': 'puf/libs/plugins/jquery.cookie',
         'jquery-form': 'puf/libs/plugins/jquery.form.min',
         'jquery-steps': 'puf/libs/plugins/jquery.steps.min',
+		'jquery-splitter': 'puf/libs/plugins/splitter.min',
         
+		// angular directive
+		'angular-ui-layout': 'puf/libs/ui-layout',
+		
         // google-code-prettify
         'prettify': 'puf/libs/prettify',
         
@@ -104,8 +108,8 @@ require.config({
             deps: ['jquery']
         },
         'puf': {
-        	deps: ['ps-locale_ko', 'jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 
-        	       'moment', 'bootstrap-select', 'jquery-form', 'jquery-steps']
+        	deps: ['ps-locale_ko', 'moment', 'jquery-cookie', 'jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 
+        	       'bootstrap-select', 'jquery-form', 'jquery-steps', 'jquery-splitter']
         },
         'jqgrid': {
         	// jquery를 빼도 불러오기니 하는데 로딩순서가 달라진다.
@@ -190,6 +194,26 @@ require( [
 				}
 			});
 			*/
+			
+			/*
+			$("#main").splitter({
+				type: "v",
+				outline: true,
+//				minLeft: 100, sizeLeft: 150, minRight: 100,
+				resizeToWidth: true,
+				cookie: "vsplitter",
+				accessKey: 'I'
+			});
+			*/
+			
+			$("#MySplitter").splitter({
+				type: "v",
+				outline: true,
+				minLeft: 100, sizeLeft: 150, minRight: 100,
+				resizeToWidth: true,
+				cookie: "vsplitter",
+				accessKey: 'I'
+			});
 		});
 		
 	}

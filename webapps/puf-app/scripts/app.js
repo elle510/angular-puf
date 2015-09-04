@@ -5,7 +5,8 @@ define([
 		'angular', // 앵귤러 모듈을 사용하기 위해 임포트		
 		'angular-ui-router',
 		'ps-route-resolver',
-		'puf'
+		'puf',
+		'angular-ui-layout'
 	],
 	
 /*
@@ -23,7 +24,7 @@ define([
 		// 여기서는 xeusApp이라는 앵귤러 모듈을 리턴한다.
 		
 		// 모듈 선언
-		var app = angular.module('pufApp', ['ui.router', 'ps.routeResolver', 'ps.puf']);
+		var app = angular.module('pufApp', ['ui.router', 'ps.routeResolver', 'ps.puf', 'ui.layout']);
 		
 		// 공통 컨트롤러 설정 - 모든 컨트롤러에서 공통적으로 사용하는 부분들 선언
 		app.controller('CommonController', function($scope, $state, $window, $location) {

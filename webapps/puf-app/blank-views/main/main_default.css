@@ -5,17 +5,18 @@
 }*/
 body {
 /*   background: #BBCFE8; */
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: #333;
-  font-size: 14px;
+	background: #fff;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+  	color: #333;
+  	font-size: 14px;
 }
 
-.wrap {
-  margin: 0 auto;
-  margin-bottom: 20px;
-  background: #fff;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+.wrapper {
+  	margin: 0 auto;
+  	margin-bottom: 20px;
+/*  	background: #fff; */
+/*   	-moz-border-radius: 10px; */
+/*   	-webkit-border-radius: 10px; */
 }
 
 /* header 영역
@@ -26,10 +27,6 @@ body {
   	height: 50px;
   	margin: 0;
   	border: 1px solid /*transparent*/;
-/*   display: -webkit-flex; */
-/*   display: flex; */
-/*   -webkit-flex-flow: row; */
-/*   flex-flow: row; */
 }
 .logo {
 	float: left;
@@ -37,36 +34,49 @@ body {
   	height: 100%;
   	border: 1px solid;
 }
+
 /*div.navbar*/
-.navibar {
-/* 	width: auto; */
+.navbar {
 	height: 100%;
 	border: 1px solid;
     margin: 0;
-/*     position: relative; */
-/*     clear: both; */
 }
 
-.navibar .navibar-nav {
-/* 	width: auto; */
+.navbar .navbar-nav {
 	height: 100%;
 /* 	display: block !important; */
 	float: left;
 	border: 1px solid;
 }
 
-.navibar .navibar-right {
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+  
+/* navbar 의 영향을 받고 싶지 않다면 .navibar 로 수정
+.navbar .navbar-right {
     float: right !important;
 }
-.navibar .navibar-right .dropdown-menu {
+.navbar .navbar-right .dropdown-menu {
  	right: 0;
     left: auto;
 }
-.navibar .navibar-right .dropdown-menu-left {
+.navbar .navbar-right .dropdown-menu-left {
     right: auto;
     left: 0;
 }
-     
+*/
+
+.navbar-form {
+  	padding: 0px 15px;
+  	margin-top: 0px;
+}
+
+.navbar-form .input-group > .form-control {
+    width: 250px;
+}
+
+/* User */  
 .user {
   width: 100%;
   height: 30px;
@@ -103,40 +113,54 @@ body {
 
 /* main 영역
 ----------------------------------*/
-#main {
-  margin: 0;
-  display: -webkit-flex;
-  display: flex;
+.main {
+	position: relative;
+  	margin: 0;
+/*   display: -webkit-flex; */
+/*   display: flex; */
 }
-#left_sidebar {
-  width: 350px;
+
+.left_sidebar {
+	float: left;
+  	width: 350px;
+  	border: 1px solid;
 }
-#center {
-  margin: 0 auto;
-  -webkit-flex: 1;
-  flex: 1;
-  overflow-y: auto;
+.center {
+/* 	position: relative; */
+	margin-left: 351px;
+/*   	margin: 0 auto; */
+  	border: 1px solid;
+/*   -webkit-flex: 1; */
+/*   flex: 1; */
+/*   overflow-y: auto; */
 }
 
 /* left_sidebar 영역
 ----------------------------------*/
-#left_top {
-/*   max-height: 250px; */
-  height: 400px;
-  overflow: auto;
+.left {
+/* 	margin: 0 auto; */
+  	border: 1px solid;
 }
+
 /* center 영역
 ----------------------------------*/
-#breadcrumbs {
-  height: 30px;
+.breadcrumbs {
+  	height: 30px;
+  	border: 1px solid;
+}
+
+.content {
+  	border: 1px solid;
 }
 
 /* footer 영역
 ----------------------------------*/
-/*div#footer*/
-#footer {
-  text-align: right;
-  height: 50px;
+/*div.footer*/
+.footer {
+  	text-align: right;
+  	height: 50px;
+  	border: 1px solid;
+/*   clear: both; */
 /*   margin: 0 auto; */
 }
 a.sidebar-link {

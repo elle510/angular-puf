@@ -19,24 +19,6 @@
 
 <style type="text/css">
 
-
-#logo, #nav, #user, 
-#left,#breadcrumbs, #content, 
-#footer { 
-  border: 1px solid #000000;
-}
-
-#logo, #nav, #user, 
-#left_sidebar, #breadcrumbs, #content,
-#footer {
-	text-align: center;
-}
-
-#logo {
-	width: 250px;
-}
-
-
 /* #header {
 	text-align: center;
 	line-height: 100px;
@@ -55,7 +37,7 @@
 </head>
 <body>
 	
-<div class="wrap">
+<div class="wrapper">
 	<div class="user">
 		<div class="pull-right">
 			자동로그아웃 30:00 <button type="button" class="btn-renew">연장하기</button>
@@ -64,11 +46,11 @@
 	</div>
 	<div class="header">
 		<div class="logo">Logo</div>
-		<div class="navibar">
-			<div class="navibar-nav">
+		<div class="navbar">
+			<div class="navbar-nav">
 				Nav
 			</div>
-			<div class="navibar-nav navibar-right">
+			<div class="navbar-nav navbar-right">
 				<form class="navbar-form navbar-left" role="search">
 					<div class="input-group">
 			      		<input type="text" class="form-control" placeholder="Search for...">
@@ -94,40 +76,45 @@
 		
 	</div>
 	
-	<div id="main">
-		<div id="left_sidebar">
-			<div id="left">
-				<ps-tabset vertical="true" content-height="100">
-    				<ps-tab heading="Vertical 1">Vertical content 1</ps-tab>
-    				<ps-tab heading="Vertical 2">Vertical content 2</ps-tab>
-  				</ps-tabset>
+	<div class="main">
+		<div class="left_sidebar">
+			<div class="left">
+			Left
+			<br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br>
+			<br>Left<br>
+			Left<br>
+<!-- 				<ps-tabset vertical="true" content-height="100"> -->
+<!--     				<ps-tab heading="Vertical 1">Vertical content 1</ps-tab> -->
+<!--     				<ps-tab heading="Vertical 2">Vertical content 2</ps-tab> -->
+<!--   				</ps-tabset> -->
 			</div>
 		</div>
-		<div id="center">
-			<div id="breadcrumbs">Breadcrumbs</div>
-			<div id="content">
-				<p>Left Top
-					Left Top<br>
-					Left Top<br>
-					Left Top<br>
-					Left Top<br>
-					Left Top<br>
-					Left Top<br>
+		<div class="center">
+			<div class="breadcrumbs">Breadcrumbs</div>
+			<div class="content">
+				<p>Content
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
 					<br><br><br><br><br><br><br><br>
 					<br><br><br><br><br><br><br><br>
 					<br><br><br><br><br><br><br><br>
 					<br><br><br><br><br><br><br><br>
-					<br>Left Top<br>
-					Left Top<br>
-					Left Top<br>
-					Left Top<br>
-					Left Top<br>
-					Left Top</p>
+					<br>Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content</p>
 			</div>
 		</div>
 	</div>
 	
-	<div id="footer">Footer</div>
+	<div class="footer">Footer</div>
 </div>
 
 <script data-main="../../scripts/main" type="text/javascript" src="../../../puf/libs/require.js"></script>
