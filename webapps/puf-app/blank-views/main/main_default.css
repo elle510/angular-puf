@@ -114,20 +114,25 @@ body {
 /* main 영역
 ----------------------------------*/
 .main {
-	position: relative;
+/* 	position: relative; */
   	margin: 0;
+  	min-height: 500px;
 /*   display: -webkit-flex; */
 /*   display: flex; */
 }
 
 .left_sidebar {
 	float: left;
-  	width: 350px;
-  	border: 1px solid;
+/*   	width: 350px; */
+/*   	border: 1px solid; */
 }
 .center {
+	float: left;
+/* 	width: initial; */
 /* 	position: relative; */
-	margin-left: 351px;
+/* 	margin-left: 350px; */
+/* 	clear: left; */
+/* 	margin-left: 25em; */
 /*   	margin: 0 auto; */
   	border: 1px solid;
 /*   -webkit-flex: 1; */
@@ -137,9 +142,48 @@ body {
 
 /* left_sidebar 영역
 ----------------------------------*/
-.left {
-/* 	margin: 0 auto; */
+.left_sidebar .left {
+	-webkit-transition-duration: 1s;
+  	-moz-transition-duration: 1s;
+  	-ms-transition-duration: 1s;
+  	-o-transition-duration: 1s;
+  	transition-duration: 1s;
+  	float: left;
+  	width: 330px;
+/*   	width: 24em; */
+  /* 	margin: 0 auto; */
   	border: 1px solid;
+}
+
+.left_sidebar .menu-switch {
+/*   	padding-top: 6em; */
+	padding-top: 150px;
+	width: 20px;
+	float: left;
+}
+.left_sidebar .menu-switch label {
+  	font-size: 11px;
+  	cursor: pointer;
+}
+
+.left_sidebar input {
+  	display: none;
+}
+
+.left_sidebar #menu-collapsed:checked ~ .left {
+  	margin-left: -350px;
+}
+.left_sidebar #menu-collapsed:checked ~ .menu-switch .open {
+  	display: block;
+}
+.left_sidebar #menu-collapsed:checked ~ .menu-switch .collapse {
+  	display: none;
+}
+.left_sidebar #menu-collapsed ~ .menu-switch .collapse {
+  	display: block;
+}
+.left_sidebar #menu-collapsed ~ .menu-switch .open {
+  	display: none;
 }
 
 /* center 영역
@@ -160,8 +204,9 @@ body {
   	text-align: right;
   	height: 50px;
   	border: 1px solid;
-/*   clear: both; */
+  	clear: both;
 /*   margin: 0 auto; */
+/* 	clear: left; */
 }
 a.sidebar-link {
   display: none;

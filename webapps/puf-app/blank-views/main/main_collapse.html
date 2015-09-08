@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Collapse Menu</title>
+
+<style type="text/css">
+/* @import url('http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url('http://fonts.googleapis.com/css?family=Handlee');
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: rgba(252, 251, 250, 0.9);
+}
+.menu .menu-content {
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+  float: left;
+  width: 12em;
+}
+.menu .menu-content h2 {
+  font-family: 'Handlee', cursive;
+  font-weight: normal;
+  margin-left: 1em;
+}
+.menu .menu-content ul {
+  list-style: none;
+}
+.menu li,
+.menu label {
+  color: rgba(252, 251, 250, 0.5);
+  cursor: pointer;
+  -webkit-transition-duration: 1.0s;
+  -moz-transition-duration: 1.0s;
+  -ms-transition-duration: 1.0s;
+  -o-transition-duration: 1.0s;
+  transition-duration: 1.0s;
+}
+.menu li:hover,
+.menu label:hover {
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  color: rgba(252, 251, 250, 0.9);
+}
+.menu .menu-switch {
+  padding-top: 6em;
+}
+.menu .menu-switch label {
+  font-size: 3em;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.menu input {
+  display: none;
+}
+.menu #menu-collapsed:checked ~ .menu-content {
+  margin-left: -12em;
+}
+.menu #menu-collapsed:checked ~ .menu-switch .rise {
+  display: block;
+}
+.menu #menu-collapsed:checked ~ .menu-switch .collapse {
+  display: none;
+}
+.menu #menu-collapsed ~ .menu-switch .rise {
+  display: none;
+} */
+
+
+
+.menu .menu-content {
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+  float: left;
+  width: 12em;
+}
+
+.menu .menu-switch {
+  padding-top: 6em;
+}
+.menu .menu-switch label {
+  font-size: 3em;
+  cursor: pointer;
+}
+
+.menu input {
+  display: none;
+}
+
+/* Set a background color for all <ul> elements that are preceded by a <p> element with the same parent: 
+p ~ ul {
+    background: #ff0000;
+}
+*/
+
+.menu #menu-collapsed:checked ~ .menu-content {
+  margin-left: -12em;
+}
+.menu #menu-collapsed:checked ~ .menu-switch .rise {
+  display: block;
+}
+.menu #menu-collapsed:checked ~ .menu-switch .collapse {
+  display: none;
+}
+.menu #menu-collapsed ~ .menu-switch .rise {
+  display: none;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>Collapse Menu</h1>
+<p>
+This example demonstrates the use of an <em>outline</em> splitbar that reduces the number of reflows required.
+When the mouse is used to move the splitbar, the actual splitbar is not repositioned until the mouse is released.
+This can improve performance significantly when the splitter contains complex content.
+</p>
+
+<div class="menu">
+  <input type="checkbox" id="menu-collapsed" name="menu-collapsed" />
+  <div class="menu-content">
+    <h2>Collapsible menu</h2>
+    <ul>
+      <li>lorem ipsum</li>
+      <li>dolor sit amet</li>
+      <li>consetetur sadipscing</li>
+      <li>elitr</li>
+      <li>sed diam nonumy</li>
+      <li>eirmod tempor</li>
+      <li>invidunt ut</li>
+      <li>labore et dolore</li>
+    </ul>
+  </div>
+  <div class="menu-switch">
+    <label class="collapse" for="menu-collapsed"><<</label>
+    <label class="rise" for="menu-collapsed">>></label>
+  </div>
+</div>
+
+
+<!-- <script data-main="../../scripts/main" type="text/javascript" src="../../../puf/libs/require.js"></script> -->
+<!-- <script type="text/javascript" src="../../../puf/libs/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../../../puf/libs/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="../../../puf/libs/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../../puf/libs/plugins/splitter.min.js"></script> -->
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
