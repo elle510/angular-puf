@@ -111,7 +111,8 @@ angular.module('ps.directives.grid', [])
             //console.log(attrs.gridId);
             
             scope.$watch('options', function (value) {
-            	opts = $.extend({}, defaults, value);
+//            	opts = $.extend({}, defaults, value);
+            	opts = angular.extend({}, defaults, value);
 //                element.children().empty();
             	element.empty();
                 table = angular.element('<table id="' + attrs.gridId + '"></table>');

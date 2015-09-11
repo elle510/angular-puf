@@ -71,6 +71,8 @@ require.config({
         'jquery-form': 'puf/libs/plugins/jquery.form.min',
         'jquery-steps': 'puf/libs/plugins/jquery.steps.min',
 		'jquery-splitter': 'puf/libs/plugins/splitter.min',
+		'jquery-smartmenus': 'puf/libs/plugins/smartmenu/jquery.smartmenus.min',
+		'jquery-smartmenus-bootstrap': 'puf/libs/plugins/smartmenu/addons/bootstrap/jquery.smartmenus.bootstrap.min',
         
 		// angular directive
 		'angular-ui-layout': 'puf/libs/ui-layout',
@@ -109,7 +111,7 @@ require.config({
         },
         'puf': {
         	deps: ['ps-locale_ko', 'moment', 'jquery-cookie', 'jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 
-        	       'bootstrap-select', 'jquery-form', 'jquery-steps', 'jquery-splitter']
+        	       'bootstrap-select', 'jquery-form', 'jquery-steps', 'jquery-splitter', 'jquery-smartmenus', 'jquery-smartmenus-bootstrap']
         },
         'jqgrid': {
         	// jquery를 빼도 불러오기니 하는데 로딩순서가 달라진다.
@@ -118,8 +120,11 @@ require.config({
             deps: ['jquery','jquery-ui','plugins/jqgrid/i18n/grid.locale-en','bootstrap'],
             exports: 'jQuery.fn.jqgrid'
         },
-        'jstree': {
+        /*'jstree': {
         	deps: ['jquery']
+        },*/
+        'jquery-smartmenus-bootstrap': {
+        	deps: ['jquery-smartmenus']
         },
         /*'jqtree': {
         	deps: ['jquery', 'jquery-cookie']
@@ -195,16 +200,6 @@ require( [
 			});
 			*/
 			
-			/*
-			$("#main").splitter({
-				type: "v",
-				outline: true,
-//				minLeft: 100, sizeLeft: 150, minRight: 100,
-				resizeToWidth: true,
-				cookie: "vsplitter",
-				accessKey: 'I'
-			});
-			*/
 			
 			$("#MySplitter").splitter({
 				type: "v",

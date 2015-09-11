@@ -200,7 +200,33 @@ define([
 				
 				//$scope.$apply();
 			};
-		});	
+		});
+		
+		// Navbar Controller : smartmenu data Loading, search, setting
+		app.controller('NavbarCtrl', function($scope, $http) {
+			
+			$http({
+				url: '../../json/menu.json',
+				method: 'POST',
+				//data: dataObject, /* 파라메터로 보낼 데이터 */
+				headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+			})
+			.success(function(data, status, headers, config) {
+				if(data) {
+					/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+//					console.log(data);
+					$scope.menuData = data;
+				}
+				else {
+					/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+				}
+			})
+			.error(function(data, status, headers, config) {
+				/* 서버와의 연결이 정상적이지 않을 때 처리 */
+				console.log(status);
+			});
+			
+		});
 		
 		app.run(function() {
 			/*

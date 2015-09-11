@@ -52,8 +52,15 @@ body {
 .navbar-nav.navbar-right:last-child {
     margin-right: 0px;
 }
-  
-/* navbar 의 영향을 받고 싶지 않다면 .navibar 로 수정
+
+/* navbar 의 영향을 받고 싶지 않다면 .navibar 로 수정 */
+/* smartmenus 의 css에서 
+.navbar-right ul.dropdown-menu {
+	left: 0;
+	right: auto;
+}
+때문에 아래 코드 override 해준다.(bootstrap에 이미 있는 코드이지만)
+*/
 .navbar .navbar-right {
     float: right !important;
 }
@@ -65,7 +72,7 @@ body {
     right: auto;
     left: 0;
 }
-*/
+
 
 .navbar-form {
   	padding: 0px 15px;

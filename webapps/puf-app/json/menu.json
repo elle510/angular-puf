@@ -1,0 +1,141 @@
+[
+	{
+		"text": "Home",
+		"id": "home",
+		"icon": "fa fa-home"
+    },
+    {
+        "text": "About",
+        "id": "about",
+        "children": [
+        	{ "text": "Menu Item 1", 	"id": "comp_elements", "icon": "fa fa-flag",
+        		"children": [
+            		{ "text": "Sub Item 1", 	"id": "about_sub1", 	"icon": "fa fa-flag", 	"route": "button"  },
+            		{ "text": "Sub Item 2", 	"id": "about_sub2", 	"icon": "fa fa-flag", 	"route": "buttonDropdown" },
+            		{ "text": "Sub Item 3", 	"id": "about_sub3", 	"icon": "fa fa-flag", 	"route": "modal" },
+            		{ "text": "Sub Item 4", 	"id": "about_sub4", 	"icon": "fa fa-flag", 	"route": "panel" }
+            	]
+        	},
+        	{ "text": "Menu Item 2", 		"id": "comp_forms", 	"icon": "fa fa-flag" },
+        	{ "text": "Menu Item 3", 		"id": "comp_grid", 		"icon": "fa fa-table", 
+        		"children": [
+            		{ "text": "Sub Item 3-1", 		"id": "about_sub_3-1", 		"icon": "fa fa-book", 			"route": "textinput" },
+            		{ "text": "Sub Item 3-2", 		"id": "about_sub_3-2", 		"icon": "fa fa-beer", 			"route": "textarea" },
+            		{ "text": "Sub Item 3-3", 		"id": "about_sub_3-3", 		"icon": "fa fa-bolt", 			"route": "checkbox" },
+            		{ "text": "Sub Item 3-4", 		"id": "about_sub_3-4", 		"icon": "fa fa-cab", 			"route": "radio" },
+            		{ "text": "Sub Item 3-5", 		"id": "about_sub_3-5", 		"icon": "fa fa-anchor", 		"route": "select" },
+            		{ "text": "A Long Sub Item 3-6", 		"id": "about_sub_3-6", 		"icon": "fa fa-adjust", 		"route": "datepicker",
+            			"children": [
+		            		{ "text": "Sub Item 3-6-1", 		"id": "about_sub_3-6-1", 		"icon": "fa fa-book", 			"route": "textinput" },
+		            		{ "text": "Sub Item 3-6-2", 		"id": "about_sub_3-6-2", 		"icon": "fa fa-beer", 			"route": "textarea" },
+		            		{ "text": "Sub Item 3-6-3", 		"id": "about_sub_3-6-3", 		"icon": "fa fa-bolt", 			"route": "checkbox" },
+		            		{ "text": "Sub Item 3-6-4", 		"id": "about_sub_3-6-4", 		"icon": "fa fa-cab", 			"route": "radio" },
+		            		{ "text": "Sub Item 3-6-5", 		"id": "about_sub_3-6-5", 		"icon": "fa fa-anchor", 		"route": "select" },
+		            		{ "text": "Sub Item 3-6-6", 		"id": "about_sub_3-6-6", 		"icon": "fa fa-adjust", 		"route": "datepicker" },
+		            		{ "text": "Sub Item 3-6-7", 		"id": "about_sub_3-6-7", 		"icon": "fa fa-bars", 			"route": "stepper" },
+		            		{ "text": "Sub Item 3-6-8", 		"id": "about_sub_3-6-8", 		"icon": "fa fa-bank", 			"route": "validation" },
+		            		{ "text": "Sub Item 3-6-9", 		"id": "about_sub_3-6-9", 		"icon": "fa fa-bar-chart-o", 	"route": "wizard" },
+		            		{ "text": "Sub Item 3-6-10", 		"id": "about_sub_3-6-10", 		"icon": "fa fa-flag", 			"route": "upload" },
+		            		{ "text": "Sub Item 3-6-11", 		"id": "about_sub_3-6-11" },
+		            		{ "text": "Sub Item 3-6-12", 		"id": "about_sub_3-6-12" },
+		            		{ "text": "Sub Item 3-6-13", 		"id": "about_sub_3-6-13" },
+		            		{ "text": "Sub Item 3-6-14", 		"id": "about_sub_3-6-14" },
+		            		{ "text": "Sub Item 3-6-15", 		"id": "about_sub_3-6-15" },
+		            		{ "text": "Sub Item 3-6-16", 		"id": "about_sub_3-6-16" },
+		            		{ "text": "Sub Item 3-6-17", 		"id": "about_sub_3-6-17" },
+		            		{ "text": "Sub Item 3-6-18", 		"id": "about_sub_3-6-18" },
+		            		{ "text": "Sub Item 3-6-19", 		"id": "about_sub_3-6-19" },
+		            		{ "text": "Sub Item 3-6-20", 		"id": "about_sub_3-6-20" },
+		            		{ "text": "Sub Item 3-6-21", 		"id": "about_sub_3-6-21" },
+		            		{ "text": "Sub Item 3-6-22", 		"id": "about_sub_3-6-22" },
+		            		{ "text": "Sub Item 3-6-23", 		"id": "about_sub_3-6-23" },
+		            		{ "text": "Sub Item 3-6-24", 		"id": "about_sub_3-6-24" },
+		            		{ "text": "Sub Item 3-6-25", 		"id": "about_sub_3-6-25" },
+		            		{ "text": "Sub Item 3-6-26", 		"id": "about_sub_3-6-26" },
+		            		{ "text": "Sub Item 3-6-27", 		"id": "about_sub_3-6-27" },
+		            		{ "text": "Sub Item 3-6-28", 		"id": "about_sub_3-6-28" },
+		            		{ "text": "Sub Item 3-6-29", 		"id": "about_sub_3-6-29" },
+		            		{ "text": "Sub Item 3-6-30", 		"id": "about_sub_3-6-30" },
+		            		
+		            		{ "text": "Sub Item 3-6-41", 		"id": "about_sub_3-6-41" },
+		            		{ "text": "Sub Item 3-6-42", 		"id": "about_sub_3-6-42" },
+		            		{ "text": "Sub Item 3-6-43", 		"id": "about_sub_3-6-43" },
+		            		{ "text": "Sub Item 3-6-44", 		"id": "about_sub_3-6-44" },
+		            		{ "text": "Sub Item 3-6-45", 		"id": "about_sub_3-6-45" },
+		            		{ "text": "Sub Item 3-6-46", 		"id": "about_sub_3-6-46" },
+		            		{ "text": "Sub Item 3-6-47", 		"id": "about_sub_3-6-47" },
+		            		{ "text": "Sub Item 3-6-48", 		"id": "about_sub_3-6-48" },
+		            		{ "text": "Sub Item 3-6-49", 		"id": "about_sub_3-6-49" },
+		            		{ "text": "Sub Item 3-6-50", 		"id": "about_sub_3-6-50" },
+		            		{ "text": "Sub Item 3-6-51", 		"id": "about_sub_3-6-51" },
+		            		{ "text": "Sub Item 3-6-52", 		"id": "about_sub_3-6-52" },
+		            		{ "text": "Sub Item 3-6-53", 		"id": "about_sub_3-6-53" },
+		            		{ "text": "Sub Item 3-6-54", 		"id": "about_sub_3-6-54" },
+		            		{ "text": "Sub Item 3-6-55", 		"id": "about_sub_3-6-55" },
+		            		{ "text": "Sub Item 3-6-56", 		"id": "about_sub_3-6-56" },
+		            		{ "text": "Sub Item 3-6-57", 		"id": "about_sub_3-6-57" },
+		            		{ "text": "Sub Item 3-6-58", 		"id": "about_sub_3-6-58" },
+		            		{ "text": "Sub Item 3-6-59", 		"id": "about_sub_3-6-59" },
+		            		{ "text": "Sub Item 3-6-60", 		"id": "about_sub_3-6-60" }
+		            	]
+            	 	},
+            		{ "text": "Sub Item 3-7", 		"id": "about_sub_3-7", 		"icon": "fa fa-bars", 			"route": "stepper" },
+            		{ "text": "Sub Item 3-8", 		"id": "about_sub_3-8", 		"icon": "fa fa-bank", 			"route": "validation" },
+            		{ "text": "Sub Item 3-9", 		"id": "about_sub_3-9", 		"icon": "fa fa-bar-chart-o", 	"route": "wizard" },
+            		{ "text": "Sub Item 3-10", 		"id": "about_sub_3-10", 	"icon": "fa fa-flag", 			"route": "upload" }
+            	]
+            },
+        	{ "text": "Menu Item 4", 		"id": "comp_tree", 		"route": "tree"  },
+            { "text": "Menu Item 5", 		"id": "comp_tabs", 		"icon": "fa fa-flag", 	"route": "tab" }
+        ]
+    },
+    {
+        "text": "Download",
+        "id": "download",
+        "icon": "fa fa-download",
+        "children": [
+            { "text": "JDK", 		"id": "jdk" },
+            { "text": "Eclipse", 	"id": "eclipse" }
+        ]
+    },
+    {
+        "text": "Support",
+        "id": "support",
+        "icon": "fa fa-life-ring",
+        "children": [
+        	{ "text": "Support Service", 	"id": "support_service", 	"icon": "fa fa-desktop", 	"route": "line-chart"  },
+            { "text": "Forums", 			"id": "forums", 			"icon": "fa fa-share", 	"route": "column-chart",
+            	"children": [
+            		{ "text": "Support Service", 	"id": "support_service" },
+            		{ "text": "Forums", 			"id": "forums" },
+            		{ "text": "Partners", 			"id": "partners" }
+            	]
+            },
+            { "text": "Partners", 			"id": "partners", 			"icon": "fa fa-users", 	"route": "pie-chart" }
+        ]
+    },
+    {
+        "text": "Docs",
+        "id": "docs",
+        "icon": "fa fa-file-archive-o",
+        "children": [
+            { "text": "Manual", "id": "manual" },
+            { "text": "Help", "id": "help",
+            	"children": [
+            		{ "text": "NKIA", 			"id": "nkia",			"url": "http://www.nkia.co.kr" },
+            		{ "text": "KAKAO", 			"id": "kakao", 			"url": "http://www.kakao.com" }
+            	] 
+            },
+            { "text": "Site", "id": "site",
+            	"children": [
+            		{ "text": "sitemap", 		"id": "sitemap" }
+            	] 
+            }
+        ]
+    },
+    {
+    	"text": "Mega menu",
+        "id": "mega",
+        "children": []
+    }
+]
