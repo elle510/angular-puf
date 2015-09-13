@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-controller="CommonController">
+<head>
+<meta charset="UTF-8">
+<title>Polestar UI 개발 가이드</title>
+
+<link rel="stylesheet" href="../puf/styles/bootstrap.min.css" />
+<link rel="stylesheet" href="../puf/styles/jquery-ui/jquery-ui-1.10.4.custom.min.css" />
+<link rel="stylesheet" href="../puf/styles/font-awesome.min.css" />
+<link rel="stylesheet" href="../puf/styles/font-polestar.min.css" />
+<link rel="stylesheet" href="../puf/styles/common.min.css" />
+
+
+<link rel="stylesheet" href="jquery.steps.css" />
+
+</head>
+<body>
+
+<div id="wizard">
+	<h1>First Step</h1>
+	<div>First Content</div>
+
+	<h1>Second Step</h1>
+	<div>Second Content</div>
+</div>
+
+<script type="text/javascript" src="../puf/libs/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../puf/libs/plugins/jquery.steps.min.js"></script>
+<script type="text/javascript">
+	$("#wizard").steps();
+</script>
+</body>
+</html>
