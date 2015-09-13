@@ -203,7 +203,7 @@ define([
 		});
 		
 		// Navbar Controller : smartmenu data Loading, search, setting
-		app.controller('NavbarCtrl', function($scope, $http) {
+		app.controller('NavbarCtrl', ['$scope', '$http', function($scope, $http) {
 			
 			$http({
 				url: '../../json/menu.json',
@@ -226,7 +226,102 @@ define([
 				console.log(status);
 			});
 			
-		});
+		}]);
+		
+		// LeftSidebar Controller : splitter
+		app.controller('LeftSidebarCtrl', ['$scope', function($scope) {
+			/*
+			var splitterActiveFlag = false;
+			var splitterObj = false;
+			var MIN_LEFT = 60;
+			var MIN_RIGHT = 200;
+			var MIN_TOP = 60;
+			var MIN_BOTTOM = 60;
+			
+			$scope.splitterMouseDown = function(a, b) {
+			    if (!splitterActiveFlag) {
+			        if (b.setCapture) {
+			            b.setCapture();
+			        } else {
+			            document.addEventListener("mouseup", $scope.splitterMouseUp, true);
+			            document.addEventListener("mousemove", $scope.splitterMouseMove, true);
+			            a.preventDefault();
+			        }
+			        splitterActiveFlag = true;
+			        splitterObj = b;
+			    }
+			};
+			
+			$scope.splitterMouseUp = function(b) {
+			    if (splitterActiveFlag) {
+			        var a = document.getElementById("toc");
+			        var c = document.getElementById("content");
+			        changeQSearchboxWidth();
+			        a.style.width = (splitterObj.offsetLeft - 20) + "px";
+			        c.style.left = (splitterObj.offsetLeft + 10) + "px";
+			        if (splitterObj.releaseCapture) {
+			            splitterObj.releaseCapture();
+			        } else {
+			            document.removeEventListener("mouseup", $scope.splitterMouseUp, true);
+			            document.removeEventListener("mousemove", $scope.splitterMouseMove, true);
+			            b.preventDefault();
+			        }
+			        splitterActiveFlag = false;
+			        saveSplitterPos();
+			    }
+			};
+
+			$scope.splitterMouseMove = function(a) {
+			    if (splitterActiveFlag) {
+			        if (a.clientX >= MIN_LEFT && a.clientX <= document.documentElement.clientWidth - MIN_RIGHT) {
+			            splitterObj.style.left = a.clientX + "px";
+			            if (!splitterObj.releaseCapture) {
+			                a.preventDefault();
+			            }
+			        }
+			    }
+			};
+			
+			function changeQSearchboxWidth() {
+			    if (getInternetExplorerVersion() != "7") {
+			        spObj = document.getElementById("splitter");
+			        var b = document.getElementById("pkg_searchbox");
+			        var a = document.getElementById("cls_searchbox");
+			        if (spObj.offsetLeft > 220 && spObj.offsetLeft < 265) {
+			            if (b != null) {
+			                b.style.width = spObj.offsetLeft - 138 + "px"
+			            }
+			            if (a != null) {
+			                a.style.width = spObj.offsetLeft - 138 + "px"
+			            }
+			        }
+			        if (spObj.offsetLeft >= 265) {
+			            if (b != null) {
+			                b.style.width = "127px"
+			            }
+			            if (a != null) {
+			                a.style.width = "127px"
+			            }
+			        }
+			        if (spObj.offsetLeft <= 220) {
+			            if (b != null) {
+			                b.style.width = "82px"
+			            }
+			            if (a != null) {
+			                a.style.width = "82px"
+			            }
+			        }
+			    }
+			}
+			
+			function saveSplitterPos() {
+			    var a = document.getElementById("splitter");
+			    if (a) {
+			        setCookie("splitterPosition", a.offsetLeft, new Date(3000, 1, 1, 1, 1), "/", document.location.domain)
+			    }
+			}
+			*/
+		}]);
 		
 		app.run(function() {
 			/*

@@ -41,152 +41,153 @@
 <body>
 	
 <div class="wrapper">
-	<div class="user">
-		<div class="pull-right">
-			자동로그아웃 30:00 <button type="button" class="btn-renew">연장하기</button>
-			admin(admin) <button type="button" class="btn-logout">로그아웃</button>
-		</div>
-	</div>
 	<div class="header">
-		<div class="logo">Logo</div>
-		<div class="navbar" ng-controller="NavbarCtrl">
-			<!-- 메뉴 start -->
-			<ps-menu data="menuData"></ps-menu>
-			
-			<!-- <ul class="nav navbar-nav">
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">A long sub menu <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
-                          <li><a href="#">One more link</a></li>
-                          <li><a href="#">Menu item 1</a></li>
-                          <li><a href="#">Menu item 2</a></li>
-                          <li><a href="#">Menu item 3</a></li>
-                          <li><a href="#">Menu item 4</a></li>
-                          <li><a href="#">Menu item 5</a></li>
-                          <li><a href="#">Menu item 6</a></li>
-                          <li><a href="#">Menu item 7</a></li>
-                          <li><a href="#">Menu item 8</a></li>
-                          <li><a href="#">Menu item 9</a></li>
-                          <li><a href="#">Menu item 10</a></li>
-                          <li><a href="#">Menu item 11</a></li>
-                          <li><a href="#">Menu item 12</a></li>
-                          <li><a href="#">Menu item 13</a></li>
-                          <li><a href="#">Menu item 14</a></li>
-                          <li><a href="#">Menu item 15</a></li>
-                          <li><a href="#">Menu item 16</a></li>
-                          <li><a href="#">Menu item 17</a></li>
-                          <li><a href="#">Menu item 18</a></li>
-                          <li><a href="#">Menu item 19</a></li>
-                          <li><a href="#">Menu item 20</a></li>
-                          <li><a href="#">Menu item 21</a></li>
-                          <li><a href="#">Menu item 22</a></li>
-                          <li><a href="#">Menu item 23</a></li>
-                          <li><a href="#">Menu item 24</a></li>
-                          <li><a href="#">Menu item 25</a></li>
-                          <li><a href="#">Menu item 26</a></li>
-                          <li><a href="#">Menu item 27</a></li>
-                          <li><a href="#">Menu item 28</a></li>
-                          <li><a href="#">Menu item 29</a></li>
-                          <li><a href="#">Menu item 30</a></li>
-                          <li><a href="#">Menu item 31</a></li>
-                          <li><a href="#">Menu item 32</a></li>
-                          <li><a href="#">Menu item 33</a></li>
-                          <li><a href="#">Menu item 34</a></li>
-                          <li><a href="#">Menu item 35</a></li>
-                          <li><a href="#">Menu item 36</a></li>
-                          <li><a href="#">Menu item 37</a></li>
-                          <li><a href="#">Menu item 38</a></li>
-                          <li><a href="#">Menu item 39</a></li>
-                          <li><a href="#">Menu item 40</a></li>
-                          <li><a href="#">Menu item 41</a></li>
-                          <li><a href="#">Menu item 42</a></li>
-                          <li><a href="#">Menu item 43</a></li>
-                          <li><a href="#">Menu item 44</a></li>
-                          <li><a href="#">Menu item 45</a></li>
-                          <li><a href="#">Menu item 46</a></li>
-                          <li><a href="#">Menu item 47</a></li>
-                          <li><a href="#">Menu item 48</a></li>
-                          <li><a href="#">Menu item 49</a></li>
-                          <li><a href="#">Menu item 50</a></li>
-                          <li><a href="#">Menu item 51</a></li>
-                          <li><a href="#">Menu item 52</a></li>
-                          <li><a href="#">Menu item 53</a></li>
-                          <li><a href="#">Menu item 54</a></li>
-                          <li><a href="#">Menu item 55</a></li>
-                          <li><a href="#">Menu item 56</a></li>
-                          <li><a href="#">Menu item 57</a></li>
-                          <li><a href="#">Menu item 58</a></li>
-                          <li><a href="#">Menu item 59</a></li>
-                          <li><a href="#">Menu item 60</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Another link</a></li>
-                      <li><a href="#">One more link</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">Mega menu <span class="caret"></span></a>
-			      <ul class="dropdown-menu mega-menu">mega-menu 필요하면 넣고 아니면 제거
-			        <li>
-			        	The mega drop down contents
-			          	<div style="width:400px;max-width:100%;">
-			            	<div style="padding:5px 24px;">
-			              		<p>This is a mega drop down test. Just set the "mega-menu" class to the parent UL element to inform the SmartMenus script. It can contain <strong>any HTML</strong>.</p>
-			              		<p>Just style the contents as you like (you may need to reset some SmartMenus inherited styles - e.g. for lists, links, etc.)</p>
-					  	  	</div>
-						</div>
-			        </li>
-			      </ul>
-			  </li>
-            </ul> -->
-			<!-- 메뉴 end -->
-			<div class="navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" role="search">
-					<div class="input-group">
-			      		<input type="text" class="form-control" placeholder="Search for...">
-			      		<span class="input-group-btn">
-			        		<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
-			      		</span>
-			    	</div>
-		    	</form>
-				
-		    	<ps-button-dropdown icon-class="fa fa-cog fa-lg">
-					<ul class="dropdown-menu">
-						<li><a href="#"><i class="fa fa-pencil fa-fw"></i> Action</a></li>
-					    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Another action</a></li>
-					    <li class="disabled"><a href="#"><i class="fa fa-ban fa-fw"></i> Disabled link</a></li>
-					    <li><a href="#">Something else here</a></li>
-					    <li class="divider"></li>
-					    <li><a href="#">Separated link</a></li>
-				    </ul>	    	
-				</ps-button-dropdown>
-				
-		   	</div>
+		<div class="user">
+			<div class="pull-right">
+				자동로그아웃 30:00 <button type="button" class="btn-renew">연장하기</button>
+				admin(admin) <button type="button" class="btn-logout">로그아웃</button>
+			</div>
 		</div>
-		
+		<div class="navi">
+			<div class="logo">Logo</div>
+			<div class="navbar" ng-controller="NavbarCtrl">
+				<!-- 메뉴 start -->
+				<ps-menu data="menuData"></ps-menu>
+				
+				<!-- <ul class="nav navbar-nav">
+	              <li><a href="#">Link</a></li>
+	              <li><a href="#">Link</a></li>
+	              <li><a href="#">Link</a></li>
+	              <li><a href="#">Dropdown <span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                  <li><a href="#">Action</a></li>
+	                  <li><a href="#">Another action</a></li>
+	                  <li><a href="#">Something else here</a></li>
+	                  <li class="divider"></li>
+	                  <li class="dropdown-header">Nav header</li>
+	                  <li><a href="#">Separated link</a></li>
+	                  <li><a href="#">One more separated link <span class="caret"></span></a>
+	                    <ul class="dropdown-menu">
+	                      <li><a href="#">Action</a></li>
+	                      <li><a href="#">Another action</a></li>
+	                      <li><a href="#">A long sub menu <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                          <li><a href="#">Action</a></li>
+	                          <li><a href="#">Something else here</a></li>
+	                          <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+	                          <li><a href="#">One more link</a></li>
+	                          <li><a href="#">Menu item 1</a></li>
+	                          <li><a href="#">Menu item 2</a></li>
+	                          <li><a href="#">Menu item 3</a></li>
+	                          <li><a href="#">Menu item 4</a></li>
+	                          <li><a href="#">Menu item 5</a></li>
+	                          <li><a href="#">Menu item 6</a></li>
+	                          <li><a href="#">Menu item 7</a></li>
+	                          <li><a href="#">Menu item 8</a></li>
+	                          <li><a href="#">Menu item 9</a></li>
+	                          <li><a href="#">Menu item 10</a></li>
+	                          <li><a href="#">Menu item 11</a></li>
+	                          <li><a href="#">Menu item 12</a></li>
+	                          <li><a href="#">Menu item 13</a></li>
+	                          <li><a href="#">Menu item 14</a></li>
+	                          <li><a href="#">Menu item 15</a></li>
+	                          <li><a href="#">Menu item 16</a></li>
+	                          <li><a href="#">Menu item 17</a></li>
+	                          <li><a href="#">Menu item 18</a></li>
+	                          <li><a href="#">Menu item 19</a></li>
+	                          <li><a href="#">Menu item 20</a></li>
+	                          <li><a href="#">Menu item 21</a></li>
+	                          <li><a href="#">Menu item 22</a></li>
+	                          <li><a href="#">Menu item 23</a></li>
+	                          <li><a href="#">Menu item 24</a></li>
+	                          <li><a href="#">Menu item 25</a></li>
+	                          <li><a href="#">Menu item 26</a></li>
+	                          <li><a href="#">Menu item 27</a></li>
+	                          <li><a href="#">Menu item 28</a></li>
+	                          <li><a href="#">Menu item 29</a></li>
+	                          <li><a href="#">Menu item 30</a></li>
+	                          <li><a href="#">Menu item 31</a></li>
+	                          <li><a href="#">Menu item 32</a></li>
+	                          <li><a href="#">Menu item 33</a></li>
+	                          <li><a href="#">Menu item 34</a></li>
+	                          <li><a href="#">Menu item 35</a></li>
+	                          <li><a href="#">Menu item 36</a></li>
+	                          <li><a href="#">Menu item 37</a></li>
+	                          <li><a href="#">Menu item 38</a></li>
+	                          <li><a href="#">Menu item 39</a></li>
+	                          <li><a href="#">Menu item 40</a></li>
+	                          <li><a href="#">Menu item 41</a></li>
+	                          <li><a href="#">Menu item 42</a></li>
+	                          <li><a href="#">Menu item 43</a></li>
+	                          <li><a href="#">Menu item 44</a></li>
+	                          <li><a href="#">Menu item 45</a></li>
+	                          <li><a href="#">Menu item 46</a></li>
+	                          <li><a href="#">Menu item 47</a></li>
+	                          <li><a href="#">Menu item 48</a></li>
+	                          <li><a href="#">Menu item 49</a></li>
+	                          <li><a href="#">Menu item 50</a></li>
+	                          <li><a href="#">Menu item 51</a></li>
+	                          <li><a href="#">Menu item 52</a></li>
+	                          <li><a href="#">Menu item 53</a></li>
+	                          <li><a href="#">Menu item 54</a></li>
+	                          <li><a href="#">Menu item 55</a></li>
+	                          <li><a href="#">Menu item 56</a></li>
+	                          <li><a href="#">Menu item 57</a></li>
+	                          <li><a href="#">Menu item 58</a></li>
+	                          <li><a href="#">Menu item 59</a></li>
+	                          <li><a href="#">Menu item 60</a></li>
+	                        </ul>
+	                      </li>
+	                      <li><a href="#">Another link</a></li>
+	                      <li><a href="#">One more link</a></li>
+	                    </ul>
+	                  </li>
+	                </ul>
+	              </li>
+	              <li><a href="#">Mega menu <span class="caret"></span></a>
+				      <ul class="dropdown-menu mega-menu">mega-menu 필요하면 넣고 아니면 제거
+				        <li>
+				        	The mega drop down contents
+				          	<div style="width:400px;max-width:100%;">
+				            	<div style="padding:5px 24px;">
+				              		<p>This is a mega drop down test. Just set the "mega-menu" class to the parent UL element to inform the SmartMenus script. It can contain <strong>any HTML</strong>.</p>
+				              		<p>Just style the contents as you like (you may need to reset some SmartMenus inherited styles - e.g. for lists, links, etc.)</p>
+						  	  	</div>
+							</div>
+				        </li>
+				      </ul>
+				  </li>
+	            </ul> -->
+				<!-- 메뉴 end -->
+				<div class="navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" role="search">
+						<div class="input-group">
+				      		<input type="text" class="form-control" placeholder="Search for...">
+				      		<span class="input-group-btn">
+				        		<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+				      		</span>
+				    	</div>
+			    	</form>
+					
+			    	<ps-button-dropdown icon-class="fa fa-cog fa-lg">
+						<ul class="dropdown-menu">
+							<li><a href="#"><i class="fa fa-pencil fa-fw"></i> Action</a></li>
+						    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Another action</a></li>
+						    <li class="disabled"><a href="#"><i class="fa fa-ban fa-fw"></i> Disabled link</a></li>
+						    <li><a href="#">Something else here</a></li>
+						    <li class="divider"></li>
+						    <li><a href="#">Separated link</a></li>
+					    </ul>	    	
+					</ps-button-dropdown>
+					
+			   	</div>
+			</div>
+		</div>
 	</div>
 	
 	<div class="main">
-		<div class="left_sidebar">
-			<input type="checkbox" id="menu-collapsed" name="menu-collapsed" />
+		<input type="checkbox" id="menu-collapsed" name="menu-collapsed" />
+		<div class="left_sidebar" ng-controller="LeftSidebarCtrl">
 			<div class="left">
 				Left
 				<br><br><br><br><br><br><br><br>
@@ -198,15 +199,18 @@
 <!--     				<ps-tab heading="Vertical 2">Vertical content 2</ps-tab> -->
 <!--   				</ps-tabset> -->
 			</div>
-			<div class="menu-switch">
-				<!-- flex live doc 참고
-				<div class="splitter" id="splitter" onmousedown="splitterMouseDown(event, this);" onmouseup="splitterMouseUp(event);" onmousemove="splitterMouseMove(event);" style="left: 299px; display: inline;">
-				</div>
-				-->
-    			<label class="collapse" for="menu-collapsed"><<</label>
-    			<label class="open" for="menu-collapsed">>></label>
-  			</div>
+			
+  			
 		</div>
+		
+		<div class="menu-switch">
+  			<label class="collapse" for="menu-collapsed"><<</label>
+  			<label class="open" for="menu-collapsed">>></label>
+		</div>
+		<!-- flex live doc 참고 -->
+		<div class="splitter" id="splitter" onmousedown="splitterMouseDown(event, this)" onmouseup="splitterMouseUp(event)" onmousemove="splitterMouseMove(event)">
+		</div>
+		
 		<div class="center">
 			<div class="breadcrumbs">Breadcrumbs</div>
 			<div class="content">
@@ -234,6 +238,6 @@
 </div>
 
 <script data-main="../../scripts/main" type="text/javascript" src="../../../puf/libs/require.js"></script>
-
+<script type="text/javascript" src="main_splitter.js"></script>
 </body>
 </html>
