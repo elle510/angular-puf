@@ -89,10 +89,12 @@ body {
   transition-duration: 1s;
   float: left;
   width: 12em;
+  border: 1px solid;
 }
 
 .menu .menu-switch {
   padding-top: 6em;
+  float: left;
 }
 .menu .menu-switch label {
   font-size: 3em;
@@ -118,10 +120,17 @@ p ~ ul {
 .menu #menu-collapsed:checked ~ .menu-switch .collapse {
   display: none;
 }
+.menu #menu-collapsed ~ .menu-switch .collapse {
+  	display: block;
+}
 .menu #menu-collapsed ~ .menu-switch .rise {
   display: none;
 }
 
+.menu .content {
+	float: left;
+	border: 1px solid;
+}
 </style>
 
 </head>
@@ -152,6 +161,10 @@ This can improve performance significantly when the splitter contains complex co
   <div class="menu-switch">
     <label class="collapse" for="menu-collapsed"><<</label>
     <label class="rise" for="menu-collapsed">>></label>
+  </div>
+  
+  <div class="content">
+  	Content
   </div>
 </div>
 

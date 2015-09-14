@@ -138,22 +138,51 @@ body {
 /* main 영역
 ----------------------------------*/
 .main {
-	position: relative;
+/* 	position: relative; */
   	margin: 80px auto auto;
+  	height: 100% !important;
   	min-height: 500px;
 /*   display: -webkit-flex; */
 /*   display: flex; */
 }
 
 .left_sidebar {
+/* 	-webkit-transition-property: left, width; */
+/* 	-moz-transition-property: left, width; */
+/* 	-ms-transition-property: left, width; */
+/* 	-o-transition-property: left, width; */
+/* 	transition-property: left, width; */
+	
+	-webkit-transition-duration: 1s;
+  	-moz-transition-duration: 1s;
+  	-ms-transition-duration: 1s;
+  	-o-transition-duration: 1s;
+  	transition-duration: 1s;
+  	
 	float: left;
+	width: 330px; /*330 으로 하면 약간 안맞아서 2px 늘림 - 원인파악 필요*/
 /* 	position: fixed; */
 /* 	top: 80px; */
-/*   	width: 350px; */
-/*   	border: 1px solid; */
+	left: 0;
+	border: 1px solid;
 }
+
 .center {
+/* 	-webkit-transition-property: left; */
+/* 	-moz-transition-property: left; */
+/* 	-ms-transition-property: left; */
+/* 	-o-transition-property: left; */
+/* 	transition-property: left; */
+	
+/* 	-webkit-transition-duration: 1s; */
+/*   	-moz-transition-duration: 1s; */
+/*   	-ms-transition-duration: 1s; */
+/*   	-o-transition-duration: 1s; */
+/*   	transition-duration: 1s; */
+  	
 	float: left;
+/* 	position: absolute; */
+/* 	left: 345px; */
 /* 	width: initial; */
 /* 	position: relative; */
 /* 	margin-left: 350px; */
@@ -168,28 +197,37 @@ body {
 
 /* left_sidebar 영역
 ----------------------------------*/
-.left_sidebar {
-	-webkit-transition-duration: 1s;
-  	-moz-transition-duration: 1s;
-  	-ms-transition-duration: 1s;
-  	-o-transition-duration: 1s;
-  	transition-duration: 1s;
-  	float: left;
-  	width: 330px;
-/*   	width: 24em; */
-  /* 	margin: 0 auto; */
-  	border: 1px solid;
-}
-
 .main .menu-switch {
+/* 	-webkit-transition-property: left; */
+/* 	-moz-transition-property: left; */
+/* 	-ms-transition-property: left; */
+/* 	-o-transition-property: left; */
+/* 	transition-property: left; */
+	
+/* 	-webkit-transition-duration: 1s; */
+/*   	-moz-transition-duration: 1s; */
+/*   	-ms-transition-duration: 1s; */
+/*   	-o-transition-duration: 1s; */
+/*   	transition-duration: 1s; */
+  	
 /*   	padding-top: 6em; */
 	padding-top: 150px;
-	width: 20px;
+	width: 15px;
 	float: left;
+/* 	position: absolute; */
+/* 	left: 330px; */
+	border: 1px solid;
 }
 .main .menu-switch label {
-  	font-size: 11px;
+  	font-size: 12px;
   	cursor: pointer;
+}
+
+.menu-switch .collapse {
+  	display: block;
+}
+.menu-switch .open {
+  	display: none;
 }
 
 .main #menu-collapsed/*input*/ {
@@ -212,6 +250,7 @@ body {
   	display: none;
 }
 
+
 .splitter {
 /* 	float: left; */
 	background-color: #BBB;
@@ -220,7 +259,7 @@ body {
 	cursor: e-resize;
 	display: inline;
 	height: 100% !important;
-/* 	left: 350px; */
+	left: 345px;
 	margin: 0;
 	padding: 0;
 	position: absolute;

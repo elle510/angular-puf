@@ -20,6 +20,7 @@ function splitterMouseDown(a, b) {
         }
         splitterActiveFlag = true;
         splitterObj = b;
+        console.log(splitterObj.offsetLeft - 15);
     }
 };
 
@@ -27,11 +28,12 @@ function splitterMouseUp(b) {
     if (splitterActiveFlag) {
 //        var a = document.getElementById("toc");
 //        var c = document.getElementById("content");
-        changeQSearchboxWidth();
+//        changeQSearchboxWidth();
 //        a.style.width = (splitterObj.offsetLeft - 20) + "px";
 //        c.style.left = (splitterObj.offsetLeft + 10) + "px";
-        $('.left_sidebar').width(splitterObj.offsetLeft - 20);// + "px";
-        $('.center').offset({ left: (splitterObj.offsetLeft + 10) });
+        $('.left_sidebar').width(splitterObj.offsetLeft - 15);// + "px";
+//        $('.menu-switch').offset({ left: splitterObj.offsetLeft - 15 });
+//        $('.center').offset({ left: (splitterObj.offsetLeft) });
         if (splitterObj.releaseCapture) {
             splitterObj.releaseCapture();
         } else {
@@ -54,6 +56,34 @@ function splitterMouseMove(a) {
         }
     }
 };
+
+/* animation 을 위해 margin-left 사용 */
+var leftsidebarWidth, menuswitchWidth;
+function splitterOpen() {
+	$('.left_sidebar').css('margin-left', '0px');
+//	$('.left_sidebar').offset({ left: 0 });
+//	$('.menu-switch').offset({ left: leftsidebarWidth });
+//	$('.center').offset({ left: leftsidebarWidth + menuswitchWidth });
+	$('.menu-switch .collapse').css('display', 'block');
+	$('.menu-switch .open').css('display', 'none');
+	
+	$('.left_sidebar').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+		$('.splitter').css('display', 'block');
+	});
+}
+
+function splitterClose() {
+	leftsidebarWidth = $('.left_sidebar').width();
+	menuswitchWidth = $('.menu-switch').width();
+	$('.left_sidebar').css('margin-left', (leftsidebarWidth * -1) + 'px');
+//	$('.left_sidebar').offset({ left: (leftsidebarWidth * -1) });
+//	$('.menu-switch').offset({ left: 0 });
+//	$('.center').offset({ left: menuswitchWidth });
+	$('.splitter').css('display', 'none');
+	$('.menu-switch .collapse').css('display', 'none');
+	$('.menu-switch .open').css('display', 'block');
+	$('.left_sidebar').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
+}
 
 function changeQSearchboxWidth() {
     if (getInternetExplorerVersion() != "7") {

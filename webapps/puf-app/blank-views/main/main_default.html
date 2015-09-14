@@ -204,8 +204,8 @@
 		</div>
 		
 		<div class="menu-switch">
-  			<label class="collapse" for="menu-collapsed"><<</label>
-  			<label class="open" for="menu-collapsed">>></label>
+  			<label class="collapse" for="menu-collapsed" onclick="splitterClose()"><i class="fa fa-chevron-left"></i></label><!-- ◀ -->
+  			<label class="open" for="menu-collapsed" onclick="splitterOpen()"><i class="fa fa-chevron-right"></i></label><!-- ▶ -->
 		</div>
 		<!-- flex live doc 참고 -->
 		<div class="splitter" id="splitter" onmousedown="splitterMouseDown(event, this)" onmouseup="splitterMouseUp(event)" onmousemove="splitterMouseMove(event)">
