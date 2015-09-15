@@ -44,126 +44,7 @@ define([
 			//$scope.url = '#/home';
 			$state.go('home');
 			
-			$scope.mainMenuOptions = {
-				'core': {
-					'data': {
-						'url': 'json/main-menu.json',
-						'type': 'POST',
-						'dataType': 'json',
-						'contentType': 'application/json; charset=utf-8',
-						'cache': false,
-						'beforeSend': function (xhr) { 
-							if (xhr.overrideMimeType) { 
-								xhr.overrideMimeType("application/json"); 
-							} 
-						},
-						'data': function (node) {
-							//console.log(node.id);
-							return node;//{ 'id' : node.id };
-						}
-					}
-				}
-			};
 			
-			$scope.refresh = function() {
-				$scope.mainMenuOptions = {
-					'core': {
-						'data': {
-							'url': 'json/main-menu.json',
-							'type': 'POST',
-							'dataType': 'json',
-							'contentType': 'application/json; charset=utf-8',
-							'cache': false,
-							'beforeSend': function (xhr) { 
-								if (xhr.overrideMimeType) { 
-									xhr.overrideMimeType("application/json"); 
-								} 
-							},
-							'data': function (node) {
-								//console.log(node.id);
-								return { 'id' : node.id };
-							}
-						}
-					}
-				};
-			};
-			
-			$scope.$on('changedTreeNode', function(event, args) {
-				console.log('changedTreeNode');
-				//console.log(args);
-				$scope.breadcrumbs = args;
-			});
-			
-			$scope.changed = function(event) {
-				//console.log('changed');
-				//console.log(data);
-				//console.log(data.instance.get_path(data.node, '/'));
-				/*
-				console.log('changed');
-				console.log(data.node);
-				console.log(data.instance);
-				console.log(data.instance.get_node(data.selected[0]).text);
-				*/
-				//console.log(data.instance.get_node(data.selected[i]).text);
-				//console.log(data.node.original);
-				//console.log(data.instance.get_json()[0]);
-				//var node = data.node;
-				/*
-				var path,
-				json = data.node.original;
-				if(angular.isDefined(json.url)) {
-        			//console.log(json.url);
-        			//console.log(node);
-					path = '/' + data.instance.get_path(data.node, '/');
-					$scope.$emit('changedTreeNode', path);
-        		}
-        		*/
-			};
-			
-			$scope.dblclick = function(event) {
-				//console.log('dblclick');
-				//console.log(event);
-			};
-			
-			$scope.selectNode = function(event, data) {
-				//console.log('select_node');
-				var json = data.node.original;
-				if(angular.isDefined(json.route)) {
-        			//console.log(json.route);
-        			//console.log(node);
-					$scope.breadcrumbs = '/' + data.instance.get_path(data.node, '/');
-					//console.log($scope.breadcrumbs);
-//					$location.path("/home");
-//			    	$scope.$apply();
-			    	//$state.go('home');
-			    	//$state.go(json.route);
-					var isExtTab = false;
-					angular.forEach($scope.tabs, function(tab) {
-						if (tab.route == json.route) {
-							$scope.$apply();
-							$scope.go(json.route);
-							isExtTab = true;
-						}
-					});
-					if(isExtTab == false) {
-						
-						$scope.tabs.push({heading: json.text, route: json.route, active: false, removable: true});
-						$scope.$apply();
-						$scope.go(json.route);
-						
-						
-						//$scope.addMainTab({heading: json.text, route: json.route, active: false});
-						//$scope.apiTab.addTab({heading: json.text, route: json.route, active: false});
-						//$scope.go(json.route);
-					}
-					
-        		}else if(angular.isDefined(json.url)) {
-//        			$window.location.href = json.url;
-        			$window.open(json.url);
-        		}
-				event.stopPropagation();
-				event.stopImmediatePropagation();
-			};
 			
 			// tab
 			$scope.tabs = [{ heading: "Home", route: "home", active: false, removable: false }
@@ -234,97 +115,128 @@ define([
 		
 		// LeftSidebar Controller : splitter
 		app.controller('LeftSidebarCtrl', ['$scope', function($scope) {
-			/*
-			var splitterActiveFlag = false;
-			var splitterObj = false;
-			var MIN_LEFT = 60;
-			var MIN_RIGHT = 200;
-			var MIN_TOP = 60;
-			var MIN_BOTTOM = 60;
 			
-			$scope.splitterMouseDown = function(a, b) {
-			    if (!splitterActiveFlag) {
-			        if (b.setCapture) {
-			            b.setCapture();
-			        } else {
-			            document.addEventListener("mouseup", $scope.splitterMouseUp, true);
-			            document.addEventListener("mousemove", $scope.splitterMouseMove, true);
-			            a.preventDefault();
-			        }
-			        splitterActiveFlag = true;
-			        splitterObj = b;
-			    }
+			$scope.mainMenuOptions = {
+				'core': {
+					'data': {
+						'url': '/puf/puf-app/json/main-menu.json',
+						'type': 'POST',
+						'dataType': 'json',
+						'contentType': 'application/json; charset=utf-8',
+						'cache': false,
+						'beforeSend': function (xhr) { 
+							if (xhr.overrideMimeType) { 
+								xhr.overrideMimeType("application/json"); 
+							} 
+						},
+						'data': function (node) {
+							//console.log(node.id);
+							return node;//{ 'id' : node.id };
+						}
+					}
+				}
 			};
 			
-			$scope.splitterMouseUp = function(b) {
-			    if (splitterActiveFlag) {
-			        var a = document.getElementById("toc");
-			        var c = document.getElementById("content");
-			        changeQSearchboxWidth();
-			        a.style.width = (splitterObj.offsetLeft - 20) + "px";
-			        c.style.left = (splitterObj.offsetLeft + 10) + "px";
-			        if (splitterObj.releaseCapture) {
-			            splitterObj.releaseCapture();
-			        } else {
-			            document.removeEventListener("mouseup", $scope.splitterMouseUp, true);
-			            document.removeEventListener("mousemove", $scope.splitterMouseMove, true);
-			            b.preventDefault();
-			        }
-			        splitterActiveFlag = false;
-			        saveSplitterPos();
-			    }
-			};
-
-			$scope.splitterMouseMove = function(a) {
-			    if (splitterActiveFlag) {
-			        if (a.clientX >= MIN_LEFT && a.clientX <= document.documentElement.clientWidth - MIN_RIGHT) {
-			            splitterObj.style.left = a.clientX + "px";
-			            if (!splitterObj.releaseCapture) {
-			                a.preventDefault();
-			            }
-			        }
-			    }
+			$scope.refresh = function() {
+				$scope.mainMenuOptions = {
+					'core': {
+						'data': {
+							'url': '/puf/puf-app/json/main-menu.json',
+							'type': 'POST',
+							'dataType': 'json',
+							'contentType': 'application/json; charset=utf-8',
+							'cache': false,
+							'beforeSend': function (xhr) { 
+								if (xhr.overrideMimeType) { 
+									xhr.overrideMimeType("application/json"); 
+								} 
+							},
+							'data': function (node) {
+								//console.log(node.id);
+								return { 'id' : node.id };
+							}
+						}
+					}
+				};
 			};
 			
-			function changeQSearchboxWidth() {
-			    if (getInternetExplorerVersion() != "7") {
-			        spObj = document.getElementById("splitter");
-			        var b = document.getElementById("pkg_searchbox");
-			        var a = document.getElementById("cls_searchbox");
-			        if (spObj.offsetLeft > 220 && spObj.offsetLeft < 265) {
-			            if (b != null) {
-			                b.style.width = spObj.offsetLeft - 138 + "px"
-			            }
-			            if (a != null) {
-			                a.style.width = spObj.offsetLeft - 138 + "px"
-			            }
-			        }
-			        if (spObj.offsetLeft >= 265) {
-			            if (b != null) {
-			                b.style.width = "127px"
-			            }
-			            if (a != null) {
-			                a.style.width = "127px"
-			            }
-			        }
-			        if (spObj.offsetLeft <= 220) {
-			            if (b != null) {
-			                b.style.width = "82px"
-			            }
-			            if (a != null) {
-			                a.style.width = "82px"
-			            }
-			        }
-			    }
-			}
+			$scope.$on('changedTreeNode', function(event, args) {
+				console.log('changedTreeNode');
+				//console.log(args);
+				$scope.breadcrumbs = args;
+			});
 			
-			function saveSplitterPos() {
-			    var a = document.getElementById("splitter");
-			    if (a) {
-			        setCookie("splitterPosition", a.offsetLeft, new Date(3000, 1, 1, 1, 1), "/", document.location.domain)
-			    }
-			}
-			*/
+			$scope.changed = function(event) {
+				//console.log('changed');
+				//console.log(data);
+				//console.log(data.instance.get_path(data.node, '/'));
+				/*
+				console.log('changed');
+				console.log(data.node);
+				console.log(data.instance);
+				console.log(data.instance.get_node(data.selected[0]).text);
+				*/
+				//console.log(data.instance.get_node(data.selected[i]).text);
+				//console.log(data.node.original);
+				//console.log(data.instance.get_json()[0]);
+				//var node = data.node;
+				/*
+				var path,
+				json = data.node.original;
+				if(angular.isDefined(json.url)) {
+        			//console.log(json.url);
+        			//console.log(node);
+					path = '/' + data.instance.get_path(data.node, '/');
+					$scope.$emit('changedTreeNode', path);
+        		}
+        		*/
+			};
+			
+			$scope.dblclick = function(event) {
+				//console.log('dblclick');
+				//console.log(event);
+			};
+			
+			$scope.selectNode = function(event, data) {
+				//console.log('select_node');
+				var json = data.node.original;
+				if(angular.isDefined(json.route)) {
+        			//console.log(json.route);
+        			//console.log(node);
+					$scope.breadcrumbs = '/' + data.instance.get_path(data.node, '/');
+					//console.log($scope.breadcrumbs);
+//						$location.path("/home");
+//				    	$scope.$apply();
+			    	//$state.go('home');
+			    	//$state.go(json.route);
+					var isExtTab = false;
+					angular.forEach($scope.tabs, function(tab) {
+						if (tab.route == json.route) {
+							$scope.$apply();
+							$scope.go(json.route);
+							isExtTab = true;
+						}
+					});
+					if(isExtTab == false) {
+						
+						$scope.tabs.push({heading: json.text, route: json.route, active: false, removable: true});
+						$scope.$apply();
+						$scope.go(json.route);
+						
+						
+						//$scope.addMainTab({heading: json.text, route: json.route, active: false});
+						//$scope.apiTab.addTab({heading: json.text, route: json.route, active: false});
+						//$scope.go(json.route);
+					}
+					
+        		}else if(angular.isDefined(json.url)) {
+//	        			$window.location.href = json.url;
+        			$window.open(json.url);
+        		}
+				event.stopPropagation();
+				event.stopImmediatePropagation();
+			};
+				
 		}]);
 		
 		app.run(function() {
