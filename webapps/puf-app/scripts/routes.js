@@ -12,7 +12,7 @@ define([
 	            function ($stateProvider, routeResolverProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider) {
 
 	                // Change default views and controllers directory using the following:
-	                routeResolverProvider.routeConfig.setBaseDirectories('views', 'scripts/controllers');
+	                routeResolverProvider.routeConfig.setBaseDirectories('/puf/puf-app/views', '/puf/puf-app/scripts/controllers');
 	                
 	                app.register =
 	                {

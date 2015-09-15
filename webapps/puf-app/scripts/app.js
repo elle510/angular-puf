@@ -200,6 +200,10 @@ define([
 				
 				//$scope.$apply();
 			};
+			
+//			// footer 위치
+//			angular.element('.footer').css('margin-top', '699px');
+//			console.log(angular.element('.footer'));
 		});
 		
 		// Navbar Controller : smartmenu data Loading, search, setting
@@ -329,6 +333,14 @@ define([
 			psButtonDropdown.registerDirective();
 			psCheckbox.registerDirective();
 			*/
+			
+//			// 나중에 common controller 로 옮긴다.
+//			// footer 위치
+////			angular.element('.footer').css('top', '699px');
+////			angular.element('.footer').getBoundingClientRect().top;
+//			var headerHeight = $('.header').outerHeight(true);
+//			var mainHeight = $('.main').outerHeight(true);
+//			$('.footer').offset({ top: (headerHeight + mainHeight) });
 		});
 		/*
 		var injector = angular.injector(['ng', 'ps.directives']);
