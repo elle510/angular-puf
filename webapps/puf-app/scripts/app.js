@@ -114,7 +114,7 @@ define([
 		}]);
 		
 		// LeftSidebar Controller : splitter
-		app.controller('LeftSidebarCtrl', ['$scope', function($scope) {
+		app.controller('LeftSidebarCtrl', ['$scope', '$window', function($scope, $window) {
 			
 			$scope.mainMenuOptions = {
 				'core': {

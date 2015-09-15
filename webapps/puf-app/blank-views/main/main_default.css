@@ -167,7 +167,8 @@ body {
   	transition-duration: 1s;
   	
 /* 	float: left; */
-	width: 330px; /*330 으로 하면 약간 안맞아서 2px 늘림 - 원인파악 필요*/
+	width: 330px;
+	height: 100%;
 	position: fixed;
 	top: 80px;
 	left: 0;
@@ -213,10 +214,14 @@ body {
 /* left-sidebar 영역
 ----------------------------------*/
 .left {
-	margin: 0;
-	padding: 0;
-/* 	overflow-y: auto; */
-/* 	max-height: 500px; */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* 	position: absolute; */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+/*     overflow-y: auto; */
 	padding-bottom: 30px; /* footer height 값 설정*/
 }
 
