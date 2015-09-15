@@ -24,7 +24,7 @@ function splitterMouseDown(a, b) {
         splitterObj = b;
         
         leftsidebarCollapseWidth = $('.leftsidebar-collapse').outerWidth(true);
-    	splitterWidth = $('.splitter').outerWidth(true);
+    	splitterWidth = $('.v-splitter').outerWidth(true);
     	
         /*splitterParentObj = b.parentElement;
         console.log(splitterObj.offsetLeft);
@@ -76,20 +76,20 @@ function splitterOpen() {
 	$('.leftsidebar-collapse .collapse-open').css('display', 'none');
 	
 	$('.left-sidebar').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-		$('.splitter').css('display', 'block');
+		$('.v-splitter').css('display', 'block');
 	});
 }
 
 function splitterClose() {
 	leftsidebarWidth = $('.left-sidebar').outerWidth(true);
 	leftsidebarCollapseWidth = $('.leftsidebar-collapse').outerWidth(true);
-	splitterWidth = $('.splitter').outerWidth(true);
+	splitterWidth = $('.v-splitter').outerWidth(true);
 //	$('.left-sidebar').css('margin-left', (leftsidebarWidth * -1) + 'px');
 	$('.left-sidebar').offset({ left: (leftsidebarWidth * -1) });
 	$('.leftsidebar-collapse').offset({ left: 0 });
 	$('.center').offset({ left: leftsidebarCollapseWidth });
 	
-	$('.splitter').css('display', 'none');
+	$('.v-splitter').css('display', 'none');
 	$('.leftsidebar-collapse > .collapse-close').css('display', 'none');
 	$('.leftsidebar-collapse > .collapse-open').css('display', 'block');
 	$('.left-sidebar').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
