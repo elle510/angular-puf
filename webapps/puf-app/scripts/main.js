@@ -200,15 +200,6 @@ require( [
 			});
 			*/
 			
-			
-			$("#MySplitter").splitter({
-				type: "v",
-				outline: true,
-				minLeft: 100, sizeLeft: 150, minRight: 100,
-				resizeToWidth: true,
-				cookie: "vsplitter",
-				accessKey: 'I'
-			});
 		});
 		
 	}
