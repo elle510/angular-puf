@@ -214,15 +214,15 @@ body {
 /* left-sidebar 영역
 ----------------------------------*/
 .left {
-/* 	margin: 0; */
-/* 	padding: 0; */
-/* 	position: absolute; */
-    width: 100%;
-    height: 100%;
-    top: 0;
+	/* scroll 을 위해 아래 스타일 설정 */
+	position: absolute;
+	top: 0;
     bottom: 0;
-/*     overflow-y: auto; */
-	padding-bottom: 30px; /* footer height 값 설정*/
+    margin-bottom: 110px; /* footer height 값 설정 (80 + 30)*/
+    overflow-y: auto;
+    
+    width: 100%;
+/*     height: 100%; */
 }
 
 .leftsidebar-collapse {
