@@ -25,6 +25,7 @@ module.exports = function(grunt) {
 			dist: {
 				src: ['puf-src/ps-puf.js', 
 				      'puf-src/directives/ps-directives.js', 'puf-src/directives/*.js', 
+				      'puf-src/services/ps-services.js', 'puf-src/services/*.js',
 				      'puf-src/validators/ps-validators.js', 'puf-src/validators/*.js'], // concat 타겟 설정(앞에서부터 순서대로 합쳐진다.)
 				dest: '<%= dist %>/<%= filename %>.js'	// concat 결과 파일
 			}

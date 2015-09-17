@@ -1,18 +1,22 @@
 'use strict';
 
 define([
-		'app' //생성한 앵귤러 모듈에 루트를 등록하기 위해 임포트
+		'app'	//생성한 앵귤러 모듈에 루트를 등록하기 위해 임포트
 		//'route-resolver'
 		//'angular-route'
 	],
 
 	function (app) {
-	
-		return app.config(['$stateProvider', 'routeResolverProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider',
-	            function ($stateProvider, routeResolverProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider) {
+		// config 는 provider 만 파라미터로 받는다.
+		return app.config(['$stateProvider', 'routeResolverProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider', 'appLauncherProvider',
+	            function ($stateProvider, routeResolverProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, appLauncherProvider) {
 
 	                // Change default views and controllers directory using the following:
-	                routeResolverProvider.routeConfig.setBaseDirectories('/puf/puf-app/views', '/puf/puf-app/scripts/controllers');
+					var rootPath = appLauncherProvider.getRootPath();
+					if(rootPath == '/puf-app') {	// context root 가 / 라는 의미
+						rootPath = '';
+					}
+	                routeResolverProvider.routeConfig.setBaseDirectories(rootPath + '/puf-app/views', rootPath + '/puf-app/scripts/controllers');
 	                
 	                app.register =
 	                {

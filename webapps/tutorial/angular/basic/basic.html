@@ -14,10 +14,21 @@
 {{ firstName + " " + lastName }}
 </div>
 
+<div ng-controller="ctrl3">
+{{ firstName + " " + lastName }}
+</div>
+
 <script type="text/javascript" src="../../../puf/libs/angular.min.js"></script>
 <script src="app.js"></script>
 <script src="ctrl1.js"></script>
 <script src="ctrl2.js"></script>
+<script src="ctrl3.js"></script>
 
+<!-- <script type="text/javascript">
+function ctrl3($scope) {
+	$scope.firstName = "Ahn";
+    $scope.lastName = "Hyung-Ro";
+}
+</script> -->
 </body>
 </html>

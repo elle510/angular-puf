@@ -26,6 +26,27 @@ define([
 		// 모듈 선언
 		var app = angular.module('pufApp', ['ui.router', 'ps.routeResolver', 'ps.puf', 'ui.layout']);
 		
+		// provider 정의시에는 파라미터는 provider 만 가능
+		app.provider('appLauncher', ['$windowProvider', function($windowProvider) {
+			  
+			this.$get = function () {
+	            return this;
+	        };
+
+	        /*this.$get = ['apiToken', function(apiToken) {
+			    return new UnicornLauncher(apiToken);
+			}];*/
+	        
+	        this.getRootPath = function() {
+	    		// js에서 ContextPath 를 얻을 수 없음 - Root Path를 얻어서 응용하자.
+	        	var $window = $windowProvider.$get();
+	    	    var offset = $window.location.href.indexOf($window.location.host) + $window.location.host.length;
+	    	    var ctxPath = $window.location.href.substring(offset, $window.location.href.indexOf('/', offset + 1));
+	    	    return ctxPath;
+	    	}
+			
+		}]);
+		
 		// 공통 컨트롤러 설정 - 모든 컨트롤러에서 공통적으로 사용하는 부분들 선언
 		app.controller('CommonController', function($scope, $state, $window, $location) {
 		
@@ -114,12 +135,17 @@ define([
 		}]);
 		
 		// LeftSidebar Controller : splitter
-		app.controller('LeftSidebarCtrl', ['$scope', '$window', function($scope, $window) {
-			
+		app.controller('LeftSidebarCtrl', ['$scope', '$window', 'psUtil', function($scope, $window, psUtil) {
+//			console.log('psUtil.getRootPath: ' + psUtil.getRootPath());
+			var rootPath = psUtil.getRootPath();
+			if(rootPath == '/puf-app') {	// context root 가 / 라는 의미
+				rootPath = '';
+			}
+				
 			$scope.mainMenuOptions = {
 				'core': {
 					'data': {
-						'url': '/puf/puf-app/json/main-menu.json',
+						'url': rootPath + '/puf-app/json/main-menu.json',
 						'type': 'POST',
 						'dataType': 'json',
 						'contentType': 'application/json; charset=utf-8',
@@ -141,7 +167,7 @@ define([
 				$scope.mainMenuOptions = {
 					'core': {
 						'data': {
-							'url': '/puf/puf-app/json/main-menu.json',
+							'url': rootPath + '/puf-app/json/main-menu.json',
 							'type': 'POST',
 							'dataType': 'json',
 							'contentType': 'application/json; charset=utf-8',
@@ -239,7 +265,14 @@ define([
 				
 		}]);
 		
+		
+		
 		app.run(function() {
+			//여기에서 일종의 초기화가 이루어지고 있다.
+			
+			//어플리케이션 모듈은 이렇게 이 공간을 초기화를 목적으로
+			//사용하게 되는 경우가 많은 걸까?
+			
 			/*
 			psTabs.registerDirective();
 			psButtonDropdown.registerDirective();

@@ -4,4 +4,4 @@
  */
 'use strict';
 
-angular.module('ps.puf', ['ps.directives', 'ps.validators']);
+angular.module('ps.puf', ['ps.directives', 'ps.services', 'ps.validators']);
