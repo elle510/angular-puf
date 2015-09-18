@@ -352,40 +352,111 @@ a.nav-link {
   display: none;
 }
 
+.logo-sm {
+	display: none;
+}
+.left-sidebar-toggle {
+	display: none;
+}
+ 	
 /* Phones
 ----------------------------------*/
 @media screen and (max-width: 767px) {
-  #wrap {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    -ms-transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  #main {
-    display: block;
-  }
-  #sidebar {
-    position: absolute;
-    top: 0;
-    width: 85%;
-    height: 100%;
-    left: -85%;
-    background: rgba(0, 0, 0, 0.1);
-  }
+	body {
+  		font-size: 1.3750em; /* 1em = 16px */
+	}
+
+  	.wrapper {
+    	/* position: relative; */
+    	-webkit-transition: all 0.25s ease-out;
+    	-moz-transition: all 0.25s ease-out;
+   		-ms-transition: all 0.25s ease-out;
+    	-o-transition: all 0.25s ease-out;
+    	transition: all 0.25s ease-out; 
+  	}
+  	
+  	.header {
+  		position: static;
+  	}
+  	
+  	.header .logo-sm {
+		display: block;
+		float: left;
+		border: 1px solid;
+	}
+	
+ 	.header .user span {
+ 		display: none;
+ 	}
+ 	
+ 	.navi .logo {
+ 		display: none;
+ 	}
+ 	
+ 	.navi .navbar ul.nav.navbar-nav {
+ 		display: none;
+ 	}
+ 	
+ 	.navi .navbar-nav.navbar-right {
+ 		display: none;
+ 	}
+ 	
+ 	.left-sidebar-toggle {
+ 		display: block;
+ 	}
+ 	
+ 	.main {
+ 		position: static;
+    	/* display: block; */
+  	}
+  	
+ 	.left-sidebar {
+ 		display: none;
+ 	}
+ 	.leftsidebar-collapse {
+ 		display: none;
+ 	}
+ 	.v-splitter {
+ 		display: none;
+ 	}
+ 	
+  	.center {
+  		position: static;
+  		left: 0;
+  	}
+  	.breadcrumbs {
+  		position: static;
+  	}
+  	.content {
+  		position: static;
+  	}
+  	
+  	.footer {
+  		position: static;
+  	}
+  	
+  	/*
+  	.sidebar {
+  		position: absolute;
+	    top: 0;
+	    width: 85%;
+	    height: 100%;
+	    left: -85%;
+	    background: rgba(0, 0, 0, 0.1);
+  	}
+  	
   #wrap.active {
     left: 85%;
   }
   #right-columns {
     width: auto;
-  }
+  } */
 }
 
 /* Tablets
 ----------------------------------*/
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  #sidebar {
+  /* #sidebar {
     position: absolute;
     top: 0;
     width: 50%;
@@ -403,13 +474,13 @@ a.nav-link {
   }
   #main.active {
     left: 50%;
-  }
+  } */
 }
 
 /* Phones & Tablets 
 ----------------------------------*/
 @media screen and (max-width: 991px) {
-  body {
+  /* body {
     background: #FFFFFF;
     overflow-x: hidden;
     font-size: 2em;
@@ -444,7 +515,7 @@ a.nav-link {
   }
   #nav.active {
     max-height: 55em;
-  }
+  } */
 }
 
 /* Desktops

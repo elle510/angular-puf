@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>Main Layout</title>
 
+<!-- 모바일 기기의 가로폭 조정을 위해서 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="../../../puf/styles/bootstrap.min.css" />
 <link rel="stylesheet" href="../../../puf/styles/jquery-ui/jquery-ui-1.10.4.custom.min.css" />
 <link rel="stylesheet" href="../../../puf/styles/font-awesome.min.css" />
@@ -42,14 +45,23 @@
 	
 <div class="wrapper">
 	<div class="header">
+		<div class="logo-sm">Logo</div>
 		<div class="user">
 			<div class="pull-right">
-				자동로그아웃 30:00 <button type="button" class="btn-renew">연장하기</button>
+				<span>자동로그아웃 30:00 <button type="button" class="btn-renew">연장하기</button></span>
 				admin(admin) <button type="button" class="btn-logout">로그아웃</button>
 			</div>
 		</div>
 		<div class="navi">
 			<div class="logo">Logo</div>
+			
+<!-- 			<button class="left-sidebar-toggle" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false"> -->
+<!--         		<span class="sr-only">Toggle navigation</span> -->
+<!--         		<span class="icon-bar"></span> -->
+<!--         		<span class="icon-bar"></span> -->
+<!--         		<span class="icon-bar"></span> -->
+<!--       		</button> -->
+      
 			<div class="navbar" ng-controller="NavbarCtrl">
 				<!-- 메뉴 start -->
 				<ps-menu data="menuData"></ps-menu>
@@ -216,25 +228,25 @@
 		
 		<div class="center">
 			<div class="breadcrumbs" ng-bind="breadcrumbs"></div>
-			<div class="content" ui-view><!-- ui-view -->
-<!-- 				Content1<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					<br><br><br><br><br><br><br><br> -->
-<!-- 					<br><br><br><br><br><br><br><br> -->
-<!-- 					<br><br><br><br><br><br><br><br> -->
-<!-- 					<br>Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					Content<br> -->
-<!-- 					<br><br><br><br><br><br><br><br> -->
-<!-- 					ContentLast<br> -->
+			<div class="content"><!-- ui-view -->
+				Content1<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					<br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br>
+					<br>Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					Content<br>
+					<br><br><br><br><br><br><br><br>
+					ContentLast<br>
 			</div>
 		</div>
 	</div>
