@@ -345,6 +345,9 @@ body {
 /*   margin: 0 auto; */
 /* 	clear: left; */
 }
+
+/* Responsive 
+----------------------------------*/
 a.sidebar-link {
   display: none;
 }

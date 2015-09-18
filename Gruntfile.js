@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 			    },
 			    files: {
 			    	'webapps/puf/styles/common.css': 'less/common/common.less',
-			    	'webapps/puf/styles/themes/light-theme.css': 'less/themes/light-theme/light-theme.less'
+			    	'webapps/puf/styles/skins/light-skin.css': 'less/skins/light-skin/light-skin.less'
 			    }
 			},
 			dist: {
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
 			    },
 			    files: {
 			    	"webapps/puf/styles/common.min.css": "less/common/common.less",
-			    	"webapps/puf/styles/themes/light-theme.min.css": "less/themes/light-theme/light-theme.less"
+			    	"webapps/puf/styles/skins/light-skin.min.css": "less/skins/light-skin/light-skin.less"
 			    }
 			}
 		},
@@ -156,7 +156,7 @@ module.exports = function(grunt) {
 			},
 			*/
 			less: {
-				files: ['less/common/common.less', 'less/themes/light-theme/light-theme.less'],
+				files: ['less/common/common.less', 'less/skins/light-skin/light-skin.less'],
 			    tasks: ['less:dev', 'less:dist'],
 			    options: {
 			      interrupt: true
