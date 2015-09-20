@@ -124,7 +124,8 @@ module.exports = function(grunt) {
 			    },
 			    files: {
 			    	'webapps/puf/styles/common.css': 'less/common/common.less',
-			    	'webapps/puf/styles/skins/light-skin.css': 'less/skins/light-skin/light-skin.less'
+			    	"webapps/puf/styles/themes/simple-light-theme.css": "less/themes/simple-light-theme.less"
+			    	//'webapps/puf/styles/skins/light-skin.css': 'less/skins/light-skin/light-skin.less'
 			    }
 			},
 			dist: {
@@ -141,6 +142,15 @@ module.exports = function(grunt) {
 			    files: {
 			    	"webapps/puf/styles/common.min.css": "less/common/common.less",
 			    	"webapps/puf/styles/skins/light-skin.min.css": "less/skins/light-skin/light-skin.less"
+			    }
+			},
+			theme: {
+				options: {
+					cleancss: true
+			    },
+			    files: {
+			    	"webapps/puf/styles/common.min.css": "less/common/common.less",
+			    	"webapps/puf/styles/themes/simple-light-theme.min.css": "less/themes/simple-light-theme.less"
 			    }
 			}
 		},

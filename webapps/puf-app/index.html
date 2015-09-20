@@ -2,7 +2,7 @@
 <html ng-controller="CommonController">
 <head>
 <meta charset="UTF-8">
-<title>Polestar UI 개발 가이드</title>
+<title>UI 개발 가이드</title>
 
 <link rel="stylesheet" href="../puf/styles/bootstrap.min.css" />
 <link rel="stylesheet" href="../puf/styles/jquery-ui/jquery-ui-1.10.4.custom.min.css" />
@@ -12,79 +12,42 @@
 
 <link rel="stylesheet" href="../puf/styles/prettify.css" />
 
-<!-- 
-	Xeus main_layout.html 참고 
-	layout과 skin 분리
-	합치면 theme
--->
-<link rel="stylesheet" href="../puf/styles/themes/xeus-main-layout.css" type="theme" />
-<link rel="stylesheet" href="../puf/styles/themes/light-theme.min.css" />
-
-<style type="text/css">
-
-#logo, #nav, #user,
-#left_sidebar,
-#breadcrumbs, #content,
-#footer {
-  border: 1px solid #000000;
-}
-
-#logo, #nav, #user, 
-#footer {
-	text-align: center;
-}
-
-#logo {
-	width: 250px;
-}
-
-/*
-#left {
-	padding: 350px 0px;
-}
-
-
-#content {
-	padding: 350px 0px;
-}
-*/
-
-</style>
+<!-- Theme -->
+<link rel="stylesheet" href="../puf/styles/themes/simple-light-theme.min.css" type="theme"/>
 
 </head>
 <body>
 
-<div id="wrap">
-	<div id="header">
-		<div id="logo">Logo - Polestar UI 개발 가이드</div>
-		<!-- <div id="nav" class="nav">Nav</div> -->
-		<div id="nav">
-			<div class="row">
-				<div class="col-md-8">
-					Nav
-				</div>
-				<div class="col-md-4">
-					<div class="pull-right">
-						<select id="themeSelect" onchange="$.loadCSS($(this).val())">
-							<option value='puf/styles/themes/xeus-theme.css'>xeus-theme</option>
-					        <option value='puf/styles/themes/light-portalSimple-theme.css'>light-portalSimple-theme</option>
-					        <option value='puf/styles/themes/light-portal-theme.css'>light-portal-theme</option>
-					    </select>
-				   	</div>
-			   	</div>
+<div class="wrapper">
+	<div class="header">
+		<div class="navi">
+			<div class="logo">Logo - UI 개발 가이드</div>
+			<div class="navbar">
+				<div class="navbar-nav">Nav</div>
+				<div class="navbar-nav navbar-right"></div>
 			</div>
+			
 		</div>
-		<div id="user">User</div>
+		<div class="user" ng-controller="UserCtrl">
+			<div>User</div>
+			<select id="themeSelect" ng-model="selected" ng-change="selectTheme()" 
+					ng-options="option.name for option in options">
+<!-- 				<option ng-repeat="option in options" value="{{option.url}}">{{option.name}}</option> -->
+				<!-- <option value='puf/styles/themes/simple-light-theme.min.css'>simple-light-theme</option>
+		        <option value='puf/styles/themes/light-portalSimple-theme.css'>light-portalSimple-theme</option>
+		        <option value='puf/styles/themes/light-portal-theme.css'>light-portal-theme</option> -->
+		    </select>
+		</div>
 	</div>
 	
-	<div id="main">
-		<div id="left_sidebar" ng-controller="LeftSidebarCtrl">
+	<div class="main">
+		<div class="left-sidebar" ng-controller="LeftSidebarCtrl">
 			<div id="left">
 				<button class="btn btn-primary" ng-click="refresh()">새로고침</button>
 				<ps-tree id="mainMenuTree" options="mainMenuOptions" changed="changed" select-node="selectNode" dblclick="dblclick"></ps-tree>
 			</div>
 		</div>
-		<div id="center">
+		<div class="center">
 			<div id="breadcrumbs" ng-bind="breadcrumbs"></div>
 <!-- 			<a ui-sref="home">Home</a> -->
 <!-- 			<div id="content" ui-view> -->
@@ -113,11 +76,11 @@
 		    </ps-tabset>
  			
 <!--     		<h2>View:</h2> -->
-    		<div id="content" ui-view></div>
+    		<div class="content" ui-view></div>
 		</div>
 	</div>
 	
-	<div id="footer">Footer</div>
+<!-- 	<div class="footer">Footer</div> -->
 </div>
 
 <script data-main="scripts/main" type="text/javascript" src="../puf/libs/require.js"></script>

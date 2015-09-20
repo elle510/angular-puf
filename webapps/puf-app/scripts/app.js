@@ -265,7 +265,23 @@ define([
 				
 		}]);
 		
-		
+		// User Controller : smartmenu data Loading, search, setting
+		app.controller('UserCtrl', ['$scope', '$window', function($scope, $window) {
+			
+			$scope.options = [
+			                 {name: 'simple-light-theme', url:'puf/styles/themes/simple-light-theme.min.css'},
+			                 {name: 'simple-light-theme1', url:'theme-views/main/main_default.html'}
+			                 ];
+			
+			$scope.selected = $scope.options[0];
+			
+			$scope.selectTheme = function() {
+//				console.log($scope.selected);
+//				$window.location.href = $scope.selected.url;
+				$window.open($scope.selected.url);
+			}
+			
+		}]);
 		
 		app.run(function() {
 			//여기에서 일종의 초기화가 이루어지고 있다.
