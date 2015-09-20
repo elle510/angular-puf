@@ -229,31 +229,13 @@ define([
 				if(angular.isDefined(json.route)) {
         			//console.log(json.route);
         			//console.log(node);
-					$scope.breadcrumbs = '/' + data.instance.get_path(data.node, '/');
-					//console.log($scope.breadcrumbs);
+//					$scope.breadcrumbs = '/' + data.instance.get_path(data.node, '/');
+					$scope.breadcrumbs = '/' + json.text;
+					console.log($scope.breadcrumbs);
 //						$location.path("/home");
 //				    	$scope.$apply();
 			    	//$state.go('home');
-			    	//$state.go(json.route);
-					var isExtTab = false;
-					angular.forEach($scope.tabs, function(tab) {
-						if (tab.route == json.route) {
-							$scope.$apply();
-							$scope.go(json.route);
-							isExtTab = true;
-						}
-					});
-					if(isExtTab == false) {
-						
-						$scope.tabs.push({heading: json.text, route: json.route, active: false, removable: true});
-						$scope.$apply();
-						$scope.go(json.route);
-						
-						
-						//$scope.addMainTab({heading: json.text, route: json.route, active: false});
-						//$scope.apiTab.addTab({heading: json.text, route: json.route, active: false});
-						//$scope.go(json.route);
-					}
+					$scope.go(json.route);
 					
         		}else if(angular.isDefined(json.url)) {
 //	        			$window.location.href = json.url;
@@ -269,7 +251,7 @@ define([
 		app.controller('UserCtrl', ['$scope', '$window', function($scope, $window) {
 			
 			$scope.options = [
-			                 {name: 'simple-light-theme', url:'puf/styles/themes/simple-light-theme.min.css'},
+			                 {name: 'simple-light-theme', url:''},
 			                 {name: 'simple-light-theme1', url:'theme-views/main/main_default.html'}
 			                 ];
 			
@@ -278,7 +260,9 @@ define([
 			$scope.selectTheme = function() {
 //				console.log($scope.selected);
 //				$window.location.href = $scope.selected.url;
-				$window.open($scope.selected.url);
+				if($scope.selected.url != '') {
+					$window.open($scope.selected.url);
+				}
 			}
 			
 		}]);
