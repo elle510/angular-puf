@@ -231,7 +231,7 @@ define([
         			//console.log(node);
 //					$scope.breadcrumbs = '/' + data.instance.get_path(data.node, '/');
 					$scope.breadcrumbs = '/' + json.text;
-					console.log($scope.breadcrumbs);
+//					console.log($scope.breadcrumbs);
 //						$location.path("/home");
 //				    	$scope.$apply();
 			    	//$state.go('home');

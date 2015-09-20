@@ -2,13 +2,18 @@
 
 define(['app'], function(app) {
 	
-	var controller = function ($scope, $location) {
+	var controller = function ($scope, $location, psUtil) {
         
 		$scope.pageTitle = "Grid(jqGrid)";
 		
 		function detailViewLink(cellvalue, options, rowObject) {
             return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
         }
+		
+		var rootPath = psUtil.getRootPath();
+		if(rootPath == '/puf-app') {	// context root 가 / 라는 의미
+			rootPath = '';
+		}
 		
 		$scope.options = {
     			//url: '/bulletin/list',
@@ -23,7 +28,7 @@ define(['app'], function(app) {
     		               {name: 'registerDate', index: 'registerDate', width: 120, formatter: 'date', formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}}
     		              ]
     		    */
-				url:'json/grid.json',
+				url: rootPath + '/puf-app/json/grid.json',
 				datatype: "json",
 				jsonReader: {
 					page: 'page',
@@ -83,6 +88,6 @@ define(['app'], function(app) {
 		];
     };
     
-	app.register.controller('gridCtrl', ['$scope', '$location', controller]);
+	app.register.controller('gridCtrl', ['$scope', '$location', 'psUtil', controller]);
 	
 });
