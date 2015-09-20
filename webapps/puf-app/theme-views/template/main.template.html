@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-controller="CommonController">
+<head>
+<meta charset="UTF-8">
+<title>UI 개발 가이드</title>
+
+<link rel="stylesheet" href="../puf/styles/bootstrap.min.css" />
+<link rel="stylesheet" href="../puf/styles/jquery-ui/jquery-ui-1.10.4.custom.min.css" />
+<link rel="stylesheet" href="../puf/styles/font-awesome.min.css" />
+<link rel="stylesheet" href="../puf/styles/font-polestar.min.css" />
+<link rel="stylesheet" href="../puf/styles/common.min.css" />
+
+<link rel="stylesheet" href="../puf/styles/prettify.css" />
+
+<!-- Main Frame Layout -->
+<link rel="stylesheet" href="main.template.css" type="theme" />
+
+<!-- Theme -->
+<!-- <link rel="stylesheet" href="../puf/styles/themes/simple-light-theme.min.css" type="theme"/> -->
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="header">
+		<div class="navi">
+			<div class="logo">Logo - UI 개발 가이드</div>
+			<div class="navbar">
+				<div class="navbar-nav">Nav</div>
+				<div class="navbar-nav navbar-right"></div>
+			</div>
+			
+		</div>
+		<div class="user" ng-controller="UserCtrl">
+			<div>User</div>
+			<select id="themeSelect" ng-model="selected" ng-change="selectTheme()" 
+					ng-options="option.name for option in options">
+<!-- 				<option ng-repeat="option in options" value="{{option.url}}">{{option.name}}</option> -->
+				<!-- <option value='puf/styles/themes/simple-light-theme.min.css'>simple-light-theme</option>
+		        <option value='puf/styles/themes/light-portalSimple-theme.css'>light-portalSimple-theme</option>
+		        <option value='puf/styles/themes/light-portal-theme.css'>light-portal-theme</option> -->
+		    </select>
+		</div>
+	</div>
+	
+	<div class="main">
+		<div class="left-sidebar" ng-controller="LeftSidebarCtrl">
+			<div id="left">
+				<button class="btn btn-primary" ng-click="refresh()">새로고침</button>
+				<ps-tree id="mainMenuTree" options="mainMenuOptions" changed="changed" select-node="selectNode" dblclick="dblclick"></ps-tree>
+			</div>
+		</div>
+		<div class="center">
+			<div id="breadcrumbs" ng-bind="breadcrumbs"></div>
+<!-- 			<a ui-sref="home">Home</a> -->
+<!-- 			<div id="content" ui-view> -->
+			<!-- 
+				<ps-tabset class="col-md-12">
+	    			<ps-tab heading="Home" url="views/home/home.html">
+	    				
+	    			</ps-tab>
+	    			<ps-tab heading="Home11" url="views/home/home.html">
+	    			</ps-tab>
+	    			<ps-tab heading="Static">
+	    				Static content
+	    			</ps-tab>
+	  			</ps-tabset>
+	  		 -->
+<!-- 			</div> -->
+			<ps-tabset addTab="addMainTab(tab)" api="apiTab">
+		        <ps-tab
+		            ng-repeat="t in tabs"
+		            heading="{{t.heading}}"
+		            select="go(t.route)"
+		            active="t.active"
+		            removable="t.removable"
+		            remove="removeTab(t)">
+		        </ps-tab>
+		    </ps-tabset>
+ 			
+<!--     		<h2>View:</h2> -->
+    		<div class="content" ui-view></div>
+		</div>
+	</div>
+	
+<!-- 	<div class="footer">Footer</div> -->
+</div>
+
+<script data-main="scripts/main" type="text/javascript" src="../puf/libs/require.js"></script>
+
+</body>
+</html>
