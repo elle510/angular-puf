@@ -1,84 +1,131 @@
-/* CSS crunched with Crunch - http://crunchapp.net/ */
 /* * {
   margin: 0;
   padding: 0;
 }*/
 body {
 /*   background: #BBCFE8; */
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: #333;
-  font-size: 14px;
+	background: #fff;
+ 	font-family: Verdana, Arial, Helvetica, sans-serif;
+  	color: #333;
+  	font-size: 14px;
 }
 
-#wrap {
-/*   width: 1280px; */
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background: #fff;
+.wrapper {
+	/*
+   	width: 1280px; 
+  	margin: 0 auto;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  	*/
+  	margin: 0;
+/*   	background: #fff; */
   /* curved border radius */
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
 }
 /* header 영역
 ----------------------------------*/
-/*div#header*/
-#header {
-  height: 50px;
-  margin: 0;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row;
-  flex-flow: row;
-}
-#logo {
-  max-width: 250px;
-  height: 100%;
-}
-/*div#nav*/
-#nav {
-  height: 100%;
-  margin: 0 auto;
-  -webkit-flex: 1;
-  flex: 1;
-}
-#user {
-  width: 300px;
-  height: 100%;
-}
-/* main 영역
-----------------------------------*/
-#main {
-  margin: 0;
-  display: -webkit-flex;
-  display: flex;
-}
-#left_sidebar {
-  width: 350px;
-}
-#center {
-  margin: 0 auto;
-  -webkit-flex: 1;
-  flex: 1;
+/*div.header*/
+.header {
+  	height: 50px;
+  	margin: 0;
+  	border: 1px solid;
 }
 
-/* left_sidebar 영역
+/*div.navi*/
+.navi {
+	float: left;
+  	height: 100%;
+  	margin: 0;
+  	border: 1px solid;
+}
+
+.navi .logo {
+	float: left;
+	width: 200px;
+  	height: 100%;
+  	border: 1px solid;
+}
+
+/*div.navbar*/
+.navi .navbar {
+	float: left;
+	height: 100%;
+	border: 1px solid;
+    margin: 0;
+}
+
+.user {
+	float: right;
+/*   	width: 200px; */
+  	height: 100%;
+  	border: 1px solid;
+}
+
+.navbar .navbar-nav {
+	float: left;
+	height: 100%;
+/* 	display: block !important; */
+	border: 1px solid;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+
+.navbar .navbar-right {
+    float: right !important;
+}
+.navbar .navbar-right .dropdown-menu {
+ 	right: 0;
+    left: auto;
+}
+.navbar .navbar-right .dropdown-menu-left {
+    right: auto;
+    left: 0;
+}
+
+/* main 영역
 ----------------------------------*/
-#left_top {
+.main {
+  	margin: 0;
+  	border: 1px solid;
+}
+.left-sidebar {
+  	width: 350px;
+  	border: 1px solid;
+}
+.center {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	bottom: 0;
+	left: 351px;
+/*   	margin: 0 auto; */
+  	border: 1px solid;
+}
+
+/* left-sidebar 영역
+----------------------------------*/
+.left_top {
 /*   max-height: 250px; */
   height: 400px;
   overflow: auto;
 }
 /* center 영역
 ----------------------------------*/
-#breadcrumbs {
+.breadcrumbs {
   height: 30px;
+}
+
+.content {
+  	border: 1px solid;
 }
 
 /* footer 영역
 ----------------------------------*/
 /*div#footer*/
-#footer {
+.footer {
   text-align: right;
   height: 50px;
 /*   margin: 0 auto; */
@@ -92,7 +139,7 @@ a.nav-link {
 /* Phones
 ----------------------------------*/
 @media screen and (max-width: 767px) {
-  #wrap {
+  .wrapper {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
@@ -100,10 +147,10 @@ a.nav-link {
     -o-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
   }
-  #main {
+  .main {
     display: block;
   }
-  #sidebar {
+  .sidebar {
     position: absolute;
     top: 0;
     width: 85%;
@@ -111,17 +158,17 @@ a.nav-link {
     left: -85%;
     background: rgba(0, 0, 0, 0.1);
   }
-  #wrap.active {
+  .wrap.active {
     left: 85%;
   }
-  #right-columns {
+  .right-columns {
     width: auto;
   }
 }
 /* Tablets
 ----------------------------------*/
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  #sidebar {
+  .sidebar {
     position: absolute;
     top: 0;
     width: 50%;
@@ -129,7 +176,7 @@ a.nav-link {
     left: -50%;
     background: rgba(0, 0, 0, 0.1);
   }
-  #main {
+  .main {
     -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
     -ms-transition: all 0.25s ease-out;
@@ -137,7 +184,7 @@ a.nav-link {
     transition: all 0.25s ease-out;
     overflow: visible;
   }
-  #main.active {
+  .main.active {
     left: 50%;
   }
 }
@@ -149,7 +196,7 @@ a.nav-link {
     overflow-x: hidden;
     font-size: 2em;
   }
-  #wrap {
+  .wrapper {
     width: 100%;
   }
   a.sidebar-link {
@@ -162,10 +209,10 @@ a.nav-link {
     display: block;
     padding: 0 1em;
   }
-  #header {
+  .header {
     top: 0;
   }
-  #nav {
+  .navi {
     clear: both;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
@@ -177,7 +224,7 @@ a.nav-link {
     max-height: 0;
     background: rgba(0, 0, 0, 0.1);
   }
-  #nav.active {
+  .navi.active {
     max-height: 55em;
   }
 }
