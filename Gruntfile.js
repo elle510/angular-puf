@@ -129,10 +129,10 @@ module.exports = function(grunt) {
 			    	//'webapps/puf/styles/skins/light-skin.css': 'less/skins/light-skin/light-skin.less'
 			    }
 			},
-			dist: {
+			skin: {
 				options: {
 					//paths: ["assets/css"],
-					cleancss: true
+					//cleancss: true
 					/*
 					modifyVars: {
 						imgPath: '"http://mycdn.com/path/to/images"',
@@ -141,11 +141,10 @@ module.exports = function(grunt) {
 					*/
 			    },
 			    files: {
-			    	"webapps/puf/styles/common.min.css": "less/common/common.less",
-			    	"webapps/puf/styles/skins/light-skin.min.css": "less/skins/light-skin/light-skin.less"
+			    	"webapps/puf/styles/skins/light-skin.css": "less/skins/light-skin/light-skin.less"
 			    }
 			},
-			theme: {
+			dist: {
 				options: {
 					cleancss: true
 			    },
