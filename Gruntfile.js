@@ -118,17 +118,6 @@ module.exports = function(grunt) {
 		
 		// style
 		less: {
-			dev: {
-				options: {
-					//paths: ["assets/css"]
-			    },
-			    files: {
-			    	'webapps/puf/styles/common.css': 'less/common/common.less',
-			    	"webapps/puf/styles/themes/simple-light-theme.css": "less/themes/simple-light-theme.less",
-			    	"webapps/puf/styles/themes/3R2C-A-light-theme.css": "less/themes/3R2C-A-light-theme.less"
-			    	//'webapps/puf/styles/skins/light-skin.css': 'less/skins/light-skin/light-skin.less'
-			    }
-			},
 			skin: {
 				options: {
 					//paths: ["assets/css"],
@@ -142,6 +131,17 @@ module.exports = function(grunt) {
 			    },
 			    files: {
 			    	"webapps/puf/styles/skins/light-skin.css": "less/skins/light-skin/light-skin.less"
+			    }
+			},
+			dev: {
+				options: {
+					//paths: ["assets/css"]
+			    },
+			    files: {
+			    	'webapps/puf/styles/common.css': 'less/common/common.less',
+			    	"webapps/puf/styles/themes/simple-light-theme.css": "less/themes/simple-light-theme.less",
+			    	"webapps/puf/styles/themes/3R2C-A-light-theme.css": "less/themes/3R2C-A-light-theme.less"
+			    	//'webapps/puf/styles/skins/light-skin.css': 'less/skins/light-skin/light-skin.less'
 			    }
 			},
 			dist: {
@@ -188,6 +188,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'concat', 'copy', 'uglify']); // grunt 명령어로 실행할 작업
+    grunt.registerTask('default', ['clean', 'concat', 'copy', 'uglify', 'less']); // grunt 명령어로 실행할 작업
+    
+    // js build
+    grunt.registerTask('js', ['clean', 'concat', 'copy', 'uglify']); // grunt js
+    
+    // less build
+    grunt.registerTask('css', ['less']); // grunt css
+    
+    // Test task
+    grunt.registerTask('testTask', function() {
+    	grunt.log.writeln(this.name + ' was passed "' + arguments[0] + '"');
+    });
  
  };
