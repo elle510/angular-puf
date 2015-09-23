@@ -14,7 +14,7 @@ require.config({
     만약 data-main 속성이 사용되었다면, 그 경로가 baseUrl이 된다.
     data-main 속성은 require.js를 위한 특별한 속성으로 require.js는 스크립트 로딩을 시작하기 위해 이 부분을 체크한다.
 */
-    baseUrl:'/puf/',
+    baseUrl: '/', //'/puf/',
  
 /*
     paths: 
