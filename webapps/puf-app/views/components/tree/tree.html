@@ -19,24 +19,19 @@
 				</div>
 			</div>
 			<div class="row">
-				<div>
-				
-					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_default_code">소스 보기</a>	
-					<div style="display:none">
-					
-						<div id="tree_default_code">
-						
-							<ps-tabset>
-	    						<ps-tab heading="HTML코드">
-	    							<pre class="prettyprint linenums">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-down" collapse-icon="fa fa-caret-up"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
 &lt;div class="col-md-12"&gt;
   &lt;ps-tree options="treeOptions"&gt;&lt;/ps-tree&gt;
 &lt;/div&gt;
-									</pre>
-	    						</ps-tab>
-	    						<ps-tab heading="JS코드">
-	    							<pre class="prettyprint linenums">
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
 var data = [
   { "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },
   { "id" : "ajson2", "parent" : "#", "text" : "Root node 2" },
@@ -47,14 +42,10 @@ var data = [
 $scope.treeOptions = {'core': {
   'data': data
 }};
-									</pre>
-	    						</ps-tab>
-	  						</ps-tabset>
-	  						
-						</div>
-						<a href="#tree_default_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
-					</div>
-				</div>
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>
 			</div>
 		</div><!-- end default -->
 		<div class="vspace-12" />
@@ -69,24 +60,19 @@ $scope.treeOptions = {'core': {
 				</div>
 			</div>
 			<div class="row">
-				<div>
-				
-					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_load_code">소스 보기</a>	
-					<div style="display:none">
-					
-						<div id="tree_load_code">
-						
-							<ps-tabset>
-	    						<ps-tab heading="HTML코드">
-	    							<pre class="prettyprint linenums">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-down" collapse-icon="fa fa-caret-up"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
 &lt;div class="col-md-12"&gt;
   &lt;ps-tree id="ajax_tree" options="treeUrlOptions"&gt;&lt;/ps-tree&gt;
 &lt;/div&gt;
-									</pre>
-	    						</ps-tab>
-	    						<ps-tab heading="JS코드">
-	    							<pre class="prettyprint linenums">
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
 $scope.treeUrlOptions = {
   'core': {
     'data': {
@@ -109,14 +95,10 @@ $scope.treeUrlOptions = {
     }
   }
 };
-									</pre>
-	    						</ps-tab>
-	  						</ps-tabset>
-	  						
-						</div>
-						<a href="#tree_load_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
-					</div>
-				</div>
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>
 			</div>
 		</div><!-- end load server -->
 		<div class="vspace-12" />
@@ -131,33 +113,24 @@ $scope.treeUrlOptions = {
 				</div>
 			</div>
 			<div class="row">
-				<div>
-				
-					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_ondemand_code">소스 보기</a>	
-					<div style="display:none">
-					
-						<div id="tree_ondemand_code">
-						
-							<ps-tabset>
-	    						<ps-tab heading="HTML코드">
-	    							<pre class="prettyprint linenums">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-down" collapse-icon="fa fa-caret-up"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
 &lt;div class="col-md-12"&gt;
   &lt;ps-tree id="onDemand_tree" options="treeUrlOptions"&gt;&lt;/ps-tree&gt;
 &lt;/div&gt;
-									</pre>
-	    						</ps-tab>
-	    						<ps-tab heading="JS코드">
-	    							<pre class="prettyprint linenums">
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
 
-									</pre>
-	    						</ps-tab>
-	  						</ps-tabset>
-	  						
-						</div>
-						<a href="#tree_ondemand_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
-					</div>
-				</div>
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>
 			</div>
 		</div><!-- end load on demand server -->
 		<div class="vspace-12" />
@@ -172,24 +145,19 @@ $scope.treeUrlOptions = {
 				</div>
 			</div>
 			<div class="row">
-				<div>
-				
-					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_icon_code">소스 보기</a>	
-					<div style="display:none">
-					
-						<div id="tree_icon_code">
-						
-							<ps-tabset>
-	    						<ps-tab heading="HTML코드">
-	    							<pre class="prettyprint linenums">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-down" collapse-icon="fa fa-caret-up"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
 &lt;div class="col-md-12"&gt;
   &lt;ps-tree id="ajax_icon_tree" options="treeIconOptions"&gt;&lt;/ps-tree&gt;
 &lt;/div&gt;
-									</pre>
-	    						</ps-tab>
-	    						<ps-tab heading="JS코드">
-	    							<pre class="prettyprint linenums">
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
 $scope.treeIconOptions = {
   "plugins" : ["types"],
   'core': {
@@ -231,14 +199,10 @@ $scope.treeIconOptions = {
     }
   }
 };
-									</pre>
-	    						</ps-tab>
-	  						</ps-tabset>
-	  						
-						</div>
-						<a href="#tree_icon_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
-					</div>
-				</div>
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>		
 			</div>
 		</div><!-- end icon -->
 		<div class="vspace-12" />
@@ -253,24 +217,19 @@ $scope.treeIconOptions = {
 				</div>
 			</div>
 			<div class="row">
-				<div>
-				
-					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="tree_contextmenu_code">소스 보기</a>	
-					<div style="display:none">
-					
-						<div id="tree_contextmenu_code">
-						
-							<ps-tabset>
-	    						<ps-tab heading="HTML코드">
-	    							<pre class="prettyprint linenums">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-down" collapse-icon="fa fa-caret-up"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
 &lt;div class="col-md-12"&gt;
   &lt;ps-tree id="tree_contextmenu" options="treeContextOptions"&gt;&lt;/ps-tree&gt;
 &lt;/div&gt;
-									</pre>
-	    						</ps-tab>
-	    						<ps-tab heading="JS코드">
-	    							<pre class="prettyprint linenums">
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
 $scope.treeContextOptions = {
   "plugins" : ["contextmenu"],
   'core': {
@@ -293,14 +252,10 @@ $scope.treeContextOptions = {
     }
   }
 };
-									</pre>
-	    						</ps-tab>
-	  						</ps-tabset>
-	  						
-						</div>
-						<a href="#tree_contextmenu_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
-					</div>
-				</div>
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>
 			</div>
 		</div><!-- end contextMenu -->
 		<div class="vspace-12" />

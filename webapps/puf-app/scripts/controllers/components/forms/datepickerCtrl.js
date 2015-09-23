@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Datepicker";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		// datapicker default
 		$scope.getDate = function() {
 			$scope.date_string = $scope.dtapi.getDate();

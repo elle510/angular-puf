@@ -6,7 +6,9 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Button";
 		
-		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
     };
     
 	app.register.controller('buttonCtrl', ['$scope', '$location', controller]);

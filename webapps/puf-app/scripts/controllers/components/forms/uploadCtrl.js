@@ -6,7 +6,9 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Upload";
 		
-		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
     };
     
 	app.register.controller('uploadCtrl', ['$scope', '$location', controller]);

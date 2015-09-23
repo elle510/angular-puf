@@ -28,6 +28,9 @@ define(['app'], function(app) {
 		
 		// 소스코드가 보여지는 시점에 호출되야 한다.(onload, 페이지가 보여질때 즉 컨트롤러에서 호출, 탭은 선택되어 보여질때)
 		//prettyPrint();
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
 		
 		//
 		$scope.checkSwitchValue1 = true;

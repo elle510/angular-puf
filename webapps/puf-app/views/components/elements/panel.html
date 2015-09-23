@@ -16,17 +16,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<div>
-				
-					<!-- a 태그와 div 태그 붙여쓰면 nextSibling 이고 줄바꿈하거나 공백이 있으면 nextSibling.nextSibling -->
-					<a href="javascript:void(0)" onclick="this.innerHTML=(this.nextSibling.nextSibling.style.display=='none')?'소스 닫기':'소스 보기'; this.nextSibling.nextSibling.style.display=(this.nextSibling.nextSibling.style.display=='none')?'block':'none';prettyPrint();" name="modal_sm_code">소스 보기</a>	
-					<div style="display:none">
-					
-						<div id="modal_sm_code">
-						
-							<ps-tabset>
-	    						<ps-tab heading="HTML코드">
-	    							<pre class="prettyprint linenums">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-down" collapse-icon="fa fa-caret-up"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
 &lt;div class="row"&gt;
   &lt;div class="col-md-12"&gt;
     &lt;button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#smModal"&gt;
@@ -49,19 +44,15 @@
     &lt;/div&gt;
   &lt;/ps-modal&gt;
 &lt;/div&gt;
-									</pre>
-	    						</ps-tab>
-	    						<ps-tab heading="JS코드">
-	    							<pre class="prettyprint linenums">
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
 // js
-									</pre>
-	    						</ps-tab>
-	  						</ps-tabset>
-	  						
-						</div>
-						<a href="#modal_sm_code" onclick="this.parentNode.style.display='none'; this.parentNode.previousSibling.previousSibling.innerHTML='소스 보기'">소스 닫기</a>	
-					</div>
-				</div>
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>				
 			</div>
 		</div><!-- end sm modal -->
 		<div class="vspace-12"></div>

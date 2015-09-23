@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Stepper";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		// stepper default
 		$scope.stepperValue = 10;
     };

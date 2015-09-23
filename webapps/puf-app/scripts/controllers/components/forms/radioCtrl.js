@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Radio";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		// radio
 		$scope.radioValue1 = 'blue';
 		$scope.radioValue2 = 'seoul';

@@ -6,7 +6,9 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Validation";
 		
-		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
     };
     
 	app.register.controller('validationCtrl', ['$scope', '$location', controller]);

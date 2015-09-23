@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Select";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		// select
 		//$scope.selectOptions = {};
 		$scope.colors = [

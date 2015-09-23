@@ -22,6 +22,7 @@ angular.module('ps.services.util', [])
 		return name.split("").reverse().join("");
 	};
 	
+	// root path
 	root.getRootPath = function() {
 		// js에서 ContextPath 를 얻을 수 없음 - Root Path를 얻어서 응용하자.
 		/*var offset=location.href.indexOf(location.host)+location.host.length;
@@ -31,7 +32,15 @@ angular.module('ps.services.util', [])
 	    var offset = $window.location.href.indexOf($window.location.host) + $window.location.host.length;
 	    var ctxPath = $window.location.href.substring(offset, $window.location.href.indexOf('/', offset + 1));
 	    return ctxPath;
-	}
+	};
+	
+	// uuid
+	root.getUUID = function() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+			return v.toString(16);
+		}); 
+	};
 	
     return root;
 }]);

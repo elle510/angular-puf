@@ -6,7 +6,9 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Modal";
 		
-		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
     };
     
 	app.register.controller('modalCtrl', ['$scope', '$location', controller]);

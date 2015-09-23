@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Tree";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		// default tree
 		var data = [
 		            { "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },

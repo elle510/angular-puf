@@ -49,10 +49,15 @@ angular.module('ps.directives.menu', [])
 			//addTabFunc:	'=addTab',
 		},
 		controller: 'psMenuCtrl',
-		template: '',
+		template: '<a ng-click="func()"></a>',
 		link: function(scope, element, attrs, ctrl) {
 			ctrl.createMeunu();
 			scope.updateDisplay();
+			
+			// template의 func()
+    		scope.func = function() {
+    			ctrl.createMeunu();
+    		};
 		}
 	}
 }])

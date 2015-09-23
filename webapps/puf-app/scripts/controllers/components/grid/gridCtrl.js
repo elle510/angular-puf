@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Grid(jqGrid)";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		function detailViewLink(cellvalue, options, rowObject) {
             return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
         }

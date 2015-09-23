@@ -6,6 +6,10 @@ define(['app'], function(app) {
         
 		$scope.pageTitle = "Form Wizard";
 		
+		$scope.prettyPrint = function() {
+			prettyPrint();
+		}
+		
 		$scope.defaultOptions = {
 				
         };
