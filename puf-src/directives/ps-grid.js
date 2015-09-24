@@ -12,47 +12,20 @@
  */
 
 angular.module('ps.directives.grid', [])
-.directive('psGrid', function() {
+.directive('psGrid', ['psUtil', function(psUtil) {
 	return {
         restrict: 'E',
         replace: true,
         scope: {
-        	gridId: 	'@',
-        	pagerId:	'@',
+        	id: 		'@',
         	className:	'@',
         	options: 	'=',
+        	isPage:		'=',
             data:   	'=?',
             insert: 	'=?',
             api:    	'=?'
         },
-        template: function (element, attrs) {
-			/*
-			var temp = '<div class="' + attrs.className + '">' +
-							'<table id="' + attrs.gridId + '"></table>' +
-							'<div id="' + attrs.pagerId + '"></div>' +
-						'</div>';
-			*/
-        	var temp;
-			if(angular.isDefined(attrs.className)) {
-				temp = '<div class="' + attrs.className + '"></div>';
-			}else {
-				temp = '<div></div>';
-			}
-			
-			/*if(angular.isDefined(attrs.gridId)) {
-				temp += '<table id="' + attrs.gridId + '"></table>';
-			}else {
-				alert('require grid-id');
-			}
-			
-			if(angular.isDefined(attrs.pagerId)) {
-				temp += '<div id="' + attrs.pagerId + '"></div>';
-			}
-			
-			temp += '</div>';*/
-			
-			return temp;
-        },
+        template: '<div ng-class="className"></div>',
         link: function (scope, element, attrs) {
             var table, div,
             opts,
@@ -115,13 +88,20 @@ angular.module('ps.directives.grid', [])
             	opts = angular.extend({}, defaults, value);
 //                element.children().empty();
             	element.empty();
-                table = angular.element('<table id="' + attrs.gridId + '"></table>');
+            	
+            	if(angular.isDefined(attrs.id) == false) {
+    				attrs.id = psUtil.getUUID();
+    			}
+            	
+                table = angular.element('<table id="' + attrs.id + '"></table>');
                 element.append(table);
-                if (attrs.pagerId) {
-                	opts.pager = '#' + attrs.pagerId;
+                
+                if(scope.isPage) {
+                	var pagerId = psUtil.getUUID();;
+                	opts.pager = '#' + pagerId;
                     var pager = angular.element(opts.pager);
                     if (pager.length == 0) {
-                        div = angular.element('<div id="' + attrs.pagerId + '"></div>');
+                        div = angular.element('<div id="' + pagerId + '"></div>');
                         element.append(div);
                     }
                 }
@@ -168,4 +148,4 @@ angular.module('ps.directives.grid', [])
             
         }
     };
-});
+}]);
