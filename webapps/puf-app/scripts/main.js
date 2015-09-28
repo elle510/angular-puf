@@ -73,6 +73,8 @@ require.config({
 		'jquery-splitter': 'puf/libs/plugins/splitter.min',
 		'jquery-smartmenus': 'puf/libs/plugins/smartmenu/jquery.smartmenus.min',
 		'jquery-smartmenus-bootstrap': 'puf/libs/plugins/smartmenu/addons/bootstrap/jquery.smartmenus.bootstrap.min',
+		'jquery-context-menu': 'puf/libs/plugins/context-menu/jquery.contextMenu.min',
+		'jquery-ui-position': 'puf/libs/plugins/context-menu/jquery.ui.position.min',
         
 		// angular directive
 		'angular-ui-layout': 'puf/libs/ui-layout',
@@ -111,7 +113,8 @@ require.config({
         },
         'puf': {
         	deps: ['ps-locale_ko', 'moment', 'jquery-cookie', 'jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 
-        	       'bootstrap-select', 'jquery-form', 'jquery-steps', 'jquery-splitter', 'jquery-smartmenus', 'jquery-smartmenus-bootstrap']
+        	       'bootstrap-select', 'jquery-form', 'jquery-steps', 'jquery-splitter', 'jquery-smartmenus', 'jquery-smartmenus-bootstrap',
+        	       'jquery-context-menu']
         },
         'jqgrid': {
         	// jquery를 빼도 불러오기니 하는데 로딩순서가 달라진다.
@@ -129,6 +132,9 @@ require.config({
         /*'jqtree': {
         	deps: ['jquery', 'jquery-cookie']
         },*/
+        'jquery-context-menu': {
+        	deps: ['jquery-ui-position']
+        },
         'datetimepicker': {
             deps: ['moment']
         },
