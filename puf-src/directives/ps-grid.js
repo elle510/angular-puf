@@ -17,13 +17,14 @@ angular.module('ps.directives.grid', [])
         restrict: 'E',
         replace: true,
         scope: {
-        	id: 		'@',
-        	className:	'@',
-        	options: 	'=',
-        	isPage:		'=',
-            data:   	'=?',
-            insert: 	'=?',
-            api:    	'=?'
+        	id: 			'@',
+        	className:		'@',
+        	options: 		'=',
+        	isPage:			'=',
+            //data:   		'=?',
+            contextMenu:	'=',
+            insert: 		'=?',
+            api:    		'=?'
         },
         template: '<div ng-class="className"></div>',
         link: function (scope, element, attrs) {
@@ -106,6 +107,13 @@ angular.module('ps.directives.grid', [])
                     }
                 }
                 table.jqGrid(opts);
+                
+                // context menu
+                if(scope.contextMenu) {
+                	angular.extend(scope.contextMenu, {selector: '.ui-jqgrid-bdiv'});
+                	$('#' + attrs.id).contextMenu(scope.contextMenu);          
+                }
+                
                 // Variadic API – usage:
                 //   view:  <ng-jqgrid … vapi="apicall">
                 //   ctrl:  $scope.apicall('method', 'arg1', …);
@@ -140,11 +148,36 @@ angular.module('ps.directives.grid', [])
                     }
                 };
             });
-            scope.$watch('data', function (value) {
+            
+            /*scope.$watch('data', function (value) {
+            	console.log('changed data');
                 table.jqGrid('setGridParam', { data: value })
-                     .trigger('reloadGrid')
-                ;
-            });
+                     .trigger('reloadGrid');
+            });*/
+            
+            /*scope.$watch('contextMenu', function (value) {
+            	console.log('changed contextMenu');
+            	console.log(table);
+            	var context_defaults = {selector: '.ui-jqgrid-bdiv'},
+            	context_opts;
+            	context_opts = angular.extend({}, context_defaults, value);
+            	
+                table.contextMenu({
+        	        selector: '.ui-jqgrid-bdiv', 
+        	        callback: function(key, options) {
+        	            var m = "clicked: " + key + " on " + $(this).text();
+        	            window.console && console.log(m) || alert(m); 
+        	        },
+        	        items: {
+        	            "edit": {name: "Edit", icon: "edit"},
+        	            "cut": {name: "Cut", icon: "cut"},
+        	            "copy": {name: "Copy", icon: "copy"},
+        	            "paste": {name: "Paste", icon: "paste"},
+        	            "delete": {name: "Delete", icon: "delete"}
+        	        }
+        	    });
+                
+            });*/
             
         }
     };

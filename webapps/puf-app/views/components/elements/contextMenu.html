@@ -1,0 +1,122 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default context menu -->
+			<div class="row">
+				<h5>Context Menu</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="selector">Right Click</div>
+				</div>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+
+&lt;div class="selector"&gt;Right Click&lt;/div&gt;
+
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+
+$.contextMenu({
+    selector: '.selector', 
+    callback: function(key, options) {
+        var m = "clicked: " + key + " on " + $(this).text();
+        window.console && console.log(m) || alert(m); 
+    },
+    items: {
+        "edit": {name: "Edit", icon: "edit"},
+        "cut": {name: "Cut", icon: "cut"},
+        "copy": {name: "Copy", icon: "copy"},
+        "paste": {name: "Paste", icon: "paste"},
+        "delete": {name: "Delete", icon: "delete"},
+        "sep1": "---------",
+        "quit": {name: "Quit", icon: function($element, key, item){ return 'icon icon-quit'; }},
+        "sep2": "---------",
+        "sub1": {
+            "name": "Sub Menu1", 
+            "items": {
+                "sub-key1": {"name": "sub-menu1"},
+                "sub-key2": {"name": "sub-menu2"},
+                "sub-key3": {"name": "sub-menu3"}
+            }
+        }
+    }
+});
+	    
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>				
+			</div>
+		</div><!-- end default context menu -->
+		<div class="vspace-12"></div>
+		
+		<div class="row"><!-- start context menu -->
+			<div class="row">
+				<h5>Context Menu - Specified Area</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="context-menu-div">
+						<div class="selector">Right Click</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+
+&lt;div class="context-menu-div"&gt;
+  &lt;div class="selector"&gt;Right Click&lt;/div&gt;
+&lt;/div&gt;
+
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+
+$('.context-menu-div').contextMenu({
+    selector: '.selector', 
+    callback: function(key, options) {
+        var m = "clicked: " + key + " on " + $(this).text();
+        window.console && console.log(m) || alert(m); 
+    },
+    items: {
+        "edit": {name: "Edit", icon: "edit"},
+        "cut": {name: "Cut", icon: "cut"},
+        "copy": {name: "Copy", icon: "copy"},
+        "paste": {name: "Paste", icon: "paste"},
+        "delete": {name: "Delete", icon: "delete"}
+    }
+});
+	    
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>				
+			</div>
+		</div><!-- end context menu -->
+		<div class="vspace-12"></div>
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>
