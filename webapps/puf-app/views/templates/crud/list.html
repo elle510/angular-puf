@@ -1,0 +1,84 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start default -->
+			<div class="row">
+				<div class="col-md-12">
+					<ps-fieldset legend="검색" expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+								 on-click="clickFunc()">
+						<div>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+						</div>			 
+					</ps-fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-9">
+					Grid Title
+				</div>
+				<div class="col-md-3">
+					<div class="pull-right">
+						<!-- <button type="button" value="a">등록</button> -->
+						<a class="btn btn-default" href="#"><i class="fa fa-plus"></i></a>
+						<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i></a>
+						<a class="btn btn-default" href="#"><i class="fa fa-refresh"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-grid id="grid" options="options" is-page="true" context-menu="contextMenu"></ps-grid><!-- class-name="smooth" -->
+				</div>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;div class="col-md-12"&gt;
+    Grid Title
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-md-12"&gt;
+    &lt;ps-grid options="options" grid-id="gridId1" pager-id="pagerId1" class-name="smooth"&gt;&lt;/ps-grid&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>		
+				</ps-hidden-content>
+			</div>
+		</div><!-- end default -->
+		<div class="vspace-12" />
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

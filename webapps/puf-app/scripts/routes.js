@@ -51,13 +51,18 @@ define([
 	                	.state('select', 		route.ui_resolve('/select', 		'/components/forms/', 		'select'))
 	                	.state('datepicker', 	route.ui_resolve('/datepicker', 	'/components/forms/', 		'datepicker'))
 	                	.state('stepper', 		route.ui_resolve('/stepper', 		'/components/forms/', 		'stepper'))
+	                	.state('fieldset', 		route.ui_resolve('/fieldset', 		'/components/forms/', 		'fieldset'))
 	                	.state('validation', 	route.ui_resolve('/validation', 	'/components/forms/', 		'validation'))
 	                	.state('wizard', 		route.ui_resolve('/wizard', 		'/components/forms/', 		'wizard'))
 	                	.state('upload', 		route.ui_resolve('/upload', 		'/components/forms/', 		'upload'))
 	                	
 	                	.state('grid', 			route.ui_resolve('/grid', 			'/components/grid/', 		'grid'))
 	                	.state('tree', 			route.ui_resolve('/tree', 			'/components/tree/', 		'tree'))
-	                	.state('tab', 			route.ui_resolve('/tab', 			'/components/tab/', 		'tab'));
+	                	.state('tab', 			route.ui_resolve('/tab', 			'/components/tab/', 		'tab'))
+	                	
+	                	// Templates
+	                	.state('crud', 			route.ui_resolve('/crud', 			'/templates/crud/', 		'list'));
+	                	
 	                	/*
 	                	.state('home', {
 	                		url: '/home', 

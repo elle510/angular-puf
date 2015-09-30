@@ -5,7 +5,7 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  * 
  * example:
- * <ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" is-bottom="true" on-click="test()" class-name="light"></ps-hidden-content>
+ * <ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down" is-bottom="true" on-click="test()" class-name="light"></ps-hidden-content>
  * 
  * Content Expand/Collapse
  * 
