@@ -61,7 +61,9 @@ define([
 	                	.state('tab', 			route.ui_resolve('/tab', 			'/components/tab/', 		'tab'))
 	                	
 	                	// Templates
-	                	.state('crud', 			route.ui_resolve('/crud', 			'/templates/crud/', 		'list'));
+	                	.state('crud-list', 		route.ui_resolve('/crud/list', 			'/templates/crud/', 		'list'))
+	                	.state('crud-save', 		route.ui_resolve('/crud/:type?uid', 	'/templates/crud/', 		'form'))
+	                	.state('crud-view', 		route.ui_resolve('/crud/view/:uid', 	'/templates/crud/', 		'view'));
 	                	
 	                	/*
 	                	.state('home', {

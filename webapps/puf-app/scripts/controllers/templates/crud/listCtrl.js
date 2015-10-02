@@ -10,8 +10,16 @@ define(['app'], function(app) {
 			prettyPrint();
 		}
 		
-		function detailViewLink(cellvalue, options, rowObject) {
+		/*function detailViewLink(cellvalue, options, rowObject) {
             return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
+        }*/
+		
+		function detailViewLink(cellvalue, options, rowObject) {
+            return '<a ui-sref="crud-view({uid: ' + rowObject.id + '})" href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
+            
+            // 결과적으로 ui-sref 이 파싱되어 href를 만들어줘서 href가 실행되는 것임
+//            return '<a href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
+//			return '<a ui-sref="crud-save" href="#/crud/create">' + cellvalue + '</a>';
         }
 		
 		$scope.clickFunc = function() {
@@ -54,11 +62,11 @@ define(['app'], function(app) {
     		colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
     	   	colModel:[
     	   		{name:'id',index:'id', width:60, sorttype:"int"},
-    	   		{name:'invdate',index:'invdate', width:90, sorttype:"date", formatter:"date"},
-    	   		{name:'name',index:'name', width:100},
-    	   		{name:'amount',index:'amount', width:80, align:"right",sorttype:"float", formatter:"number"},
-    	   		{name:'tax',index:'tax', width:80, align:"right",sorttype:"float"},		
-    	   		{name:'total',index:'total', width:80,align:"right",sorttype:"float"},		
+    	   		{name:'invdate',index:'invdate', width:120, align:"center", sorttype:"date", formatter:"date", formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}},
+    	   		{name:'name',index:'name', width:100, formatter: detailViewLink},
+    	   		{name:'amount',index:'amount', width:80, align:"right", sorttype:"float", formatter:"number"},
+    	   		{name:'tax',index:'tax', width:80, align:"right", sorttype:"float"},		
+    	   		{name:'total',index:'total', width:80, align:"right", sorttype:"float"},		
     	   		{name:'note',index:'note', width:150, sortable:false}		
     	   	],
 		    //autowidth: false,

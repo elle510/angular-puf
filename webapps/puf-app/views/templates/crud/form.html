@@ -1,0 +1,80 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<form class="form-horizontal" id="noticeForm" method="post"><!-- action="/bulletin/save" -->
+			<input type="hidden" name="isEdit" ng-value="isEdit">
+			<input type="hidden" name="bulletinID" ng-value="bulletin.bulletinID">
+			<div class="row">
+				<div class="pull-right">
+					<button type="submit" class="btn btn-primary save" ng-disabled="false"><i class="fa fa-save"></i> {{submitLabel}}</button>
+					<button type="button" class="btn btn-primary cancel" ng-disabled="false" ps-back>취소</button>
+					<a ui-sref="crud-list" class="btn btn-primary" ng-disabled="false" ng-show="isEdit"><i class="fa fa-list-ul"></i> 목록</a>
+				</div>
+			</div>
+			<div class="row">
+	  			<div class="form-group">
+	    			<label class="col-md-2 control-label">공지기간</label>
+					<div class="col-md-2">
+						<ps-datetimepicker id="fromDate" name="fromDate" options="fromDate_options" api="dtapi"></ps-datetimepicker>
+					</div> 
+					<div class="col-md-2">
+						<ps-datetimepicker id="toDate" name="toDate" options="toDate_options"></ps-datetimepicker>
+					</div>
+		  		</div>
+		  	
+		  		<div class="form-group">
+	    			<label class="col-md-2 control-label">공지대상</label>
+					<div class="col-md-3">
+						<ps-select ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+					</div>
+		  		</div>
+		  		
+		  		<div class="form-group">
+	    			<label class="col-md-2 control-label">공지종류</label>
+					<div class="col-md-10">
+						<ps-checkbox name="normal" ng-model="bulletin.normal" inline="true" ng-change="normalChange()"> 일반공지</ps-checkbox>
+		      			<ps-checkbox name="urgent" ng-model="bulletin.urgent" inline="true"> 긴급공지</ps-checkbox>
+					</div>
+		  		</div>
+		  		
+		  		<div class="form-group">
+		    		<div class="col-md-offset-2 col-md-10">
+		      			<ps-checkbox name="isImportance" ng-model="isImportance" ng-change="importanceChange()"> 우선순위</ps-checkbox>
+		      			<ps-stepper name="importance" ng-model="bulletin.importance" min="0" max="100" step="1"></ps-stepper>
+		    		</div>
+		  		</div>
+  
+		  		<div class="form-group">
+	    			<label class="col-md-2 control-label">공지방식</label>
+					<div class="col-md-10">
+<!-- 						<input type="checkbox" ng-model="bulletin.popup"> 팝업알림 -->
+						<ps-checkbox name="popup" ng-model="bulletin.popup"> 팝업알림</ps-checkbox>
+<!-- 						<input type="hidden" name="popup" ng-value="bulletin.popup"> -->
+					</div>
+		  		</div>
+		  		
+	  			<div class="form-group">
+	    			<label for="inputTitle" class="col-md-2 control-label">제목</label>
+	    			<div class="col-md-10">
+	      				<input type="text" class="form-control" name="title" ng-model="bulletin.title" placeholder="제목을 입력하세요.">
+	    			</div>
+	  			</div>
+	  			
+	  			<div class="form-group">
+	    			<label for="inputContents" class="col-md-2 control-label">내용</label>
+	    			<div class="col-md-10">
+	      				<textarea class="form-control" rows="5" name="contents" ng-model="bulletin.contents" placeholder="내용을 입력하세요."></textarea>
+	    			</div>
+	  			</div>
+			</div>
+		</form>
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>
