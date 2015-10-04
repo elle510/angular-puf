@@ -5,25 +5,61 @@
 	
 	<div class="page-body">
 		<div class="row"><!-- start default -->
+		<form class="form-search">
 			<div class="row">
 				<div class="col-md-12">
-					<ps-fieldset legend="검색" collapsible="true"
-								 on-click="clickFunc()">
+					<ps-fieldset legend="검색" collapsible="true" expand="true">
+						<div class="form-group">
+							<label>기간</label>
+							<ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"></ps-datetimepicker>
+							<ps-datetimepicker id="toDate" name="toDate" api="api_to_range"></ps-datetimepicker>
+				  		</div>
+						<div class="form-group">
+						    <label for="exampleInputEmail1">Email address</label>
+						    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+						</div>
+						<div class="form-group">
+						    <label for="exampleInputPassword1">Password</label>
+						    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<div class="form-group">
+						    <label>Field-Name</label>
+						    <input type="text" class="form-control" placeholder="input search word">
+						    <p class="help-block">Example block-level help text here.</p>
+						</div>
+						<ps-checkbox name="name1" ng-model="checkValue1"> Check me out</ps-checkbox>
+						<div class="form-group">
+							<ps-checkbox name="name2" ng-model="checkValue2"> Check me out</ps-checkbox>
+						</div>
+						<div class="form-group">
+						    <label>Field-Name</label>
+						    <input type="text" class="form-control" placeholder="input search word">
+						    <p class="help-block">Example block-level help text here.</p>
+						</div>
+						<div class="form-group">
+						    <label>Field-Name</label>
+						    <input type="text" class="form-control" placeholder="input search word">
+						    <p class="help-block">Example block-level help text here.</p>
+						</div>	 
+					</ps-fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-fieldset legend="옵션" collapsible="true">
 						<div>
-							내용<br>
-							내용<br>
-							내용<br>
-							내용<br>
-							내용<br>
-							내용<br>
-							내용<br>
-							내용<br>
 							내용<br>
 							내용<br>
 						</div>			 
 					</ps-fieldset>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+		</form>
 			<div class="row">
 				<div class="col-md-9">
 					Grid Title
@@ -34,6 +70,7 @@
 						<a class="btn btn-default" ui-sref="crud-save({type: 'create'})"><i class="fa fa-plus"></i></a>
 						<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i></a>
 						<a class="btn btn-default" href="#"><i class="fa fa-refresh"></i></a>
+						<button class="btn btn-default" type="button"><i class="fa fa-file-excel-o"></i></button>
 					</div>
 				</div>
 			</div>

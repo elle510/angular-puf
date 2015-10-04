@@ -6,17 +6,19 @@
 	<div class="page-body">
 		<div class="row"><!-- start default -->
 			<div class="row">
-				Datepicker
+				<div class="col-md-12">
+					Datepicker
+				</div>
 			</div>
 			<div class="row">
 				<form class="form-horizontal">
-					<div class="form-group col-md-7">
-		    			<label class="col-md-2 control-label">날짜 입력</label>
-						<div class="col-md-5">
+					<div class="form-group col-md-8">
+		    			<label class="col-md-3 control-label">날짜 입력</label>
+						<div class="col-md-4">
 							<ps-datetimepicker id="fromDate" name="fromDate" api="dtapi"></ps-datetimepicker>
 						</div>
 			  		</div>
-			  		<div class="col-md-5">
+			  		<div class="col-md-4">
 			  			<div class="row">
 			  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDate()">getDate</button>
 			  			</div>
@@ -27,12 +29,13 @@
 		  		</form>
 			</div>
 			<div class="row">
-				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
 									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
 									on-click="prettyPrint()">
-					<ps-tabset>
-	    				<ps-tab heading="HTML코드">
-	    					<pre class="prettyprint linenums">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
 &lt;form class="form-horizontal"&gt;
   &lt;div class="form-group"&gt;
     &lt;label class="col-md-2 control-label"&gt;날짜 입력&lt;/label&gt;
@@ -41,39 +44,42 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;
-							</pre>
-	    				</ps-tab>
-	    				<ps-tab heading="JS코드">
-	    					<pre class="prettyprint linenums">
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
 // comment js
 Many
 lines
 of
 code
-							</pre>
-	    				</ps-tab>
-	  				</ps-tabset>
-	  			</ps-hidden-content>
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>
 			</div>
 		</div><!-- end default -->
 		<div class="vspace-12" />
 		
 		<div class="row"><!-- start range -->
 			<div class="row">
-				Datepicker 기간 입력
+				<div class="col-md-12">
+					Datepicker 기간 입력
+				</div>
 			</div>
 			<div class="row">
 				<form class="form-horizontal">
-					<div class="form-group col-md-7">
-		    			<label class="col-md-2 control-label">기간 입력</label>
-						<div class="col-md-5">
+					<div class="form-group col-md-8">
+		    			<label class="col-md-3 control-label">기간 입력</label>
+						<div class="col-md-4">
 							<ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"></ps-datetimepicker>
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-4">
 							<ps-datetimepicker id="toDate" name="toDate" api="api_to_range"></ps-datetimepicker>
 						</div>
 			  		</div>
-			  		<div class="col-md-5">
+			  		<div class="col-md-4">
 			  			<div class="row">
 			  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDateRange()">getDateRange</button>
 			  			</div>
@@ -85,12 +91,13 @@ code
 		  		</form>
 			</div>
 			<div class="row">
-				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
 									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
 									on-click="prettyPrint()">
-					<ps-tabset>
-	    				<ps-tab heading="HTML코드">
-	    					<pre class="prettyprint linenums">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
 &lt;form class="form-horizontal"&gt;
   &lt;div class="form-group"&gt;
     &lt;label class="col-md-2 control-label"&gt;기간 입력&lt;/label&gt;
@@ -102,19 +109,20 @@ code
     &lt;/div>
   &lt;/div&gt;
 &lt;/form&gt;
-							</pre>
-	    				</ps-tab>
-	    				<ps-tab heading="JS코드">
-	    					<pre class="prettyprint linenums">
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
 // comment js
 Many
 lines
 of
 code
-							</pre>
-	    				</ps-tab>
-	  				</ps-tabset>
-	  			</ps-hidden-content>
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>
 			</div>
 		</div><!-- end range -->
 		

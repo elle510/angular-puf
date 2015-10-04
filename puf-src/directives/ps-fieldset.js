@@ -15,7 +15,7 @@ angular.module('ps.directives.fieldset', [])
 	var ctrl = this;
 	
 	ctrl.expandCollapse = function(e) {
-		if($scope.isCollapsible == true) {
+		if($scope.collapsible == true) {
 			
 			if($(e).next().css('display') == 'none') {
 				
@@ -43,13 +43,14 @@ angular.module('ps.directives.fieldset', [])
 			id: 			'@',
 			className:		'@',
 			legend:			'@',
-			collapsible:	'@',
+			collapsible:	'=',
+			expand:			'=',
 			click:			'&onClick'	// 외부에서 on-click 로 사용 / directive or template 에서는 click 사용
 		},
 		controller: 'psFieldsetCtrl',
 		template: '<fieldset class="fieldset" ng-class="className">' + 
 					'<legend ng-click="expandCollapse($event)" name="{{id}}"> {{legend}}</legend>' +
-					'<div ng-style="isCollapsible && {display: \'none\'} || {display: \'block\'}">' +
+					'<div ng-style="initExpand && {display: \'block\'} || {display: \'none\'}">' +
 						'<div id="{{id}}" ng-transclude>' +
 						'</div>' +						
 					'</div>' +
@@ -64,11 +65,15 @@ angular.module('ps.directives.fieldset', [])
 				attrs.legend = 'Fieldset';
 			}
 			
-			if(angular.isDefined(attrs.collapsible) && attrs.collapsible == 'true') {
-				scope.isCollapsible = true;
+			scope.initExpand = false;
+			if(scope.collapsible == true) {
 				element.addClass('collapsible collapsed');
+				
+				if(scope.expand == true) {
+					scope.initExpand = true;
+				}
 			}else {
-				scope.isCollapsible = false;
+				scope.initExpand = true;
 			}
 			
 			// template의 expand()

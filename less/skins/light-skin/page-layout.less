@@ -25,3 +25,58 @@
 .page-footer {
 
 }
+
+// .form-search
+.form-search {
+    .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+        padding-left: 15px;
+        label {
+            font-weight: normal;
+        }
+    }
+    .form-control {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+    .input-group {
+        display: inline-table;
+        vertical-align: middle;
+        & > .form-control {
+            width: 100%;
+        }
+    }
+    .control-label {
+        margin-bottom: 0;
+        vertical-align: middle;
+    }
+    .has-feedback {
+        .form-control-feedback {
+            top: 0;
+        }
+    }
+}
+.form-search .input-group .input-group-addon,
+.form-search .input-group .input-group-btn,
+.form-search .input-group .form-control {
+    width: auto;
+}
+.form-search .radio,
+.form-search .checkbox {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+.form-search .radio label,
+.form-search .checkbox label {
+    padding-left: 0;
+}
+.form-search .radio input[type="radio"],
+.form-search .checkbox input[type="checkbox"] {
+    position: relative;
+    margin-left: 0;
+}

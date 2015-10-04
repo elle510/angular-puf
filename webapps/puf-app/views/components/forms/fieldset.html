@@ -6,12 +6,13 @@
 	<div class="page-body">
 		<div class="row"><!-- start sm modal -->
 			<div class="row">
-				<h5>Fieldset</h5>
+				<div class="col-md-12">
+					Fieldset
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-fieldset legend="검색" collapsible="true"
-								 on-click="clickFunc()">
+					<ps-fieldset legend="검색" collapsible="true" on-click="clickFunc()">
 						<div>
 							내용<br>
 							내용<br>
@@ -28,30 +29,86 @@
 				</div>
 			</div>
 			<div class="row">
-				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
 									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
 									on-click="prettyPrint()">
-					<ps-tabset>
-	    				<ps-tab heading="HTML코드">
-	    					<pre class="prettyprint linenums">
-	    					
-&lt;ps-hidden-content expand-label="펼치기" collapse-label="접기" 
-				   expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
-				   on-click="clickFunc()"&gt;
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+
+&lt;ps-fieldset legend="검색" collapsible="true" on-click="clickFunc()"&gt;
   &lt;div&gt;
     내용
   &lt;/div&gt;
-&lt;/ps-hidden-content&gt;
+&lt;/ps-fieldset&gt;
 
-							</pre>
-	    				</ps-tab>
-	    				<ps-tab heading="JS코드">
-	    					<pre class="prettyprint linenums">
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
 // js
-							</pre>
-	    				</ps-tab>
-	  				</ps-tabset>
-	  			</ps-hidden-content>				
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>				
+			</div>
+		</div><!-- end sm modal -->
+		<div class="vspace-12"></div>
+		
+		<div class="row"><!-- start sm modal -->
+			<div class="row">
+				<div class="col-md-1">
+					Fieldset
+				</div>
+				<div class="col-md-11">
+					<span>class-name="panel"</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-fieldset class-name="panel" legend="검색" collapsible="true" on-click="clickFunc()">
+						<div>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+							내용<br>
+						</div>
+					</ps-fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+
+&lt;ps-fieldset legend="검색" collapsible="true" on-click="clickFunc()"&gt;
+  &lt;div&gt;
+    내용
+  &lt;/div&gt;
+&lt;/ps-fieldset&gt;
+
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
+// js
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>				
 			</div>
 		</div><!-- end sm modal -->
 		<div class="vspace-12"></div>

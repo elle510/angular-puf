@@ -10,6 +10,8 @@ define(['app'], function(app) {
 			prettyPrint();
 		}
 		
+		$scope.expand = true;
+		
 		/*function detailViewLink(cellvalue, options, rowObject) {
             return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
         }*/
@@ -22,9 +24,9 @@ define(['app'], function(app) {
 //			return '<a ui-sref="crud-save" href="#/crud/create">' + cellvalue + '</a>';
         }
 		
-		$scope.clickFunc = function() {
+		/*$scope.clickFunc = function() {
 			console.log('fieldset : click function');
-		}
+		}*/
 		
 		var rootPath = psUtil.getRootPath();
 		if(rootPath == '/puf-app') {	// context root 가 / 라는 의미
