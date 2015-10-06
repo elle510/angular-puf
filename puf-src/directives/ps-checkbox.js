@@ -39,7 +39,7 @@ angular.module('ps.directives.checkbox', [])
     			temp = '<label class="checkbox-inline">' +
 							input + 
 							'<span class="lbl" ng-transclude></span>' +
-							'<input type="hidden" ng-value="ngModel">' +
+							'<input type="hidden" name="{{name}}" ng-value="ngModel">' +
 						'</label>';
         	}else {
         		// 체크박스 세로정렬
@@ -47,7 +47,7 @@ angular.module('ps.directives.checkbox', [])
 							'<label>' +
 								input + 
 								'<span class="lbl" ng-transclude></span>' +
-								'<input type="hidden" ng-value="ngModel">' +
+								'<input type="hidden" name="{{name}}" ng-value="ngModel">' +
 							'</label>' +
 						'</div>';
         	}
@@ -55,10 +55,10 @@ angular.module('ps.directives.checkbox', [])
 			return temp;
         },
         link: function (scope, element, attrs) {
-        	if(angular.isDefined(attrs.name)) {
+        	/*if(angular.isDefined(attrs.name)) {
     			//console.log(attrs.name);
     			element.find('input[type="hidden"]').attr('name', attrs.name);
-    		}
+    		}*/
         	
         	//if(attrs.ngTrueValue != undefined) {
         	if(angular.isDefined(attrs.ngTrueValue)) {
