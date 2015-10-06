@@ -20,6 +20,7 @@ define(['app'], function(app) {
             return '<a ui-sref="crud-view({uid: ' + rowObject.id + '})" href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
             
             // 결과적으로 ui-sref 이 파싱되어 href를 만들어줘서 href가 실행되는 것임
+            // angular의 문법이 모두 적용안됨, 순수 javascript 코드로 해야 함
 //            return '<a href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
 //			return '<a ui-sref="crud-save" href="#/crud/create">' + cellvalue + '</a>';
         }

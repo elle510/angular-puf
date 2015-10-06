@@ -12,7 +12,7 @@
  */
 
 angular.module('ps.directives.grid', [])
-.directive('psGrid', ['psUtil', function(psUtil) {
+.directive('psGrid', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
         restrict: 'E',
         replace: true,
@@ -75,7 +75,7 @@ angular.module('ps.directives.grid', [])
     			//altRows: true,
     			//autoencode: true,
     		  	multiselect: true,
-    		  	multiboxonly: true,
+    		  	multiboxonly: false,
     		  	recordtext: $ps_locale.grid.recordtext,
     			emptyrecords: $ps_locale.grid.emptyrecords,
     			loadtext: $ps_locale.grid.loadtext,
@@ -85,18 +85,32 @@ angular.module('ps.directives.grid', [])
             //console.log(attrs.gridId);
             
             scope.$watch('options', function (value) {
-//            	opts = $.extend({}, defaults, value);
-            	opts = angular.extend({}, defaults, value);
-//                element.children().empty();
-            	element.empty();
             	
             	if(angular.isDefined(attrs.id) == false) {
     				attrs.id = psUtil.getUUID();
     			}
             	
+            	// jqgrid의 formatter에서 angular가 적용될 수 있도록(컨트롤러에서 설정하면 되는데 여기서 하면 안된다.)
+            	// directive가 app 모듈에 속해 있고 없고 차이 말고는 없다.
+            	// 안되는 이유 찾아보자 
+            	// 참고사이트: http://stackoverflow.com/questions/29359770/making-ng-click-work-with-jqgrid-column-formatter-function
+            	// http://plnkr.co/edit/YHJuZrV9FV3RqPDDYKju?p=preview
+            	angular.extend(defaults, {
+            		loadComplete: function(data) {
+            			console.log('loadComplete: ' + attrs.id);
+            			$compile(angular.element('#' + attrs.id))(scope);
+            		}
+            	});
+            	
+//            	opts = $.extend({}, defaults, value);
+            	opts = angular.extend({}, defaults, value);
+//                element.children().empty();
+            	element.empty();
+            	
                 table = angular.element('<table id="' + attrs.id + '"></table>');
                 element.append(table);
-                
+
+                // 페이징 처리
                 if(scope.isPage) {
                 	var pagerId = psUtil.getUUID();;
                 	opts.pager = '#' + pagerId;
@@ -106,7 +120,8 @@ angular.module('ps.directives.grid', [])
                         element.append(div);
                     }
                 }
-                table.jqGrid(opts);
+                console.log(opts);
+                table.jqGrid(opts);         
                 
                 // context menu
                 if(scope.contextMenu) {
@@ -142,8 +157,8 @@ angular.module('ps.directives.grid', [])
                     },
                     refresh: function() {
                         table
-                            .jqGrid('clearGridData')
-                            .jqGrid('setGridParam', { data: scope.data })
+                            //.jqGrid('clearGridData')
+                            //.jqGrid('setGridParam', { data: scope.data })
                             .trigger('reloadGrid');
                     }
                 };
