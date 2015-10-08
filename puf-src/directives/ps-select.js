@@ -51,7 +51,7 @@ angular.module('ps.directives.select', [])
 				}
 				
 				ngOptions += 'for a in array';
-				console.log(ngOptions);
+				//console.log(ngOptions);
 			}
 			
 			if(!angular.isDefined(attrs.title)) {

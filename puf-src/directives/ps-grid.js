@@ -212,6 +212,21 @@ angular.module('ps.directives.grid', [])
                         table.jqGrid('clearGridData', { data: scope.data })
                             .trigger('reloadGrid');
                     },
+                    selectedRows: function() {
+                    	// jqGrid에서 1부터 순차적으로 붙여주는 값
+                    	var rowIds = table.jqGrid('getGridParam', 'selarrrow');
+//                    	table.getGridParam('selarrrow');
+                    	//console.log(rowIds);
+                    	var rowDataArr = [];
+                    	for(var i=0; i<rowIds.length; i++) {                 
+                    	    var rowData = table.jqGrid('getRowData', rowIds[i]);
+                    	    rowDataArr.push(rowData);
+                    	}
+                    	return rowDataArr;
+                    	// row id(jqGrid에서 1부터 순차적으로 붙여주는 값) 값으로 row data 값 get
+//                    	table.jqGrid('getRowData', rowid);
+//                    	table.getRowData( rowid );                	
+                    },
                     refresh: function() {
                         table
                             //.jqGrid('clearGridData')
