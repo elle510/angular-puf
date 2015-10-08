@@ -1,3 +1,5 @@
+.classpath
+.settings/org.eclipse.core.resources.prefs
 /build/
 /webapps/puf/scripts/
 /webapps/puf/styles/skins/
