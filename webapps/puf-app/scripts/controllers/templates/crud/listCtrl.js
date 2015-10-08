@@ -60,7 +60,7 @@ define(['app'], function(app) {
 			},
 			//data: mydata,
 			//datatype: "local",
-			rowNum: 10,
+			//rowNum: 10,
 			rowList: [10,20,30],
     		colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
     	   	colModel:[

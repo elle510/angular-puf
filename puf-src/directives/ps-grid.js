@@ -12,6 +12,61 @@
  */
 
 angular.module('ps.directives.grid', [])
+.controller('psGridCtrl', ['$scope', function($scope) {
+	var ctrl = this;
+	
+	// 참고사이트: http://jsfiddle.net/frankdenouter/avvxf/
+	// handle jqGrid multiselect => thanks to solution from Byron Cobb on http://goo.gl/UvGku
+	ctrl.handleMultiSelect = function (rowid, e) {
+	    var grid = $(this);
+	    if (!e.ctrlKey && !e.shiftKey) {
+	    	// 체크박스 클릭시
+	    	/*var $target = $(e.target), $td = $target.closest("td"),
+	        iCol = $.jgrid.getCellIndex($td[0]),
+	        colModel = $(this).jqGrid("getGridParam", "colModel");
+	    	
+		    if (iCol >= 0 && $target.is(":checkbox")) {
+		    	console.log("checkbox is " +
+		              ($target.is(":checked")? "checked" : "unchecked") +
+		              " in the column \"" + colModel[iCol].name +
+		              "\" in the row with rowid=\"" + rowid + "\"");
+		    }*/
+	    	
+	    	// 체크박스 클릭이 아닌 경우만 resetSelection
+	    	var $target = $(e.target);
+	    	if(!$target.is(":checkbox")) {
+	    		grid.jqGrid('resetSelection');
+	    	}
+	        //grid.jqGrid('resetSelection');
+	    }
+	    else if (e.shiftKey) {
+	        var initialRowSelect = grid.jqGrid('getGridParam', 'selrow');
+
+	        grid.jqGrid('resetSelection');
+
+	        var CurrentSelectIndex = grid.jqGrid('getInd', rowid);
+	        var InitialSelectIndex = grid.jqGrid('getInd', initialRowSelect);
+	        var startID = "";
+	        var endID = "";
+	        if (CurrentSelectIndex > InitialSelectIndex) {
+	            startID = initialRowSelect;
+	            endID = rowid;
+	        }
+	        else {
+	            startID = rowid;
+	            endID = initialRowSelect;
+	        }
+	        var shouldSelectRow = false;
+	        $.each(grid.getDataIDs(), function (_, id) {
+	            if ((shouldSelectRow = id == startID || shouldSelectRow) && (id != rowid)) {
+	                grid.jqGrid('setSelection', id, false);
+	            }
+	            return id != endID;
+	        });
+	    }
+	    return true;
+	};
+}])
 .directive('psGrid', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
         restrict: 'E',
@@ -26,8 +81,9 @@ angular.module('ps.directives.grid', [])
             insert: 		'=?',
             api:    		'=?'
         },
+        controller: 'psGridCtrl',
         template: '<div ng-class="className"></div>',
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attrs, ctrl) {
             var table, div,
             opts,
             defaults = {
@@ -79,7 +135,8 @@ angular.module('ps.directives.grid', [])
     		  	recordtext: $ps_locale.grid.recordtext,
     			emptyrecords: $ps_locale.grid.emptyrecords,
     			loadtext: $ps_locale.grid.loadtext,
-    			pgtext : $ps_locale.grid.pgtext
+    			pgtext : $ps_locale.grid.pgtext,
+    			beforeSelectRow: ctrl.handleMultiSelect // handle multi select
             };
             //var opts =  $.extend(defaults, opts);
             //console.log(attrs.gridId);
