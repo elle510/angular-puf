@@ -1,7 +1,7 @@
+.project
 .classpath
-.settings/org.eclipse.core.resources.prefs
 .DS_Store
-.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/
 /build/
 /webapps/puf/scripts/
 /webapps/puf/styles/skins/
