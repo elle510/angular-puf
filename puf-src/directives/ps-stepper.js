@@ -14,9 +14,10 @@ angular.module('ps.directives.stepper', [])
 	return {
 		restrict: 'EA',
         require: 'ngModel',	// get a hold of NgModelController
-        //replace: true,
+        replace: true,
         scope: {
         	name:		'@',
+        	className:	'@',
         	min: 		'=',
             max: 		'=',
             step: 		'=',
@@ -37,8 +38,8 @@ angular.module('ps.directives.stepper', [])
 					_direction = "input-group-btn-horizontal";
 				}
 				
-				temp = '<div class="input-group stepper">' +
-							'<input type="text" class="form-control">' +
+				temp = '<div class="input-group stepper" ng-class="className">' +
+							'<input type="text" class="form-control" name="{{name}}">' +
 							'<div class="'+_direction+'">' +
 								'<button class="btn btn-default" ng-disabled="isOverMax()" ng-click="increment()"><i class="fa fa-caret-up"></i></button>' +
 								'<button class="btn btn-default" ng-disabled="isOverMin()" ng-click="decrement()"><i class="fa fa-caret-down"></i></button>' +
@@ -53,11 +54,12 @@ angular.module('ps.directives.stepper', [])
 			return temp;
 	    },
         link: function (scope, element, attrs, ngModelController) {
-            
+            /*
         	if(angular.isDefined(attrs.name)) {
     			//console.log(attrs.name);
     			element.find("input").attr("name", attrs.name);
     		}
+        	*/
         	
         	if(angular.isDefined(attrs.disabled)) {
     			element.find("input").attr("disabled", true);

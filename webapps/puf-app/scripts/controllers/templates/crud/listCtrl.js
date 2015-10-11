@@ -154,7 +154,35 @@ define(['app'], function(app) {
 			{id:"29",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
 		];
 		*/
-				
+		
+		// 검색
+		// select
+		$scope.colors = [
+		    			 {name:'black', code:'1', shade:'dark'},
+		    		     {name:'white', code:'2', shade:'light'},
+		    		     {name:'red', code:'3', shade:'dark'},
+		    		     {name:'blue', code:'4', shade:'dark'},
+		    		     {name:'yellow', code:'5', shade:'light'}
+		    		];
+		$scope.myColor = $scope.colors[2]; 	// red
+		
+		// checkbox
+		$scope.checkValue1 = true;
+		$scope.checkValue2 = false;
+		$scope.checkValue3 = true;
+		$scope.checkValue4 = false;
+		
+		// radio
+		// radio
+		$scope.radioValue1 = 'blue';
+		$scope.radioValue2 = 'seoul';
+		$scope.specialValue = {
+			"id": "12345",
+			"value": "green"
+	    };
+		
+		// stepper
+		$scope.stepperValue = 10;
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', controller]);

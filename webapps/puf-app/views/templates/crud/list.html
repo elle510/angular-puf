@@ -9,38 +9,110 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ps-fieldset legend="검색" collapsible="true" expand="true">
-						<div class="form-group">
-							<label>기간</label>
-							<ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"></ps-datetimepicker>
-							<ps-datetimepicker id="toDate" name="toDate" api="api_to_range"></ps-datetimepicker>
-				  		</div>
-						<div class="form-group">
-						    <label for="exampleInputEmail1">Email address</label>
-						    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>검색항목</label>
+								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>검색항목-item</label>
+								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>검색항목</label>
+								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>검색항목-텍스트길이</label>
+								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						    <label for="exampleInputPassword1">Password</label>
-						    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>검색항목</label>
+								    <ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+								    <ps-checkbox name="check_name1" ng-model="checkValue2" inline="true"> 체크1</ps-checkbox>
+								    <ps-checkbox name="check_name2" ng-model="checkValue3" inline="true"> 체크2</ps-checkbox>
+								    <ps-checkbox name="check_name3" ng-model="checkValue4" inline="true"> 체크3</ps-checkbox>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+								    <ps-checkbox name="name1" ng-model="checkValue1"> Check1</ps-checkbox>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>검색항목</label>
+									<div class="search-item">
+								    	<ps-stepper name="stepper_name" ng-model="stepperValue" min="0" max="100" step="5"></ps-stepper>
+								    </div>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						    <label>Field-Name</label>
-						    <input type="text" class="form-control" placeholder="input search word">
-						    <p class="help-block">Example block-level help text here.</p>
+						
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>검색항목</label>
+									<div class="search-item">
+										<ps-radio name="radio_name1" ng-model="radioValue1" value="red"> Radio1</ps-radio>
+										<ps-radio name="radio_name1" ng-model="radioValue1" ng-value="specialValue"> Radio2</ps-radio>
+										<ps-radio name="radio_name1" ng-model="radioValue1" value="blue"> Radio3</ps-radio>
+									</div>	
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>항목</label>
+									<div class="search-item">
+										<ps-radio name="radio_name2" ng-model="radioValue2" value="seoul" inline="true"> Seoul</ps-radio>
+										<ps-radio name="radio_name2" ng-model="radioValue2" value="newyork" inline="true"> New York</ps-radio>
+										<ps-radio name="radio_name2" ng-model="radioValue2" value="london" inline="true"> London</ps-radio>
+									</div>
+								</div>
+							</div>
 						</div>
-						<ps-checkbox name="name1" ng-model="checkValue1"> Check me out</ps-checkbox>
-						<div class="form-group">
-							<ps-checkbox name="name2" ng-model="checkValue2"> Check me out</ps-checkbox>
+						
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>기간</label>
+									<div class="search-item">
+										<ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"></ps-datetimepicker>
+										<ps-datetimepicker id="toDate" name="toDate" api="api_to_range"></ps-datetimepicker>
+									</div>
+						  		</div>
+							</div>
 						</div>
-						<div class="form-group">
-						    <label>Field-Name</label>
-						    <input type="text" class="form-control" placeholder="input search word">
-						    <p class="help-block">Example block-level help text here.</p>
+						
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+								    <label>Field-Name</label>
+								    <div class="search-item">
+								    	<input type="text" class="form-control" placeholder="input search word">
+								    	<p class="help-block">Example block-level help text here.</p>
+								    </div>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						    <label>Field-Name</label>
-						    <input type="text" class="form-control" placeholder="input search word">
-						    <p class="help-block">Example block-level help text here.</p>
-						</div>	 
+						
+						
 					</ps-fieldset>
 				</div>
 			</div>
