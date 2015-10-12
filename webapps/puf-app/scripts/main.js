@@ -58,9 +58,12 @@ require.config({
         // ps-common
         'ps-common': 'puf/libs/ps-common',
         
+        // moment
+        'moment': 'puf/libs/moment.min',
+        'moment-locale': 'puf/libs/moment-with-locales.min',
+        
         // jquery plugins
         'plugins': 'puf/libs/plugins',
-        'moment': 'puf/libs/plugins/moment.min',
         'jquery-cookie': 'puf/libs/plugins/jquery.cookie',
         'jqgrid': 'puf/libs/plugins/jqgrid/jquery.jqGrid.min',
         'jstree': 'puf/libs/plugins/jstree.min',

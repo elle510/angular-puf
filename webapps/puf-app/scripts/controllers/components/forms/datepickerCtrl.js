@@ -13,9 +13,12 @@ define(['app'], function(app) {
 		// datapicker default
 		$scope.getDate = function() {
 			$scope.date_string = $scope.dtapi.getDate();
+			
+			// Date 객체리턴
+			/*console.log($scope.dtapi.getDate());
 			console.log(typeof $scope.dtapi.getDate());
 			console.log(typeof $scope.dtapi.getDate()._d);
-			console.log($scope.dtapi.getDate()._d.getFullYear());
+			console.log($scope.dtapi.getDate()._d.getFullYear());*/
 		}
 		
 		/*
@@ -23,6 +26,10 @@ define(['app'], function(app) {
 				//defaultDate: $scope.bulletin.registerDate
 		};
 		*/
+		
+		$scope.toDate_options = {
+            useCurrent: false //Important! See issue #1075
+        };
 		
 		// datapicker range
 		$scope.getDateRange = function() {

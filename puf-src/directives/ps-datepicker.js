@@ -16,9 +16,17 @@ angular.module('ps.directives.datepicker', [])
         restrict: 'E',
         replace: true,
         scope: {
-        	options: '=',	          
-            api:    '=?'
+        	id:			'@',
+        	name:		'@',
+        	className:	'@',
+        	options: 	'=',	          
+            api:    	'=?'
         },
+        template: '<div ng-class="className">' +
+        			'<input type="text" id="{{id}}" name="{{name}}" class="form-control">' +
+        			'<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>' +
+        			//'<input type="hidden" name="{{name}}">' +
+        		  '</div>',
         link: function (scope, element, attrs) {
             var div,
             opts,
@@ -28,7 +36,7 @@ angular.module('ps.directives.datepicker', [])
     		d = today.getDate(),
     		today_str = y+'-'+m+'-'+d,
             defaults = {
-        	    format: "YYYY-MM-DD"
+        	    //format: "YYYY-MM-DD"
             };  
             //var opts =  $.extend(defaults, options);
             //console.log(attrs);
@@ -36,17 +44,12 @@ angular.module('ps.directives.datepicker', [])
             
             scope.$watch('options', function (value) {
             	opts = $.extend({}, defaults, value);
-                element.children().empty();
-                div = angular.element(
-                	'<div class="input-group">' +
-                	'<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="' + attrs.id + '" style="width:100%"/>' +
-              		'</div>'
-                );
-                $compile(div)(scope);
-                element.append(div);
                 
-                div.daterangepicker(opts);
+            	div = element.find('input[name="' + attrs.name + '"]');         	
+            	div.daterangepicker(opts);
                 
+//            	$('input[name="' + attrs.name + '"]').daterangepicker(opts);
+            	
                 //   view:  <ps-daterangepicker api="drapi">
                 //   ctrl:  $scope.drapi.show();
                 /*
@@ -84,12 +87,13 @@ angular.module('ps.directives.datepicker', [])
         scope: {
         	id:			'@',
         	name:		'@',
+        	className:	'@',
         	options:	'=',
             data:   	'=?',
             insert: 	'=?',
             api:    	'=?'
         },
-        template: '<div></div>',
+        template: '<div ng-class="className"></div>',
         link: function (scope, element, attrs) {
             var div,
             opts,
@@ -100,7 +104,7 @@ angular.module('ps.directives.datepicker', [])
     		today_str = y+'-'+m+'-'+d,
             defaults = {
         		//pickDate: true,                 //en/disables the date picker
-        	    pickTime: false,                 //en/disables the time picker
+        	    //pickTime: false,                 //en/disables the time picker
         	    /*useMinutes: true,               //en/disables the minutes picker
         	    useSeconds: true,               //en/disables the seconds picker
         	    useCurrent: true,               //when true, picker will set the value to the current date/time     
@@ -122,7 +126,7 @@ angular.module('ps.directives.datepicker', [])
         	    daysOfWeekDisabled:[]          //for example use daysOfWeekDisabled: [0,6] to disable weekends
             	*/
         	    defaultDate: today_str,                 //sets a default date, accepts js dates, strings and moment objects
-        	    format: "YYYY-MM-DD"
+        	    format: "YYYY-MM-DD HH:mm:ss"			// format 설정에 따라 년/월/일/시간 선택을 할 수 있다.
             };  
             //var opts =  $.extend(defaults, options);	            
             //console.log(attrs.id);
@@ -133,7 +137,7 @@ angular.module('ps.directives.datepicker', [])
                 element.empty();
                 div = angular.element(
                 	'<div class="input-group date">' +
-                		'<input type="text" class="form-control" readonly/>' +
+                		'<input type="text" class="form-control" />' +
                 		'<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>' +
                 		'</span>' +
                 		'<input type="hidden">' +
@@ -163,10 +167,10 @@ angular.module('ps.directives.datepicker', [])
                         div.data("DateTimePicker").show();
                     },
                     setDate: function(dateString) {
-                    	return div.data("DateTimePicker").setDate(dateString);
+                    	return div.data("DateTimePicker").date(dateString);
                     },
                     getDate: function() {
-                    	return div.data("DateTimePicker").getDate();
+                    	return div.data("DateTimePicker").date();
                     },
                     enable: function() {
                     	div.data("DateTimePicker").enable();
