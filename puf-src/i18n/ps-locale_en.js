@@ -15,6 +15,7 @@ $.extend($ps_locale,{
 	next: 'Next',
 	prev: 'Previous',
 	loading: 'Loading ...',
+	apply: 'Apply',
 	validators: {
 		passwordErrorMsg: 'Enter at least 8 characters, numbers',
 		ipErrorMsg: 'No records to view',

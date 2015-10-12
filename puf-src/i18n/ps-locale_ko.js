@@ -15,6 +15,7 @@ $.extend($ps_locale,{
 	next: '다음',
 	prev: '이전',
 	loading: '로딩중...',
+	apply: '적용',
 	validators: {
 		passwordErrorMsg: '영문자, 숫자 혼합으로 8자 이상 입력하세요.',
 		ipErrorMsg: 'ip 형식이 올바르지 않습니다.'

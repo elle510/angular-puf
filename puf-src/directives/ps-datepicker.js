@@ -22,10 +22,10 @@ angular.module('ps.directives.datepicker', [])
         	options: 	'=',	          
             api:    	'=?'
         },
-        template: '<div ng-class="className">' +
-        			'<input type="text" id="{{id}}" name="{{name}}" class="form-control">' +
-        			'<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>' +
-        			//'<input type="hidden" name="{{name}}">' +
+        template: '<div class="input-group daterange" ng-class="className">' +
+        			'<input type="text" id="{{id}}" class="form-control">' +
+        			'<span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>' +
+        			'<input type="hidden" name="{{name}}">' +
         		  '</div>',
         link: function (scope, element, attrs) {
             var div,
@@ -34,22 +34,23 @@ angular.module('ps.directives.datepicker', [])
     		y = today.getFullYear(),
     		m = today.getMonth() + 1,
     		d = today.getDate(),
-    		today_str = y+'-'+m+'-'+d,
+    		today_str = y + '-' + m + '-' + d,
             defaults = {
-        	    //format: "YYYY-MM-DD"
+            	locale: {
+            		format: "YYYY-MM-DD",
+            		separator: " ~ ",
+            	    applyLabel: $ps_locale.apply,
+            	    cancelLabel: $ps_locale.cancel
+            	}       	    
             };  
             //var opts =  $.extend(defaults, options);
             //console.log(attrs);
             //console.log(attrs.id);
             
             scope.$watch('options', function (value) {
-            	opts = $.extend({}, defaults, value);
-                
-            	div = element.find('input[name="' + attrs.name + '"]');         	
-            	div.daterangepicker(opts);
-                
-//            	$('input[name="' + attrs.name + '"]').daterangepicker(opts);
-            	
+            	opts = $.extend({}, defaults, value);        
+            	$('.daterange>input[type="text"]').daterangepicker(opts);
+
                 //   view:  <ps-daterangepicker api="drapi">
                 //   ctrl:  $scope.drapi.show();
                 /*
@@ -69,14 +70,6 @@ angular.module('ps.directives.datepicker', [])
                 };
                 */
             });
-            
-            /*
-            scope.$watch('data', function (value) {
-                table.jqGrid('setGridParam', { data: value })
-                     .trigger('reloadGrid')
-                ;
-            });
-            */
         }
     };
 }])
@@ -138,8 +131,7 @@ angular.module('ps.directives.datepicker', [])
                 div = angular.element(
                 	'<div class="input-group date">' +
                 		'<input type="text" class="form-control" />' +
-                		'<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>' +
-                		'</span>' +
+                		'<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +             		
                 		'<input type="hidden">' +
                 	'</div>'
                 );

@@ -183,6 +183,11 @@ define(['app'], function(app) {
 		
 		// stepper
 		$scope.stepperValue = 10;
+		
+		// date
+		$scope.toDate_options = {
+			useCurrent: false //Important! See issue #1075
+		};
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', controller]);
