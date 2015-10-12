@@ -22,12 +22,15 @@ angular.module('ps.directives.select', [])
         	required: 	'@',
         	ngRequired:	'@',
         	ngOptions: 	'&',*/
-        	//name:			'@', name은 설정하면 자동으로 설정된다.
+        	id:				'@',
+        	name:			'@',
+        	className:		'@',
         	array: 			'=',
         	optionName: 	'@',
         	optionValue:	'@',
         	optionGroup:	'@',
         	title:			'@',
+        	options: 		'=',
             api:    		'=?'
         },
         /*template: '<select ng-options="a[optionName] for a in array">'+
@@ -64,7 +67,7 @@ angular.module('ps.directives.select', [])
 	                        '<select name="' + attrs.name + '" ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '></select>'+
 	                   '</div>';*/
 	            
-			return '<select ng-options="'+ngOptions+'">'+
+			return '<select ng-options="'+ngOptions+'" ng-class="className">'+
     					'<option value="">-- {{title}} --</option>'+
     				'</select>';
 	    },
@@ -73,6 +76,7 @@ angular.module('ps.directives.select', [])
             opts,
             defaults = {
             	//size: 4
+            	width: '150px'
             };
             //var opts =  $.extend(defaults, options);	            
             //console.log(attrs.ngOptions);
@@ -95,9 +99,11 @@ angular.module('ps.directives.select', [])
                 //   view:  <ps-datetimepicker api="dtapi">
                 //   ctrl:  $scope.dtapi.show();
                 
-                
-                
             });
+            
+            /*scope.$watch('width', function(value) {
+            	$('.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn)').css('width', value);
+            });*/
             
             scope.api = {
                 	show: function() {	                
