@@ -253,6 +253,46 @@ code
 		</div><!-- end justified tab -->
 		<div class="vspace-12" />
 		
+		
+		<div class="row"><!-- start template-url tab -->
+			<div class="row">
+				template-url Tab
+			</div>
+			<div class="row">
+				<ps-tabset class="col-md-12">
+	    			<ps-tab heading="Template1" template-url="views/components/tab/template1.html"></ps-tab>
+	    			<ps-tab heading="Template2" template-url="views/components/tab/template2.html"></ps-tab>
+	  			</ps-tabset>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+&lt;div class="row"&gt;
+  &lt;ps-tabset justified="true"&gt;
+    &lt;ps-tab heading="Template1" template-url="views/components/tab/template1.html"&gt;&lt;/ps-tab&gt;
+    &lt;ps-tab heading="Template2" template-url="views/components/tab/template2.html"&gt;&lt;/ps-tab&gt;
+  &lt;/ps-tabset&gt;
+&lt;/div&gt;		
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>
+			</div>
+		</div><!-- end template-url tab -->
+		<div class="vspace-12" />
 	</div>
 	
 	<div class="page-footer">
