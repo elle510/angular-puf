@@ -165,6 +165,12 @@ angular.module('ps.directives.tabs', [])
 	    		scope.select = function() {
 	    			if ( !scope.disabled ) {
 	    				scope.active = true;
+	    				
+	    				// jqGrid에 resize 이벤트 발생 시켜 그리드 크기 조절
+	    				// (바로 실행하면 적용이 안되서 setTimeout으로 시간차 실행)
+	    				setTimeout(function() {
+	    					$(window).trigger('resize');
+	    	    		}, 1);
 	    			}
 	    		};
 

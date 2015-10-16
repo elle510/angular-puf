@@ -15,6 +15,12 @@ angular.module('ps.directives.grid', [])
 .controller('psGridCtrl', ['$scope', function($scope) {
 	var ctrl = this;
 	
+	/*
+	 * MultiSelect
+	 * 
+	 * @param int 	rowid 	그리드의 row 아이디(jqGrid에서 생성)
+	 * @param event e 		이벤트 객체
+	 */
 	// 참고사이트: http://jsfiddle.net/frankdenouter/avvxf/
 	// handle jqGrid multiselect => thanks to solution from Byron Cobb on http://goo.gl/UvGku
 	ctrl.handleMultiSelect = function (rowid, e) {
@@ -66,6 +72,25 @@ angular.module('ps.directives.grid', [])
 	    }
 	    return true;
 	};
+	
+	/*
+	 * @param string grid_id 사이즈를 변경할 그리드의 아이디
+	 * @param string div_id 그리드의 사이즈의 기준을 제시할 div 의 아이디
+	 * @param string width 그리드의 초기화 width 사이즈
+	 */
+	ctrl.resizeJqGridWidth = function(grid_id/*, div_id, width*/){
+	    // window에 resize 이벤트를 바인딩 한다.
+	    $(window).bind('resize', function() {
+//	        // 그리드의 width 초기화
+//	        $('#' + grid_id).setGridWidth(width, false);
+//	        // 그리드의 width를 div 에 맞춰서 적용
+//	        $('#' + grid_id).setGridWidth($('#' + div_id).width() , false); //Resized to new width as per window
+//	    	console.log($('.ui-jqgrid').parent().width());
+	    	var width = $('.ui-jqgrid').parent().width();
+	        $('#' + grid_id).setGridWidth(width , true); // shrinkToFit 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
+	     }).trigger('resize');
+	}
+	
 }])
 .directive('psGrid', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
@@ -124,7 +149,7 @@ angular.module('ps.directives.grid', [])
 				//caption: "공지사항 목록",
 				rowNum: 20,
 				autowidth: true,
-				//shrinkToFit: true,
+				shrinkToFit: true,	// 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
     		  	height: 'auto',
     		  	//gridview: true,
     			//hidegrid: true,		// 그리드 접힘/펼침 버튼 유무
@@ -136,6 +161,12 @@ angular.module('ps.directives.grid', [])
     			emptyrecords: $ps_locale.grid.emptyrecords,
     			loadtext: $ps_locale.grid.loadtext,
     			pgtext : $ps_locale.grid.pgtext,
+    			loadComplete: function(data) {
+        			console.log('loadComplete: ' + scope.id);
+//        			$compile(angular.element('#' + scope.id))(scope);
+        			$compile($('#' + scope.id))(scope);
+//        			$compile($('.ui-jqgrid'))(scope);
+        		},
     			beforeSelectRow: ctrl.handleMultiSelect // handle multi select
             };
             //var opts =  $.extend(defaults, opts);
@@ -145,6 +176,8 @@ angular.module('ps.directives.grid', [])
             	
             	if(angular.isDefined(attrs.id) == false) {
     				attrs.id = psUtil.getUUID();
+    			}else {
+    				$('div#' + attrs.id).removeAttr('id');
     			}
             	
             	// jqgrid의 formatter에서 angular가 적용될 수 있도록(컨트롤러에서 설정하면 되는데 여기서 하면 안된다.)
@@ -152,12 +185,12 @@ angular.module('ps.directives.grid', [])
             	// 안되는 이유 찾아보자 
             	// 참고사이트: http://stackoverflow.com/questions/29359770/making-ng-click-work-with-jqgrid-column-formatter-function
             	// http://plnkr.co/edit/YHJuZrV9FV3RqPDDYKju?p=preview
-            	angular.extend(defaults, {
+            	/*angular.extend(defaults, {
             		loadComplete: function(data) {
             			console.log('loadComplete: ' + attrs.id);
             			$compile(angular.element('#' + attrs.id))(scope);
             		}
-            	});
+            	});*/
             	
 //            	opts = $.extend({}, defaults, value);
             	opts = angular.extend({}, defaults, value);
@@ -179,6 +212,8 @@ angular.module('ps.directives.grid', [])
                 }
                 console.log(opts);
                 table.jqGrid(opts);         
+                
+                ctrl.resizeJqGridWidth(attrs.id);
                 
                 // context menu
                 if(scope.contextMenu) {
