@@ -11,7 +11,7 @@
  */
 
 angular.module('ps.directives.datepicker', [])
-.directive('psDaterangepicker', ['$compile', function($compile) {
+.directive('psDaterangepicker', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
         restrict: 'E',
         replace: true,
@@ -19,7 +19,7 @@ angular.module('ps.directives.datepicker', [])
         	id:			'@',
         	name:		'@',
         	className:	'@',
-        	options: 	'=',	          
+        	options: 	'=',
             api:    	'=?'
         },
         template: '<div class="input-group daterange" ng-class="className">' +
@@ -28,7 +28,7 @@ angular.module('ps.directives.datepicker', [])
         			'<input type="hidden" name="{{name}}">' +
         		  '</div>',
         link: function (scope, element, attrs) {
-            var div,
+            var daterange,
             opts,
             today = new Date(),
     		y = today.getFullYear(),
@@ -40,35 +40,142 @@ angular.module('ps.directives.datepicker', [])
             		format: "YYYY-MM-DD",
             		separator: " ~ ",
             	    applyLabel: $ps_locale.apply,
-            	    cancelLabel: $ps_locale.cancel
-            	}       	    
-            };  
+            	    cancelLabel: $ps_locale.cancel,
+            	    daysOfWeek: [
+            	                 $ps_locale.sun,
+            	                 $ps_locale.mon,
+            	                 $ps_locale.tue,
+            	                 $ps_locale.wed,
+            	                 $ps_locale.thu,
+            	                 $ps_locale.fri,
+            	                 $ps_locale.sat
+            	   ],
+            	   monthNames: [
+            	                $ps_locale.jan,
+            	                $ps_locale.feb,
+            	                $ps_locale.mar,
+            	                $ps_locale.apr,
+            	                $ps_locale.may,
+            	                $ps_locale.jun,
+            	                $ps_locale.jul,
+            	                $ps_locale.aug,
+            	                $ps_locale.sep,
+            	                $ps_locale.oct,
+            	                $ps_locale.nov,
+            	                $ps_locale.dec
+            	   ]
+            	}
+            };
             //var opts =  $.extend(defaults, options);
             //console.log(attrs);
             //console.log(attrs.id);
             
+            // scope.id 로 하면 템플릿에서 갱신이 안된다.
+            if(angular.isDefined(attrs.id) == false) {
+				attrs.id = psUtil.getUUID();
+			}else {
+				$('div#' + attrs.id).removeAttr('id');
+			}
+            
             scope.$watch('options', function (value) {
-            	opts = $.extend({}, defaults, value);        
-            	$('.daterange>input[type="text"]').daterangepicker(opts);
-
-                //   view:  <ps-daterangepicker api="drapi">
-                //   ctrl:  $scope.drapi.show();
-                /*
+            	opts = $.extend({}, defaults, value);
+//            	daterange = $('.daterange>input[type="text"]');
+            	daterange = $('#' + attrs.id);
+            	daterange.daterangepicker(opts);
+            	
+                //   view:  <ps-daterangepicker api="api">
+                //   ctrl:  $scope.api.getDate();       
                 scope.api = {
-                	show: function() {
-                        div.data("DateTimePicker").show();
+                	setStartDate: function(d) {
+                		// d type: Date/moment/string
+                		daterange.data('daterangepicker').setStartDate(d);	// '2014-03-01'                 
+                    },
+                    setEndDate: function(d) {
+                    	// d type: Date/moment/string
+                		daterange.data('daterangepicker').setEndDate(d);	// '2014-03-31'                 
                     },
                     getDate: function() {
-                    	return div.data("DateTimePicker").getDate();
+                    	return daterange.data('daterangepicker').startDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
                     },
-                    enable: function() {
-                    	div.data("DateTimePicker").enable();
+                    getStartDate: function() {
+                    	return daterange.data('daterangepicker').startDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
                     },
-                    disable: function() {
-                    	div.data("DateTimePicker").disable();
+                    getEndDate: function() {
+                    	return daterange.data('daterangepicker').endDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
+                    }
+                };          
+            });
+        }
+    };
+}])
+.directive('psDateranges', ['$compile', 'psUtil', function($compile, psUtil) {
+	return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+        	id:			'@',
+        	name:		'@',
+        	className:	'@',
+        	options: 	'=',
+        	format:		'=',
+            api:    	'=?'
+        },
+        template: '<div class="daterangepicker-ranges pull-right" ng-class="className">' +
+        				'<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;' +
+        				'<span></span> <b class="caret"></b>' +
+        		  '</div>',
+        link: function (scope, element, attrs) {
+            var daterange,
+            opts,      
+            defaults = {
+            	opens: 'right',
+            	locale: {
+                	applyLabel: $ps_locale.apply,
+                	cancelLabel: $ps_locale.cancel,
+                	customRangeLabel: $ps_locale.direct_select
+                }
+            };
+            
+            // scope.id 로 하면 템플릿에서 갱신이 안된다.   
+            if(angular.isDefined(attrs.id) == false || !attrs.id || attrs.id == undefined || attrs.id == '') {
+            	attrs.id = psUtil.getUUID();
+            	element.attr('id', attrs.id);
+			}
+            
+            scope.displayDate = function(start, end) {
+            	var format = 'YYYY-MM-DD';
+            	if(scope.format) {
+            		format = scope.format;
+            	}
+                $('div#' + attrs.id + ' span').html(start.format(format) + ' - ' + end.format(format));
+            };
+            
+            scope.$watch('options', function (value) {
+            	opts = $.extend({}, defaults, {ranges: value});
+            	daterange = $('#' + attrs.id);
+            	daterange.daterangepicker(opts, scope.displayDate);
+            	
+            	// init display
+            	var first,
+            	ranges = daterange.data('daterangepicker').ranges;
+            	for(var key in ranges) {
+            		if (ranges.hasOwnProperty(key) && typeof(key) !== 'function') {
+            	        first = ranges[key];
+            	        break;
+            	    }
+            	}
+            	scope.displayDate(first[0], first[1]);
+            	
+                //   view:  <ps-dateranges api="api">
+                //   ctrl:  $scope.api.getStartDate();       
+                scope.api = {              	
+                    getStartDate: function() {
+                    	return daterange.data('daterangepicker').startDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
+                    },
+                    getEndDate: function() {
+                    	return daterange.data('daterangepicker').endDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
                     }
                 };
-                */
             });
         }
     };
@@ -162,7 +269,7 @@ angular.module('ps.directives.datepicker', [])
                     	return div.data("DateTimePicker").date(dateString);
                     },
                     getDate: function() {
-                    	return div.data("DateTimePicker").date();
+                    	return div.data("DateTimePicker").date();	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
                     },
                     enable: function() {
                     	div.data("DateTimePicker").enable();

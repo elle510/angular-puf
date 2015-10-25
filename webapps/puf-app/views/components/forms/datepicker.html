@@ -84,8 +84,8 @@ code
 			  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDateRange()">getDateRange</button>
 			  			</div>
 			  			<div class="row">
-			  				From Date : {{from_date_string}}
-			  				To Date : {{to_date_string}}
+			  				Start Date : {{from_date_string}}<br>
+			  				End Date : {{to_date_string}}
 			  			</div>
 			  		</div>
 		  		</form>
@@ -127,7 +127,67 @@ code
 		</div><!-- end range -->
 		<div class="vspace-12" />
 		
-		<div class="row"><!-- start range -->
+		<div class="row"><!-- start singleDatePicker -->
+			<div class="row">
+				<div class="col-md-12">
+					Daterangepicker(singleDatePicker)
+				</div>
+			</div>
+			<div class="row">
+			<form class="form-horizontal">
+				<div class="form-group col-md-8">
+					<label class="col-md-3 control-label">날짜 선택</label>
+					<div class="col-md-4">
+						<ps-daterangepicker id="daterangepicker" name="daterange" options="daterange_option" api="api_single_range"></ps-daterangepicker>
+		  			</div>
+		  		</div>
+		  		<div class="col-md-4">
+		  			<div class="row">
+		  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDateSingleRange()">getDate</button>
+		  			</div>
+		  			<div class="row">
+		  				선택한 날짜 : {{date_single_range_string}}
+		  			</div>
+		  		</div>
+			</form>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;날짜 입력&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-daterangepicker id="daterangepicker" name="daterange" options="daterange_option" api="api_range"&gt;&lt;/ps-daterangepicker&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>
+			</div>
+			
+		</div><!-- end singleDatePicker -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start rangepicker -->
 			<div class="row">
 				<div class="col-md-12">
 					Daterangepicker
@@ -136,22 +196,118 @@ code
 			<div class="row">
 			<form class="form-horizontal">
 				<div class="form-group col-md-8">
-					<label class="col-md-3 control-label">기간</label>
+					<label class="col-md-3 control-label">기간 선택</label>
 					<div class="col-md-4">
-						<ps-daterangepicker id="daterangepicker" name="daterange" api="api_from_range"></ps-daterangepicker>
+						<ps-daterangepicker name="daterange1" api="api_range"></ps-daterangepicker>
 		  			</div>
 		  		</div>
 		  		<div class="col-md-4">
 		  			<div class="row">
-		  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDate()">getDate</button>
+		  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDateRange1()">getDate</button>
 		  			</div>
 		  			<div class="row">
-		  				선택한 날짜 : {{date_string}}
+		  				Start Date: 	{{from_date_range_string}}<br>
+		  				End Date: 	{{to_date_range_string}}
 		  			</div>
 		  		</div>
 			</form>
 			</div>
-		</div>	
+			
+			<div class="row">
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;기간 입력&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-daterangepicker id="daterangepicker" name="daterange1" api="api_range"&gt;&lt;/ps-daterangepicker&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>
+			</div>
+			
+		</div><!-- end rangepicker -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start Predefined Ranges rangepicker -->
+			<div class="row">
+				<div class="col-md-12">
+					Daterangepicker(Predefined Ranges)
+				</div>
+			</div>
+			<div class="row">
+			<form class="form-horizontal">
+				<div class="form-group col-md-8">
+					<label class="col-md-3 control-label">정의된 날짜 선택</label>
+					<div class="col-md-4">
+						<ps-dateranges name="predefined_dateranges" options="daterange_predefined_ranges" api="api_predefined_range"></ps-dateranges>
+		  			</div>
+		  		</div>
+		  		<div class="col-md-4">
+		  			<div class="row">
+		  				<button type="button" class="btn btn-primary" ng-disabled="false" ng-click="getDatePredefinedRange()">getDate</button>
+		  			</div>
+		  			<div class="row">
+		  				Start Date: 	{{start_predefined_range_string}}<br>
+		  				End Date: 	{{end_predefined_range_string}}
+		  			</div>
+		  		</div>
+			</form>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="col-md-2 control-label"&gt;정의된 날짜 선택&lt;/label&gt;
+    &lt;div class="col-md-10"&gt;
+      &lt;ps-dateranges id="dateranges" name="daterange" api="api_range"&gt;&lt;/ps-dateranges&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
+// comment js
+Many
+lines
+of
+code
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>
+			</div>
+			
+		</div><!-- end Predefined Ranges rangepicker -->
+		<div class="vspace-12" />
 	</div>
 	
 	<div class="page-footer">

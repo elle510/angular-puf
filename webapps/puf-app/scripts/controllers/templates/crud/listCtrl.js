@@ -1,6 +1,6 @@
 'use strict';
 
-define(['app'], function(app) {
+define(['app', 'moment'], function(app, moment) {
 	
 	var controller = function ($scope, $location, psUtil) {
         
@@ -173,7 +173,6 @@ define(['app'], function(app) {
 		$scope.checkValue4 = false;
 		
 		// radio
-		// radio
 		$scope.radioValue1 = 'blue';
 		$scope.radioValue2 = 'seoul';
 		$scope.specialValue = {
@@ -188,6 +187,22 @@ define(['app'], function(app) {
 		$scope.toDate_options = {
 			useCurrent: false //Important! See issue #1075
 		};
+		
+		$scope.daterange_option = {
+			singleDatePicker: true
+		};
+//		$scope.api_single_range.getStartDate();
+//		$scope.api_range.getStartDate();
+		
+		$scope.daterange_predefined_ranges = {
+			'금일': [moment(), moment()],
+			'전일': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'일주일전': [moment().subtract(6, 'days'), moment()],
+			'한달전': [moment().subtract(29, 'days'), moment()],
+			'이번달': [moment().startOf('month'), moment().endOf('month')],
+			'지난달': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		};
+//		$scope.api_predefined_range.getStartDate();
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', controller]);

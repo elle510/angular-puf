@@ -12,26 +12,34 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
-								    <label class="search-label width-100">검색항목</label>
-								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								    <label class="search-label">검색항목</label>
+								    <div class="search-item">
+								    	<input type="text" placeholder="검색어를 입력하세요">
+								    </div>					
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
 								    <label class="search-label">검색항목-item</label>
-								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								    <div class="search-item">
+								    	<input type="text" placeholder="검색어를 입력하세요">
+								    </div>							    
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
-								    <label class="search-label">검색항목</label>
-								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								    <label class="search-label width-100">검색항목</label>
+								    <div class="search-item">
+								    	<input type="text" placeholder="검색어를 입력하세요">
+								    </div>					    
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
 								    <label class="search-label">검색항목-텍스트길이</label>
-								    <input type="text" class="search-item" placeholder="검색어를 입력하세요">
+								    <div class="search-item">
+								    	<input type="text" placeholder="검색어를 입력하세요">
+								    </div>					    
 								</div>
 							</div>
 						</div>
@@ -40,7 +48,9 @@
 							<div class="col-md-3">
 								<div class="form-group">
 								    <label class="search-label">검색항목</label>
-								    <ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+								    <div class="search-item">
+								    	<ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+								    </div>							    
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -60,6 +70,7 @@
 									<label class="search-label">검색항목</label>
 									<div class="search-item">
 								    	<ps-stepper name="stepper_name" ng-model="stepperValue" min="0" max="100" step="5"></ps-stepper>
+								    	<!-- class-name="width-100" -->
 								    </div>
 								</div>
 							</div>
@@ -91,16 +102,34 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
-									<label class="search-label">기간</label>
+									<label class="search-label">날짜 선택</label>
 									<div class="search-item">
-										<ps-datetimepicker id="fromDate" name="fromDate" api="api_from_range"></ps-datetimepicker>
-										<ps-datetimepicker id="toDate" name="toDate" options="toDate_options" api="api_to_range"></ps-datetimepicker>
+										<ps-daterangepicker name="single_daterange" options="daterange_option" api="api_single_range"></ps-daterangepicker>
 									</div>
 						  		</div>
 							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="search-label">기간 선택</label>
+									<div class="search-item">
+										<ps-daterangepicker name="daterange" api="api_range"></ps-daterangepicker>
+									</div>
+						  		</div>
+							</div>
+							
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="search-label">기간 선택</label>
+									<div class="search-item">
+										<ps-dateranges name="predefined_dateranges" options="daterange_predefined_ranges" api="api_predefined_range"></ps-dateranges>
+									</div>
+						  		</div>
+							</div>
+							
 						</div>
 						
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 								    <label class="search-label">Field-Name</label>
@@ -110,7 +139,7 @@
 								    </div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 						
 					</ps-fieldset>
