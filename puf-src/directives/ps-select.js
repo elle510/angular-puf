@@ -25,6 +25,7 @@ angular.module('ps.directives.select', [])
         	id:				'@',
         	name:			'@',
         	className:		'@',
+        	ngModel:		'=',
         	array: 			'=',
         	optionName: 	'@',
         	optionValue:	'@',
@@ -67,7 +68,7 @@ angular.module('ps.directives.select', [])
 	                        '<select name="' + attrs.name + '" ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '></select>'+
 	                   '</div>';*/
 	            
-			return '<select ng-options="'+ngOptions+'" ng-class="className">'+
+			return '<select name="{{name}}" ng-model="ngModel" ng-options="'+ngOptions+'" ng-class="className">'+
     					'<option value="">-- {{title}} --</option>'+
     				'</select>';
 	    },
