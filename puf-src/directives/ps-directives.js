@@ -7,4 +7,4 @@ angular.module('ps.directives', ['ps.directives.back', 'ps.directives.dropdown',
                                  'ps.directives.modal', 'ps.directives.radio', 'ps.directives.select',
                                  'ps.directives.stepper', 'ps.directives.tabs', 'ps.directives.tree',
                                  'ps.directives.wizard', 'ps.directives.panel', 'ps.directives.menu',
-                                 'ps.directives.hiddenContent', 'ps.directives.fieldset']);
+                                 'ps.directives.hiddenContent', 'ps.directives.fieldset', 'ps.directives.dualListbox']);

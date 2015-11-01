@@ -1,0 +1,115 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start Dual Listbox -->
+			<div class="row">
+				<div class="col-md-12">
+					Dual Listbox
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-dual-listbox width="900px" height="200px">
+			    		<ps-source-fields height="100%">
+			    			<div value="0">
+			                	<div>First name1</div>
+			                	<div>First name2</div>
+			                	<div>First name3</div>
+			                </div>
+			                <div value="1">Last name</div>
+			                <div value="2">Home</div>
+			                <div>Work</div>
+			                <div>Direct</div>
+			                <div>Cell</div>
+			                <div>Fax</div>
+			                <div>Work email</div>
+			                <div>Personal email</div>
+			                <div>Website</div>
+			    		</ps-source-fields>
+			    		<ps-destination-fields></ps-destination-fields>
+			    	</ps-dual-listbox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+
+&lt;ps-dual-listbox&gt;
+  &lt;ps-source-fields&gt;
+    &lt;div value="0"&gt;name0&lt;/div&gt;
+    &lt;div value="1"&gt;name1&lt;/div&gt;
+  &lt;/ps-source-fields&gt;
+  &lt;ps-destination-fields&gt;&lt;/ps-destination-fields&gt;
+&lt;/ps-dual-listbox&gt;
+
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
+// js
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>				
+			</div>
+		</div><!-- end Dual Listbox -->
+		<div class="vspace-12"></div>
+		
+		<div class="row"><!-- start Dual Listbox -->
+			<div class="row">
+				<div class="col-md-12">
+					Dual Listbox
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-dual-listbox>
+			    		<ps-source-fields data="sourceFields"></ps-source-fields>
+			    		<ps-destination-fields data="destFields"></ps-destination-fields>
+			    	</ps-dual-listbox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+						<ps-tabset>
+	    					<ps-tab heading="HTML코드">
+	    						<pre class="prettyprint linenums">
+	    						
+&lt;ps-dual-listbox&gt;
+  &lt;ps-source-fields data="sourceFields"&gt;&lt;/ps-source-fields&gt;
+  &lt;ps-destination-fields data="destFields"&gt;&lt;/ps-destination-fields&gt;
+&lt;/ps-dual-listbox&gt;
+
+								</pre>
+	    					</ps-tab>
+	    					<ps-tab heading="JS코드">
+	    						<pre class="prettyprint linenums">
+// js
+								</pre>
+	    					</ps-tab>
+	  					</ps-tabset>
+	  				</ps-hidden-content>
+	  			</div>				
+			</div>
+		</div><!-- end Dual Listbox -->
+		<div class="vspace-12"></div>
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

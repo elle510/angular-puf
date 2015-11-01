@@ -16,29 +16,56 @@
 
 angular.module('ps.directives.dualListbox', [])
 .controller('psDualListboxCtrl', ['$scope', function($scope) {
-	var ctrl = this;
-	// jquery 로 되어 있는 것을 아래 코드로 수정
-	//var opts = angular.extend({}, $scope.$eval($attrs.uiLayout), $scope.$eval($attrs.options));
-	var opts = {};
+	var ctrl = this,
+	fieldScopes = ctrl.fieldScopes = $scope.fieldScopes = {};
 	
-	function update() {
-		console.log('update');
-		//ctrl.updateDisplay();
-	}
-	
-	$scope.updateDisplay = function() {
-		console.log('$scope.updateDisplay');
-		//ctrl.updateDisplay();
+	ctrl.fieldChooser = function() {
+		
+		if($scope.chooser && $scope.sourceFields && $scope.destFields) {
+			console.log('fieldChooser');
+			$scope.chooser.fieldChooser($scope.sourceFields, $scope.destFields);
+			
+			// listChanged 처리
+			$scope.chooser.on('listChanged', function(event, element) {
+				console.log(event);
+				console.log(element.attr('value'));
+			});
+		}
 	};
 	
-	
-	ctrl.createMeunu = function() {
-		console.log('ctrl.createMeunu');
-		update();
+	ctrl.addFieldScope = function(key, _scope) {
+		fieldScopes[key] = _scope;
 	};
 	
-	ctrl.opts = opts;
-	ctrl.value = [1, 2, 3];
+	ctrl.createFields = function(data) {
+//		console.log('ctrl.createFields');
+		var fields = '';
+		angular.forEach(data, function(value) {
+//			console.log(value.value);
+//			console.log(typeof value.value);
+			var div, valueTag, nameTag;
+			
+			// value
+			if(!(typeof value.value === undefined)) {
+				valueTag = '<div value="' + value.value + '">';
+			}else {
+				valueTag = '<div>';
+			}
+			
+			// name
+			if(!(typeof value.name === undefined)) {
+				nameTag = value.name + '</div>';
+			}else {
+				nameTag = '</div>';
+			}
+			
+			div = valueTag + nameTag;
+//			console.log(div);
+			fields += div;
+		});
+		
+		return fields;
+	};
 }])
 .directive('psDualListbox', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
@@ -47,18 +74,15 @@ angular.module('ps.directives.dualListbox', [])
 		replace: true,
 		scope: {
 			id: 		'@',
-			sourceId:	'@',
-			destId:		'@',
 			name: 		'@',
 			className:	'@',
+			width:		'@',	// 200px (px 붙인다.)
+			height:		'@',
 			api:		'=?'
 			//addTabFunc:	'=addTab',
 		},
 		controller: 'psDualListboxCtrl',
-		template: '<div tabIndex="1" ng-transclude>' + 
-					'<div id="{{sourceId}}" ps-source-fields-transclude></div>' +
-					'<div id="{{destId}}" ps-destination-fields-transclude></div>' +
-				  '</div>',
+		template: '<div tabIndex="1" class="field-chooser" ng-class="className" ng-style="{width: width, height: height}" ng-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
 			if(angular.isDefined(attrs.id) == false || !attrs.id || attrs.id == undefined || attrs.id == '') {
@@ -66,10 +90,34 @@ angular.module('ps.directives.dualListbox', [])
             	element.attr('id', attrs.id);
 			}
 			
-			var $sourceFields = $('#' + attrs.sourceId);
+//			console.log('psDualListbox');
+			
+			//console.log(element[0].children);
+			/*var $sourceFields = $('#' + attrs.sourceId);
             var $destinationFields = $('#' + attrs.destId);
-            var $chooser = element.fieldChooser($sourceFields, $destinationFields);
-           	
+            var $chooser = element.fieldChooser($sourceFields, $destinationFields);*/
+			
+//			var fields = element[0].children;
+//			var sourceFields = angular.element(fields[0]);
+//          var destinationFields = angular.element(fields[1]);
+//          var chooser = element.fieldChooser(sourceFields, destinationFields);
+            
+			scope.chooser = element;
+			var fields = element[0].children;
+			scope.sourceFields = angular.element(fields[0]);
+			scope.destFields = angular.element(fields[1]);
+			
+			if((scope.fieldScopes.sourceScope.data == undefined && scope.fieldScopes.destinationScope.data == undefined) 
+				|| (typeof scope.fieldScopes.sourceScope.data === 'undefined' 
+					&& typeof scope.fieldScopes.destinationScope.data === 'undefined')) {
+				ctrl.fieldChooser();
+			}
+			
+			scope.api = {
+				getSelectedData: function() {
+                    return scope.fieldScopes.destinationScope.data;
+				}
+			};
 		}
 	}
 }])
@@ -81,13 +129,12 @@ angular.module('ps.directives.dualListbox', [])
 		replace: true,
 		scope: {
 			id: 		'@',
-			name: 		'@',
-			className:	'@',
-			api:		'=?'
-			//addTabFunc:	'=addTab',
+			width:		'@',	// 200px (px 붙인다.)
+			height:		'@',
+			data:		'='		// Array
 		},
-//		controller: 'psDualListboxCtrl',
-		template: '<div ps-source-fields-transclude></div>',				
+		controller: 'psDualListboxCtrl',
+		template: '<div ng-style="{width: width, height: height}" ng-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
 			if(angular.isDefined(attrs.id) == false || !attrs.id || attrs.id == undefined || attrs.id == '') {
@@ -95,7 +142,25 @@ angular.module('ps.directives.dualListbox', [])
             	element.attr('id', attrs.id);
 			}
 			
+//			console.log('psSourceFields');
 			
+			ctrl.addFieldScope('sourceScope', scope);
+			
+			scope.$watch('data', function(data) {
+//				console.log('psSourceFields: data');
+				if(data == undefined || !(typeof data === 'object')) return;
+				
+				element.empty();
+				
+				// create dom
+				var fields = ctrl.createFields(data);
+				element.append(fields);
+				
+//				console.log(element.parent());
+//				scope.$parent.sourceFields = element;
+				
+				ctrl.fieldChooser();
+			});
 		}
 	}
 }])
@@ -107,13 +172,12 @@ angular.module('ps.directives.dualListbox', [])
 		replace: true,
 		scope: {
 			id: 		'@',
-			name: 		'@',
-			className:	'@',
-			api:		'=?'
-			//addTabFunc:	'=addTab',
+			width:		'@',	// 200px (px 붙인다.)
+			height:		'@',
+			data:		'='		// Array
 		},
-//		controller: 'psDualListboxCtrl',
-		template: '<div ps-destination-fields-transclude></div>',					
+		controller: 'psDualListboxCtrl',
+		template: '<div ng-style="{width: width, height: height}" ng-transclude></div>',					
 		link: function(scope, element, attrs, ctrl) {
 			
 			if(angular.isDefined(attrs.id) == false || !attrs.id || attrs.id == undefined || attrs.id == '') {
@@ -121,27 +185,24 @@ angular.module('ps.directives.dualListbox', [])
             	element.attr('id', attrs.id);
 			}
 			
+//			console.log('psDestinationFields');
 			
+			ctrl.addFieldScope('destinationScope', scope);
+			
+			scope.$watch('data', function(data) {
+//				console.log('psDestinationFields: data');
+				if(data == undefined || !(typeof data === 'object')) return;
+				
+				element.empty();
+				
+				// create dom
+				var fields = ctrl.createFields(data);
+				element.append(fields);
+				
+//				scope.$parent.destinationFields = element;
+				
+				ctrl.fieldChooser();
+			});
 		}
 	}
-}])
-.directive('psSourceFieldsTransclude', function() {
-	return {
-		link: function(scope, element, attrs, controller, transclude) {
-	        transclude(scope.$parent, function(clone) {
-	          element.empty();
-	          element.append(clone);
-	        });
-		}
-	};
-})
-.directive('psDestinationFieldsTransclude', function() {
-	return {
-		link: function(scope, element, attrs, controller, transclude) {
-	        transclude(scope.$parent, function(clone) {
-	          element.empty();
-	          element.append(clone);
-	        });
-		}
-	};
-});
+}]);

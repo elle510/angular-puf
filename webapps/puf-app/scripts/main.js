@@ -78,7 +78,7 @@ require.config({
 		'jquery-smartmenus-bootstrap': 'puf/libs/plugins/smartmenu/addons/bootstrap/jquery.smartmenus.bootstrap.min',
 		'jquery-context-menu': 'puf/libs/plugins/context-menu/jquery.contextMenu.min',
 		'jquery-ui-position': 'puf/libs/plugins/context-menu/jquery.ui.position.min',
-		'fieldChooser': 'puf/libs/plugins/fieldChooser.min',
+		'field-chooser': 'puf/libs/plugins/fieldChooser.min',
         
 		// angular directive
 		'angular-ui-layout': 'puf/libs/ui-layout',
@@ -118,7 +118,7 @@ require.config({
         'puf': {
         	deps: ['ps-locale_ko', 'moment', 'jquery-cookie', 'jqgrid', 'jstree', 'datetimepicker', 'daterangepicker', 
         	       'bootstrap-select', 'jquery-form', 'jquery-steps', 'jquery-splitter', 'jquery-smartmenus', 'jquery-smartmenus-bootstrap',
-        	       'jquery-context-menu', 'fieldChooser']
+        	       'jquery-context-menu', 'field-chooser']
         },
         'jqgrid': {
         	// jquery를 빼도 불러오기니 하는데 로딩순서가 달라진다.
@@ -147,6 +147,9 @@ require.config({
         },
         'bootstrap-select': {
             deps: ['jquery','bootstrap']
+        },
+        'field-chooser': {
+            deps: ['jquery','jquery-ui']
         },
         'app':{
 			deps:['angular']

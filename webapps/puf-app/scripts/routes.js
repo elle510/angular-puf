@@ -51,6 +51,7 @@ define([
 	                	.state('select', 		route.ui_resolve('/select', 		'/components/forms/', 		'select'))
 	                	.state('datepicker', 	route.ui_resolve('/datepicker', 	'/components/forms/', 		'datepicker'))
 	                	.state('stepper', 		route.ui_resolve('/stepper', 		'/components/forms/', 		'stepper'))
+	                	.state('dualListbox', 	route.ui_resolve('/dualListbox', 	'/components/forms/', 		'dualListbox'))
 	                	.state('fieldset', 		route.ui_resolve('/fieldset', 		'/components/forms/', 		'fieldset'))
 	                	.state('validation', 	route.ui_resolve('/validation', 	'/components/forms/', 		'validation'))
 	                	.state('wizard', 		route.ui_resolve('/wizard', 		'/components/forms/', 		'wizard'))

@@ -32,6 +32,7 @@
             		{ "text": "Select", 		"id": "form_select", 			"icon": "fa fa-flag", 		"route": "select"  },
             		{ "text": "DatePicker", 	"id": "form_datepicker", 		"icon": "fa fa-flag", 		"route": "datepicker"  },
             		{ "text": "Stepper", 		"id": "form_stepper", 			"icon": "fa fa-flag", 		"route": "stepper"  },
+            		{ "text": "DualListbox", 	"id": "form_dualListbox", 		"icon": "fa fa-flag", 		"route": "dualListbox"  },
             		{ "text": "Fieldset", 		"id": "form_fieldset", 			"icon": "fa fa-flag", 		"route": "fieldset"  },
             		{ "text": "Validation", 	"id": "comp_validation", 		"icon": "fa fa-flag", 		"route": "validation"  },
             		{ "text": "Wizard", 		"id": "comp_wizard", 			"icon": "fa fa-flag", 		"route": "wizard"  },
