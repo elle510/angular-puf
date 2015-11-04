@@ -147,10 +147,27 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-fieldset legend="옵션" collapsible="true">
-						<div>
-							내용<br>
-							내용<br>
+					<ps-fieldset legend="옵션" collapsible="true" expand="true">
+						<div class="row">
+							<div class="col-md-7">
+								<div class="row">
+									<label class="col-md-1">컬럼</label>
+									<div class="col-md-11">
+										<ps-dual-listbox name="selectedColumns">
+						    				<ps-source-fields title="선택 가능한 컬럼" data="sourceFields"></ps-source-fields>
+						    				<ps-destination-fields title="선택된 컬럼" data="destFields"></ps-destination-fields>
+						    			</ps-dual-listbox>
+					    			</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="row">
+									<label class="col-md-4">결과를 묶어 보여줄 기준</label>
+									<div class="col-md-8">
+										<ps-select name="name2" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+					    			</div>
+								</div>
+							</div>
 						</div>			 
 					</ps-fieldset>
 				</div>

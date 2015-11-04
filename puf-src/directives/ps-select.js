@@ -67,8 +67,9 @@ angular.module('ps.directives.select', [])
 	                        '<span>{{ ngModel.name || "' + attrs.defaultLabel + '"}}</span>'+
 	                        '<select name="' + attrs.name + '" ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '></select>'+
 	                   '</div>';*/
-	            
-			return '<select name="{{name}}" ng-model="ngModel" ng-options="'+ngOptions+'" ng-class="className">'+
+	        // name="{{name}}" ng-model="ngModel" 은 view에서 설정하면 select 에 설정된다.
+			// 템플릿에서 설정하면 에러남(원인은 나중에 알아보자) 
+			return '<select ng-options="'+ngOptions+'" ng-class="className">'+
     					'<option value="">-- {{title}} --</option>'+
     				'</select>';
 	    },

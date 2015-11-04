@@ -12,8 +12,8 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-dual-listbox width="900px" height="200px">
-			    		<ps-source-fields height="100%">
+					<ps-dual-listbox name="list1" height="200px">
+			    		<ps-source-fields height="100%" title="선택 가능한 항목">
 			    			<div value="0">
 			                	<div>First name1</div>
 			                	<div>First name2</div>
@@ -29,7 +29,7 @@
 			                <div>Personal email</div>
 			                <div>Website</div>
 			    		</ps-source-fields>
-			    		<ps-destination-fields></ps-destination-fields>
+			    		<ps-destination-fields height="100%" title="선택된 항목"></ps-destination-fields>
 			    	</ps-dual-listbox>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-dual-listbox>
+					<ps-dual-listbox name="list2">
 			    		<ps-source-fields data="sourceFields"></ps-source-fields>
 			    		<ps-destination-fields data="destFields"></ps-destination-fields>
 			    	</ps-dual-listbox>

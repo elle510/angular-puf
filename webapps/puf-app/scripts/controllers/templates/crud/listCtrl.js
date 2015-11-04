@@ -70,7 +70,7 @@ define(['app', 'moment'], function(app, moment) {
     	   		{name:'amount',index:'amount', width:80, align:"right", sorttype:"float", formatter:"number"},
     	   		{name:'tax',index:'tax', width:80, align:"right", sorttype:"float"},		
     	   		{name:'total',index:'total', width:80, align:"right", sorttype:"float"},		
-    	   		{name:'note',index:'note', width:150, sortable:false}		
+    	   		{name:'note',index:'note', width:150, sortable:false}
     	   	],
 		    //autowidth: false,
 		    //shrinkToFit: true
@@ -203,6 +203,33 @@ define(['app', 'moment'], function(app, moment) {
 			'지난달': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
 		};
 //		$scope.api_predefined_range.getStartDate();
+		
+		/***********************
+		 * 옵션
+		 */
+		// 컬럼
+		// 컬럼을 스토리지에 저장하고 읽어오는 api 제공(pageid, gridid, destFields data)
+		var colNames = $scope.options.colNames;
+		var colModel = $scope.options.colModel;
+		var sourceFields = [];
+		for(var i=0; i<colModel.length; i++) {
+//			console.log(colNames[i]);
+//			console.log(colModel[i]['name']);
+			sourceFields.push({name: colNames[i], value: colModel[i]['name']});
+		}
+		$scope.sourceFields = [];/*[
+		           		    {name: 'First name', 		value: 0},
+		           		    {name: 'Last name', 		value: 1},
+		           		    {name: 'Home', 				value: 2},
+		           		    {name: 'Work', 				value: '3'},
+		           		    {name: 'Direct', 			value: 4},
+		           		    {name: 'Cell', 				value: 5},
+		           		    {name: 'Fax', 				value: '6'},
+		           		    {name: 'Work email', 		value: 7},
+		           		    {name: 'Personal email', 	value: 8},
+		           		    {name: 'Website', 			value: 9}
+		           		];*/
+		$scope.destFields = sourceFields;
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', controller]);
