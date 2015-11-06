@@ -166,7 +166,8 @@ define(['app', 'moment'], function(app, moment) {
 		];
 		*/
 		
-		$('#grid').bind('loadComplete', function (e, rowid, orgClickEvent) {
+		/*
+		$('#grid').bind('jqGridLoadComplete', function (e, rowid, orgClickEvent) {
 		    
 			
 			console.log(e.result);
@@ -177,7 +178,12 @@ define(['app', 'moment'], function(app, moment) {
 		    // if we want to return true, we should test e.result additionally
 		    //return e.result === false || e.result === "stop" ? false : true;
 		});
-		
+		*/
+		$('#grid').jqGrid({
+			loadComplete: function (e, rowid, orgClickEvent) {
+				console.log(e.result);
+			}
+		});
 		// 검색
 		// select
 		$scope.colors = [
