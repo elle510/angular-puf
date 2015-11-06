@@ -210,7 +210,7 @@ angular.module('ps.directives.grid', [])
                         element.append(div);
                     }
                 }
-                console.log(opts);
+//                console.log(opts);
                 table.jqGrid(opts);         
                 
                 ctrl.resizeJqGridWidth(attrs.id);

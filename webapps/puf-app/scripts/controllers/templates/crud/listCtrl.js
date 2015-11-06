@@ -34,6 +34,17 @@ define(['app', 'moment'], function(app, moment) {
 			rootPath = '';
 		}
 		
+		var colNames = ['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+	   	colModel = [
+	   	    {name:'id',index:'id', width:60, sorttype:"int"},
+	    	{name:'invdate',index:'invdate', width:120, align:"center", sorttype:"date", formatter:"date", formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}},
+	    	{name:'name',index:'name', width:100, formatter: detailViewLink},
+	    	{name:'amount',index:'amount', width:80, align:"right", sorttype:"float", formatter:"number"},
+	    	{name:'tax',index:'tax', width:80, align:"right", sorttype:"float"},		
+	    	{name:'total',index:'total', width:80, align:"right", sorttype:"float"},		
+	    	{name:'note',index:'note', width:150, sortable:false}
+	    ];
+		
 		$scope.options = {
 			//url: '/bulletin/list',
     		//postData: {index: "20130613", type: "FLOWS"},
@@ -155,6 +166,18 @@ define(['app', 'moment'], function(app, moment) {
 		];
 		*/
 		
+		$('#grid').bind('loadComplete', function (e, rowid, orgClickEvent) {
+		    
+			
+			console.log(e.result);
+			return false;
+		    // if we want to return true, we should test e.result additionally
+		    //return e.result === undefined ? true : e.result;
+		    
+		    // if we want to return true, we should test e.result additionally
+		    //return e.result === false || e.result === "stop" ? false : true;
+		});
+		
 		// 검색
 		// select
 		$scope.colors = [
@@ -209,15 +232,36 @@ define(['app', 'moment'], function(app, moment) {
 		 */
 		// 컬럼
 		// 컬럼을 스토리지에 저장하고 읽어오는 api 제공(pageid, gridid, destFields data)
-		//var key = 'crud-list'
+		var defaultSourceFields = [];
+		var defaultDestFields = [
+		    {name: 'Inv No', 	value: 'id'},
+            {name: 'Date', 		value: 'invdate'}, 
+            {name: 'Client', 	value: 'name'}, 
+            {name: 'Amount', 	value: 'amount'}, 
+            {name: 'Tax', 		value: 'tax'}, 
+            {name: 'Total', 	value: 'total'}, 
+            {name: 'Notes', 	value: 'note'}
+        ];
+		
 		var key = $location.path();
 		//psStorage.setLocalStorage(key, 'HyungRo');
-		var options = psStorage.getLocalStorage(key);
-		console.log(psStorage.NotSupport);
-		if(options != psStorage.NotSupport) {
-			console.log(options);
-			if(options == null) {
-				console.log(options);
+		var fields = psStorage.getLocalStorage(key);
+		if(fields != psStorage.NotSupport) {
+			if(fields == null) {
+				// default column
+				$scope.sourceFields = defaultSourceFields;
+				$scope.destFields = defaultDestFields;
+				
+//				$.extend($scope.options, defaultColumn);
+//				var colNames = [];
+//				$.each(defaultDestFields, function(index, value) {
+//					colNames.push(value.name);
+//				});
+//				
+//				$scope.options.colNames = colNames;
+			}else {
+				$scope.sourceFields = fields.sourceFields;
+				$scope.destFields = fields.destFields;
 			}
 				
 		}
@@ -230,27 +274,6 @@ define(['app', 'moment'], function(app, moment) {
 			console.log('No Web Storage support');
 		}
 		*/
-		var colNames = $scope.options.colNames;
-		var colModel = $scope.options.colModel;
-		var sourceFields = [];
-		for(var i=0; i<colModel.length; i++) {
-//			console.log(colNames[i]);
-//			console.log(colModel[i]['name']);
-			sourceFields.push({name: colNames[i], value: colModel[i]['name']});
-		}
-		$scope.sourceFields = [];/*[
-		           		    {name: 'First name', 		value: 0},
-		           		    {name: 'Last name', 		value: 1},
-		           		    {name: 'Home', 				value: 2},
-		           		    {name: 'Work', 				value: '3'},
-		           		    {name: 'Direct', 			value: 4},
-		           		    {name: 'Cell', 				value: 5},
-		           		    {name: 'Fax', 				value: '6'},
-		           		    {name: 'Work email', 		value: 7},
-		           		    {name: 'Personal email', 	value: 8},
-		           		    {name: 'Website', 			value: 9}
-		           		];*/
-		$scope.destFields = sourceFields;
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', 'psStorage', controller]);
