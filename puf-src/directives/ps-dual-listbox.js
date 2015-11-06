@@ -22,7 +22,7 @@ angular.module('ps.directives.dualListbox', [])
 	ctrl.fieldChooser = function() {
 		
 		if($scope.chooser && $scope.sourceFields && $scope.destFields) {
-			console.log('fieldChooser');
+//			console.log('fieldChooser');
 			$scope.chooser.fieldChooser($scope.sourceFields, $scope.destFields);
 			
 			// input hidden 추가 (template에서 처리시 fieldChooser() 실행오류가 생긴다.)

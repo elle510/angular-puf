@@ -35,6 +35,7 @@ define( dependencies, function(app) {
 		    $location.path('/admin/users');
 		};
 		*/
+        
     };
     
 	app.register.controller('viewCtrl', ['$scope', '$stateParams', '$location', controller]);

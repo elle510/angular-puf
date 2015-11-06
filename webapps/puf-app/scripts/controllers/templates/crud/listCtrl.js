@@ -2,7 +2,7 @@
 
 define(['app', 'moment'], function(app, moment) {
 	
-	var controller = function ($scope, $location, psUtil) {
+	var controller = function ($scope, $location, psUtil, psStorage) {
         
 		$scope.pageTitle = "CRUD";
 		
@@ -209,6 +209,27 @@ define(['app', 'moment'], function(app, moment) {
 		 */
 		// 컬럼
 		// 컬럼을 스토리지에 저장하고 읽어오는 api 제공(pageid, gridid, destFields data)
+		//var key = 'crud-list'
+		var key = $location.path();
+		//psStorage.setLocalStorage(key, 'HyungRo');
+		var options = psStorage.getLocalStorage(key);
+		console.log(psStorage.NotSupport);
+		if(options != psStorage.NotSupport) {
+			console.log(options);
+			if(options == null) {
+				console.log(options);
+			}
+				
+		}
+		
+		/*if(typeof(Storage) !== "undefined") {
+		    // Code for localStorage/sessionStorage.
+			console.log('Storage');
+		} else {
+		    // Sorry! No Web Storage support..
+			console.log('No Web Storage support');
+		}
+		*/
 		var colNames = $scope.options.colNames;
 		var colModel = $scope.options.colModel;
 		var sourceFields = [];
@@ -232,6 +253,6 @@ define(['app', 'moment'], function(app, moment) {
 		$scope.destFields = sourceFields;
     };
     
-	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', controller]);
+	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', 'psStorage', controller]);
 	
 });

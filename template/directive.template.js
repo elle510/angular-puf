@@ -1,13 +1,8 @@
 /**
- * ps-menu directives
+ * directives template
  * 
  * version <tt>$ Version: 1.0 $</tt> date:2015/09/10
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
- * 
- * example:
- * <ps-menu data="data"></ps-menu>
- * 
- * smartmenus 라이브러리에 종속적이다.
  * 
  */
 
