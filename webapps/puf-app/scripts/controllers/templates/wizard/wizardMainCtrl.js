@@ -8,7 +8,10 @@ define(['app'], function(app) {
 		
 		$scope.prettyPrint = function() {
 			prettyPrint();
-		}
+		};
+		
+//		$scope.password = '';
+//		$scope.email = '';
     };
     
 	app.register.controller('wizardMainCtrl', ['$scope', '$location', controller]);
