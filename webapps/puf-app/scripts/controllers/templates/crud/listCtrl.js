@@ -134,56 +134,13 @@ define(['app', 'moment'], function(app, moment) {
 	    });
 		*/
 		
-		/*
-		$scope.data = [
-		    {id:"1",invdate:"2010-05-24",name:"test",note:"note",tax:"10.00",total:"2111.00"} ,
-			{id:"2",invdate:"2010-05-25",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
-			{id:"3",invdate:"2007-09-01",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
-			{id:"4",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
-			{id:"5",invdate:"2007-10-05",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
-			{id:"6",invdate:"2007-09-06",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
-			{id:"7",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
-			{id:"8",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"21.00",total:"320.00"},
-			{id:"9",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-			{id:"11",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-			{id:"12",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-			{id:"13",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-			{id:"14",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-			{id:"15",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-			{id:"16",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-			{id:"17",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-			{id:"18",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-			{id:"19",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-			{id:"21",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-			{id:"22",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-			{id:"23",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-			{id:"24",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-			{id:"25",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-			{id:"26",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-			{id:"27",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-			{id:"28",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-			{id:"29",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
-		];
-		*/
+		// 새로고침
+		$scope.refresh = function() {
+			console.log($scope.dualListApi);
+			$scope.gridApi.refresh();
+		}
 		
-		/*
-		$('#grid').bind('jqGridLoadComplete', function (e, rowid, orgClickEvent) {
-		    
-			
-			console.log(e.result);
-			return false;
-		    // if we want to return true, we should test e.result additionally
-		    //return e.result === undefined ? true : e.result;
-		    
-		    // if we want to return true, we should test e.result additionally
-		    //return e.result === false || e.result === "stop" ? false : true;
-		});
-		*/
-		$('#grid').jqGrid({
-			loadComplete: function (e, rowid, orgClickEvent) {
-				console.log(e.result);
-			}
-		});
+		
 		// 검색
 		// select
 		$scope.colors = [
@@ -249,30 +206,36 @@ define(['app', 'moment'], function(app, moment) {
             {name: 'Notes', 	value: 'note'}
         ];
 		
-		var key = $location.path();
-		//psStorage.setLocalStorage(key, 'HyungRo');
+		var key = 'key';//$location.path();
+		//psStorage.removeLocalStorage(key);
+		//psStorage.setLocalStorage(key, {a: 'a', b: 'b'});
 		var fields = psStorage.getLocalStorage(key);
+		//console.log(fields instanceof Object);
 		if(fields != psStorage.NotSupport) {
 			if(fields == null) {
-				// default column
+				// default columns
 				$scope.sourceFields = defaultSourceFields;
 				$scope.destFields = defaultDestFields;
 				
-//				$.extend($scope.options, defaultColumn);
-//				var colNames = [];
-//				$.each(defaultDestFields, function(index, value) {
-//					colNames.push(value.name);
-//				});
-//				
-//				$scope.options.colNames = colNames;
 			}else {
+				// saved columns
 				$scope.sourceFields = fields.sourceFields;
 				$scope.destFields = fields.destFields;
 			}
 				
 		}
 		
-		/*if(typeof(Storage) !== "undefined") {
+		$scope.loadCompleteHandler = function(e, data) {
+			console.log('loadCompleteHandler: ' + key);
+			var f = {
+				sourceFields: $scope.sourceFields,
+				destFields: $scope.destFields
+			};
+			console.log($scope.dualListApi);
+			psStorage.setLocalStorage(key, f);
+		};
+		
+		/*if(typeof(Storage) !== "undekeyfined") {
 		    // Code for localStorage/sessionStorage.
 			console.log('Storage');
 		} else {

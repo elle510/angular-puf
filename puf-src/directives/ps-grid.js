@@ -97,14 +97,18 @@ angular.module('ps.directives.grid', [])
         restrict: 'E',
         replace: true,
         scope: {
-        	id: 			'@',
-        	className:		'@',
-        	options: 		'=',
-        	isPage:			'=',
-            //data:   		'=?',
-            contextMenu:	'=',
-            insert: 		'=?',
-            api:    		'=?'
+        	id: 					'@',
+        	className:				'@',
+        	options: 				'=',
+        	isPage:					'=',
+            //data:   				'=?',
+            contextMenu:			'=',
+            loadcompleteHandler:	'=',	// function(e, data) {}
+            selectrowHandler:		'=',
+            dbclickrowHandler:		'=',
+            beforeselectrowHandler:	'=',
+            insert: 				'=?',
+            api:    				'=?'
         },
         controller: 'psGridCtrl',
         template: '<div ng-class="className"></div>',
@@ -149,7 +153,7 @@ angular.module('ps.directives.grid', [])
 				//caption: "공지사항 목록",
 				rowNum: 20,
 				autowidth: true,
-				shrinkToFit: true,	// 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
+				shrinkToFit: true,		// 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
     		  	height: 'auto',
     		  	//gridview: true,
     			//hidegrid: true,		// 그리드 접힘/펼침 버튼 유무
@@ -164,8 +168,9 @@ angular.module('ps.directives.grid', [])
     			loadComplete: function(data) {
         			console.log('loadComplete: ' + scope.id);
 //        			$compile(angular.element('#' + scope.id))(scope);
-        			$compile($('#' + scope.id))(scope);
+//        			$compile($('#' + scope.id))(scope);
 //        			$compile($('.ui-jqgrid'))(scope);
+        			//$(this).triggerHandler('jqGridLoadComplete', data);
         		},
     			beforeSelectRow: ctrl.handleMultiSelect // handle multi select
             };
@@ -211,7 +216,7 @@ angular.module('ps.directives.grid', [])
                     }
                 }
 //                console.log(opts);
-                table.jqGrid(opts);         
+                table.jqGrid(opts);
                 
                 ctrl.resizeJqGridWidth(attrs.id);
                 
@@ -219,6 +224,23 @@ angular.module('ps.directives.grid', [])
                 if(scope.contextMenu) {
                 	angular.extend(scope.contextMenu, {selector: '.ui-jqgrid-bdiv'});
                 	$('#' + attrs.id).contextMenu(scope.contextMenu);          
+                }
+                
+                // event bind
+                if(scope.loadcompleteHandler) {
+                	table.bind('jqGridLoadComplete', scope.loadcompleteHandler);
+                }
+                
+                if(scope.selectrowHandler) {
+                	table.bind('jqGridSelectRow', scope.selectrowHandler);
+                }
+                
+                if(scope.dbclickrowHandler) {
+                	table.bind('jqGridDblClickRow', scope.dbclickrowHandler);
+                }
+                
+                if(scope.beforeselectrowHandler) {
+                	table.bind('jqGridBeforeSelectRow', scope.beforeselectrowHandler);
                 }
                 
                 // Variadic API – usage:

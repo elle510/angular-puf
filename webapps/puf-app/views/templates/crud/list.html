@@ -153,7 +153,7 @@
 								<div class="row">
 									<label class="col-md-1">컬럼</label>
 									<div class="col-md-11">
-										<ps-dual-listbox name="selectedColumns">
+										<ps-dual-listbox name="selectedColumns" api="dualListApi">
 						    				<ps-source-fields title="선택 가능한 컬럼" data="sourceFields"></ps-source-fields>
 						    				<ps-destination-fields title="선택된 컬럼" data="destFields"></ps-destination-fields>
 						    			</ps-dual-listbox>
@@ -187,14 +187,15 @@
 						<!-- <button type="button" value="a">등록</button> -->
 						<a class="btn btn-default" ui-sref="crud-save({type: 'create'})"><i class="fa fa-plus"></i></a>
 						<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i></a>
-						<a class="btn btn-default" href="#"><i class="fa fa-refresh"></i></a>
+						<a class="btn btn-default" href="#" ng-click="refresh()"><i class="fa fa-refresh"></i></a>
 						<button class="btn btn-default" type="button"><i class="fa fa-file-excel-o"></i></button>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-grid id="grid" options="options" is-page="true" context-menu="contextMenu"></ps-grid><!-- class-name="smooth" -->
+					<ps-grid id="grid" options="options" is-page="true" context-menu="contextMenu" 
+							 loadcomplete-handler="loadCompleteHandler" api="gridApi"></ps-grid><!-- class-name="smooth" -->
 				</div>
 			</div>
 			<div class="row">

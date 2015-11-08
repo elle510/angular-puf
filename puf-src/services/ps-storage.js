@@ -16,6 +16,9 @@ angular.module('ps.services.storage', [])
 	// localStorage 저장                
     root.setLocalStorage = function(key, value) {
     	if(isSupportStorage() == false) return this.NotSupport;
+    	if(value !=null && typeof value === 'object' && !(value instanceof Array)) {
+    		value = JSON.stringify(value);
+    	}
     	localStorage.setItem(key, value);
 //    	localStorage[key] = value;
     };
@@ -25,8 +28,16 @@ angular.module('ps.services.storage', [])
     	if(isSupportStorage() == false) {
     		return this.NotSupport;
     	}else {
-    		return localStorage.getItem(key);
+    		var result = localStorage.getItem(key);
 //    		localStorage[key];
+    		try {
+    			if(typeof result === 'string') {
+    				result = JSON.parse(result);	
+    			}
+    		}catch(error) {}
+    		
+    		return result;
+
     	}
     };
     
@@ -36,9 +47,18 @@ angular.module('ps.services.storage', [])
     	localStorage.removeItem(key);
     };
     
+    // localStorage 모두 삭제                
+    root.removeAllLocalStorage = function() {
+    	if(isSupportStorage() == false) return this.NotSupport;
+    	localStorage.clear();
+    };
+    
     // sessionStorage 저장                
     root.setSessionStorage = function(key, value) {
     	if(isSupportStorage() == false) return this.NotSupport;
+    	if(value !=null && typeof value === 'object' && !(value instanceof Array)) {
+    		value = JSON.stringify(value);
+    	}
     	sessionStorage.setItem(key, value);
 //    	sessionStorage[key] = value;
     };
@@ -48,8 +68,15 @@ angular.module('ps.services.storage', [])
     	if(isSupportStorage() == false) {
     		return this.NotSupport;
     	}else {
-    		return sessionStorage.getItem(key);
+    		var result = sessionStorage.getItem(key);
 //    		sessionStorage[key];
+    		try {
+    			if(typeof result === 'string') {
+    				result = JSON.parse(result);	
+    			}
+    		}catch(error) {}
+    		
+    		return result;
     	}
     };
     

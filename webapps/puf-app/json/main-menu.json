@@ -72,8 +72,9 @@
         "text": "Template",
         "id": "temp",
         "children": [
-            { "text": "CRUD", "id": "temp_crud", "icon": "fa fa-list", "route": "crud-list" },
-            { "text": "Main", "id": "temp_main",
+            { "text": "CRUD", 	"id": "temp_crud", 		"icon": "fa fa-list", 	"route": "crud-list" },
+            { "text": "Wizard", "id": "temp_wizard", 	"icon": "fa fa-list", 	"route": "wizard-template" },
+            { "text": "Main", 	"id": "temp_main",
             	"children": [
             		{ "text": "Type1", 			"id": "main_type1", 	"icon": "fa fa-flag",	"url": "theme-views/main/main_default.html" },
             		{ "text": "Portal Type", 	"id": "main_portal", 	"icon": "fa fa-flag" }

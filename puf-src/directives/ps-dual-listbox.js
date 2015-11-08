@@ -22,8 +22,20 @@ angular.module('ps.directives.dualListbox', [])
 	ctrl.fieldChooser = function() {
 		
 		if($scope.chooser && $scope.sourceFields && $scope.destFields) {
-//			console.log('fieldChooser');
+
+			if($scope.sourceDataChanged == false || $scope.destinationDataChanged == false) return;
+			
+			console.log('fieldChooser');
+			$scope.sourceDataChanged = false;
+			$scope.destinationDataChanged = false;
+			
 			$scope.chooser.fieldChooser($scope.sourceFields, $scope.destFields);
+			
+			$scope.api = {
+				getSelectedData: function() {
+					return $scope.fieldScopes.destinationScope.data;
+				}
+			};
 			
 			// input hidden 추가 (template에서 처리시 fieldChooser() 실행오류가 생긴다.)
 			// chooser 안에는 source와 destination 만 있어야 정상작동함
@@ -72,11 +84,23 @@ angular.module('ps.directives.dualListbox', [])
 //				console.log($scope.chooser.getDestinationList().getFields());
 				
 				var divElem,
+				sourceFields = $scope.chooser.getSourceList().getFields(),
 				destFields = $scope.chooser.getDestinationList().getFields();
+				
+				// source
+				$scope.fieldScopes.sourceScope.data = [];
+				angular.forEach(sourceFields, function(div) {
+					divElem = angular.element(div);
+					if(checkFields($scope.fieldScopes.sourceScope.data, divElem) == true) {
+						$scope.fieldScopes.sourceScope.data.push({name: divElem.text(), value: divElem.attr('value')});
+					}
+				});
+				
+				// destination
 				$scope.fieldScopes.destinationScope.data = [];
 				angular.forEach(destFields, function(div) {
 					divElem = angular.element(div);
-					if(checkDestinationFields(divElem) == true) {
+					if(checkFields($scope.fieldScopes.destinationScope.data, divElem) == true) {
 						$scope.fieldScopes.destinationScope.data.push({name: divElem.text(), value: divElem.attr('value')});
 					}
 				});
@@ -86,10 +110,10 @@ angular.module('ps.directives.dualListbox', [])
 		}
 	};
 	
-	function checkDestinationFields(divElem) {
+	function checkFields(datas, divElem) {
 		var b = true;
 		// name과 value가 중복되면 같은 object로 판단
-		angular.forEach($scope.fieldScopes.destinationScope.data, function(obj) {
+		angular.forEach(datas, function(obj) {
 			if(b) {
 				if(obj.name == divElem.text() && obj.value == divElem.attr('value')) {
 					b = false;
@@ -180,11 +204,42 @@ angular.module('ps.directives.dualListbox', [])
 				ctrl.fieldChooser();
 			}
 			
-			scope.api = {
-				getSelectedData: function() {
-                    return scope.fieldScopes.destinationScope.data;
-				}
-			};
+			scope.fieldScopes.sourceScope.$watch('data', function(data) {
+				console.log('psSourceFields: data');
+				if(data == undefined || !(typeof data === 'object') || data.length == 0) return;
+				
+				scope.sourceFields.empty();
+				
+				// create dom
+				var fields = ctrl.createFields(data);
+				scope.sourceFields.append(fields);
+				
+//				console.log(element.parent());
+//				scope.$parent.sourceFields = element;
+				
+				scope.sourceDataChanged = true;
+				ctrl.fieldChooser();
+				
+			});
+			
+			// div append 완료후 input hidden 해준다.
+			// data 없이 view에서 코드로 한 경우 input hidden 방안도 같이 고려
+			scope.fieldScopes.destinationScope.$watch('data', function(data) {
+				console.log('psDestinationFields: data');
+				if(data == undefined || !(typeof data === 'object') || data.length == 0) return;
+				
+				scope.destFields.empty();
+				
+				// create dom
+				var fields = ctrl.createFields(data);
+				scope.destFields.append(fields);
+				
+//				scope.$parent.destinationFields = element;
+				
+				scope.destinationDataChanged = true;
+				ctrl.fieldChooser();
+				
+			});
 		}
 	}
 }])
@@ -215,21 +270,6 @@ angular.module('ps.directives.dualListbox', [])
 			
 			ctrl.addFieldScope('sourceScope', scope);
 			
-			scope.$watch('data', function(data) {
-//				console.log('psSourceFields: data');
-				if(data == undefined || !(typeof data === 'object') || data.length == 0) return;
-				
-				element.empty();
-				
-				// create dom
-				var fields = ctrl.createFields(data);
-				element.append(fields);
-				
-//				console.log(element.parent());
-//				scope.$parent.sourceFields = element;
-				
-				ctrl.fieldChooser();
-			});
 		}
 	}
 }])
@@ -260,22 +300,6 @@ angular.module('ps.directives.dualListbox', [])
 			
 			ctrl.addFieldScope('destinationScope', scope);
 			
-			// div append 완료후 input hidden 해준다.
-			// data 없이 view에서 코드로 한 경우 input hidden 방안도 같이 고려
-			scope.$watch('data', function(data) {
-//				console.log('psDestinationFields: data');
-				if(data == undefined || !(typeof data === 'object') || data.length == 0) return;
-				
-				element.empty();
-				
-				// create dom
-				var fields = ctrl.createFields(data);
-				element.append(fields);
-				
-//				scope.$parent.destinationFields = element;
-				
-				ctrl.fieldChooser();
-			});
 		}
 	}
 }]);
