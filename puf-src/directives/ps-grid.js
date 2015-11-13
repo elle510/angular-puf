@@ -152,6 +152,7 @@ angular.module('ps.directives.grid', [])
 				*/
 				//caption: "공지사항 목록",
 				viewrecords: true,
+				recordpos: 'left',		// record(현재 인덱스/ 총개수) 위치
 				rowNum: 20,
 				rowList: [20, 40, 60, 80, 100],
 				autowidth: true,
