@@ -114,19 +114,19 @@
             // Default classname configuration to be able avoid conflicts in frameworks
             classNames : {
 
-                hover: 'hover', // Item hover
-                disabled: 'disabled', // Item disabled
-                visible: 'visible', // Item visible
-                notSelectable: 'not-selectable', // Item not selectable
+                hover: 'context-menu-hover', // Item hover
+                disabled: 'context-menu-disabled', // Item disabled
+                visible: 'context-menu-visible', // Item visible
+                notSelectable: 'context-menu-not-selectable', // Item not selectable
 
-                icon: 'icon',
-                iconEdit: 'icon-edit',
-                iconCut: 'icon-cut',
-                iconCopy: 'icon-copy',
-                iconPaste: 'icon-paste',
-                iconDelete: 'icon-delete',
-                iconAdd: 'icon-add',
-                iconQuit: 'icon-quit'
+                icon: 'context-menu-icon',
+                iconEdit: 'context-menu-icon-edit',
+                iconCut: 'context-menu-icon-cut',
+                iconCopy: 'context-menu-icon-copy',
+                iconPaste: 'context-menu-icon-paste',
+                iconDelete: 'context-menu-icon-delete',
+                iconAdd: 'context-menu-icon-add',
+                iconQuit: 'context-menu-icon-quit'
             },
 
             // determine position to show menu at
@@ -181,6 +181,10 @@
 
                 if (offset.left + width > right) {
                     offset.left -= width;
+                }
+
+                if (offset.left < 0) {
+                    offset.left = 0;
                 }
 
                 opt.$menu.css(offset);
@@ -580,7 +584,7 @@
                             }
                             break;
                         }
-                        if (typeof opt.$selected !== 'undefined') {
+                        if (typeof opt.$selected !== 'undefined' && opt.$selected !== null) {
                             opt.$selected.trigger('mouseup');
                         }
                         return;
@@ -609,7 +613,7 @@
                 // pass event to selected item,
                 // stop propagation to avoid endless recursion
                 e.stopPropagation();
-                if (typeof opt.$selected !== 'undefined') {
+                if (typeof opt.$selected !== 'undefined' && opt.$selected !== null) {
                     opt.$selected.trigger(e);
                 }
             },
@@ -766,7 +770,7 @@
                     root = data.contextMenuRoot;
 
                 if (root !== opt && root.$layer && root.$layer.is(e.relatedTarget)) {
-                    if (typeof root.$selected !== 'undefined') {
+                    if (typeof root.$selected !== 'undefined' && root.$selected !== null) {
                         root.$selected.trigger('contextmenu:blur');
                     }
                     e.preventDefault();
@@ -1009,6 +1013,25 @@
 
                 root.accesskeys || (root.accesskeys = {});
 
+                function createNameNode(item) {
+                    var $name = $('<span></span>');
+                    if (item._accesskey) {
+                        if (item._beforeAccesskey) {
+                            $name.append(document.createTextNode(item._beforeAccesskey));
+                        }
+                        $('<span></span>')
+                            .addClass('context-menu-accesskey')
+                            .text(item._accesskey)
+                            .appendTo($name);
+                        if (item._afterAccesskey) {
+                            $name.append(document.createTextNode(item._afterAccesskey));
+                        }
+                    } else {
+                        $name.text(item.name);
+                    }
+                    return $name;
+                }
+
                 // create contextMenu items
                 $.each(opt.items, function (key, item) {
                     var $t = $('<li class="context-menu-item"></li>').addClass(item.className || ''),
@@ -1038,7 +1061,12 @@
                         for (var i = 0, ak; ak = aks[i]; i++) {
                             if (!root.accesskeys[ak]) {
                                 root.accesskeys[ak] = item;
-                                item._name = item.name.replace(new RegExp('(' + ak + ')', 'i'), '<span class="context-menu-accesskey">$1</span>');
+                                var matched = item.name.match(new RegExp('^(.*?)(' + ak + ')(.*)$', 'i'));
+                                if (matched) {
+                                    item._beforeAccesskey = matched[1];
+                                    item._accesskey = matched[2];
+                                    item._afterAccesskey = matched[3];
+                                }
                                 break;
                             }
                         }
@@ -1057,12 +1085,13 @@
                     } else {
                         // add label for input
                         if (item.type === 'cm_seperator') {
-                            $t.addClass('context-menu-separator ' + opt.classNames.notSelectable);
+                            $t.addClass('context-menu-separator ' + root.classNames.notSelectable);
                         } else if (item.type === 'html') {
-                            $t.addClass('context-menu-html ' + opt.classNames.notSelectable);
+                            $t.addClass('context-menu-html ' + root.classNames.notSelectable);
                         } else if (item.type) {
                             $label = $('<label></label>').appendTo($t);
-                            $('<span></span>').html(item._name || item.name).appendTo($label);
+                            createNameNode(item).appendTo($t);
+
                             $t.addClass('context-menu-input');
                             opt.hasTypes = true;
                             $.each([opt, root], function (i, k) {
@@ -1124,7 +1153,8 @@
                                 break;
 
                             case 'sub':
-                                $('<span></span>').html(item._name || item.name).appendTo($t);
+                                createNameNode(item).appendTo($t);
+
                                 item.appendTo = item.$node;
                                 op.create(item, root);
                                 $t.data('contextMenu', item).addClass('context-menu-submenu');
@@ -1142,7 +1172,7 @@
                                         k.callbacks[key] = item.callback;
                                     }
                                 });
-                                $('<span></span>').html(item._name || item.name || '').appendTo($t);
+                                createNameNode(item).appendTo($t);
                                 break;
                         }
 
@@ -1162,7 +1192,7 @@
                             if ($.isFunction(item.icon)) {
                                 item._icon = item.icon.call(this, $t, key, item);
                             } else {
-                                item._icon = opt.classNames.icon + ' ' + opt.classNames.icon + '-' + item.icon;
+                                item._icon = root.classNames.icon + '-' + item.icon;
 
                             }
                             $t.addClass(item._icon);

@@ -22,6 +22,7 @@
             		{ "text": "Sub Item 3-1", 		"id": "about_sub_3-1", 		"icon": "fa fa-book", 			"route": "textinput" },
             		{ "text": "Sub Item 3-2", 		"id": "about_sub_3-2", 		"icon": "fa fa-beer", 			"route": "textarea" },
             		{ "text": "Sub Item 3-3", 		"id": "about_sub_3-3", 		"icon": "fa fa-bolt", 			"route": "checkbox" },
+            		{ "type": "divider" },
             		{ "text": "Sub Item 3-4", 		"id": "about_sub_3-4", 		"icon": "fa fa-cab", 			"route": "radio" },
             		{ "text": "Sub Item 3-5", 		"id": "about_sub_3-5", 		"icon": "fa fa-anchor", 		"route": "select" },
             		{ "text": "A Long Sub Item 3-6", 		"id": "about_sub_3-6", 		"icon": "fa fa-adjust", 		"route": "datepicker",

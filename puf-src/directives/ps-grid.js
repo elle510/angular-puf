@@ -100,7 +100,7 @@ angular.module('ps.directives.grid', [])
         	id: 					'@',
         	className:				'@',
         	options: 				'=',
-        	isPage:					'=',
+        	paging:					'=',	// default: true
             //data:   				'=?',
             contextMenu:			'=',
             loadcompleteHandler:	'=',	// function(e, data) {}
@@ -151,7 +151,9 @@ angular.module('ps.directives.grid', [])
 				},
 				*/
 				//caption: "공지사항 목록",
+				viewrecords: true,
 				rowNum: 20,
+				rowList: [20, 40, 60, 80, 100],
 				autowidth: true,
 				shrinkToFit: true,		// 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
     		  	height: 'auto',
@@ -206,7 +208,13 @@ angular.module('ps.directives.grid', [])
                 element.append(table);
 
                 // 페이징 처리
-                if(scope.isPage) {
+                var isPage;
+                if(angular.isDefined(scope.paging) == false) {
+                	isPage = true;
+                }else {
+                	isPage = scope.paging;
+                }
+                if(isPage) {
                 	var pagerId = psUtil.getUUID();;
                 	opts.pager = '#' + pagerId;
                     var pager = angular.element(opts.pager);
@@ -222,8 +230,9 @@ angular.module('ps.directives.grid', [])
                 
                 // context menu
                 if(scope.contextMenu) {
-                	angular.extend(scope.contextMenu, {selector: '.ui-jqgrid-bdiv'});
-                	$('#' + attrs.id).contextMenu(scope.contextMenu);          
+                	angular.extend(scope.contextMenu, {selector: '#' + attrs.id + '.ui-jqgrid-btable'});
+//                	$('#' + attrs.id).contextMenu(scope.contextMenu);
+                	$.contextMenu(scope.contextMenu);
                 }
                 
                 // event bind

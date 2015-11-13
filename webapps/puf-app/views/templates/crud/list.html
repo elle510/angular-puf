@@ -187,15 +187,21 @@
 						<!-- <button type="button" value="a">등록</button> -->
 						<a class="btn btn-default" ui-sref="crud-save({type: 'create'})"><i class="fa fa-plus"></i></a>
 						<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i></a>
-						<a class="btn btn-default" href="#" ng-click="refresh()"><i class="fa fa-refresh"></i></a>
+						<a class="btn btn-default" href="javascript:void(0);" ng-click="refresh()"><i class="fa fa-refresh"></i></a>
 						<button class="btn btn-default" type="button"><i class="fa fa-file-excel-o"></i></button>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-grid id="grid" options="options" is-page="true" context-menu="contextMenu" 
+					<ps-grid id="grid" options="options" paging="true" context-menu="contextMenu" 
 							 loadcomplete-handler="loadCompleteHandler" api="gridApi"></ps-grid><!-- class-name="smooth" -->
+				</div>
+				
+			</div>
+			<div class="row">
+				<div>
+					<ps-grid id="grid1" options="options"></ps-grid>					 
 				</div>
 			</div>
 			<div class="row">

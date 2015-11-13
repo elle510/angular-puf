@@ -6,6 +6,9 @@
 
 ---
 
+__IMPORTANT: 2.0.0 is release and has change the default names of the icon classes in order to stop CSS conflicts with frameworks which define the class 'icon'.__
+
+
 [![Travis Build Status](https://travis-ci.org/swisnl/jQuery-contextMenu.svg?branch=master)](https://travis-ci.org/swisnl/jQuery-contextMenu)
 
 $.contextMenu is a management facility for - you guessed it - context menus. It was designed for an application where there are hundreds of elements that may show a context menu - so intialization speed and memory usage are kept fairly small. It also allows to register context menus without providing actual markup, as $.contextMenu generates DOMElements as needed.
@@ -94,13 +97,41 @@ Besides the obvious, browser also react to alphanumeric key strokes. Hitting <co
 
 $.contextMenu is published under the [MIT license](http://www.opensource.org/licenses/mit-license)
 
+## Special thanks ##
+
+Font-Awesome icons used from [encharm/Font-Awesome-SVG-PNG](https://github.com/encharm/Font-Awesome-SVG-PNG).
 
 ## Changelog ##
 
 ### Unreleased ###
+
+* Remove executable bit from jquery.contextMenu.js (thanks @jacknagel)
+
+### 2.0.0 (October 28th 2015) ###
+
+* __This version changes the default names of the icon classes in order to stop CSS conflicts with frameworks which define the class 'icon'.__ In order to keep the icon names the same as before this change you can change the defaults on the classnames for the icons ([docs on classNames option](http://swisnl.github.io/jQuery-contextMenu/docs.html#options-classNames)). The classnames will probably be "context-menu-icon-*" as proposed earlier by @rodneyrehm.
+* You can not use SASS to customize your contextmenu. The gulp command build-icons takes all the SVG icons from src/icons and builds them into a font. In order to this we needed to break backwards compatibility. This does mean the new CSS does not have the old .icon class defined which makes it a lot more stable within CSS frameworks. The first revision of the documentation is found [here](documentation/docs/customize.md).
+* The 1.x branch will be maintained for a while with bugfixes. But support for 1.x will be dropped in the coming months.
+* Reverted the change from 1.7.0: .html() changed back to .text() since it is an security issue (thanks @arai-a)
+
+### 1.10.1 (October 25th 2015) ###
+
+* Added gulp command (integration-test-paths) to change the paths in the integration tests to the correct path after they are overwritten by the documentation generator.
+* Make sure the contextmenu is not outside the client area by (thanks to @arai-a)
+* Update jQuery dependecy so that it will not result in double installation of jQuery when using npm (thanks to @fredericlb)
+
+### 1.9.1 (October 11th 2015) ###
+
+* Fixed a bug where the classNames options would fail on a submenu.
+* New documentation site and generation using [couscous](https://github.com/CouscousPHP/Couscous)
+
+### 1.9.0 (October 1st 2015) ###
+
+* Make classes configurable for those that can easily conflict. See the [docs on classNames option](http://swisnl.github.io/jQuery-contextMenu/docs.html#options-classNames). This also prepares to change classnames to non conflicting defaults so the hassle with frameworks as bootstrap will stop.
 * Fix for handling of seperator string. It threw an error on the protected property of String.$node
 * Fix for opening the contextmenu at coordinate 0,0 (by [Andreme](https://github.com/andreme))
-* Make classes configurable for those that can easily conflict. See the [docs on classNames option](http://swisnl.github.io/jQuery-contextMenu/docs.html#options-classNames)
+* Fixed check for jQuery UI ([Issue #182](https://github.com/swisnl/jQuery-contextMenu/issues/182))
+* Updated doc for function argument for icon
 
 ### 1.8.1 (September 14th 2015) ###
 

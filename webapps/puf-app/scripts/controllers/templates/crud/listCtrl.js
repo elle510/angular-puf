@@ -59,7 +59,7 @@ define(['app', 'moment'], function(app, moment) {
 		              ]
 		    */
 			url: rootPath + '/puf-app/json/grid.json',
-			datatype: "json",
+			postData: {index: "20130613", type: "FLOWS"},	// 검색
 			jsonReader: {
 				page: 'page',
 				total: 'total',
@@ -71,8 +71,8 @@ define(['app', 'moment'], function(app, moment) {
 			},
 			//data: mydata,
 			//datatype: "local",
-			//rowNum: 10,
-			rowList: [10,20,30],
+			sortname: 'name',
+			sortorder: 'desc',
     		colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
     	   	colModel:[
     	   		{name:'id',index:'id', width:60, sorttype:"int"},
@@ -109,11 +109,11 @@ define(['app', 'moment'], function(app, moment) {
 	        	alert('clicked: ' + key);
 	        },
 	        items: {
-	            "edit": {name: "Edit", icon: "edit"},
-	            "cut": {name: "Cut", icon: "cut"},
-	            "copy": {name: "Copy", icon: "copy"},
-	            "paste": {name: "Paste", icon: "paste"},
-	            "delete": {name: "Delete", icon: "delete"}
+	            edit: {name: "Edit", icon: "edit"},
+	            cut: {name: "Cut", icon: "cut"},
+	            copy: {name: "Copy", icon: "copy"},
+	            paste: {name: "Paste", icon: "paste"},
+	            'delete': {name: "Delete", icon: "delete"}
 	        }
 	    };
 		

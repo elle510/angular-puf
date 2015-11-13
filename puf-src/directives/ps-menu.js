@@ -135,7 +135,14 @@ angular.module('ps.directives.menu', [])
 				subMenu = '';
 			}
 			
-			li = '<li><a ' + href + '>' + icon + value.text + caret + '</a>' + subMenu + '</li>';
+			// divider 라면
+			if(value.hasOwnProperty('type') && value.type == 'divider') {
+				console.log('type');
+				li = '<li class="divider"></li>';
+			}else {
+				li = '<li><a ' + href + '>' + icon + value.text + caret + '</a>' + subMenu + '</li>';
+			}
+			
 //			console.log(li);
 			menu += li;
 		});
@@ -175,7 +182,13 @@ angular.module('ps.directives.menu', [])
 				_subMenu = '';
 			}
 			
-			li = '<li><a ' + href + '>' + icon + value.text + caret + '</a>' + _subMenu + '</li>';
+			// divider 라면
+			if(value.hasOwnProperty('type') && value.type == 'divider') {
+				li = '<li class="divider"></li>';
+			}else {
+				li = '<li><a ' + href + '>' + icon + value.text + caret + '</a>' + _subMenu + '</li>';
+			}
+			
 			subMenu += li;
 		});
 		
@@ -208,7 +221,7 @@ angular.module('ps.directives.menu', [])
 					
 					// create dom
 					menu = ctrl.createMeunu(data);
-					element.append(menu);
+					element.append($compile(menu)(scope));
 					
 					// init menu
 					ctrl.init();
