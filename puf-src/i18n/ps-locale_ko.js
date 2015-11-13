@@ -53,10 +53,10 @@ $.extend($ps_locale,{
 		ipErrorMsg: 'ip 형식이 올바르지 않습니다.'
 	},
 	grid: {
-		recordtext: 'View {0} - {1} of {2}',
+		recordtext: '{0} - {1} / {2}',
 		emptyrecords: '데이터가 존재하지 않습니다.',
 		loadtext: '로딩중...',
-		pgtext : 'Page {0} of {1}'
+		pgtext : '페이지 {0} of {1}'
 	},
 	wizard: {
 		current: "현재 단계:",
