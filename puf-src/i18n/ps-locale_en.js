@@ -17,6 +17,7 @@ $.extend($ps_locale,{
 	loading: 'Loading ...',
 	apply: 'Apply',
 	direct_select: 'direct selection',
+	select: 'select',
 	sun: 'Sun.',
 	mon: 'Mon.',
 	tue: 'Tue.',

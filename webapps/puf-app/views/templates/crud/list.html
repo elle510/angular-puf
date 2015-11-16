@@ -5,81 +5,83 @@
 	
 	<div class="page-body">
 		<div class="row"><!-- start default -->
-		<form class="form-search">
 			<div class="row">
 				<div class="col-md-12">
 					<ps-fieldset legend="검색" collapsible="true" expand="true">
 						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
+							<div class="col-md-4">
+								<div class="search-group">
 								    <label class="search-label">검색항목</label>
 								    <div class="search-item">
 								    	<input type="text" placeholder="검색어를 입력하세요">
-								    </div>					
+								    </div>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
+							<div class="col-md-4">
+								<div class="search-group">
 								    <label class="search-label">검색항목-item</label>
 								    <div class="search-item">
-								    	<input type="text" placeholder="검색어를 입력하세요">
-								    </div>							    
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-								    <label class="search-label width-100">검색항목</label>
+								    	<ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+								    </div>
 								    <div class="search-item">
 								    	<input type="text" placeholder="검색어를 입력하세요">
-								    </div>					    
+								    </div>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-								    <label class="search-label">검색항목-텍스트길이</label>
-								    <div class="search-item">
-								    	<input type="text" placeholder="검색어를 입력하세요">
-								    </div>					    
+							<div class="col-md-4">
+								<div class="search-group">
+									<div class="search-item">
+										<ps-checkbox name="check_name1" ng-model="datetime"> 일시</ps-checkbox>
+									</div>
+									<div class="search-item">
+										<ps-daterangepicker name="single_daterange" options="daterange_option" width="120px" disabled="!datetime" api="api_single_range"></ps-daterangepicker>
+									</div>
 								</div>
 							</div>
 						</div>
 						
 						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-								    <label class="search-label">검색항목</label>
+							<div class="col-md-4">
+								<div class="search-group">
+								    <label class="search-label">검색항목-테스트</label>
+								    <div class="search-item">
+								    	<ps-select name="name_company" ng-model="myCompany" array="companies" option-name="name" option-value="code"></ps-select>
+								    </div>
 								    <div class="search-item">
 								    	<ps-select name="name1" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
-								    </div>							    
+								    </div>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-								    <ps-checkbox name="check_name1" ng-model="checkValue2" inline="true"> 체크1</ps-checkbox>
-								    <ps-checkbox name="check_name2" ng-model="checkValue3" inline="true"> 체크2</ps-checkbox>
-								    <ps-checkbox name="check_name3" ng-model="checkValue4" inline="true"> 체크3</ps-checkbox>
+							<div class="col-md-4">
+								<div class="search-group">
+									<label class="search-label">점검상태</label>
+									<div class="search-item">
+								    	<ps-checkbox name="check_name1" ng-model="checkValue2" inline="true"> 준수</ps-checkbox>
+								    	<ps-checkbox name="check_name2" ng-model="checkValue3" inline="true"> 미준수</ps-checkbox>
+								    	<ps-checkbox name="check_name3" ng-model="checkValue4" inline="true"> 예외</ps-checkbox>
+								    	<ps-checkbox name="check_name3" ng-model="checkValue4" inline="true"> 실패</ps-checkbox>
+								    </div>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
+							<!-- <div class="col-md-3">
+								<div class="search-group">
 								    <ps-checkbox name="name1" ng-model="checkValue1"> Check1</ps-checkbox>
 								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
+							</div> -->
+							<div class="col-md-4">
+								<div class="search-group">
 									<label class="search-label">검색항목</label>
 									<div class="search-item">
-								    	<ps-stepper name="stepper_name" ng-model="stepperValue" min="0" max="100" step="5"></ps-stepper>
-								    	<!-- class-name="width-100" -->
+								    	<ps-stepper name="stepper_name" ng-model="stepperValue" width="60px" min="0" max="100" step="5"></ps-stepper>								    	
 								    </div>
 								</div>
 							</div>
 						</div>
 						
 						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-								    <label class="search-label">검색항목</label>
+							<div class="col-md-4">
+								<div class="search-group">
+								    <label class="search-label">검색항목-길이</label>
 									<div class="search-item">
 										<ps-radio name="radio_name1" ng-model="radioValue1" value="red"> Radio1</ps-radio>
 										<ps-radio name="radio_name1" ng-model="radioValue1" ng-value="specialValue"> Radio2</ps-radio>
@@ -88,7 +90,7 @@
 								</div>
 							</div>
 							<div class="col-md-4">
-								<div class="form-group">
+								<div class="search-group">
 								    <label class="search-label">항목</label>
 									<div class="search-item">
 										<ps-radio name="radio_name2" ng-model="radioValue2" value="seoul" inline="true"> Seoul</ps-radio>
@@ -97,11 +99,21 @@
 									</div>
 								</div>
 							</div>
+							<div class="col-md-4">
+								<div class="search-group">
+									<div class="search-item">
+										<ps-checkbox name="select_combo_name" ng-model="selectCombo"> 콤보선택</ps-checkbox>
+									</div>
+									<div class="search-item">
+										<ps-select name="name_company" ng-model="myCompany" array="companies" option-name="name" option-value="code" disabled="!selectCombo"></ps-select>
+									</div>
+								</div>
+							</div>
 						</div>
 						
 						<div class="row">
 							<div class="col-md-3">
-								<div class="form-group">
+								<div class="search-group">
 									<label class="search-label">날짜 선택</label>
 									<div class="search-item">
 										<ps-daterangepicker name="single_daterange" options="daterange_option" api="api_single_range"></ps-daterangepicker>
@@ -110,7 +122,7 @@
 							</div>
 							
 							<div class="col-md-3">
-								<div class="form-group">
+								<div class="search-group">
 									<label class="search-label">기간 선택</label>
 									<div class="search-item">
 										<ps-daterangepicker name="daterange" api="api_range"></ps-daterangepicker>
@@ -119,7 +131,7 @@
 							</div>
 							
 							<div class="col-md-3">
-								<div class="form-group">
+								<div class="search-group">
 									<label class="search-label">기간 선택</label>
 									<div class="search-item">
 										<ps-dateranges name="predefined_dateranges" options="daterange_predefined_ranges" api="api_predefined_range"></ps-dateranges>
@@ -177,7 +189,7 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</div>
 			</div>
-		</form>
+			
 			<div class="row">
 				<div class="col-md-9">
 					Grid Title
@@ -194,16 +206,11 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-grid id="grid" options="options" paging="true" context-menu="contextMenu" 
+					<ps-grid id="grid" options="options" context-menu="contextMenu" 
 							 loadcomplete-handler="loadCompleteHandler" api="gridApi"></ps-grid><!-- class-name="smooth" -->
 				</div>
 				
-			</div>
-			<div class="row">
-				<div>
-					<ps-grid id="grid1" options="options"></ps-grid>					 
-				</div>
-			</div>
+			</div>			
 			<div class="row">
 				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
 									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"

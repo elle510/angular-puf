@@ -32,6 +32,7 @@ angular.module('ps.directives.select', [])
         	optionGroup:	'@',
         	title:			'@',
         	options: 		'=',
+        	disabled:		'=',
             api:    		'=?'
         },
         /*template: '<select ng-options="a[optionName] for a in array">'+
@@ -59,14 +60,13 @@ angular.module('ps.directives.select', [])
 			}
 			
 			if(!angular.isDefined(attrs.title)) {
-				attrs.title = "선택하세요";
+				attrs.title = $ps_locale.select;//"선택하세요";
 			}
-				
-
-	            /*return '<div class="selectBox selector">'+
-	                        '<span>{{ ngModel.name || "' + attrs.defaultLabel + '"}}</span>'+
-	                        '<select name="' + attrs.name + '" ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '></select>'+
-	                   '</div>';*/
+			
+	        /*return '<div class="selectBox selector">'+
+	                     '<span>{{ ngModel.name || "' + attrs.defaultLabel + '"}}</span>'+
+	                     '<select name="' + attrs.name + '" ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '></select>'+
+	                 '</div>';*/
 	        // name="{{name}}" ng-model="ngModel" 은 view에서 설정하면 select 에 설정된다.
 			// 템플릿에서 설정하면 에러남(원인은 나중에 알아보자) 
 			return '<select ng-options="'+ngOptions+'" ng-class="className">'+
@@ -96,52 +96,49 @@ angular.module('ps.directives.select', [])
 //                //$compile(div)(scope);
 //                element.replaceWith($compile(div)(scope));
             	
-            	element.selectpicker(opts);
-                
-                //   view:  <ps-datetimepicker api="dtapi">
-                //   ctrl:  $scope.dtapi.show();
-                
+            	element.selectpicker(opts);           	
             });
             
+            scope.$watch('disabled', function(value) {
+//            	console.log('select disabled watch: ' + value);
+            	element.prop('disabled', value);
+            	element.selectpicker('refresh');
+            });
+            
+            //   view:  <ps-select api="dtapi">
+            //   ctrl:  $scope.dtapi.show();
+        	scope.api = {
+            	show: function() {	                
+                    element.selectpicker('show');
+                },
+                hide: function() {	                
+                    element.selectpicker('hide');
+                },
+                enable: function() {
+                	element.prop('disabled', false);
+                	element.selectpicker('refresh');
+                },
+                disable: function() {
+                	element.prop('disabled', true);
+                	element.selectpicker('refresh');
+                },
+                refresh: function() {	                
+                    element.selectpicker('refresh');
+                },
+                selectAll: function() {	                
+                    element.selectpicker('selectAll');
+                },
+                deselectAll: function() {	                
+                    element.selectpicker('deselectAll');
+                },
+                render: function() {	                
+                    element.selectpicker('render');
+                }
+            };
+        	
             /*scope.$watch('width', function(value) {
             	$('.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn)').css('width', value);
-            });*/
-            
-            scope.api = {
-                	show: function() {	                
-                        element.selectpicker('show');
-                    },
-                    hide: function() {	                
-                        element.selectpicker('hide');
-                    },
-                    enable: function() {
-                    	element.prop('disabled',false);
-                    	//element.selectpicker('refresh');
-                    },
-                    disable: function() {
-                    	element.prop('disabled',true);
-                    	//element.selectpicker('refresh');
-                    },
-                    refresh: function() {	                
-                        element.selectpicker('refresh');
-                    },
-                    selectAll: function() {	                
-                        element.selectpicker('selectAll');
-                    },
-                    deselectAll: function() {	                
-                        element.selectpicker('deselectAll');
-                    },
-                    render: function() {	                
-                        element.selectpicker('render');
-                    }
-                };
-            	            
-            /*scope.$watch('data', function (value) {
-                table.jqGrid('setGridParam', { data: value })
-                     .trigger('reloadGrid')
-                ;
-            	console.log('data');
-            });*/	            
+            });*/           	                               
         }
     };
 });

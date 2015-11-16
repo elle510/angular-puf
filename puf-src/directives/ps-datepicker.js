@@ -19,12 +19,14 @@ angular.module('ps.directives.datepicker', [])
         	id:			'@',
         	name:		'@',
         	className:	'@',
+        	width:		'@',
+        	disabled:	'=',
         	options: 	'=',
             api:    	'=?'
         },
         template: '<div class="input-group daterange" ng-class="className">' +
-        			'<input type="text" id="{{id}}" class="form-control">' +
-        			'<span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>' +
+        			'<input type="text" id="{{id}}" class="form-control" ng-style="{width: width}" ng-disabled="disabled">' +
+        			'<span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar" ng-class="{disabled: disabled}"></i></span>' +
         			'<input type="hidden" name="{{name}}">' +
         		  '</div>',
         link: function (scope, element, attrs) {

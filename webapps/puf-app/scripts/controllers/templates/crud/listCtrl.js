@@ -12,6 +12,8 @@ define(['app', 'moment'], function(app, moment) {
 		
 		$scope.expand = true;
 		
+		console.log('listCtrl Start');
+		
 		/*function detailViewLink(cellvalue, options, rowObject) {
             return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
         }*/
@@ -151,6 +153,17 @@ define(['app', 'moment'], function(app, moment) {
 		    		     {name:'yellow', code:'5', shade:'light'}
 		    		];
 		$scope.myColor = $scope.colors[2]; 	// red
+		
+		$scope.companies = [
+		    			 {name:'Google', code:'1'},
+		    		     {name:'Apple', code:'2'},
+		    		     {name:'MS', code:'3'}
+		    		];
+		$scope.myCompany = $scope.companies[2]; 	// Apple
+		
+		// 일시
+		$scope.datetime = true;
+		$scope.selectCombo = true;
 		
 		// checkbox
 		$scope.checkValue1 = true;

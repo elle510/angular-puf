@@ -17,6 +17,7 @@ $.extend($ps_locale,{
 	loading: '로딩중...',
 	apply: '적용',
 	direct_select: '직접 선택',
+	select: '선택하세요',
 	sun: '일',
 	mon: '월',
 	tue: '화',
