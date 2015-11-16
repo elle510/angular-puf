@@ -112,25 +112,57 @@
 						</div>
 						
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-4">
+								<div class="search-group">
+								    <label class="search-label">검색항목-길이</label>
+									<div class="search-item">
+										
+									</div>	
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="search-group">
+								    <label class="search-label">항목</label>
+									<div class="search-item">
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="search-group">
+									<div class="search-item">
+										<ps-checkbox name="select_combo_name1" ng-model="selectCombo1"> 콤보선택</ps-checkbox>
+									</div>
+									<div class="search-item">
+										<ps-select name="name_company" ng-model="myCompany" array="companies" option-name="name" option-value="code" disabled="!selectCombo1"></ps-select>
+									</div>
+									<div class="search-item">
+								    	<ps-stepper name="stepper_name1" ng-model="stepperValue1" width="60px" min="0" max="100" step="5" disabled="!selectCombo1"></ps-stepper>								    	
+								    </div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-4">
 								<div class="search-group">
 									<label class="search-label">날짜 선택</label>
 									<div class="search-item">
-										<ps-daterangepicker name="single_daterange" options="daterange_option" api="api_single_range"></ps-daterangepicker>
+										<ps-daterangepicker name="single_daterange" options="daterange_option" width="120px" api="api_single_range"></ps-daterangepicker>
 									</div>
 						  		</div>
 							</div>
 							
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<div class="search-group">
 									<label class="search-label">기간 선택</label>
 									<div class="search-item">
-										<ps-daterangepicker name="daterange" api="api_range"></ps-daterangepicker>
+										<ps-daterangepicker name="daterange" width="220px" api="api_range"></ps-daterangepicker>
 									</div>
 						  		</div>
 							</div>
 							
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<div class="search-group">
 									<label class="search-label">기간 선택</label>
 									<div class="search-item">

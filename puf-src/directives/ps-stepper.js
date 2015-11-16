@@ -19,6 +19,7 @@ angular.module('ps.directives.stepper', [])
         	name:		'@',
         	className:	'@',
         	width:		'@',
+        	disabled:	'=',
         	min: 		'=',
             max: 		'=',
             step: 		'=',
@@ -40,10 +41,10 @@ angular.module('ps.directives.stepper', [])
 				}
 				
 				temp = '<div class="input-group stepper" ng-class="className" ng-style="{width: width}">' +
-							'<input type="text" class="form-control" name="{{name}}" style="width: inherit;">' +
+							'<input type="text" class="form-control" name="{{name}}" ng-disabled="disabled" style="width: inherit;">' +
 							'<div class="'+_direction+'">' +
-								'<button class="btn btn-default" ng-disabled="isOverMax()" ng-click="increment()"><i class="fa fa-caret-up"></i></button>' +
-								'<button class="btn btn-default" ng-disabled="isOverMin()" ng-click="decrement()"><i class="fa fa-caret-down"></i></button>' +
+								'<button class="btn btn-default" ng-disabled="disabled && disabled || isOverMax()" ng-click="increment()"><i class="fa fa-caret-up"></i></button>' +
+								'<button class="btn btn-default" ng-disabled="disabled && disabled || isOverMin()" ng-click="decrement()"><i class="fa fa-caret-down"></i></button>' +
 							'</div>' +
 					   '</div>';
 				

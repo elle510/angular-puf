@@ -164,6 +164,7 @@ define(['app', 'moment'], function(app, moment) {
 		// 일시
 		$scope.datetime = true;
 		$scope.selectCombo = true;
+		$scope.selectCombo1 = true;
 		
 		// checkbox
 		$scope.checkValue1 = true;
@@ -181,6 +182,7 @@ define(['app', 'moment'], function(app, moment) {
 		
 		// stepper
 		$scope.stepperValue = 10;
+		$scope.stepperValue1 = 20;
 		
 		// date
 		$scope.toDate_options = {
