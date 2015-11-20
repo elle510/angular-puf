@@ -34,9 +34,11 @@ angular.module('ps.directives.fieldset', [])
 	};
 	
 }])
-.directive('psFieldset', ['psUtil', function(psUtil) {
+.directive('psFieldset', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
 		restrict: 'EA',
+		/*terminal: true,
+        priority: 1000000,*/
 		transclude: true,
 		replace: true,
 		scope: {
@@ -75,6 +77,8 @@ angular.module('ps.directives.fieldset', [])
 			}else {
 				scope.initExpand = true;
 			}
+			
+			$compile(element)(scope);
 			
 			// template의 expand()
     		scope.expandCollapse = function(event) {

@@ -267,12 +267,13 @@ define([
 			
 		}]);
 		
-		app.run(function() {
+		app.run(function(/*$rootScope*/) {
 			//여기에서 일종의 초기화가 이루어지고 있다.
 			
 			//어플리케이션 모듈은 이렇게 이 공간을 초기화를 목적으로
 			//사용하게 되는 경우가 많은 걸까?
 			
+//			$rootScope.foo = 'bar';
 			/*
 			psTabs.registerDirective();
 			psButtonDropdown.registerDirective();
