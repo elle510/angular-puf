@@ -153,7 +153,7 @@ body {
 /*   display: flex; */
 }
 
-.left-sidebar {
+.main .left-sidebar {
 /* 	-webkit-transition-property: left, width; */
 /* 	-moz-transition-property: left, width; */
 /* 	-ms-transition-property: left, width; */
@@ -178,7 +178,7 @@ body {
 	border: 1px solid;
 }
 
-.center {
+.main .center {
 	-webkit-transition-property: left;
 	-moz-transition-property: left;
 	-ms-transition-property: left;
@@ -213,7 +213,7 @@ body {
 
 /* left-sidebar 영역
 ----------------------------------*/
-.left {
+.main .left-sidebar .left {
 	/* scroll 을 위해 아래 스타일 설정 */
 	position: absolute;
 	top: 0;
@@ -225,7 +225,7 @@ body {
 /*     height: 100%; */
 }
 
-.leftsidebar-collapse {
+.main .leftsidebar-collapse {
 	-webkit-transition-property: left;
 	-moz-transition-property: left;
 	-ms-transition-property: left;
@@ -256,17 +256,17 @@ body {
 	
 	border: 1px solid;
 }
-.leftsidebar-collapse label {
+.main .leftsidebar-collapse label {
   	font-size: 12px;
   	cursor: pointer;
 }
 
-.leftsidebar-collapse .collapse-close {
+.main .leftsidebar-collapse .collapse-close {
   	display: block;
   	padding: 0;
   	margin: 0;
 }
-.leftsidebar-collapse .collapse-open {
+.main .leftsidebar-collapse .collapse-open {
   	display: none;
   	padding: 0;
   	margin: 0;
@@ -294,7 +294,7 @@ body {
 }
 */
 
-.v-splitter {
+.main .v-splitter {
 	background-color: #BBB;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -313,7 +313,7 @@ body {
 
 /* center 영역
 ----------------------------------*/
-.breadcrumbs {
+.main .center .breadcrumbs {
 	position: fixed;
 	top: 80px;
 	width: 100%;
@@ -323,7 +323,7 @@ body {
   	border: 1px solid;
 }
 
-.content {
+.main .center .content {
 	position: relative;
 	top: 30px;
 	width: 100%;

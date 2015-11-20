@@ -258,6 +258,12 @@ define(['app', 'moment'], function(app, moment) {
 			console.log('No Web Storage support');
 		}
 		*/
+		
+		$scope.message = 'zzz';
+		$scope.greet = function() {
+			console.log($scope.name);
+		    $scope.message = "Hello, " + $scope.name;
+		};
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', 'psStorage', controller]);

@@ -22,18 +22,19 @@ angular.module('ps.directives.select', [])
         	required: 	'@',
         	ngRequired:	'@',
         	ngOptions: 	'&',*/
-        	id:				'@',
-        	name:			'@',
-        	className:		'@',
-        	ngModel:		'=',
-        	array: 			'=',
-        	optionName: 	'@',
-        	optionValue:	'@',
-        	optionGroup:	'@',
-        	title:			'@',
-        	options: 		'=',
-        	disabled:		'=',
-            api:    		'=?'
+        	id:					'@',
+        	name:				'@',
+        	className:			'@',
+        	ngModel:			'=',
+        	array: 				'=',
+        	optionName: 		'@',
+        	optionValue:		'@',
+        	optionGroup:		'@',
+        	title:				'@',
+        	options: 			'=',
+        	disabled:			'=',
+        	completeHandler:	'=',	// function(e) {}
+            api:    			'=?'
         },
         /*template: '<select ng-options="a[optionName] for a in array">'+
         			'<option value="">-- {{title}} --</option>'+
@@ -58,10 +59,11 @@ angular.module('ps.directives.select', [])
 				ngOptions += 'for a in array';
 				//console.log(ngOptions);
 			}
-			
+			/*
 			if(!angular.isDefined(attrs.title)) {
-				attrs.title = $ps_locale.select;//"선택하세요";
+				attrs.title = $ps_locale.select;	// "선택하세요";
 			}
+			*/
 			
 	        /*return '<div class="selectBox selector">'+
 	                     '<span>{{ ngModel.name || "' + attrs.defaultLabel + '"}}</span>'+
@@ -69,8 +71,8 @@ angular.module('ps.directives.select', [])
 	                 '</div>';*/
 	        // name="{{name}}" ng-model="ngModel" 은 view에서 설정하면 select 에 설정된다.
 			// 템플릿에서 설정하면 에러남(원인은 나중에 알아보자) 
-			return '<select ng-options="'+ngOptions+'" ng-class="className">'+
-    					'<option value="">-- {{title}} --</option>'+
+			return '<select ng-options="' + ngOptions + '" ng-class="className">' +
+    					//'<option value="">-- {{title}} --</option>' +
     				'</select>';
 	    },
         link: function (scope, element, attrs) {
@@ -96,46 +98,77 @@ angular.module('ps.directives.select', [])
 //                //$compile(div)(scope);
 //                element.replaceWith($compile(div)(scope));
             	
-            	element.selectpicker(opts);           	
+            	element.selectpicker(opts);
+            	
+            	// event bind
+                if(scope.completeHandler) {                	
+                	element.on('complete', scope.completeHandler);
+                }
+                
+            	//   view:  <ps-select api="dtapi">
+                //   ctrl:  $scope.dtapi.show();
+            	scope.api = {
+                	show: function() {	                
+                        element.selectpicker('show');
+                    },
+                    hide: function() {	                
+                        element.selectpicker('hide');
+                    },
+                    setValue: function(value) { // value: 'Mustard' or ['Mustard','Relish']
+                    	element.selectpicker('val', value);
+                    },              
+                    enable: function() {
+                    	element.prop('disabled', false);
+                    	element.selectpicker('refresh');
+                    },
+                    disable: function() {
+                    	element.prop('disabled', true);
+                    	element.selectpicker('refresh');
+                    },
+                    refresh: function() {	                
+                        element.selectpicker('refresh');
+                    },
+                    selectAll: function() {	                
+                        element.selectpicker('selectAll');
+                    },
+                    deselectAll: function() {	                
+                        element.selectpicker('deselectAll');
+                    },
+                    render: function() {	                
+                        element.selectpicker('render');
+                    }
+                };
+            	
+            	element.trigger('complete', scope.api);
+            });
+                   
+            scope.$watch('ngModel', function(value) {
+//            	console.log('select ngModel watch: ' + value);
+            	// 이게 호출되면 에러남 원인 찾아야 함 (ng-change 시 값을 넣어주는 것 해보자)
+            	// select 태그에 바로 angular를 하면 되는데 select는 hide되고 디자인된 dom이어서 잘 안먹는다
+            	// checkbox, radio 도 마찬가지
+//            	element.selectpicker('val', value); 
             });
             
+            /*
+            attrs.$observe('ngModel', function(value){ // Got ng-model bind path here
+            	console.log('$observe: ' + value);  
+                scope.$watch(value, function(newValue){ // Watch given path for changes
+                    console.log('$watch: ' + newValue);  
+                });
+            });
+            */
             scope.$watch('disabled', function(value) {
 //            	console.log('select disabled watch: ' + value);
             	element.prop('disabled', value);
             	element.selectpicker('refresh');
             });
             
-            //   view:  <ps-select api="dtapi">
-            //   ctrl:  $scope.dtapi.show();
-        	scope.api = {
-            	show: function() {	                
-                    element.selectpicker('show');
-                },
-                hide: function() {	                
-                    element.selectpicker('hide');
-                },
-                enable: function() {
-                	element.prop('disabled', false);
-                	element.selectpicker('refresh');
-                },
-                disable: function() {
-                	element.prop('disabled', true);
-                	element.selectpicker('refresh');
-                },
-                refresh: function() {	                
-                    element.selectpicker('refresh');
-                },
-                selectAll: function() {	                
-                    element.selectpicker('selectAll');
-                },
-                deselectAll: function() {	                
-                    element.selectpicker('deselectAll');
-                },
-                render: function() {	                
-                    element.selectpicker('render');
-                }
-            };
-        	
+            /*
+            scope.$watch('selectedValue', function(value) {
+            	element.selectpicker('val', value); // value: 'Mustard' or ['Mustard','Relish'] (d)
+            });
+            */
             /*scope.$watch('width', function(value) {
             	$('.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn)').css('width', value);
             });*/           	                               
