@@ -159,14 +159,17 @@ angular.module('ps.directives.datepicker', [])
             	
             	// init display
             	var first,
-            	ranges = daterange.data('daterangepicker').ranges;
+            	ranges = opts.ranges;//daterange.data('daterangepicker').ranges;
             	for(var key in ranges) {
             		if (ranges.hasOwnProperty(key) && typeof(key) !== 'function') {
             	        first = ranges[key];
             	        break;
             	    }
             	}
-            	scope.displayDate(first[0], first[1]);
+            	          	
+            	if(first !== undefined && Array.isArray(first) && first.length > 0) {
+            		scope.displayDate(first[0], first[1]);
+            	}
             	
                 //   view:  <ps-dateranges api="api">
                 //   ctrl:  $scope.api.getStartDate();       

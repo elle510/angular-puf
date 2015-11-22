@@ -57,7 +57,7 @@ angular.module('ps.directives.fieldset', [])
 						'</div>' +						
 					'</div>' +
 				  '</fieldset>',
-		link: function(scope, element, attrs, ctrl) {
+		link: function(scope, element, attrs, ctrl, transclude) {
 			
 			if(angular.isDefined(attrs.id) == false) {
 				attrs.id = psUtil.getUUID();
@@ -78,7 +78,7 @@ angular.module('ps.directives.fieldset', [])
 				scope.initExpand = true;
 			}
 			
-			$compile(element)(scope);
+			//$compile(element)(scope);
 			
 			// template의 expand()
     		scope.expandCollapse = function(event) {
@@ -91,6 +91,13 @@ angular.module('ps.directives.fieldset', [])
     		scope.collapse = function(event) {
     			ctrl.collapse(event.target);
     		};
+    		
+    		/* 자식 element에 설정
+    		transclude(scope.$parent, function(clone, scope) {
+//    			element.append(clone);
+    			$('#' + attrs.id).append(clone);
+    		});
+    		*/
 		}
 	}
 }]);
