@@ -59,6 +59,8 @@ angular.module('ps.directives.menu', [])
 // transclude Basic Template (ps-tabs 도 참고)
 .directive('psTransclude', function() {
 	return {
+		restrict: 'A',
+	    require: '^psMenu',
 		link: function(scope, element, attrs, controller, transclude) {
 	        transclude(scope.$parent, function(clone) {
 	          element.empty();

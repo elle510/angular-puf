@@ -54,11 +54,12 @@ define(['app', 'moment'], function(app, moment) {
 		
 		$scope.getDateSingleRange = function() {
 			$scope.date_single_range_string = $scope.api_single_range.getDate();
-			
+			/*
 			console.log($scope.api_single_range.getDate());
 			console.log($scope.api_single_range.getDate()._d);
 			console.log(typeof $scope.api_single_range.getDate());
 			console.log(typeof $scope.api_single_range.getDate()._d);
+			*/
 		};
 		
 		$scope.getDateRange1 = function() {
@@ -66,16 +67,20 @@ define(['app', 'moment'], function(app, moment) {
 			$scope.to_date_range_string = $scope.api_range.getEndDate();
 			
 			// start date
+			/*
 			console.log($scope.api_range.getStartDate());
 			console.log($scope.api_range.getStartDate()._d);
 			console.log(typeof $scope.api_range.getStartDate());
 			console.log(typeof $scope.api_range.getStartDate()._d);
+			*/
 			
 			// end date
+			/*
 			console.log($scope.api_range.getEndDate());
 			console.log($scope.api_range.getEndDate()._d);
 			console.log(typeof $scope.api_range.getEndDate());
 			console.log(typeof $scope.api_range.getEndDate()._d);
+			*/
 		};
 		
 		// Predefined Ranges

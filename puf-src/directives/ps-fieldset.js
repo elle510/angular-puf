@@ -53,7 +53,7 @@ angular.module('ps.directives.fieldset', [])
 		template: '<fieldset class="fieldset" ng-class="className">' + 
 					'<legend ng-click="expandCollapse($event)" name="{{id}}"> {{legend}}</legend>' +
 					'<div ng-style="initExpand && {display: \'block\'} || {display: \'none\'}">' +
-						'<div id="{{id}}" ng-transclude>' +
+						'<div id="{{id}}" ps-fieldset-transclude>' +
 						'</div>' +						
 					'</div>' +
 				  '</fieldset>',
@@ -79,6 +79,7 @@ angular.module('ps.directives.fieldset', [])
 			}
 			
 			//$compile(element)(scope);
+			//$compile($('#' + attrs.id))(scope);
 			
 			// template의 expand()
     		scope.expandCollapse = function(event) {
@@ -92,6 +93,8 @@ angular.module('ps.directives.fieldset', [])
     			ctrl.collapse(event.target);
     		};
     		
+    		//scope.$transcludeFn = transclude;
+    		
     		/* 자식 element에 설정
     		transclude(scope.$parent, function(clone, scope) {
 //    			element.append(clone);
@@ -100,4 +103,16 @@ angular.module('ps.directives.fieldset', [])
     		*/
 		}
 	}
-}]);
+}])
+.directive('psFieldsetTransclude', function() {
+	return {
+		restrict: 'A',
+	    require: '^psFieldset',
+		link: function(scope, element, attrs, controller, transclude) {		
+			transclude(scope.$parent, function(clone) {
+				element.empty();
+				element.append(clone);
+			});
+		}
+	};
+});

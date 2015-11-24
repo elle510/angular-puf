@@ -45,7 +45,11 @@ angular.module('ps.directives.select', [])
 			var ngOptions = '';
 			if(angular.isDefined(attrs.array)) {
 				if(angular.isDefined(attrs.optionValue)) {
-					ngOptions += 'a[optionValue] as ';
+					if(attrs.optionValue == '{}') {
+						ngOptions += 'a as ';
+					}else {
+						ngOptions += 'a[optionValue] as ';
+					}
 				}
 				
 				if(angular.isDefined(attrs.optionName)) {
@@ -147,7 +151,7 @@ angular.module('ps.directives.select', [])
             	// 이게 호출되면 에러남 원인 찾아야 함 (ng-change 시 값을 넣어주는 것 해보자)
             	// select 태그에 바로 angular를 하면 되는데 select는 hide되고 디자인된 dom이어서 잘 안먹는다
             	// checkbox, radio 도 마찬가지
-//            	element.selectpicker('val', value); 
+//            	element.selectpicker('val', value);
             });
             
             /*

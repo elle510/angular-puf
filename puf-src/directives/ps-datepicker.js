@@ -96,7 +96,7 @@ angular.module('ps.directives.datepicker', [])
                     	// d type: Date/moment/string
                 		daterange.data('daterangepicker').setEndDate(d);	// '2014-03-31'                 
                     },
-                    getDate: function() {
+                    getDate: function() {                   	
                     	return daterange.data('daterangepicker').startDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
                     },
                     getStartDate: function() {

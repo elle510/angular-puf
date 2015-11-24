@@ -33,6 +33,7 @@ define(['app'], function(app) {
 		
 		$scope.greet = function() {
 			console.log($scope.myColor1);
+			$scope.myColor = 5;
 		    //$scope.message = "Hello, " + $scope.name;
 		};
     };
