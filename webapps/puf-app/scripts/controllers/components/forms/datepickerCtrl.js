@@ -49,11 +49,13 @@ define(['app', 'moment'], function(app, moment) {
 		
 		// Daterangepicker
 		$scope.daterange_option = {
-			singleDatePicker: true
+			singleDatePicker: true,
+			timePicker: true
 		};
 		
 		$scope.getDateSingleRange = function() {
 			$scope.date_single_range_string = $scope.api_single_range.getDate();
+			$scope.date_single_range_dateString = $scope.api_single_range.startDateString();
 			/*
 			console.log($scope.api_single_range.getDate());
 			console.log($scope.api_single_range.getDate()._d);

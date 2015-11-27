@@ -11,32 +11,64 @@
  */
 
 angular.module('ps.directives.datepicker', [])
+.controller('psDaterangepickerCtrl', ['$scope', function($scope) {
+	var ctrl = this;
+	
+	ctrl.getDateToString = function(date) {
+		var year = date.getFullYear(), 
+		month = zerofill(date.getMonth() + 1, 2),
+		day = zerofill(date.getDate(), 2),
+		hours = (date.getHours() - 9 < 0) ? '00' : zerofill(date.getHours() - 9, 2),	// daterangepicker hours 9시간 오버표시되는 버그로 인해 빼준다.
+		minutes = zerofill(date.getMinutes(), 2),
+		seconds = zerofill(date.getSeconds(), 2),
+		dateString = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+		
+		return dateString;
+	};
+	
+	function zerofill(n, digits) {
+		var zero = '';
+		n = n.toString();
+		
+		if (n.length < digits) {
+			for (var i = 0; i < digits - n.length; i++) {
+				zero += '0';
+		    }
+		}
+		  
+		return zero + n;
+	}
+	
+}])
 .directive('psDaterangepicker', ['$compile', 'psUtil', function($compile, psUtil) {
 	return {
         restrict: 'E',
         replace: true,
         scope: {
-        	id:			'@',
-        	name:		'@',
-        	className:	'@',
-        	width:		'@',
-        	disabled:	'=',
-        	options: 	'=',
-            api:    	'=?'
+        	id:				'@',
+        	startDateName:	'@',
+        	endDateName:	'@',
+        	className:		'@',
+        	width:			'@',
+        	disabled:		'=',
+        	options: 		'=',
+            api:    		'=?'
         },
+        controller: 'psDaterangepickerCtrl',
         template: '<div class="input-group daterange" ng-class="className">' +
         			'<input type="text" id="{{id}}" class="form-control" ng-style="{width: width}" ng-disabled="disabled">' +
         			'<span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar" ng-class="{disabled: disabled}"></i></span>' +
-        			'<input type="hidden" name="{{name}}">' +
+        			'<input type="hidden" name="{{startDateName}}">' +
+        			'<input type="hidden" name="{{endDateName}}">' +
         		  '</div>',
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attrs, ctrl) {
             var daterange,
             opts,
-            today = new Date(),
+            /*today = new Date(),
     		y = today.getFullYear(),
     		m = today.getMonth() + 1,
     		d = today.getDate(),
-    		today_str = y + '-' + m + '-' + d,
+    		today_str = y + '-' + m + '-' + d,*/
             defaults = {
             	locale: {
             		format: "YYYY-MM-DD",
@@ -85,6 +117,27 @@ angular.module('ps.directives.datepicker', [])
             	daterange = $('#' + attrs.id);
             	daterange.daterangepicker(opts);
             	
+            	function setDateString() {
+                	var startDate = daterange.data('daterangepicker').startDate._d,
+            		endDate = daterange.data('daterangepicker').endDate._d,
+            		startDateString, endDateString;
+            		
+            		startDateString = ctrl.getDateToString(startDate);
+            		endDateString = ctrl.getDateToString(endDate);
+//            		console.log(startDateString);
+//            		console.log(endDateString);
+            		
+            		$('[name="' + scope.startDateName + '"]').val(startDateString);
+            		$('[name="' + scope.endDateName + '"]').val(endDateString);
+                }
+            	
+            	// init 시 hidden 에 datestring 설정
+            	setDateString();
+            	
+            	daterange.on('hide.daterangepicker', function(event, picker) {
+            		setDateString();
+            	});
+            	
                 //   view:  <ps-daterangepicker api="api">
                 //   ctrl:  $scope.api.getDate();       
                 scope.api = {
@@ -104,8 +157,14 @@ angular.module('ps.directives.datepicker', [])
                     },
                     getEndDate: function() {
                     	return daterange.data('daterangepicker').endDate;	// _d 에서 꺼내쓸지 여기서 _d 를 리턴 할지 고민
+                    },
+                    startDateString: function() {
+                    	return $('[name="' + scope.startDateName + '"]').val();
+                    },
+                    endDateString: function() {
+                    	return $('[name="' + scope.endDateName + '"]').val();
                     }
-                };          
+                };
             });
         }
     };

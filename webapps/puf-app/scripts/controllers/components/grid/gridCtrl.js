@@ -63,13 +63,7 @@ define(['app'], function(app) {
     	   		//alert('row 선택시 rowid: ' + rowid);
     	   		/*console.log(row);
     	   		console.log(event);*/
-    	   	},
-    	   	onRightClickRow: function (rowid, iRow, iCol, e) {
-    	   		/*console.log(rowid);
-    	   		console.log(iRow);
-    	   		console.log(iCol);
-    	   		console.log(e);*/
-    	    }
+    	   	}
         };
 		
 		$scope.contextMenu = {

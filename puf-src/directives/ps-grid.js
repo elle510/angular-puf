@@ -175,7 +175,23 @@ angular.module('ps.directives.grid', [])
 //        			$compile($('.ui-jqgrid'))(scope);
         			//$(this).triggerHandler('jqGridLoadComplete', data);
         		},
-    			beforeSelectRow: ctrl.handleMultiSelect // handle multi select
+    			beforeSelectRow: ctrl.handleMultiSelect, // handle multi select
+    			onRightClickRow: function(rowid, iRow, iCol, e) {
+    				var b = true, 
+    				selrowIds = table.jqGrid('getGridParam', 'selarrrow');
+    				$.each(selrowIds, function(index, value) {        			
+        				if(value == rowid) {
+        					b = false;
+        					return false;	// break;
+        				}
+        			});
+    				
+    				// toggle 방지
+    				if(b) {
+    					$(this).jqGrid('resetSelection');		// setSelection 의 toggle 로 인해 모두 선택해제
+        				$(this).jqGrid('setSelection', rowid);	// select row 
+    				}   	
+    			}
             };
             //var opts =  $.extend(defaults, opts);
             //console.log(attrs.gridId);

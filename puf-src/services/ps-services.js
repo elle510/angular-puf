@@ -1,5 +1,5 @@
 /**
- * ps-directives
- * puf directives module
+ * ps-services
+ * puf services module
  */
 angular.module('ps.services', ['ps.services.util', 'ps.services.storage']);
