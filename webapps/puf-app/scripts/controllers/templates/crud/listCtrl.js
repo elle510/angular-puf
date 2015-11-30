@@ -246,7 +246,8 @@ define(['app', 'moment'], function(app, moment) {
 				sourceFields: $scope.sourceFields,
 				destFields: $scope.destFields
 			};
-			console.log($scope.dualListApi);
+//			console.log($scope.dualListApi);
+			console.log(f);
 			psStorage.setLocalStorage(key, f);
 		};
 		
@@ -259,11 +260,6 @@ define(['app', 'moment'], function(app, moment) {
 		}
 		*/
 		
-		$scope.message = 'zzz';
-		$scope.greet = function() {
-			console.log($scope.name);
-		    $scope.message = "Hello, " + $scope.name;
-		};
     };
     
 	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', 'psStorage', controller]);

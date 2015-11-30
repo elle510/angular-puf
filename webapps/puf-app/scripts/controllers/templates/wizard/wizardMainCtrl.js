@@ -10,6 +10,9 @@ define(['app'], function(app) {
 			prettyPrint();
 		};
 		
+		$scope.hwizardTitle = '가로 step 마법사';
+		$scope.vwizardTitle = '세로 step 마법사';
+		
 //		$scope.password = '';
 //		$scope.email = '';
     };

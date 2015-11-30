@@ -29,11 +29,12 @@ angular.module('ps.directives.modal', [])
 		 replace: true,
 		 scope: {
 			 className: '@',
-			 size: '@',
-			 backdrop: '@'
+			 width:		'@',
+			 size: 		'@',
+			 backdrop: 	'@'
 		 },
 		 template: '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">' +
-		    			'<div class="modal-dialog" ng-class="{\'modal-sm\': size == \'sm\', \'modal-lg\': size == \'lg\'}">' +
+		    			'<div class="modal-dialog" ng-class="{\'modal-sm\': size == \'sm\', \'modal-lg\': size == \'lg\'}" ng-style="{width: width}">' +
 		    				'<div class="modal-content" ps-modal-transclude>' +
 		    				'</div>' +
 		    			'</div>' +

@@ -22,13 +22,16 @@ angular.module('ps.directives.dualListbox', [])
 	ctrl.fieldChooser = function() {
 		
 		if($scope.chooser && $scope.sourceFields && $scope.destFields) {
-
-			if($scope.sourceDataChanged == false || $scope.destinationDataChanged == false) return;
 			
-			console.log('fieldChooser');
+			if($scope.sourceDataChanged == false || $scope.sourceDataChanged == undefined 
+			|| $scope.destinationDataChanged == false || $scope.destinationDataChanged == undefined) return;
+			
+//			console.log('fieldChooser');
 			$scope.sourceDataChanged = false;
 			$scope.destinationDataChanged = false;
 			
+			// 한번 실행되면 실행 안되게 해야 하는지 확인 필요(두번이상 실행 할 경우 디자인 없어지는 현상있음)
+			// 데모에서 테스트하면 됨
 			$scope.chooser.fieldChooser($scope.sourceFields, $scope.destFields);
 			
 			$scope.api = {
@@ -172,7 +175,7 @@ angular.module('ps.directives.dualListbox', [])
 			//addTabFunc:	'=addTab',
 		},
 		controller: 'psDualListboxCtrl',
-		template: '<div tabIndex="1" class="field-chooser" ng-class="className" ng-style="{width: width, height: height}" ng-transclude></div>',
+		template: '<div tabIndex="1" class="field-chooser" ng-class="className" ng-style="{width: width, height: height}" ps-dual-listbox-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
 			if(angular.isDefined(attrs.id) == false || !attrs.id || attrs.id == undefined || attrs.id == '') {
@@ -205,8 +208,8 @@ angular.module('ps.directives.dualListbox', [])
 			}
 			
 			scope.fieldScopes.sourceScope.$watch('data', function(data) {
-				console.log('psSourceFields: data');
-				if(data == undefined || !(typeof data === 'object') || data.length == 0) return;
+				if(data == undefined || !(typeof data === 'object') /*|| data.length == 0*/) return;
+//				console.log('psSourceFields: data');
 				
 				scope.sourceFields.empty();
 				
@@ -225,8 +228,8 @@ angular.module('ps.directives.dualListbox', [])
 			// div append 완료후 input hidden 해준다.
 			// data 없이 view에서 코드로 한 경우 input hidden 방안도 같이 고려
 			scope.fieldScopes.destinationScope.$watch('data', function(data) {
-				console.log('psDestinationFields: data');
-				if(data == undefined || !(typeof data === 'object') || data.length == 0) return;
+				if(data == undefined || !(typeof data === 'object') /*|| data.length == 0*/) return;
+//				console.log('psDestinationFields: data');
 				
 				scope.destFields.empty();
 				
@@ -302,4 +305,16 @@ angular.module('ps.directives.dualListbox', [])
 			
 		}
 	}
-}]);
+}])
+.directive('psDualListboxTransclude', function() {
+	return {
+		restrict: 'A',
+	    require: '^psDualListbox',
+		link: function(scope, element, attrs, controller, transclude) {		
+			transclude(scope.$parent, function(clone) {
+				element.empty();
+				element.append(clone);
+			});
+		}
+	};
+});;
