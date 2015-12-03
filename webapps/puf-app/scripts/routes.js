@@ -38,6 +38,7 @@ define([
 	                	// Elements
 	                	.state('button', 			route.ui_resolve('/button', 			'/components/elements/', 	'button'))
 	                	.state('buttonDropdown', 	route.ui_resolve('/button-dropdown', 	'/components/elements/', 	'buttonDropdown'))
+	                	.state('alert', 			route.ui_resolve('/alert', 				'/components/elements/', 	'alert'))
 	                	.state('modal', 			route.ui_resolve('/modal', 				'/components/elements/', 	'modal'))
 	                	.state('panel', 			route.ui_resolve('/panel', 				'/components/elements/', 	'panel'))
 	                	.state('hiddenContent', 	route.ui_resolve('/hidden-content', 	'/components/elements/', 	'hiddenContent'))

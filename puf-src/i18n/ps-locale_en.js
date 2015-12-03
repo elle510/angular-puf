@@ -10,6 +10,8 @@
 **/
 $ps_locale = {};
 $.extend($ps_locale,{
+	ok: 'OK',
+	confirm: 'Confirm',
 	cancel: 'Cancel',
 	finish: 'Finish',
 	next: 'Next',

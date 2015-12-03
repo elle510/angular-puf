@@ -1,0 +1,61 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start sm modal -->
+			<div class="row">
+				<h5>Alert</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#alert">
+		  				Alert
+					</button>
+					<button class="btn btn-primary btn-lg" ng-click="alertClick()">
+		  				Alert(ng-click)
+					</button>
+				</div>
+				
+				<!-- Alert -->
+				<ps-alert id="alert" title="알림창" message="저장되었습니다." 
+						confirm-label="OK" cancel-label="Cancel" on-confirm="onConfirm()" on-cancel="onCancel()" 
+						cancelable="true" api="alertApi"></ps-alert>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									is-bottom="true" on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+	    					
+&lt;ps-alert id="alert" title="알림창" message="저장되었습니다." confirm-label="확인" cancel-label="취소" on-confirm="onConfirm()" on-cancel="onCancel()" cancelable="true" api="alertApi"&gt;&lt;/ps-alert&gt;
+
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+$scope.onConfirm = function() {
+  console.log('onConfirm');
+};
+
+$scope.onCancel = function() {
+  console.log('onCancel');
+};
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+				</ps-hidden-content>
+			</div>
+		</div><!-- end sm modal -->
+		<div class="vspace-12" />
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

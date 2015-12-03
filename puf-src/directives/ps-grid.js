@@ -131,13 +131,13 @@ angular.module('ps.directives.grid', [])
 				},
 				*/
 				jsonReader: {
-					page: 'viewData.page',
-					total: 'viewData.total',
-					root: 'viewData.list',
-					records: 'viewData.records',
+					page: 'resultValue.page',
+					total: 'resultValue.total',
+					root: 'resultValue.list',
+					records: 'resultValue.records',
 					repeatitems: false,
 					//id: 'id',
-					cell: 'viewData.cell'
+					cell: 'resultValue.cell'
 				},
 				/*
         		jsonReader: {
@@ -294,6 +294,9 @@ angular.module('ps.directives.grid', [])
                         scope.data.length = 0;
                         table.jqGrid('clearGridData', { data: scope.data })
                             .trigger('reloadGrid');
+                    },
+                    grid: function() {
+                    	return table;
                     },
                     selectedRows: function() {
                     	// jqGrid에서 1부터 순차적으로 붙여주는 값

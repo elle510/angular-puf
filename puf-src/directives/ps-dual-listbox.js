@@ -26,9 +26,10 @@ angular.module('ps.directives.dualListbox', [])
 			if($scope.sourceDataChanged == false || $scope.sourceDataChanged == undefined 
 			|| $scope.destinationDataChanged == false || $scope.destinationDataChanged == undefined) return;
 			
-//			console.log('fieldChooser');
-			$scope.sourceDataChanged = false;
-			$scope.destinationDataChanged = false;
+			console.log('fieldChooser');
+			// true로 설정하여 1번만 호출하게 함
+			$scope.sourceDataChanged = true;
+			$scope.destinationDataChanged = true;
 			
 			// 한번 실행되면 실행 안되게 해야 하는지 확인 필요(두번이상 실행 할 경우 디자인 없어지는 현상있음)
 			// 데모에서 테스트하면 됨
@@ -95,7 +96,7 @@ angular.module('ps.directives.dualListbox', [])
 				angular.forEach(sourceFields, function(div) {
 					divElem = angular.element(div);
 					if(checkFields($scope.fieldScopes.sourceScope.data, divElem) == true) {
-						$scope.fieldScopes.sourceScope.data.push({name: divElem.text(), value: divElem.attr('value')});
+						$scope.fieldScopes.sourceScope.data.push({name: divElem.text(), index: divElem.attr('index'), value: divElem.attr('value')});
 					}
 				});
 				
@@ -104,7 +105,7 @@ angular.module('ps.directives.dualListbox', [])
 				angular.forEach(destFields, function(div) {
 					divElem = angular.element(div);
 					if(checkFields($scope.fieldScopes.destinationScope.data, divElem) == true) {
-						$scope.fieldScopes.destinationScope.data.push({name: divElem.text(), value: divElem.attr('value')});
+						$scope.fieldScopes.destinationScope.data.push({name: divElem.text(), index: divElem.attr('index'), value: divElem.attr('value')});
 					}
 				});
 //				console.log($scope.fieldScopes.destinationScope.data);
@@ -136,23 +137,30 @@ angular.module('ps.directives.dualListbox', [])
 		angular.forEach(data, function(value) {
 //			console.log(value.value);
 //			console.log(typeof value.value);
-			var div, valueTag, nameTag;
+			var div, indexTag, valueTag, nameTag;
+			
+			// index
+			if(!(typeof value.index === 'undefined')) {
+				indexTag = '<div index="' + value.index + '"';
+			}else {
+				indexTag = '<div';
+			}
 			
 			// value
-			if(!(typeof value.value === undefined)) {
-				valueTag = '<div value="' + value.value + '">';
+			if(!(typeof value.value === 'undefined')) {
+				valueTag = ' value="' + value.value + '">';
 			}else {
-				valueTag = '<div>';
+				valueTag = '>';
 			}
 			
 			// name
-			if(!(typeof value.name === undefined)) {
+			if(!(typeof value.name === 'undefined')) {
 				nameTag = value.name + '</div>';
 			}else {
 				nameTag = '</div>';
 			}
 			
-			div = valueTag + nameTag;
+			div = indexTag + valueTag + nameTag;
 //			console.log(div);
 			fields += div;
 		});
@@ -207,11 +215,13 @@ angular.module('ps.directives.dualListbox', [])
 				ctrl.fieldChooser();
 			}
 			
+			// data로 dom생성 하는 경우 호출(1번 호출만 해야 한다.)
+			scope.sourceDataChanged = false;
 			scope.fieldScopes.sourceScope.$watch('data', function(data) {
-				if(data == undefined || !(typeof data === 'object') /*|| data.length == 0*/) return;
-//				console.log('psSourceFields: data');
+				if(data == undefined || !(typeof data === 'object') || scope.sourceDataChanged == true /*|| data.length == 0*/) return;
+				console.log('psSourceFields: data');
 				
-				scope.sourceFields.empty();
+//				scope.sourceFields.empty();
 				
 				// create dom
 				var fields = ctrl.createFields(data);
@@ -227,11 +237,12 @@ angular.module('ps.directives.dualListbox', [])
 			
 			// div append 완료후 input hidden 해준다.
 			// data 없이 view에서 코드로 한 경우 input hidden 방안도 같이 고려
+			scope.destinationDataChanged = false;
 			scope.fieldScopes.destinationScope.$watch('data', function(data) {
-				if(data == undefined || !(typeof data === 'object') /*|| data.length == 0*/) return;
-//				console.log('psDestinationFields: data');
+				if(data == undefined || !(typeof data === 'object') || scope.destinationDataChanged == true/*|| data.length == 0*/) return;
+				console.log('psDestinationFields: data');
 				
-				scope.destFields.empty();
+//				scope.destFields.empty();
 				
 				// create dom
 				var fields = ctrl.createFields(data);

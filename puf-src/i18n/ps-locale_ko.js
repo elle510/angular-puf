@@ -10,6 +10,8 @@
 **/
 $ps_locale = {};
 $.extend($ps_locale,{
+	ok: 'OK',
+	confirm: '확인',
 	cancel: '취소',
 	finish: '마침',
 	next: '다음',
