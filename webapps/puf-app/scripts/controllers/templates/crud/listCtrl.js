@@ -114,6 +114,7 @@ define(['app', 'moment'], function(app, moment) {
 				
 		}
 		
+		// 스토리지에 저장하고 컬럼 show/hide하는 api 만들자
 		$scope.loadCompleteHandler = function(e, data) {
 			console.log('loadCompleteHandler: ' + key);
 			
@@ -126,17 +127,17 @@ define(['app', 'moment'], function(app, moment) {
 			console.log(hideCol);
 			
 			var showCol = [], 
-			remapColumns = [];	// multi checkbox가 있으면 그 컬럼이 인덱스 0 이다.
+			remapColumns = [0];	// multi checkbox가 있으면 그 컬럼이 인덱스 0 이다.
 			$.each($scope.destFields, function(index, value) { 
 				showCol.push(value.value);
-				remapColumns.push(value.index);
+				remapColumns.push(parseInt(value.index) + 1);
 			});
 			console.log(showCol);
 			console.log(remapColumns);
 			
 			$scope.gridApi.grid().jqGrid('hideCol', hideCol)
 								.jqGrid('showCol', showCol)
-								.jqGrid('remapColumns', /*remapColumns*/[0,7,1,5,6,3,2,4], true, false);
+								.jqGrid('remapColumns', remapColumns/*[0,7,1,5,6,3,2,4]*/, true, false);
 //			$("#grid").jqGrid('hideCol', 'invdate');
 			
 			/*

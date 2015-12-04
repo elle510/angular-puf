@@ -38,6 +38,30 @@ angular.module('ps.directives.dualListbox', [])
 			$scope.api = {
 				getSelectedData: function() {
 					return $scope.fieldScopes.destinationScope.data;
+				},
+				getSourceFields: function() {
+					var sourceFields = $scope.chooser.getSourceList().getFields(),
+					fields = [];
+					angular.forEach(sourceFields, function(div) {
+						divElem = angular.element(div);
+						if(checkFields(fields, divElem) == true) {
+							fields.push({name: divElem.text(), index: divElem.attr('index'), value: divElem.attr('value')});
+						}
+					});
+					
+					return fields;
+				},
+				getDestinationFields: function() {
+					var destinationFields = $scope.chooser.getDestinationList().getFields(),
+					fields = [];
+					angular.forEach(destinationFields, function(div) {
+						divElem = angular.element(div);
+						if(checkFields(fields, divElem) == true) {
+							fields.push({name: divElem.text(), index: divElem.attr('index'), value: divElem.attr('value')});
+						}
+					});
+					
+					return fields;
 				}
 			};
 			
@@ -79,7 +103,8 @@ angular.module('ps.directives.dualListbox', [])
 			
 			////////////////////////////////////////////////////////////////////////////
 			// listChanged 처리
-			$scope.chooser.on('listChanged', function(event, element) {
+			$scope.chooser.on('listChanged', function(event, selection, list) {
+				console.log('listChanged');
 //				console.log(event);
 //				console.log(element.attr('value'));
 //				console.log($scope.chooser.getDestinationList());
@@ -111,6 +136,11 @@ angular.module('ps.directives.dualListbox', [])
 //				console.log($scope.fieldScopes.destinationScope.data);
 				$scope.chooser.find('input[type="hidden"]').val($scope.fieldScopes.destinationScope.data);
 			});
+			
+			/*$scope.destFields.on('selectionChanged', function(list) {
+				console.log('selectionChanged');
+			});*/
+			
 		}
 	};
 	
