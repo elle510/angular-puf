@@ -1,5 +1,5 @@
 /**
- * factory template
+ * ps-storage services
  * 
  * version <tt>$ Version: 1.0 $</tt> date:2015/11/04
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>

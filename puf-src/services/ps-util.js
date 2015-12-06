@@ -14,7 +14,7 @@
 angular.module('ps.services.util', [])
 .factory('psUtil', ['$window', '$location', function($window, $location) {
 	var root = {};
-    root.show = function(msg){
+    root.show = function(msg) {
         $window.alert(msg);
     };
     

@@ -2,7 +2,7 @@
 
 define(['app', 'moment'], function(app, moment) {
 	
-	var controller = function ($scope, $location, psUtil, psStorage) {
+	var controller = function ($scope, $location, psUtil, psStorage, psGridUtil) {
         
 		$scope.pageTitle = "CRUD";
 		
@@ -119,49 +119,37 @@ define(['app', 'moment'], function(app, moment) {
 			console.log('loadCompleteHandler: ' + key);
 			
 			saveGridColumn();
+			psGridUtil.setColumns($scope.gridApi.grid(), $scope.dualListApi.getSourceFields(), $scope.dualListApi.getDestinationFields());
 			
-			var hideCol = [];
-			$.each($scope.sourceFields, function(index, value) { 
-				hideCol.push(value.value);
-			});
-			console.log(hideCol);
+//			var destFields = $scope.dualListApi.getDestinationFields(),
+//			showCol = [],
+//			remapColumns = [0];	// multi checkbox가 있으면 그 컬럼이 인덱스 0 이다.
+//			$.each(destFields, function(index, value) { 
+//				showCol.push(value.value);
+//				remapColumns.push(parseInt(value.index) + 1);
+//			});
+//			
+//			var sourceFields = $scope.dualListApi.getSourceFields(),
+//			hideCol = [];
+//			$.each(sourceFields, function(index, value) { 
+//				hideCol.push(value.value);
+//				remapColumns.push(parseInt(value.index) + 1);
+//			});
+//			console.log(remapColumns);
+//			console.log($scope.gridApi.grid().jqGrid('getGridParam', 'remapColumns'));
+//			
+//			$scope.gridApi.grid().jqGrid('showCol', showCol).jqGrid('hideCol', hideCol)
+//								.jqGrid('remapColumns', remapColumns/*[0,7,1,5,6,3,2,4]*/, true, false);
 			
-			var showCol = [], 
-			remapColumns = [0];	// multi checkbox가 있으면 그 컬럼이 인덱스 0 이다.
-			$.each($scope.destFields, function(index, value) { 
-				showCol.push(value.value);
-				remapColumns.push(parseInt(value.index) + 1);
-			});
-			console.log(showCol);
-			console.log(remapColumns);
 			
-			$scope.gridApi.grid().jqGrid('hideCol', hideCol)
-								.jqGrid('showCol', showCol)
-								.jqGrid('remapColumns', remapColumns/*[0,7,1,5,6,3,2,4]*/, true, false);
 //			$("#grid").jqGrid('hideCol', 'invdate');
 			
-			/*
-			var colNames = [],
-			colModel = [];
-			$.each($scope.destFields, function(index, value) { 
-//				console.log(value.value);
-				$.each($scope.options.colModel, function(index, model) {
-					if(model.name == value.value) {
-//						console.log(model);
-						colModel.push(model);
-						colNames.push(value.name);
-					}
-				});
-			});
-			console.log(colNames);
-			$("#grid").jqGrid('setGridParam', {colNames: colNames, colModel: colModel}).trigger("reloadGrid");
-			*/
 		};
 		
 		function saveGridColumn() {
 			var f = {
-				sourceFields: $scope.sourceFields,
-				destFields: $scope.destFields
+				sourceFields: $scope.dualListApi.getSourceFields(),//$scope.sourceFields,
+				destFields: $scope.dualListApi.getDestinationFields()//$scope.destFields
 			};
 //			console.log(f);
 			psStorage.setLocalStorage(key, f);
@@ -294,6 +282,6 @@ define(['app', 'moment'], function(app, moment) {
 		
     };
     
-	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', 'psStorage', controller]);
+	app.register.controller('listCtrl', ['$scope', '$location', 'psUtil', 'psStorage', 'psGridUtil', controller]);
 	
 });

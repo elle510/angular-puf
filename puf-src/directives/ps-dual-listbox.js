@@ -41,7 +41,7 @@ angular.module('ps.directives.dualListbox', [])
 				},
 				getSourceFields: function() {
 					var sourceFields = $scope.chooser.getSourceList().getFields(),
-					fields = [];
+					divElem, fields = [];
 					angular.forEach(sourceFields, function(div) {
 						divElem = angular.element(div);
 						if(checkFields(fields, divElem) == true) {
@@ -53,7 +53,7 @@ angular.module('ps.directives.dualListbox', [])
 				},
 				getDestinationFields: function() {
 					var destinationFields = $scope.chooser.getDestinationList().getFields(),
-					fields = [];
+					divElem, fields = [];
 					angular.forEach(destinationFields, function(div) {
 						divElem = angular.element(div);
 						if(checkFields(fields, divElem) == true) {
@@ -238,6 +238,20 @@ angular.module('ps.directives.dualListbox', [])
 			scope.sourceFields = angular.element(fields[0]);
 			scope.destFields = angular.element(fields[1]);
 			
+			scope.sourceDataChanged = false;
+			scope.sourceFields.on('completeSourceFields', function(event) {
+//				console.log('completeSourceFields');
+				scope.sourceDataChanged = true;
+				ctrl.fieldChooser();
+			});
+			
+			scope.destinationDataChanged = false;
+			scope.destFields.on('completeDestinationFields', function(event) {
+//				console.log('completeDestinationFields');
+				scope.destinationDataChanged = true;
+				ctrl.fieldChooser();
+			});
+			
 			// data로 dom생성안하고 view에서 div로 직접한 경우 호출
 			if((scope.fieldScopes.sourceScope.data == undefined && scope.fieldScopes.destinationScope.data == undefined) 
 				|| (typeof scope.fieldScopes.sourceScope.data === 'undefined' 
@@ -246,44 +260,44 @@ angular.module('ps.directives.dualListbox', [])
 			}
 			
 			// data로 dom생성 하는 경우 호출(1번 호출만 해야 한다.)
-			scope.sourceDataChanged = false;
-			scope.fieldScopes.sourceScope.$watch('data', function(data) {
-				if(data == undefined || !(typeof data === 'object') || scope.sourceDataChanged == true /*|| data.length == 0*/) return;
-				console.log('psSourceFields: data');
-				
-//				scope.sourceFields.empty();
-				
-				// create dom
-				var fields = ctrl.createFields(data);
-				scope.sourceFields.append(fields);
-				
-//				console.log(element.parent());
-//				scope.$parent.sourceFields = element;
-				
-				scope.sourceDataChanged = true;
-				ctrl.fieldChooser();
-				
-			});
+//			scope.sourceDataChanged = false;
+//			scope.fieldScopes.sourceScope.$watch('data', function(data) {
+//				if(data == undefined || !(typeof data === 'object') || scope.sourceDataChanged == true /*|| data.length == 0*/) return;
+//				console.log('psSourceFields: data');
+//				
+////				scope.sourceFields.empty();
+//				
+//				// create dom
+//				var fields = ctrl.createFields(data);
+//				scope.sourceFields.append(fields);
+//				
+////				console.log(element.parent());
+////				scope.$parent.sourceFields = element;
+//				
+//				scope.sourceDataChanged = true;
+//				ctrl.fieldChooser();
+//				
+//			});
 			
 			// div append 완료후 input hidden 해준다.
 			// data 없이 view에서 코드로 한 경우 input hidden 방안도 같이 고려
-			scope.destinationDataChanged = false;
-			scope.fieldScopes.destinationScope.$watch('data', function(data) {
-				if(data == undefined || !(typeof data === 'object') || scope.destinationDataChanged == true/*|| data.length == 0*/) return;
-				console.log('psDestinationFields: data');
-				
-//				scope.destFields.empty();
-				
-				// create dom
-				var fields = ctrl.createFields(data);
-				scope.destFields.append(fields);
-				
-//				scope.$parent.destinationFields = element;
-				
-				scope.destinationDataChanged = true;
-				ctrl.fieldChooser();
-				
-			});
+//			scope.destinationDataChanged = false;
+//			scope.fieldScopes.destinationScope.$watch('data', function(data) {
+//				if(data == undefined || !(typeof data === 'object') || scope.destinationDataChanged == true/*|| data.length == 0*/) return;
+//				console.log('psDestinationFields: data');
+//				
+////				scope.destFields.empty();
+//				
+//				// create dom
+//				var fields = ctrl.createFields(data);
+//				scope.destFields.append(fields);
+//				
+////				scope.$parent.destinationFields = element;
+//				
+//				scope.destinationDataChanged = true;
+//				ctrl.fieldChooser();
+//				
+//			});
 		}
 	}
 }])
@@ -301,7 +315,7 @@ angular.module('ps.directives.dualListbox', [])
 			height:		'@',
 			data:		'='		// Array
 		},
-		controller: 'psDualListboxCtrl',
+		//controller: 'psDualListboxCtrl',
 		template: '<div ng-style="{width: width, height: height}" ng-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
@@ -313,6 +327,22 @@ angular.module('ps.directives.dualListbox', [])
 //			console.log('psSourceFields');
 			
 			ctrl.addFieldScope('sourceScope', scope);
+			
+			scope.sourceDataChanged = false;
+			scope.$watch('data', function(data) {
+				if(data == undefined || !(typeof data === 'object') || scope.sourceDataChanged == true /*|| data.length == 0*/) return;
+				console.log('psSourceFields: data');
+				
+//				scope.sourceFields.empty();
+				
+				// create dom
+				var fields = ctrl.createFields(data);
+				element.append(fields);
+				
+				scope.sourceDataChanged = true;
+//				ctrl.fieldChooser();
+				element.trigger('completeSourceFields');
+			});
 			
 		}
 	}
@@ -331,7 +361,7 @@ angular.module('ps.directives.dualListbox', [])
 			height:		'@',
 			data:		'='		// Array
 		},
-		controller: 'psDualListboxCtrl',
+		//controller: 'psDualListboxCtrl',
 		template: '<div ng-style="{width: width, height: height}" ng-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
@@ -344,13 +374,28 @@ angular.module('ps.directives.dualListbox', [])
 			
 			ctrl.addFieldScope('destinationScope', scope);
 			
+			scope.destinationDataChanged = false;
+			scope.$watch('data', function(data) {
+				if(data == undefined || !(typeof data === 'object') || scope.destinationDataChanged == true/*|| data.length == 0*/) return;
+				console.log('psDestinationFields: data');
+				
+//				scope.destFields.empty();
+				
+				// create dom
+				var fields = ctrl.createFields(data);
+				element.append(fields);
+				
+				scope.destinationDataChanged = true;
+//				ctrl.fieldChooser();
+				element.trigger('completeDestinationFields');
+			});
 		}
 	}
 }])
 .directive('psDualListboxTransclude', function() {
 	return {
 		restrict: 'A',
-	    require: '^psDualListbox',
+//	    require: '^psDualListbox',
 		link: function(scope, element, attrs, controller, transclude) {		
 			transclude(scope.$parent, function(clone) {
 				element.empty();
