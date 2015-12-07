@@ -121,29 +121,6 @@ define(['app', 'moment'], function(app, moment) {
 			saveGridColumn();
 			psGridUtil.setColumns($scope.gridApi.grid(), $scope.dualListApi.getSourceFields(), $scope.dualListApi.getDestinationFields());
 			
-//			var destFields = $scope.dualListApi.getDestinationFields(),
-//			showCol = [],
-//			remapColumns = [0];	// multi checkbox가 있으면 그 컬럼이 인덱스 0 이다.
-//			$.each(destFields, function(index, value) { 
-//				showCol.push(value.value);
-//				remapColumns.push(parseInt(value.index) + 1);
-//			});
-//			
-//			var sourceFields = $scope.dualListApi.getSourceFields(),
-//			hideCol = [];
-//			$.each(sourceFields, function(index, value) { 
-//				hideCol.push(value.value);
-//				remapColumns.push(parseInt(value.index) + 1);
-//			});
-//			console.log(remapColumns);
-//			console.log($scope.gridApi.grid().jqGrid('getGridParam', 'remapColumns'));
-//			
-//			$scope.gridApi.grid().jqGrid('showCol', showCol).jqGrid('hideCol', hideCol)
-//								.jqGrid('remapColumns', remapColumns/*[0,7,1,5,6,3,2,4]*/, true, false);
-			
-			
-//			$("#grid").jqGrid('hideCol', 'invdate');
-			
 		};
 		
 		function saveGridColumn() {
@@ -160,7 +137,7 @@ define(['app', 'moment'], function(app, moment) {
 			var searchOptions = {};
 			
 //			saveGridColumn();
-			$("#grid").jqGrid('setGridParam', {postData: searchOptions}).trigger("reloadGrid");
+			/*$("#grid")*/$scope.gridApi.grid().jqGrid('setGridParam', {postData: searchOptions}).trigger('reloadGrid');
 		};
 		
 		/*function detailViewLink(cellvalue, options, rowObject) {

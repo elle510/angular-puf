@@ -169,7 +169,8 @@ angular.module('ps.directives.grid', [])
     			loadtext: $ps_locale.grid.loadtext,
     			pgtext : $ps_locale.grid.pgtext,
     			loadComplete: function(data) {
-        			console.log('loadComplete: ' + scope.id);
+//        			console.log('loadComplete: ' + scope.id);
+        			$(window).trigger('resize');
 //        			$compile(angular.element('#' + scope.id))(scope);
 //        			$compile($('#' + scope.id))(scope);
 //        			$compile($('.ui-jqgrid'))(scope);

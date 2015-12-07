@@ -32,8 +32,19 @@ angular.module('ps.services.gridUtil', [])
 			hideCol.push(value.value);
 			remapColumns.push(parseInt(value.index) + remapIndex);
 		});
-		console.log(remapColumns);
-		console.log(grid.jqGrid('getGridParam', 'remapColumns'));
+//		console.log(remapColumns);
+//		console.log(grid.jqGrid('getGridParam', 'remapColumns'));
+		
+		// remapColumns 을 원래대로 복원
+		var restore = [], _remapColumns = grid.jqGrid('getGridParam', 'remapColumns');
+		for(var i=0; i<_remapColumns.length; i++) {
+			if(_remapColumns[i] == i) {
+				restore[i] = i;
+			}else {
+				restore[_remapColumns[i]] = i;
+			}
+		}
+		grid.jqGrid('remapColumns', restore, true, false);
 		
 		grid.jqGrid('showCol', showCol).jqGrid('hideCol', hideCol)
 			.jqGrid('remapColumns', remapColumns/*[0,7,1,5,6,3,2,4]*/, true, false);
