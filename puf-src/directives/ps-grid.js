@@ -107,6 +107,7 @@ angular.module('ps.directives.grid', [])
             selectrowHandler:		'=',
             dbclickrowHandler:		'=',
             beforeselectrowHandler:	'=',
+            rightclickrowHandler:	'=',
             insert: 				'=?',
             api:    				'=?'
         },
@@ -268,6 +269,10 @@ angular.module('ps.directives.grid', [])
                 
                 if(scope.beforeselectrowHandler) {
                 	table.bind('jqGridBeforeSelectRow', scope.beforeselectrowHandler);
+                }
+                
+                if(scope.rightclickrowHandler) {
+                	table.bind('jqGridRightClickRow', scope.rightclickrowHandler);
                 }
                 
                 // Variadic API – usage:
