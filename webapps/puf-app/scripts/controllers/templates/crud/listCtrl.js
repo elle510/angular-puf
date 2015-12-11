@@ -14,6 +14,82 @@ define(['app', 'moment'], function(app, moment) {
 		
 		console.log('listCtrl Start');
 		
+		/*function detailViewLink(cellvalue, options, rowObject) {
+        	return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
+    	}*/
+	
+		function detailViewLink(cellvalue, options, rowObject) {
+			return '<a ui-sref="crud-view({uid: ' + rowObject.id + '})" href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
+        
+			// 결과적으로 ui-sref 이 파싱되어 href를 만들어줘서 href가 실행되는 것임
+			// angular의 문법이 모두 적용안됨, 순수 javascript 코드로 해야 함
+//        	return '<a href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
+//			return '<a ui-sref="crud-save" href="#/crud/create">' + cellvalue + '</a>';
+		}
+	
+		/*$scope.clickFunc = function() {
+			console.log('fieldset : click function');
+		}*/
+	
+		var rootPath = psUtil.getRootPath();
+		if(rootPath == '/puf-app') {	// context root 가 / 라는 의미
+			rootPath = '';
+		}
+	
+		$scope.options = {
+			//url: '/bulletin/list',
+			//postData: {index: "20130613", type: "FLOWS"},
+			//caption: "공지사항 목록",
+			/*
+	  		colNames: ['제목', '글쓴이', '등록일'],
+	    	colModel: [
+	               //{name: 'title', index: 'title', formatter: 'showlink', formatoptions: {baseLinkUrl:'#/crud/update', addParam: '&action=edit', idName: 'bulletinID'}},
+	               {name: 'title', index: 'title', formatter: detailViewLink},
+	               {name: 'registerUserName', index: 'registerUserName', width: 120},
+	               {name: 'registerDate', index: 'registerDate', width: 120, formatter: 'date', formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}}
+	              ]
+			*/
+			url: rootPath + '/puf-app/json/grid.json',
+			postData: {index: "20130613", type: "FLOWS"},	// 검색
+			jsonReader: {
+				page: 'page',
+				total: 'total',
+				root: 'rows',
+				records: 'records',
+				repeatitems: false,
+				//id: 'id',
+				cell: 'cell'
+			},
+			//data: mydata,
+			//datatype: "local",
+			//height: '300px',
+			sortname: 'name',
+			sortorder: 'desc',
+			colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+			colModel:[
+			    {name:'id',index:'id', width:60, sorttype:"int"},
+			    {name:'invdate',index:'invdate', width:120, align:"center", sorttype:"date", formatter:"date", formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}},
+			    {name:'name',index:'name', width:100, formatter: detailViewLink},
+			    {name:'amount',index:'amount', width:80, align:"right", sorttype:"float", formatter:"number"},
+			    {name:'tax',index:'tax', width:80, align:"right", sorttype:"float"},		
+			    {name:'total',index:'total', width:80, align:"right", sorttype:"float"},		
+			    {name:'note',index:'note', width:150, sortable:false}
+			],
+			//autowidth: false,
+			//shrinkToFit: true
+			onSelectRow: function(rowid, row, event) {    //row 선택시 처리. ids는 선택한 row
+				//alert('row 선택시 rowid: ' + rowid);
+				/*console.log(row);
+	   			console.log(event);*/
+			}
+//	   		onRightClickRow: function (rowid, iRow, iCol, e) {
+//	   			/*console.log(rowid);
+//	   			console.log(iRow);
+//	   			console.log(iCol);
+//	   			console.log(e);*/
+//	    	}
+		};
+		
 		/***********************
 		 * 검색
 		 */ 
@@ -84,7 +160,7 @@ define(['app', 'moment'], function(app, moment) {
 		// 컬럼
 		// 컬럼을 스토리지에 저장하고 읽어오는 api 제공(pageid, gridid, destFields data)
 		var defaultSourceFields = [];
-		var defaultDestFields = [
+		var defaultDestFields = psGridUtil.defaultColumns($scope.options.colNames, $scope.options.colModel);/*[
 		    {index: 0,	name: 'Inv No', value: 'id'},
             {index: 1, 	name: 'Date', 	value: 'invdate'}, 
             {index: 2, 	name: 'Client', value: 'name'}, 
@@ -92,7 +168,7 @@ define(['app', 'moment'], function(app, moment) {
             {index: 4, 	name: 'Tax', 	value: 'tax'}, 
             {index: 5, 	name: 'Total', 	value: 'total'}, 
             {index: 6, 	name: 'Notes', 	value: 'note'}
-        ];
+        ];*/
 		
 		var key = 'key';//$location.path();
 		//psStorage.removeLocalStorage(key);
@@ -159,9 +235,8 @@ define(['app', 'moment'], function(app, moment) {
 		
 		// 조회
 		$scope.search = function() {
-			var setGridParam = {};
-			
-			var searchOptions = {};
+			var setGridParam = {},
+			searchOptions = {};
 			setGridParam.postData = searchOptions;
 			
 			// 조회결과 기준
@@ -177,82 +252,7 @@ define(['app', 'moment'], function(app, moment) {
 			$scope.gridApi.grid().jqGrid('setGridParam', setGridParam).trigger('reloadGrid');
 		};
 		
-		/*function detailViewLink(cellvalue, options, rowObject) {
-            return '<a href="#/crud-view?uid=' + rowObject.bulletinID + '" >' + cellvalue + '</a>';
-        }*/
-		
-		function detailViewLink(cellvalue, options, rowObject) {
-            return '<a ui-sref="crud-view({uid: ' + rowObject.id + '})" href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
-            
-            // 결과적으로 ui-sref 이 파싱되어 href를 만들어줘서 href가 실행되는 것임
-            // angular의 문법이 모두 적용안됨, 순수 javascript 코드로 해야 함
-//            return '<a href="#/crud/view/' + rowObject.id + '">' + cellvalue + '</a>';
-//			return '<a ui-sref="crud-save" href="#/crud/create">' + cellvalue + '</a>';
-        }
-		
-		/*$scope.clickFunc = function() {
-			console.log('fieldset : click function');
-		}*/
-		
-		var rootPath = psUtil.getRootPath();
-		if(rootPath == '/puf-app') {	// context root 가 / 라는 의미
-			rootPath = '';
-		}
-		
-		$scope.options = {
-			//url: '/bulletin/list',
-    		//postData: {index: "20130613", type: "FLOWS"},
-			//caption: "공지사항 목록",
-    		/*
-		  	colNames: ['제목', '글쓴이', '등록일'],
-		    colModel: [
-		               //{name: 'title', index: 'title', formatter: 'showlink', formatoptions: {baseLinkUrl:'#/crud/update', addParam: '&action=edit', idName: 'bulletinID'}},
-		               {name: 'title', index: 'title', formatter: detailViewLink},
-		               {name: 'registerUserName', index: 'registerUserName', width: 120},
-		               {name: 'registerDate', index: 'registerDate', width: 120, formatter: 'date', formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}}
-		              ]
-		    */
-			url: rootPath + '/puf-app/json/grid.json',
-			postData: {index: "20130613", type: "FLOWS"},	// 검색
-			jsonReader: {
-				page: 'page',
-				total: 'total',
-				root: 'rows',
-				records: 'records',
-				repeatitems: false,
-				//id: 'id',
-				cell: 'cell'
-			},
-			//data: mydata,
-			//datatype: "local",
-			//height: '300px',
-			sortname: 'name',
-			sortorder: 'desc',
-    		colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
-    	   	colModel:[
-    	   		{name:'id',index:'id', width:60, sorttype:"int"},
-    	   		{name:'invdate',index:'invdate', width:120, align:"center", sorttype:"date", formatter:"date", formatoptions: {srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d'}},
-    	   		{name:'name',index:'name', width:100, formatter: detailViewLink},
-    	   		{name:'amount',index:'amount', width:80, align:"right", sorttype:"float", formatter:"number"},
-    	   		{name:'tax',index:'tax', width:80, align:"right", sorttype:"float"},		
-    	   		{name:'total',index:'total', width:80, align:"right", sorttype:"float"},		
-    	   		{name:'note',index:'note', width:150, sortable:false}
-    	   	],
-		    //autowidth: false,
-		    //shrinkToFit: true
-    	   	onSelectRow: function(rowid, row, event) {    //row 선택시 처리. ids는 선택한 row
-    	   		//alert('row 선택시 rowid: ' + rowid);
-    	   		/*console.log(row);
-    	   		console.log(event);*/
-    	   	}
-//    	   	onRightClickRow: function (rowid, iRow, iCol, e) {
-//    	   		/*console.log(rowid);
-//    	   		console.log(iRow);
-//    	   		console.log(iCol);
-//    	   		console.log(e);*/
-//    	    }
-        };
-		
+		// 컨텍스트 메뉴
 		$scope.contextMenu = {
 	        callback: function(key, options) {
 	            /*var m = "clicked: " + key + " on " + $(this).text();

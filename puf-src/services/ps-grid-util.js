@@ -51,5 +51,17 @@ angular.module('ps.services.gridUtil', [])
 		
     };
     
+    // colModel 로 부터 default show columns 설정
+    factory.defaultColumns = function(colNames, colModel) {
+    	var cols = [];
+    	for(var i=0; i<colNames.length; i++) {
+    		if(colModel[i].hasOwnProperty('hidden') && colModel[i]['hidden']) {
+    			continue;
+    		}
+    		cols.push({index: i, name: colNames[i], value: colModel[i]['name']});
+    	}
+    	return cols;
+    };
+    
     return factory;
 }]);
