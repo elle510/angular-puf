@@ -206,9 +206,9 @@
 							</div>
 							<div class="col-md-5">
 								<div class="row">
-									<label class="col-md-4">결과를 묶어 보여줄 기준</label>
-									<div class="col-md-8">
-										<ps-select name="name2" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+									<label class="col-md-3">조회결과 기준</label>
+									<div class="col-md-9">
+										<ps-select name="name2" ng-model="selectedGridGrouping" array="gridGroupings" option-name="name" option-value="value" on-change="selectChange()"></ps-select>
 					    			</div>
 								</div>
 							</div>
@@ -217,21 +217,16 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
-					<button type="button" class="btn btn-default" ng-click="search()">조회</button>
-				</div>
-			</div>
-			
-			<div class="row">
 				<div class="col-md-9">
-					Grid Title
+					<button type="button" class="btn btn-default" ng-click="search()">조회</button>
+					<!-- <button type="button" value="a">등록</button> -->
+					<a class="btn btn-default" ui-sref="crud-save({type: 'create'})"><i class="fa fa-plus"></i></a>
+					<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i></a>
+					<a class="btn btn-default" href="javascript:void(0);" ng-click="refresh()"><i class="fa fa-refresh"></i></a>
+					
 				</div>
 				<div class="col-md-3">
 					<div class="pull-right">
-						<!-- <button type="button" value="a">등록</button> -->
-						<a class="btn btn-default" ui-sref="crud-save({type: 'create'})"><i class="fa fa-plus"></i></a>
-						<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i></a>
-						<a class="btn btn-default" href="javascript:void(0);" ng-click="refresh()"><i class="fa fa-refresh"></i></a>
 						<button class="btn btn-default" type="button"><i class="fa fa-file-excel-o"></i></button>
 					</div>
 				</div>
@@ -239,7 +234,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ps-grid id="grid" options="options" context-menu="contextMenu" 
-							 loadcomplete-handler="loadCompleteHandler" api="gridApi"></ps-grid><!-- class-name="smooth" -->
+							 on-loadcomplete="onLoadComplete" api="gridApi"></ps-grid><!-- class-name="smooth" -->
 				</div>
 				
 			</div>			

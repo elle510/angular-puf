@@ -115,10 +115,13 @@ define(['app', 'moment'], function(app, moment) {
 		}
 		
 		// 스토리지에 저장하고 컬럼 show/hide하는 api 만들자
-		$scope.loadCompleteHandler = function(e, data) {
-			console.log('loadCompleteHandler: ' + key);
+		$scope.onLoadComplete = function(e, data) {
+			console.log('onLoadComplete: ' + key);
 			
+			// storage 에 columns 저장
 			saveGridColumn();
+			
+			// columns 설정
 			psGridUtil.setColumns($scope.gridApi.grid(), $scope.dualListApi.getSourceFields(), $scope.dualListApi.getDestinationFields());
 			
 		};
@@ -132,12 +135,46 @@ define(['app', 'moment'], function(app, moment) {
 			psStorage.setLocalStorage(key, f);
 		}
 		
+		// 조회결과 기준
+		$scope.gridGroupings = [
+		    {name: '선택안함', 	value: ''},
+            {name: 'Date', 		value: 'invdate'}, 
+            {name: 'Client', 	value: 'name'}, 
+            {name: 'Amount', 	value: 'amount'}, 
+            {name: 'Tax', 		value: 'tax'}, 
+            {name: 'Total', 	value: 'total'}, 
+            {name: 'Notes', 	value: 'note'}
+        ];
+		$scope.selectedGridGrouping = '';
+		
+		// groupingGroupBy 서버호출하므로 단독으로 사용할 경우만 아래처럼 사용
+		$scope.selectChange = function() {
+//			console.log('selectChange: ' + $scope.selectedGridGrouping);
+//			if($scope.selectedGridGrouping === '') {
+//				$scope.gridApi.grid().jqGrid('groupingRemove', true);
+//			}else {
+//				$scope.gridApi.grid().jqGrid('groupingGroupBy', $scope.selectedGridGrouping/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
+//			}
+		};
+		
 		// 조회
 		$scope.search = function() {
+			var setGridParam = {};
+			
 			var searchOptions = {};
+			setGridParam.postData = searchOptions;
+			
+			// 조회결과 기준
+			if($scope.selectedGridGrouping === '') {
+				setGridParam.grouping = false;
+			}else {
+				setGridParam.grouping = true;
+				setGridParam.groupingView = {groupField : [$scope.selectedGridGrouping]};
+			}
 			
 //			saveGridColumn();
-			/*$("#grid")*/$scope.gridApi.grid().jqGrid('setGridParam', {postData: searchOptions}).trigger('reloadGrid');
+//			/*$("#grid")*/$scope.gridApi.grid().jqGrid('setGridParam', {postData: searchOptions}).trigger('reloadGrid');
+			$scope.gridApi.grid().jqGrid('setGridParam', setGridParam).trigger('reloadGrid');
 		};
 		
 		/*function detailViewLink(cellvalue, options, rowObject) {
@@ -188,6 +225,7 @@ define(['app', 'moment'], function(app, moment) {
 			},
 			//data: mydata,
 			//datatype: "local",
+			//height: '300px',
 			sortname: 'name',
 			sortorder: 'desc',
     		colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],

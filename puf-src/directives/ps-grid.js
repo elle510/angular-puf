@@ -97,19 +97,19 @@ angular.module('ps.directives.grid', [])
         restrict: 'E',
         replace: true,
         scope: {
-        	id: 					'@',
-        	className:				'@',
-        	options: 				'=',
-        	paging:					'=',	// default: true
-            //data:   				'=?',
-            contextMenu:			'=',
-            loadcompleteHandler:	'=',	// function(e, data) {}
-            selectrowHandler:		'=',
-            dbclickrowHandler:		'=',
-            beforeselectrowHandler:	'=',
-            rightclickrowHandler:	'=',
-            insert: 				'=?',
-            api:    				'=?'
+        	id: 				'@',
+        	className:			'@',
+        	options: 			'=',
+        	paging:				'=',	// default: true
+            //data:   			'=?',
+            contextMenu:		'=',
+            onLoadcomplete:		'=',	// function(e, data) {}
+            onSelectrow:		'=',
+            onDbclickrow:		'=',
+            onBeforeselectrow:	'=',
+            onRightclickrow:	'=',
+            insert: 			'=?',
+            api:    			'=?'
         },
         controller: 'psGridCtrl',
         template: '<div ng-class="className"></div>',
@@ -165,6 +165,15 @@ angular.module('ps.directives.grid', [])
     			//autoencode: true,
     		  	multiselect: true,
     		  	multiboxonly: false,
+    		  	grouping: false,		// grouping 할 경우 default groupText 설정 (grouping 제어는 ctrl에서 한다.)
+    		   	groupingView : {
+//    		   		groupField : ['invdate'],
+//    		   		groupColumnShow : [true],
+    		   		groupText : ['<b>{0} ({1})</b>']
+//    		   		groupCollapse : false,
+//    				groupOrder: ['desc'],
+//    				groupSummary: [false]
+    		   	},
     		  	recordtext: $ps_locale.grid.recordtext,
     			emptyrecords: $ps_locale.grid.emptyrecords,
     			loadtext: $ps_locale.grid.loadtext,
@@ -255,24 +264,24 @@ angular.module('ps.directives.grid', [])
                 }
                 
                 // event bind
-                if(scope.loadcompleteHandler) {
-                	table.bind('jqGridLoadComplete', scope.loadcompleteHandler);
+                if(scope.onLoadcomplete) {
+                	table.bind('jqGridLoadComplete', scope.onLoadcomplete);
                 }
                 
-                if(scope.selectrowHandler) {
-                	table.bind('jqGridSelectRow', scope.selectrowHandler);
+                if(scope.onSelectrow) {
+                	table.bind('jqGridSelectRow', scope.onSelectrow);
                 }
                 
-                if(scope.dbclickrowHandler) {
-                	table.bind('jqGridDblClickRow', scope.dbclickrowHandler);
+                if(scope.onDbclickrow) {
+                	table.bind('jqGridDblClickRow', scope.onDbclickrow);
                 }
                 
-                if(scope.beforeselectrowHandler) {
-                	table.bind('jqGridBeforeSelectRow', scope.beforeselectrowHandler);
+                if(scope.onBeforeselectrow) {
+                	table.bind('jqGridBeforeSelectRow', scope.onBeforeselectrow);
                 }
                 
-                if(scope.rightclickrowHandler) {
-                	table.bind('jqGridRightClickRow', scope.rightclickrowHandler);
+                if(scope.onRightclickrow) {
+                	table.bind('jqGridRightClickRow', scope.onRightclickrow);
                 }
                 
                 // Variadic API – usage:
