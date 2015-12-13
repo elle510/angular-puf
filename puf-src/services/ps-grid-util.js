@@ -10,7 +10,7 @@ angular.module('ps.services.gridUtil', [])
 .factory('psGridUtil', ['$window', '$location', function($window, $location) {
 	var factory = {};
 	
-	// fieldChooser 에서 설정한 컬럼을 설정
+	// fieldChooser 에서 설정한 컬럼을 설정(hidden data 가 없을 경우만 사용가능)
 	factory.setColumns = function(grid, sourceFields, destinationFields, multiselect) {
 		
 		var remapColumns = [], remapIndex = 0;
@@ -60,6 +60,42 @@ angular.module('ps.services.gridUtil', [])
     		}
     		cols.push({index: i, name: colNames[i], value: colModel[i]['name']});
     	}
+    	return cols;
+    };
+    
+    factory.savedColumns = function(colNames, colModel, showCol) {
+    	var cols = [], names = [], models = [], copyNames = [], copyCols = [];
+    	
+    	for(var i=0; i<colNames.length; i++) {
+    		copyNames[i] = colNames[i];
+    		copyCols[i] = colModel[i];
+    		copyCols[i]['hidden'] = false;
+    	}
+    	
+    	$.each(showCol, function(index, value) { 
+    		for(var i=0; i<copyCols.length; i++) {
+    			if(copyCols[i]['name'] == value['value']) {
+    				models.push(copyCols.splice(i, 1)[0]);
+    				names.push(copyNames.splice(i, 1)[0]);
+    				break;
+    			}
+    		}
+		});
+    	
+    	// colNames
+    	$.each(copyNames, function(index, value) {
+    		names.push(value);
+    	});
+    	
+    	// colModel
+    	$.each(copyCols, function(index, value) {
+    		value['hidden'] = true;
+    		models.push(value);
+    	});
+    	
+    	cols.push(names);
+    	cols.push(models);
+    	
     	return cols;
     };
     

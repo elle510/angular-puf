@@ -229,6 +229,10 @@ angular.module('ps.directives.grid', [])
             	
 //            	opts = $.extend({}, defaults, value);
             	opts = angular.extend({}, defaults, value);
+            	if(value && value.hasOwnProperty('groupingView')) {
+            		angular.extend(opts['groupingView'], defaults['groupingView'], value['groupingView']);
+            	}
+            	
 //                element.children().empty();
             	element.empty();
             	

@@ -48,37 +48,6 @@ define(['app', 'moment'], function(app, moment) {
 			rootPath = '';
 		}
 		
-//		var options = {
-//			url: rootPath + '/puf-app/json/grid.json',
-//			postData: {index: "20130613", type: "FLOWS"},	// 검색
-//			jsonReader: {
-//				page: 'page',
-//				total: 'total',
-//				root: 'rows',
-//				records: 'records',
-//				repeatitems: false,
-//				//id: 'id',
-//				cell: 'cell'
-//			},
-//			sortname: 'name',
-//			sortorder: 'desc',
-//			colNames: colNames,
-//			colModel: colModel,
-//			//autowidth: false,
-//			//shrinkToFit: true
-//			onSelectRow: function(rowid, row, event) {    //row 선택시 처리. ids는 선택한 row
-//				//alert('row 선택시 rowid: ' + rowid);
-//				/*console.log(row);
-//	   			console.log(event);*/
-//			}
-////   		onRightClickRow: function (rowid, iRow, iCol, e) {
-////   			/*console.log(rowid);
-////   			console.log(iRow);
-////   			console.log(iCol);
-////   			console.log(e);*/
-////    		}
-//		};
-		
 		/***********************
 		 * 검색
 		 */ 
@@ -158,7 +127,7 @@ define(['app', 'moment'], function(app, moment) {
             {index: 5, 	name: 'Total', 	value: 'total'}, 
             {index: 6, 	name: 'Notes', 	value: 'note'}
         ];*/
-//		console.log(defaultDestFields);
+		console.log(defaultDestFields);
 		
 		var key = 'key';//$location.path();
 		//psStorage.removeLocalStorage(key);
@@ -193,19 +162,10 @@ define(['app', 'moment'], function(app, moment) {
 		};
 		
 		function saveGridColumn() {
-			var f;
-			if($scope.dualListApi) {
-				f = {
-					sourceFields: $scope.dualListApi.getSourceFields(),//$scope.sourceFields,
-					destFields: $scope.dualListApi.getDestinationFields()//$scope.destFields
-				};
-			}else {
-				f = {
-					sourceFields: $scope.sourceFields,
-					destFields: $scope.destFields
-				};
-			}
-			
+			var f = {
+				sourceFields: $scope.dualListApi.getSourceFields(),//$scope.sourceFields,
+				destFields: $scope.dualListApi.getDestinationFields()//$scope.destFields
+			};
 //			console.log(f);
 			psStorage.setLocalStorage(key, f);
 		}
@@ -234,54 +194,58 @@ define(['app', 'moment'], function(app, moment) {
 		
 		// 조회
 		$scope.search = function() {
-			var searchOptions = {};
-			
-			// columns show/hide
-			var _cols;
-			if($scope.dualListApi) {
-				_cols = psGridUtil.savedColumns(colNames, colModel, $scope.dualListApi.getDestinationFields());
-			}else {
-				_cols = psGridUtil.savedColumns(colNames, colModel, $scope.destFields);
-			}
-				
-			var _colNames = _cols[0];
-			var _colModel = _cols[1];
-//			console.log('search');
-//			console.log(_colNames);
-//			console.log(_colModel);
+			var setGridParam = {},
+			searchOptions = {};
+			setGridParam.postData = searchOptions;
 			
 			// 조회결과 기준
-			var grouping;
 			if($scope.selectedGridGrouping === '') {
-				grouping = false;
+				setGridParam.grouping = false;
 			}else {
-				grouping = true;
+				setGridParam.grouping = true;
+				setGridParam.groupingView = {groupField : [$scope.selectedGridGrouping]};
 			}
 			
 			// storage 에 columns 저장
 			saveGridColumn();
 			
-			$scope.options = {
-				url: rootPath + '/puf-app/json/grid.json',
-				postData: searchOptions,	// 검색
-				jsonReader: {
-					page: 'page',
-					total: 'total',
-					root: 'rows',
-					records: 'records',
-					repeatitems: false,
-					//id: 'id',
-					cell: 'cell'
-				},
-				sortname: 'name',
-				sortorder: 'desc',
-				colNames: _colNames,
-				colModel: _colModel,
-				grouping: grouping,
-				groupingView: {groupField : [$scope.selectedGridGrouping]}
-			};
+			// columns 설정
+			psGridUtil.setColumns($scope.gridApi.grid(), $scope.dualListApi.getSourceFields(), $scope.dualListApi.getDestinationFields());
+			
+//			/*$("#grid")*/$scope.gridApi.grid().jqGrid('setGridParam', {postData: searchOptions}).trigger('reloadGrid');
+			$scope.gridApi.grid().jqGrid('setGridParam', setGridParam).trigger('reloadGrid');
 		};
-		$scope.search();
+		
+		$scope.options = {
+			url: rootPath + '/puf-app/json/grid.json',
+			postData: {index: "20130613", type: "FLOWS"},	// 검색
+			jsonReader: {
+				page: 'page',
+				total: 'total',
+				root: 'rows',
+				records: 'records',
+				repeatitems: false,
+				//id: 'id',
+				cell: 'cell'
+			},
+			sortname: 'name',
+			sortorder: 'desc',
+			colNames: colNames,
+			colModel: colModel,
+			//autowidth: false,
+			//shrinkToFit: true
+			onSelectRow: function(rowid, row, event) {    //row 선택시 처리. ids는 선택한 row
+				//alert('row 선택시 rowid: ' + rowid);
+				/*console.log(row);
+		   		console.log(event);*/
+			}
+//	   		onRightClickRow: function (rowid, iRow, iCol, e) {
+//	   			/*console.log(rowid);
+//	   			console.log(iRow);
+//	   			console.log(iCol);
+//	   			console.log(e);*/
+//	    	}
+		};
 		
 		// 컨텍스트 메뉴
 		$scope.contextMenu = {
