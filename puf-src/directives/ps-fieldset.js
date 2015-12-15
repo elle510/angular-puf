@@ -1,5 +1,5 @@
 /**
- * ps-menu directives
+ * ps-fieldset directives
  * 
  * version <tt>$ Version: 1.0 $</tt> date:2015/09/10
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>

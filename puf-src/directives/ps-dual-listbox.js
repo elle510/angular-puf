@@ -167,7 +167,7 @@ angular.module('ps.directives.dualListbox', [])
 		angular.forEach(data, function(value) {
 //			console.log(value.value);
 //			console.log(typeof value.value);
-			var div, indexTag, valueTag, nameTag;
+			var div, indexTag, valueTag, labelTag;
 			
 			// index
 			if(!(typeof value.index === 'undefined')) {
@@ -183,14 +183,14 @@ angular.module('ps.directives.dualListbox', [])
 				valueTag = '>';
 			}
 			
-			// name
-			if(!(typeof value.name === 'undefined')) {
-				nameTag = value.name + '</div>';
+			// label
+			if(!(typeof value.label === 'undefined')) {
+				labelTag = value.label + '</div>';
 			}else {
-				nameTag = '</div>';
+				labelTag = '</div>';
 			}
 			
-			div = indexTag + valueTag + nameTag;
+			div = indexTag + valueTag + labelTag;
 //			console.log(div);
 			fields += div;
 		});
@@ -256,6 +256,8 @@ angular.module('ps.directives.dualListbox', [])
 			if((scope.fieldScopes.sourceScope.data == undefined && scope.fieldScopes.destinationScope.data == undefined) 
 				|| (typeof scope.fieldScopes.sourceScope.data === 'undefined' 
 					&& typeof scope.fieldScopes.destinationScope.data === 'undefined')) {
+				scope.sourceDataChanged = true;
+				scope.destinationDataChanged = true;
 				ctrl.fieldChooser();
 			}
 			

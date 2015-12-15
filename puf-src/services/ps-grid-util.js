@@ -58,7 +58,7 @@ angular.module('ps.services.gridUtil', [])
     		if(colModel[i].hasOwnProperty('hidden') && colModel[i]['hidden']) {
     			continue;
     		}
-    		cols.push({index: i, name: colNames[i], value: colModel[i]['name']});
+    		cols.push({index: i, label: colNames[i], value: colModel[i]['name']});
     	}
     	return cols;
     };

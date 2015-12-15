@@ -56,7 +56,7 @@ angular.module('ps.services.storage', [])
     // sessionStorage 저장                
     root.setSessionStorage = function(key, value) {
     	if(isSupportStorage() == false) return this.NotSupport;
-    	if(value !=null && typeof value === 'object' && !(value instanceof Array)) {
+    	if(value != null && typeof value === 'object' && !(value instanceof Array)) {
     		value = JSON.stringify(value);
     	}
     	sessionStorage.setItem(key, value);

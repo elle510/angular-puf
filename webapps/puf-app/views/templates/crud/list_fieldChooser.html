@@ -191,15 +191,16 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-fieldset legend="옵션" collapsible="true">
+					<ps-fieldset legend="옵션" collapsible="true" expand="true">
 						<div class="row">
 							<div class="col-md-7">
 								<div class="row">
 									<label class="col-md-1">컬럼</label>
 									<div class="col-md-11">
-										<ps-dual-select selectable-title="선택 가능한 항목" selected-title="선택된 항목" 
-														selectable-data="selectableCols" selected-data="selectedCols">
-			    						</ps-dual-select>
+										<ps-dual-listbox name="selectedColumns" api="dualListApi">
+						    				<ps-source-fields title="선택 가능한 컬럼" data="sourceFields"></ps-source-fields>
+						    				<ps-destination-fields title="선택된 컬럼" data="destFields"></ps-destination-fields>
+						    			</ps-dual-listbox>
 					    			</div>
 								</div>
 							</div>

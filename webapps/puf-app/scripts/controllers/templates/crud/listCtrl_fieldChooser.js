@@ -148,8 +148,8 @@ define(['app', 'moment'], function(app, moment) {
 		 */
 		// 컬럼
 		// 컬럼을 스토리지에 저장하고 읽어오는 api 제공(pageid, gridid, destFields data)
-		var defaultSelectableCols = [];
-		var defaultSelectedCols = psGridUtil.defaultColumns(colNames, colModel);/*[
+		var defaultSourceFields = [];
+		var defaultDestFields = psGridUtil.defaultColumns(colNames, colModel);/*[
 		    {index: 0,	label: 'Inv No', value: 'id'},
             {index: 1, 	label: 'Date', 	value: 'invdate'}, 
             {index: 2, 	label: 'Client', value: 'name'}, 
@@ -169,13 +169,13 @@ define(['app', 'moment'], function(app, moment) {
 		if(fields != psStorage.NotSupport) {
 			if(fields == null) {
 				// default columns
-				$scope.selectableCols = defaultSelectableCols;
-				$scope.selectedCols = defaultSelectedCols;
+				$scope.sourceFields = defaultSourceFields;
+				$scope.destFields = defaultDestFields;
 				
 			}else {
 				// saved columns
-				$scope.selectableCols = fields.selectableCols;
-				$scope.selectedCols = fields.selectedCols;
+				$scope.sourceFields = fields.sourceFields;
+				$scope.destFields = fields.destFields;
 			}
 				
 		}
@@ -193,10 +193,18 @@ define(['app', 'moment'], function(app, moment) {
 		};
 		
 		function saveGridColumn() {
-			var f = {
-				selectableCols: $scope.selectableCols,
-				selectedCols: $scope.selectedCols
-			};
+			var f;
+			if($scope.dualListApi) {
+				f = {
+					sourceFields: $scope.dualListApi.getSourceFields(),//$scope.sourceFields,
+					destFields: $scope.dualListApi.getDestinationFields()//$scope.destFields
+				};
+			}else {
+				f = {
+					sourceFields: $scope.sourceFields,
+					destFields: $scope.destFields
+				};
+			}
 			
 //			console.log(f);
 			psStorage.setLocalStorage(key, f);
@@ -229,9 +237,15 @@ define(['app', 'moment'], function(app, moment) {
 			var searchOptions = {};
 			
 			// columns show/hide
-			var _cols = psGridUtil.savedColumns(colNames, colModel, $scope.selectedCols),
-			_colNames = _cols[0],
-			_colModel = _cols[1];
+			var _cols;
+			if($scope.dualListApi) {
+				_cols = psGridUtil.savedColumns(colNames, colModel, $scope.dualListApi.getDestinationFields());
+			}else {
+				_cols = psGridUtil.savedColumns(colNames, colModel, $scope.destFields);
+			}
+				
+			var _colNames = _cols[0];
+			var _colModel = _cols[1];
 //			console.log('search');
 //			console.log(_colNames);
 //			console.log(_colModel);
