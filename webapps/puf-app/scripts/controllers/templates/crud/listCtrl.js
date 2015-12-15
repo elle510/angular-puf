@@ -163,19 +163,19 @@ define(['app', 'moment'], function(app, moment) {
 		var key = 'key';//$location.path();
 		//psStorage.removeLocalStorage(key);
 		//psStorage.setLocalStorage(key, {a: 'a', b: 'b'});
-		var fields = psStorage.getLocalStorage(key);
-//		console.log(fields instanceof Object);
-		console.log(fields);
-		if(fields != psStorage.NotSupport) {
-			if(fields == null) {
+		var storageCols = psStorage.getLocalStorage(key);
+//		console.log(storageCols instanceof Object);
+		console.log(storageCols);
+		if(storageCols != psStorage.NotSupport) {
+			if(storageCols == null) {
 				// default columns
 				$scope.selectableCols = defaultSelectableCols;
 				$scope.selectedCols = defaultSelectedCols;
 				
 			}else {
 				// saved columns
-				$scope.selectableCols = fields.selectableCols;
-				$scope.selectedCols = fields.selectedCols;
+				$scope.selectableCols = storageCols.selectableCols;
+				$scope.selectedCols = storageCols.selectedCols;
 			}
 				
 		}
@@ -226,6 +226,7 @@ define(['app', 'moment'], function(app, moment) {
 		
 		// 조회
 		$scope.search = function() {
+			// 검색조건
 			var searchOptions = {};
 			
 			// columns show/hide
