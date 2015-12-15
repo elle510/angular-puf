@@ -246,6 +246,27 @@ angular.module('ps.directives.dualSelect', [])
 	                ctrl.setIndexData(newPos, $(this).val());
 		        });
 			};
+			
+			/*
+			selectableSelect.draggable = true;
+			selectableSelect.on('dragstart', function(event) {
+//			    event.originalEvent.dataTransfer.setData('...', '...');
+				console.log(event);
+			});
+			
+			scope.onDragStart = function(event) {
+				console.log(event);
+				//드래그 대상 요소가 option 일 경우에만 가능토록 함
+				if(event.target.tagName.toLowerCase() == "option") {
+					//dataTransfer 객체에 이동할 요소의 ID를 "selectOption"라는 이름으로 등록함
+					console.log(event.target.id);
+			        event.dataTransfer.setData("selectOption", event.target.id);
+				}else {
+			        //만일 드래그 대상 요소가 option이 아닐 경우 취소함
+			        event.preventDefault();
+				}
+			};
+			*/
 		}
 	}
 }]);
