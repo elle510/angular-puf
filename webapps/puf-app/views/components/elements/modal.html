@@ -17,17 +17,15 @@
 				
 				<!-- SM Modal -->
 				<ps-modal id="smModal" size="sm">
-		      		<div class="modal-header">
-		        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-		      		</div>
-		      		<div class="modal-body">
-		        		작은 모달창
-		      		</div>
-		      		<div class="modal-footer">
+		      		<ps-modal-header title="타이틀">
+		      		</ps-modal-header>
+		      		<ps-modal-body>
+		        		작은 모달창<br>{{content}}
+		      		</ps-modal-body>
+		      		<ps-modal-footer>
 		        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        		<button type="button" class="btn btn-primary">Save changes</button>
-		      		</div>
+		        		<button type="button" class="btn btn-primary" ng-click="smClick()">Save changes</button>
+		      		</ps-modal-footer>
 		    	</ps-modal>
 			</div>
 			<div class="row">
