@@ -112,16 +112,16 @@ define(['app'], function(app) {
 							return node.id === '#' ? 'json/tree_roots.json' : 'json/tree_children.json';
 							//return 'json/tree_roots.json';
 						},
-						//'url': 'json/tree_roots.json',
-						'type': 'POST',
-						'dataType': 'json',
-						'contentType': 'application/json; charset=utf-8',
-						'cache': false,
-						'beforeSend': function (xhr) { 
-							if (xhr.overrideMimeType) { 
-								xhr.overrideMimeType("application/json"); 
-							} 
-						},
+//						//'url': 'json/tree_roots.json',
+//						'type': 'POST',
+//						'dataType': 'json',
+//						'contentType': 'application/json; charset=utf-8',
+//						'cache': false,
+//						'beforeSend': function (xhr) { 
+//							if (xhr.overrideMimeType) { 
+//								xhr.overrideMimeType("application/json"); 
+//							} 
+//						},
 						'data': function (node) {
 							//console.log(node.id);
 							return { 'id' : node.id };

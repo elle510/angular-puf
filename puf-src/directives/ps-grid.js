@@ -78,7 +78,7 @@ angular.module('ps.directives.grid', [])
 	 * @param string div_id 그리드의 사이즈의 기준을 제시할 div 의 아이디
 	 * @param string width 그리드의 초기화 width 사이즈
 	 */
-	ctrl.resizeJqGridWidth = function(grid_id/*, div_id, width*/){
+	ctrl.resizeJqGridWidth = function(element, grid_id/*, div_id, width*/){
 	    // window에 resize 이벤트를 바인딩 한다.
 	    $(window).bind('resize', function() {
 //	        // 그리드의 width 초기화
@@ -86,7 +86,8 @@ angular.module('ps.directives.grid', [])
 //	        // 그리드의 width를 div 에 맞춰서 적용
 //	        $('#' + grid_id).setGridWidth($('#' + div_id).width() , false); //Resized to new width as per window
 //	    	console.log($('.ui-jqgrid').parent().width());
-	    	var width = $('.ui-jqgrid').parent().width();
+//	    	var width = $('.ui-jqgrid').parent().width();
+	    	var width = $(element).width();
 	        $('#' + grid_id).setGridWidth(width , true); // shrinkToFit 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
 	     }).trigger('resize');
 	}
@@ -180,10 +181,8 @@ angular.module('ps.directives.grid', [])
     			pgtext : $ps_locale.grid.pgtext,
     			loadComplete: function(data) {
 //        			console.log('loadComplete: ' + scope.id);
-        			$(window).trigger('resize');
-//        			$compile(angular.element('#' + scope.id))(scope);
-//        			$compile($('#' + scope.id))(scope);
-//        			$compile($('.ui-jqgrid'))(scope);
+        			//$(window).trigger('resize');
+        			$compile(angular.element('#' + scope.id))(scope.$parent);
         			//$(this).triggerHandler('jqGridLoadComplete', data);
         		},
     			beforeSelectRow: ctrl.handleMultiSelect, // handle multi select
@@ -258,7 +257,7 @@ angular.module('ps.directives.grid', [])
 //                console.log(opts);
                 table.jqGrid(opts);
                 
-                ctrl.resizeJqGridWidth(attrs.id);
+                ctrl.resizeJqGridWidth(element, attrs.id);
                 
                 // context menu
                 if(scope.contextMenu) {
