@@ -68,17 +68,25 @@ angular.module('ps.directives.tree', [])
             	
             	tree.jstree(opts);
                 
-            	tree.on('changed.jstree', scope.changed);
-            	//tree.on('select_node.jstree', scope.selectNode);
-            	tree.on('dblclick.jstree', scope.dblclick);
+            	if(scope.changed) {
+            		tree.on('changed.jstree', scope.changed);
+            	}
             	
-            	tree.on('select_node.jstree', function (event, data) {
-            		//console.log('select_node');
-             		//console.log(data.selected);
-            		//console.log(data);
-            		scope.selectNode(event, data);
-            		event.stopImmediatePropagation(); 
-            	});
+            	//tree.on('select_node.jstree', scope.selectNode);
+            	if(scope.dblclick) {
+            		tree.on('dblclick.jstree', scope.dblclick);
+            	}
+            	
+            	if(scope.selectNode) {
+            		tree.on('select_node.jstree', function (event, data) {
+                		//console.log('select_node');
+                 		//console.log(data.selected);
+                		//console.log(data);
+                		scope.selectNode(event, data);
+                		event.stopImmediatePropagation(); 
+                	});
+            	}
+            	
             	/*
             	tree.on('before.jstree', function (event, data) {
             		console.log(data.func);
