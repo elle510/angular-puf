@@ -8,25 +8,25 @@
 
 angular.module('ps.services.util', [])
 .factory('factoryName', ['$window', '$location', function($window, $location) {
-	var root = {};
+	var factory = {};
 	
-	root.value = 1;
+	factory.value = 1;
 	
-	root.add = function(num) {
+	factory.add = function(num) {
 		this.value += num;
 	}
 	
-	root.getValue = function(num) {
+	factory.getValue = function(num) {
 		return this.value;
 	}
 	
-    root.show = function(msg){
+	factory.show = function(msg){
         $window.alert(msg);
     };
     
-    root.reverse = function(name) {
+    factory.reverse = function(name) {
 		return name.split("").reverse().join("");
 	};
 	
-    return root;
+    return factory;
 }]);

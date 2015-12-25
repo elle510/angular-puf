@@ -28,13 +28,29 @@ angular.module('ps.directives.tree', [])
             var tree,
             opts,
             defaults = {
-        		
+            	core: {
+            		data: {
+						type: 'POST',
+						dataType: 'json',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						beforeSend: function (xhr) { 
+							if (xhr.overrideMimeType) { 
+								xhr.overrideMimeType("application/json"); 
+							}
+						}
+					}
+            	}
             };
             
             scope.$watch('options', function (value) {
             	//console.log('tree options watch');
             	opts = $.extend({}, defaults, value);
-            	
+            	// 다양한 테스트 해봐야 함
+            	if(value && value.hasOwnProperty('core') && value['core'].hasOwnProperty('data')) {
+            		angular.extend(opts['core']['data'], defaults['core']['data'], value['core']['data']);
+            	}
+            	console.log(opts);
             	element.empty();
             	tree = angular.element('<div></div>');
             	
@@ -52,17 +68,25 @@ angular.module('ps.directives.tree', [])
             	
             	tree.jstree(opts);
                 
-            	tree.on('changed.jstree', scope.changed);
-            	//tree.on('select_node.jstree', scope.selectNode);
-            	tree.on('dblclick.jstree', scope.dblclick);
+            	if(scope.changed) {
+            		tree.on('changed.jstree', scope.changed);
+            	}
             	
-            	tree.on('select_node.jstree', function (event, data) {
-            		//console.log('select_node');
-             		//console.log(data.selected);
-            		//console.log(data);
-            		scope.selectNode(event, data);
-            		event.stopImmediatePropagation(); 
-            	});
+            	//tree.on('select_node.jstree', scope.selectNode);
+            	if(scope.dblclick) {
+            		tree.on('dblclick.jstree', scope.dblclick);
+            	}
+            	
+            	if(scope.selectNode) {
+            		tree.on('select_node.jstree', function (event, data) {
+                		//console.log('select_node');
+                 		//console.log(data.selected);
+                		//console.log(data);
+                		scope.selectNode(event, data);
+                		event.stopImmediatePropagation(); 
+                	});
+            	}
+            	
             	/*
             	tree.on('before.jstree', function (event, data) {
             		console.log(data.func);
