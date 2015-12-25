@@ -88,7 +88,7 @@ define(['app'], function(app) {
 				    	"valid_children" : ["root"]
 				    },
 				    "root" : {
-				    	"icon" : "/ng/images/icon/sminfoicon.png",
+				    	"icon" : "images/icon/sminfoicon.png",
 				    	"valid_children" : ["default"]
 				    },
 				    "default" : {
