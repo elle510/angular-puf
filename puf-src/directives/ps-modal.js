@@ -6,25 +6,23 @@
  * 
  * example:
  * <ps-modal id="modal">
-      		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      		</div>
-      		<div class="modal-body">
-        		모달창
-      		</div>
-      		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        		<button type="button" class="btn btn-primary">Save changes</button>
-      		</div>
-    	</ps-modal>
+ 		<ps-modal-header title="Modal title">
+		</ps-modal-header>
+    	<ps-modal-body>
+			모달창
+		</ps-modal-body>
+ 		<ps-modal-footer>
+   			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   			<button type="button" class="btn btn-primary">Save changes</button>
+ 		</ps-modal-footer>
+ * </ps-modal>
  * 
  */
 
 angular.module('ps.directives.modal', [])
 .directive('psModal', function() {
 	return {
-		 restrict: 'EA',
+		 restrict: 'E',
 		 transclude: true,
 		 replace: true,
 		 scope: {
@@ -52,12 +50,12 @@ angular.module('ps.directives.modal', [])
 })
 .directive('psModalHeader', ['$compile', function($compile) {
 	return {
-		require: '^psModal',
-		restrict: 'EA',
+		//require: '^psModal',
+		restrict: 'E',
 		transclude: true,
 		replace: true,
 		scope: {
-			title: '@'
+			title: '='
 		},
 		template: '<div class="modal-header">' +
 					'<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
@@ -70,14 +68,12 @@ angular.module('ps.directives.modal', [])
 }])
 .directive('psModalBody', ['$compile', function($compile) {
 	return {
-		require: '^psModal',
-		restrict: 'EA',
+		//require: '^psModal',
+		restrict: 'E',
 		transclude: true,
 		replace: true,
-		scope: {
-			
-		},
-		template: '<div class="modal-body" ng-transclude></div>',
+//		scope: {},
+		template: '<div class="modal-body" ps-modal-body-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
 		}
@@ -85,14 +81,12 @@ angular.module('ps.directives.modal', [])
 }])
 .directive('psModalFooter', ['$compile', function($compile) {
 	return {
-		require: '^psModal',
-		restrict: 'EA',
+		//require: '^psModal',
+		restrict: 'E',
 		transclude: true,
 		replace: true,
-		scope: {
-			
-		},
-		template: '<div class="modal-footer" ng-transclude></div>',
+//		scope: {},
+		template: '<div class="modal-footer" ps-modal-body-transclude></div>',
 		link: function(scope, element, attrs, ctrl) {
 			
 		}
@@ -103,6 +97,17 @@ angular.module('ps.directives.modal', [])
 		restrict: 'A',
 		link: function(scope, element, attrs, controller, transclude) {
 	        transclude(scope.$parent, function(clone) {
+	          element.empty();
+	          element.append(clone);
+	        });
+		}
+	};
+})
+.directive('psModalBodyTransclude', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs, controller, transclude) {
+	        transclude(scope, function(clone) {
 	          element.empty();
 	          element.append(clone);
 	        });

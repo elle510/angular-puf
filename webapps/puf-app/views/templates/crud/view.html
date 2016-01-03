@@ -5,12 +5,11 @@
 	
 	<div class="page-body">
 		<div class="row">
-			<div class="pull-right">
-				<a ui-sref="crud-save({type: 'update', uid: {{uid}}})" class="btn btn-primary" ng-disabled="false"><i class="fa fa-edit"></i> 편집</a>
-				<a ui-sref="crud-list" type="button" class="btn btn-primary" ng-disabled="false"><i class="fa fa-list-ul"></i> 목록</a>
-				<button class="btn btn-primary refresh" ng-disabled="false" ng-click="refresh()"><i class="fa fa-refresh"></i></button>
-			</div>
+			<a ui-sref="crud-save({type: 'update', uid: {{uid}}})" class="btn btn-primary" ng-disabled="false"><i class="fa fa-edit"></i> 편집</a>
+			<a ui-sref="crud-list" type="button" class="btn btn-primary" ng-disabled="false"><i class="fa fa-list-ul"></i> 목록</a>
+			<button class="btn btn-primary refresh" ng-disabled="false" ng-click="refresh()"><i class="fa fa-refresh"></i></button>
 		</div>
+		
 		<div class="row">
 			<form class="form-horizontal">
 	  			<div class="form-group">
@@ -59,6 +58,7 @@
 		  		
 	  		</form>
 		</div>
+		
 	</div>
 	
 	<div class="page-footer">

@@ -4,18 +4,21 @@
 	</div>
 	
 	<div class="page-body">
-		<div class="row"><!-- start default wizard -->
+		<div class="row"><!-- start horizontal wizard -->
 			<div class="row">
-				<h5>Default Wizard</h5>
+				<h5>Horizontal Wizard</h5>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ps-wizard id="default_wizard" options="defaultOptions">
-						<step-title>First Step</step-title>
-    					<step-content>First Content</step-content>
+					<ps-wizard1 id="horizontal_wizard">
+						<ps-step-title>First Step</ps-step-title>
+    					<ps-step-content>First Content</ps-step-content>
  
-    					<step-title>Second Step</step-title>
-    					<step-content>Second Content</step-content>
+    					<ps-step-title>Second Step</ps-step-title>
+    					<ps-step-content>Second Content</ps-step-content>
+    					
+    					<ps-step-title>요약</ps-step-title>
+    					<ps-step-content>요약화면</ps-step-content>
 					</ps-wizard>
 				</div>
 			</div>
@@ -26,9 +29,13 @@
 					<ps-tabset>
 	    				<ps-tab heading="HTML코드">
 	    					<pre class="prettyprint linenums">
-&lt;div class="col-md-12"&gt;
-  &lt;ps-tree id="onDemand_tree" options="treeUrlOptions"&gt;&lt;/ps-tree&gt;
-&lt;/div&gt;
+&lt;ps-wizard id="horizontal_wizard" options="defaultOptions"&gt;
+  &lt;ps-step-title&gt;First Step&lt;/ps-step-title&gt;
+  &lt;ps-step-content&gt;First Content&lt;/ps-step-content&gt;
+
+  &lt;ps-step-title&gt;Second Step&lt;/ps-step-title&gt;
+  &lt;ps-step-content&gt;Second Content&lt;/ps-step-content&gt;
+&lt;/ps-wizard&gt;
 							</pre>
 	    				</ps-tab>
 	    				<ps-tab heading="JS코드">
@@ -39,7 +46,52 @@
 	  				</ps-tabset>
 	  			</ps-hidden-content>
 			</div>
-		</div><!-- end default wizard -->
+		</div><!-- end horizontal wizard -->
+		<div class="vspace-12" />
+		
+		<div class="row"><!-- start vertical wizard -->
+			<div class="row">
+				<h5>Vertical Wizard</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ps-wizard1 id="vertical_wizard" direction="vertical">
+						<ps-step-title>First Step</ps-step-title>
+    					<ps-step-content>First Content</ps-step-content>
+ 
+    					<ps-step-title>Second Step</ps-step-title>
+    					<ps-step-content>Second Content</ps-step-content>
+    					
+    					<ps-step-title>요약</ps-step-title>
+    					<ps-step-content>요약화면</ps-step-content>
+					</ps-wizard>
+				</div>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+&lt;ps-wizard id="vertical_wizard" direction="vertical"&gt;
+  &lt;ps-step-title&gt;First Step&lt;/ps-step-title&gt;
+  &lt;ps-step-content&gt;First Content&lt;/ps-step-content&gt;
+
+  &lt;ps-step-title&gt;Second Step&lt;/ps-step-title&gt;
+  &lt;ps-step-content&gt;Second Content&lt;/ps-step-content&gt;
+&lt;/ps-wizard&gt;
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>
+			</div>
+		</div><!-- end vertical wizard -->
 		<div class="vspace-12" />
 		
 	</div>

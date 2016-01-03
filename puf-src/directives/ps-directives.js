@@ -8,4 +8,4 @@ angular.module('ps.directives', ['ps.directives.back', 'ps.directives.dropdown',
                                  'ps.directives.stepper', 'ps.directives.tabs', 'ps.directives.tree',
                                  'ps.directives.wizard', 'ps.directives.panel', 'ps.directives.menu',
                                  'ps.directives.hiddenContent', 'ps.directives.fieldset', 'ps.directives.dualListbox',
-                                 'ps.directives.alert', 'ps.directives.dualSelect']);
+                                 'ps.directives.alert', 'ps.directives.dualSelect', 'ps.directives.wizard1']);

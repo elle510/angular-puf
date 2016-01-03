@@ -1,151 +1,164 @@
 /**
- * ps-tree directives
+ * ps-wizard directives
  * 
- * version <tt>$ Version: 1.0 $</tt> date:2015/07/13
+ * version <tt>$ Version: 1.0 $</tt> date:2016/01/03
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  * 
  * example:
- * <ps-wizard id="wizard" options="options" changed="changed" select-node="selectNode"></ps-wizard>
+ * <ps-wizard id="wizard" on-step-changing="onStepChanging" on-step-changed="onStepChanged" select-node="selectNode"></ps-wizard>
  * 
- * jstree 라이브러리에 종속적이다.
  */
 
 angular.module('ps.directives.wizard', [])
+.controller('psWizardCtrl', ['$scope', function($scope) {
+	var ctrl = this,
+	index = -1, // points to the current step in the steps array
+	steps = ctrl.steps = $scope.steps = [];
+	
+//	ctrl.select = function(selectedTab) {
+//		angular.forEach(tabs, function(tab) {
+//			if (tab.active && tab !== selectedTab) {
+//				tab.active = false;
+//				tab.onDeselect();
+//			}
+//		});
+//		selectedTab.active = true;
+//		selectedTab.onSelect();
+//	};
+	
+	ctrl.addStep = function addTab(step) {
+//		console.log(step);
+		steps.push(step);
+		if (index == -1) {
+			index = 0;
+			steps[0].selected = true;
+		}
+		// we can't run the select function on the first tab
+		// since that would select it twice
+//		if (tabs.length === 1) {
+//			tab.active = true;
+//		} else if (tab.active) {
+//			ctrl.select(tab);
+//		}
+	};
+
+//	ctrl.removeStep = function removeTab(tab) {
+//		var index = tabs.indexOf(tab);
+//		//Select a new tab if the tab to be removed is selected
+//		if (tab.active && tabs.length > 1) {
+//			//If this is the last tab, select the previous tab. else, the next tab.
+//			var newActiveIndex = index == tabs.length - 1 ? index - 1 : index + 1;
+//			//ctrl.select(tabs[newActiveIndex]);
+//		}
+//		tabs.splice(index, 1);
+//		//tab.onRemove();
+//	};
+}])
 .directive('psWizard', ['$compile', function($compile) {
 	return {
-        restrict: 'E',
-        replace: true,
-        transclude : true,
-        scope: {
-        	id:			'@',
-        	name:		'@',
-        	className:	'@',
-        	form: 		'@',
-        	options: 	'=',
-        	changed:	'=?',
-        	selectNode:	'=?',
-        	dblclick:	'=?'
+		restrict: 'E',
+		transclude: true,
+		replace: true,
+		scope: {
+			id:				'@',
+        	name:			'@',
+        	className:		'@',
+        	direction:		'@',
+        	onStepChanging: '=',
+        	onStepChanged: 	'=',
+        	onCanceled: 	'=',
+        	onFinishing: 	'=',
+        	onFinished: 	'=',
+        	selectNode:		'=?',
+        	dblclick:		'=?'
         },
-        template: '<div></div>',
-        compile: function(element, attrs, transclude) {
-        	//console.log(element[0]);
-        	var wizard, strHtml;
-        	if(!angular.isDefined(attrs.form)) {
-        		attrs.form = 'true';
-        	}
-        	
-        	if(!angular.isDefined(attrs.id)) {
-        		var d = new Date();
-        		attrs.id = 'wizard' + d.getTime();
-        	}
-        	
-        	if(attrs.form == "true") {
-        		strHtml = '<form';
-        		if(angular.isDefined(attrs.id)) {
-        			strHtml += ' id="' + attrs.id + '"';
-        		}
-        		if(angular.isDefined(attrs.name)) {
-        			strHtml += ' name="' + attrs.name + '"';
-        		}
-        		strHtml += ' action="#" ps-wizard-transclude></form>';
-        	}else {
-        		strHtml = '<div';
-        		if(angular.isDefined(attrs.id)) {
-        			strHtml += ' id="' + attrs.id + '"';
-        		}
-        		if(angular.isDefined(attrs.name)) {
-        			strHtml += ' name="' + attrs.name + '"';
-        		}
-        		strHtml += ' ps-wizard-transclude></div>';
-        	}
-//        	console.log(strHtml);
-        	
-			if(angular.isDefined(attrs.className)) {
-//				div = '<div class="' + attrs.className + '">' + wizard + '</div>';
-				element.addClass(attrs.className);
-			}/*else {
-				div = '<div>' + wizard + '</div>';
-			}*/
-			
-			element.removeAttr('id');
-			wizard = angular.element(strHtml);
-			element.append(wizard);
-//			console.log(element);
-			
-//			wizard.steps();
-			return function postLink(scope, element, attrs/*, controller*/) {
-        		//console.log('compile');
-        		//$compile(element)(scope);
-				var wizard,
-	            opts,
-	            defaults = {
-	            	/* Appearance */
-	            	headerTag: 'step-title',
-	        	    bodyTag: 'step-content',
-//	        	    contentContainerTag: "div",
-//	        	    actionContainerTag: "div",
-//	        	    stepsContainerTag: "div",
-//	        	    cssClass: "wizard",
-//	        	    stepsOrientation: $.fn.steps.stepsOrientation.horizontal,
-
-	        	    /* Templates */
-//	        	    titleTemplate: '<span class="number">#index#.</span> #title#',
-//	        	    loadingTemplate: '<span class="spinner"></span> #text#',
-
-	        	    /* Behaviour */
-//	        	    autoFocus: false,
-//	        	    enableAllSteps: false,
-//	        	    enableKeyNavigation: true,
-//	        	    enablePagination: true,
-//	        	    suppressPaginationOnFocus: true,
-//	        	    enableContentCache: true,
-//	        	    enableCancelButton: true,
-//	        	    enableFinishButton: true,
-//	        	    preloadContent: false,
-//	        	    showFinishButtonAlways: false,
-//	        	    forceMoveForward: false,
-//	        	    saveState: false,
-//	        	    startIndex: 0,
-
-	        	    /* Transition Effects */
-//	        	    transitionEffect: $.fn.steps.transitionEffect.none,
-//	        	    transitionEffectSpeed: 200,
-
-	        	    /* Events */
-//	        	    onStepChanging: function (event, currentIndex, newIndex) { return true; },
-//	        	    onStepChanged: function (event, currentIndex, priorIndex) { }, 
-//	        	    onCanceled: function (event) { },
-//	        	    onFinishing: function (event, currentIndex) { return true; }, 
-//	        	    onFinished: function (event, currentIndex) { },
-
-	        	    /* Labels */
-	        	    labels: {
-	        	        cancel: $ps_locale.cancel,
-	        	        current: $ps_locale.wizard.current,
-	        	        pagination: $ps_locale.wizard.pagination,
-	        	        finish: $ps_locale.finish,
-	        	        next: $ps_locale.next,
-	        	        previous: $ps_locale.prev,
-	        	        loading: $ps_locale.loading
-	        	    }
-	            };
-	            console.log(scope.options);
-	            opts = $.extend({}, defaults, scope.options);
-	            wizard = element.children();
-//	            console.log(wizard);
-	            wizard.steps(opts);
-//	            $('#' + attrs.id).steps(opts);
-        	};
+        controller: 'psWizardCtrl',
+        template: '<div class="wizard" ng-class="className">' +
+        			'<div class="steps">' +
+        				'<ul>' +
+        					'<li ng-class="{disabled: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in steps">' +
+        						'<a ng-click="goTo(step)"><span class="number">{{$index+1}}.</span>{{step.title}}</a>' +
+        					'</li>' +
+        				'</ul>' +
+        			'</div>' +
+        			'<div class="contents" ng-transclude>' +       				
+        			'</div>' +
+        			'<div class="actions">' +
+        			'</div>' +
+        		  '</div>',
+//        template: '<div class="wizard" ng-class="className">' +
+//        			'<div class="steps">' +
+//		    			'<ul ng-transclude></ul>' +
+//		    		'</div>' +
+//		    		'<div class="content">' +
+//		    				'<div class="content" ' +
+//		    					 'ng-repeat="step in steps" ' +
+//		    					 'ng-class="{current: step.selected, done: step.completed}"' +		    					 
+//		    					 'ng-style="{height: contentHeight}"' +
+//		    					 'ps-wizard-content-transclude>' +
+//		    					 	'<div ng-if="step.templateUrl" ng-include="step.templateUrl"></div>' +
+//		    				'</div>' +
+//		    		'</div>' +
+//		    	  '</div>',
+        link: function(scope, element, attrs, ctrl, transclude) {
+			 
         }
-    };
+	};
+}])
+.directive('psWizardStep', ['$parse', function($parse) {
+	return {
+	    require: '^psWizard',
+	    restrict: 'E',
+	    transclude: true,
+	    replace: true,
+	    scope: {
+	    	templateUrl:	'@',
+	    	title:			'='
+	    },
+//	    controller: function(scope) {
+//	    	//Empty controller so other directives can require being 'under' a tab
+//	    	scope.selected = false;
+//	    },
+	    template: '<div ng-show="selected" ng-class="{current: selected, done: completed}" class="content" ng-transclude>' + 
+	    			'<div ng-if="templateUrl" ng-include="templateUrl"></div>' +
+	    		  '</div>',
+	    /*compile: function(element, attrs, transclude) {
+	    	
+	    	return function postLink(scope, element, attrs, ctrl) {
+	    		
+	    		$scope.wztitle = $scope.title;
+	    		ctrl.addStep(scope);
+	    		
+	    	};
+	    },*/
+	    link: function(scope, element, attrs, ctrl, transclude) {
+	    	scope.selected = false;
+    		ctrl.addStep(scope);
+    		scope.$transcludeFn = transclude;
+	    }
+	};
 }])
 .directive('psWizardTransclude', function() {
 	return {
-		link: function(scope, element, attrs, controller, transclude) {
-	        transclude(scope.$parent, function(clone) {
-	          element.empty();
-	          element.append(clone);
-	        });
+		restrict: 'A',
+		link: function(scope, element, attrs, controller, transclude) {		
+			transclude(scope.$parent, function(clone) {
+				element.empty();
+				element.append(clone);
+			});
+		}
+	};
+})
+.directive('psWizardStepTransclude', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs, controller, transclude) {		
+//			var step = scope.$eval(attrs.psWizardStepTransclude);
+	    	console.log(scope);
+	    	
+	    	scope.$transcludeFn(scope.$parent, function(content) {
+				element.append(content);
+	    	});
 		}
 	};
 });

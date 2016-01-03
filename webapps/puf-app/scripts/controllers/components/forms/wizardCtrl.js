@@ -8,11 +8,8 @@ define(['app'], function(app) {
 		
 		$scope.prettyPrint = function() {
 			prettyPrint();
-		}
+		};
 		
-		$scope.defaultOptions = {
-				
-        };
     };
     
 	app.register.controller('wizardCtrl', ['$scope', '$location', controller]);

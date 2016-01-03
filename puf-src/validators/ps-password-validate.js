@@ -29,13 +29,13 @@ angular.module('ps.validators.password', [])
         // modelCtrl 	= the controller for ngModel.
         link: function (scope, element, attrs, modelCtrl) {
         	//console.log(element[0].form);
-        	//console.log(element[0].id);
-        	var showFlag = element[0].form.name + '.' + element[0].id + '.$error.passwordValidate';
+        	console.log(element[0].name);
+        	var showFlag = element[0].form.name + '.' + element[0].name + '.$error.passwordValidate';
         	
         	// error message tag
         	var span = angular.element('<span class="error-msg" ng-show="' + showFlag + '">' + $ps_locale.validators.passwordErrorMsg + '</span>');
         	$compile(span)(scope);
-        	element.after(span);
+        	$(element[0]).after(span);
         	
         	var focus_out = false, 
         	display = span.css('display');

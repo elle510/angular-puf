@@ -1,9 +1,9 @@
 //
 // wizard-default.less
-// 
+// jquery.steps.css 를 less 로 변환 (jquery steps 기본 CSS)
 // --------------------------------------------------
 
-/* ps-wizard
+/* jquery steps
 ----------------------------------*/
 .wizard,.tabcontrol {
     display: block;
@@ -26,7 +26,7 @@
     position: absolute;
     left: -999em;
 }
-.wizard &>.contents &>.title,.tabcontrol &>.contents &>.title {
+.wizard &>.content &>.title,.tabcontrol &>.content &>.title {
     position: absolute;
     left: -999em;
 }
@@ -44,7 +44,7 @@
             }
         }
     }
-    & > .contents {
+    & > .content {
         background: #eee;
         display: block;
         margin: 0.5em;
@@ -55,7 +55,7 @@
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        & > .content {
+        & > .body {
             float: left;
             position: absolute;
             width: 95%;
@@ -121,7 +121,7 @@
             }
         }
     }
-    & > .contents {
+    & > .content {
         display: inline;
         float: left;
         margin: 0 2.5% 0.5em 2.5%;
@@ -233,7 +233,7 @@
             }
         }
     }
-    & > .contents {
+    & > .content {
         position: relative;
         display: inline-block;
         width: 100%;
@@ -241,7 +241,7 @@
         overflow: hidden;
         border-top: 1px solid #bbb;
         padding-top: 20px;
-        & > .content {
+        & > .body {
             float: left;
             position: absolute;
             width: 95%;
