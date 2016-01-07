@@ -17,7 +17,8 @@
 					<ps-tabset class="col-md-12">
 		    			<ps-tab heading="Static title">
 		    				Static content
-		    				
+		    				<input name="input_test" ng-model="test" class="form-control">
+	      					<button type="button" class="btn btn-primary" ng-click="testClick()">Click</button>
 		    			</ps-tab>
 		    			<ps-tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
 		      			{{tab.content}}

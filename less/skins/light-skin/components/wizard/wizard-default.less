@@ -22,6 +22,7 @@
     display: block;
     padding: 0;
 }
+/*
 .wizard &>.steps .current-info,.tabcontrol &>.steps .current-info {
     position: absolute;
     left: -999em;
@@ -30,6 +31,7 @@
     position: absolute;
     left: -999em;
 }
+*/
 .wizard {
     & > .steps {
         position: relative;
@@ -44,6 +46,7 @@
             }
         }
     }
+    
     & > .contents {
         background: #eee;
         display: block;
@@ -61,6 +64,7 @@
             width: 95%;
             height: 95%;
             padding: 2.5%;
+            /*
             ul {
                 list-style: disc !important;
                 & > li {
@@ -93,19 +97,15 @@
                 display: inline-block;
                 margin-left: 1.5em;
             }
+            */
         }
     }
     & > .actions {
         position: relative;
         display: block;
-        text-align: right;
         width: 100%;
-        & > ul {
-            display: inline-block;
-            text-align: right;
-            & > li {
-                margin: 0 0.5em;
-            }
+        .btn-wizard {
+            margin: 0 0.2em;
         }
     }
 }
@@ -132,58 +132,117 @@
         float: right;
         margin: 0 2.5%;
         width: 95%;
-        & > ul {
-            & > li {
-                margin: 0 0 0 1em;
-            }
+        .btn-wizard {
+            margin: 0 0 0 1em;
         }
     }
 }
-.wizard &>.steps &>ul &>li,.wizard &>.actions &>ul &>li {
-    float: left;
+
+.wizard {
+	&>.steps >ul >li {
+  		float: left;
+  	}
+  	
+  	&>.actions .btns-wizard {
+    	float: right;
+	}
+	
+  	&>.actions .btn-wizard {
+    	float: left;
+	}
 }
-.wizard &>.steps a,.wizard &>.steps a:hover,.wizard &>.steps a:active {
-    display: block;
-    width: auto;
-    margin: 0 0.5em 0.5em;
-    padding: 1em 1em;
-    text-decoration: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+
+.wizard {
+	&>.steps a, 
+	&>.steps a:hover, 
+	&>.steps a:active {
+    	display: block;
+	    width: auto;
+	    margin: 0 0.5em 0.5em;
+	    padding: 1em 1em;
+	    text-decoration: none;
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
+	    border-radius: 5px;
+	}
 }
-.wizard &>.steps .disabled a,.wizard &>.steps .disabled a:hover,.wizard &>.steps .disabled a:active {
-    background: #eee;
-    color: #aaa;
-    cursor: default;
+
+.wizard {
+	&>.steps .disabled a,
+	&>.steps .disabled a:hover,
+	&>.steps .disabled a:active {
+    	background: #eee;
+    	color: #aaa;
+    	cursor: default;
+	}
 }
-.wizard &>.steps .current a,.wizard &>.steps .current a:hover,.wizard &>.steps .current a:active {
-    background: #2184be;
-    color: #fff;
-    cursor: default;
+.wizard {
+	&>.steps .current a,
+	&>.steps .current a:hover,
+	&>.steps .current a:active {
+    	background: #2184be;
+    	color: #fff;
+    	cursor: default;
+	}
 }
-.wizard &>.steps .done a,.wizard &>.steps .done a:hover,.wizard &>.steps .done a:active {
-    background: #9dc8e2;
-    color: #fff;
+.wizard {
+	&>.steps .done a,
+	&>.steps .done a:hover,
+	&>.steps .done a:active {
+    	background: #9dc8e2;
+    	color: #fff;
+    	cursor: pointer;
+	}
 }
-.wizard &>.steps .error a,.wizard &>.steps .error a:hover,.wizard &>.steps .error a:active {
-    background: #ff3111;
-    color: #fff;
+.wizard {
+	&>.steps .error a,
+	&>.steps .error a:hover,
+	&>.steps .error a:active {
+    	background: #ff3111;
+    	color: #fff;
+	}
 }
-.wizard &>.actions a,.wizard &>.actions a:hover,.wizard &>.actions a:active {
-    background: #2184be;
-    color: #fff;
-    display: block;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+
+.wizard {
+	&>.actions .btn-wizard {
+		background: #2184be;
+	    color: #fff;
+	    display: block;
+	    padding: 0.5em 1em;
+	    text-decoration: none;
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
+	    border-radius: 5px;
+	}
+	
+	&>.actions .btn-wizard:hover {
+		background: #339ad6;
+	}
+	
+	&>.actions .btn-wizard:active {
+		//background: #339ad6;
+	}
 }
+
 .wizard &>.actions .disabled a,.wizard &>.actions .disabled a:hover,.wizard &>.actions .disabled a:active {
     background: #eee;
     color: #aaa;
 }
+
+.wizard-clearfix {
+	&:after {
+		clear: both;
+		content: "";
+		display: table;
+		line-height: 0;
+	}
+	&:before {
+		content: "";
+		display: table;
+		line-height: 0;
+	}
+}
+
 .tabcontrol {
     & > .steps {
         position: relative;

@@ -19,13 +19,26 @@ define(['app'], function(app) {
 		
 		$scope.onStepChanging = function(event, currentIndex, newIndex) { 
 			console.log('onStepChanging');
-//			console.log(elementForm.input_password.$error);
-//			console.log(elementForm.input_password.$error.passwordValidate);
+			console.log($scope.elementForm.input_password.$error);
+//			console.log($scope.elementForm.input_password.$error.passwordValidate);
+			console.log($scope.elementForm.input_password.$valid);
+			console.log($scope.elementForm.input_password.$invalid);
+			
+			if($scope.elementForm.input_password.$invalid) {
+				elementForm.input_password.focus();
+				return false;
+			}
+			
 			return true;
 		};
 		
 		$scope.onStepChanged = function(event, currentIndex, priorIndex) { 
 			console.log('onStepChanged');
+		};
+		
+		$scope.onFinishing = function(event, currentIndex) { 
+			console.log('onFinishing');
+			return false;
 		};
 		
 		$scope.test = '테스트';

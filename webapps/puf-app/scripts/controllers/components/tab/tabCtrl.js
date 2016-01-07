@@ -24,6 +24,11 @@ define(['app'], function(app) {
 		$scope.temp1 = "template page 1";
 		$scope.temp2 = "template page 2";
 		
+		$scope.test = '테스트';
+		$scope.testClick = function() {
+			console.log('testClick');
+			$scope.test = '테스트111';
+		};
     };
     
 	app.register.controller('tabCtrl', ['$scope', '$location', controller]);

@@ -313,7 +313,7 @@ body {
 
 /* center 영역
 ----------------------------------*/
-.main .center .breadcrumbs {
+.main .center > .breadcrumbs {
 	position: fixed;
 	top: 80px;
 	width: 100%;
@@ -323,7 +323,7 @@ body {
   	border: 1px solid;
 }
 
-.main .center .content {
+.main .center > .content {
 	position: relative;
 	top: 30px;
 	width: 100%;
@@ -430,7 +430,7 @@ a.nav-link {
   	.breadcrumbs {
   		position: static;
   	}
-  	.content {
+  	.center > .content {
   		position: static;
   	}
   	

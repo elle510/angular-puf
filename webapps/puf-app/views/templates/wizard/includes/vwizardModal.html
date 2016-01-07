@@ -5,14 +5,9 @@
 	</ps-modal-header>
 	<ps-modal-body>
 		<ps-wizard id="vertical_wizard" direction="vertical">
-			<ps-step-title>{{step1Title}}</ps-step-title>
-			<ps-step-content>First Content</ps-step-content>
-			
-			<ps-step-title>{{step2Title}}</ps-step-title>
-			<ps-step-content>Second Content</ps-step-content>
-			
-			<ps-step-title>{{stepSummaryTitle}}</ps-step-title>
-			<ps-step-content>요약화면</ps-step-content>
+			<ps-wizard-step title="step1Title">First Content</ps-wizard-step>
+			<ps-wizard-step title="step2Title">Second Content</ps-wizard-step>
+			<ps-wizard-step title="stepSummaryTitle">요약화면</ps-wizard-step>
 		</ps-wizard>
 	</ps-modal-body>
  	<ps-modal-footer>

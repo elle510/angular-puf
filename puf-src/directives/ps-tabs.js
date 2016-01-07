@@ -218,7 +218,7 @@ angular.module('ps.directives.tabs', [])
 	    	
 	    	//Now our tab is ready to be transcluded: both the tab heading area
 	    	//and the tab content area are loaded.  Transclude 'em both.
-	    	tab.$transcludeFn(tab.$parent, function(contents) {
+	    	tab.$transcludeFn(tab.$parent.$parent, function(contents) {
 	    		angular.forEach(contents, function(node) {
 	    			if (isTabHeading(node)) {
 	    				//Let psTabHeadingTransclude know.
