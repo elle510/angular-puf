@@ -2,7 +2,7 @@
 
 define(['app'], function(app) {
 	
-	var controller = function ($scope, $location) {
+	var controller = function ($scope, $location, $http) {
         
 		$scope.pageTitle = "Wizard Main";
 		
@@ -112,9 +112,58 @@ define(['app'], function(app) {
 		
 		$scope.onNotFormFinished = function(event, currentIndex) {
 			console.log('onNotFormFinished');
+			save();
+		};
+		
+		function save() {
+			
+			var uid = 'agent';	// 
+			
+			$http({
+	    		method: 'POST', 
+	    		url: '/api/install/setting/systemInfo/view',
+	    		params: {uid: uid}
+	    	})
+	    	.then(function(response) {
+	    			// success
+//	    			console.log(response);
+	    			return response.data;
+	    		},
+	    		function(response) {	// optional
+	    			// failed
+	    			console.log('fail');
+//	    			console.log(response);
+	    		}
+	    	);
+	   	 	
+			/*
+			systemInfoService.saveSystemInfoCustom(uid).then(function(data) {
+	    		//console.log(data);
+				if(data.exception) {
+//					console.log('예외발생');
+					$scope.localizedMessage = data.localizedMessage;
+				}else {
+//					console.log('성공');
+					console.log(data);
+		    		$scope.localizedMessage = '저장되었습니다.';
+		    		setTimeout(function() {
+		    			$('#vwizardModal').modal('hide');
+		    		}, 1500);
+				}
+	    	}, function(data) {
+	    		// Error handler
+//	    		console.log('실패');
+	    		console.log(data);
+	    		$scope.localizedMessage = 'Error';
+	    	}).finally(function() {
+	    	    // Always execute this on both error and success
+//	    		$("#scriptModalButton").button('reset');
+	    	});
+			*/
+			
 		};
     };
     
-	app.register.controller('wizardMainCtrl', ['$scope', '$location', controller]);
+	app.register.controller('wizardMainCtrl', ['$scope', '$location', '$http', controller]);
 	
 });
