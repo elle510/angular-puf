@@ -4,10 +4,10 @@
 	<ps-modal-header title="vwizardTitle">
 	</ps-modal-header>
 	<ps-modal-body>
-		<ps-wizard id="vertical_wizard" direction="vertical">
-			<ps-wizard-step title="step1Title">First Content</ps-wizard-step>
-			<ps-wizard-step title="step2Title">Second Content</ps-wizard-step>
-			<ps-wizard-step title="stepSummaryTitle">요약화면</ps-wizard-step>
+		<ps-wizard id="vertical_wizard" direction="vertical" on-finished="onNotFormFinished">
+			<ps-wizard-step title="step1Title" validate-step="validateNotFormStep1">First Content</ps-wizard-step>
+			<ps-wizard-step title="step2Title" validate-step="validateNotFormStep2">Second Content</ps-wizard-step>
+			<ps-wizard-step title="stepSummaryTitle" validate-step="validateNotFormStep3">요약화면</ps-wizard-step>
 		</ps-wizard>
 	</ps-modal-body>
  	<ps-modal-footer>

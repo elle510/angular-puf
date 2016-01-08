@@ -32,23 +32,23 @@ angular.module('ps.directives.wizard', [])
 	};
 	
 	ctrl.prev = function() {
-		console.log('prev');
+//		console.log('prev');
 		if(currentStep.index > 0) {
 			ctrl.goTo(steps[currentStep.index - 1]);
 		}
 	};
 	
 	ctrl.next = function() {
-		console.log('next');
+//		console.log('next');
 		if(currentStep.index < steps.length-1) {
 			ctrl.goTo(steps[currentStep.index + 1]);
 		}
 	};
 	
 	ctrl.finish = function() {
-		console.log('finish');
+//		console.log('finish');
 		var wizard = $scope.getWizardElement();
-		if(wizard.triggerHandler('finishing', [currentStep.index])) {
+		if(wizard.triggerHandler('finishing', [currentStep])) {
 			currentStep.selected = true;
 			currentStep.completed = true;
 			currentStep.errored = false;
@@ -67,12 +67,12 @@ angular.module('ps.directives.wizard', [])
 	};
 	
 	ctrl.goTo = function(step) {
-		console.log('goTo');
+//		console.log('goTo');
 		
 		// step 이동전 발생
 //		$scope.$emit('stepChanging', currentStep.index, step.index);
 		var wizard = $scope.getWizardElement();
-		if(wizard.triggerHandler('stepChanging', [currentStep.index, step.index])) {
+		if(wizard.triggerHandler('stepChanging', [currentStep, step])) {
 			var oldIndex = currentStep.index;
 			currentStep.selected = false;
 			currentStep.completed = true;
@@ -115,15 +115,19 @@ angular.module('ps.directives.wizard', [])
 			$scope.finishDisabled = false;
 		}
 		
-		if($scope.onStepChanged) {
+		if(typeof $scope.onStepChanged === 'function') {
 			$scope.onStepChanged(event, currentIndex, oldIndex);
 		}
 	});
 	
 	$scope.$on('finished', function(event, currentIndex) {
 		
-		if($scope.onFinished) {
+		if(typeof $scope.onFinished === 'function') {
 			$scope.onFinished(event, currentIndex);
+		}
+		
+		if($scope.form) {
+			$scope.form.submit();
 		}
 	});
 	
@@ -153,9 +157,7 @@ angular.module('ps.directives.wizard', [])
         	onStepChanged: 	'=',	// function (event, currentIndex, oldIndex) {}
         	onCanceled: 	'=',
         	onFinishing: 	'=',	// function (event, currentIndex) { return true; }
-        	onFinished: 	'=',	// function (event, currentIndex) {}
-        	selectNode:		'=?',
-        	dblclick:		'=?'
+        	onFinished: 	'='		// function (event, currentIndex) {}
         },
         controller: 'psWizardCtrl',
 //        template: '<div class="wizard" ng-class="className">' +
@@ -205,6 +207,13 @@ angular.module('ps.directives.wizard', [])
         		element.addClass('vertical');
         	}
         	
+        	if($(element).parent().get(0).tagName.toLowerCase() == 'form') {
+//        		scope.finishType = 'submit';
+        		scope.form = $(element).parent();
+        	}/*else {
+        		scope.finishType = 'button';
+        	}*/
+        	
         	scope.getWizardElement = function() {
         		return element;
         	};
@@ -221,25 +230,36 @@ angular.module('ps.directives.wizard', [])
         		ctrl.finish();
         	};
         	
-        	$(element).on('stepChanging', function(event, currentIndex, newIndex) {
-//       		console.log('currentIndex: ' + currentIndex);
-//       		console.log('newIndex: ' + newIndex);
+        	$(element).on('stepChanging', function(event, currentStep, newStep) {
+//        		console.log(typeof currentStep.validateStep);
         		
-        		if(scope.onStepChanging) {
-        			return scope.onStepChanging(event, currentIndex, newIndex);
+        		var isValidateStep = true, 
+        		isOnStepChanging = true;
+        		if(typeof currentStep.validateStep === 'function') {
+        			isValidateStep = currentStep.validateStep();
+    	    	}
+    	    	
+        		if(typeof scope.onStepChanging === 'function') {
+        			isOnStepChanging = scope.onStepChanging(event, currentStep.index, newStep.index);
         		}
         		
-       		 	return true;
+       		 	return (isValidateStep && isOnStepChanging) ? true : false;
         	});
         	
-        	$(element).on('finishing', function(event, currentIndex) {
+        	$(element).on('finishing', function(event, currentStep) {
 //       		console.log('currentIndex: ' + currentIndex);
         		
-        		if(scope.onFinishing) {
-        			return scope.onFinishing(event, currentIndex);
+        		var isValidateStep = true, 
+        		isOnFinishing = true;
+        		if(typeof currentStep.validateStep === 'function') {
+        			isValidateStep = currentStep.validateStep();
+    	    	}
+        		
+        		if(typeof scope.onFinishing === 'function') {
+        			isOnFinishing = scope.onFinishing(event, currentStep.index);
         		}
         		
-       		 	return true;
+       		 	return (isValidateStep && isOnFinishing) ? true : false;
         	});
         }
 	};
@@ -252,7 +272,8 @@ angular.module('ps.directives.wizard', [])
 	    replace: true,
 	    scope: {
 //	    	title:			'@',
-	    	templateUrl:	'@'
+	    	templateUrl:	'@',
+	    	validateStep:	'='
 	    },
 //	    controller: function(scope) {
 //	    	//Empty controller so other directives can require being 'under' a tab

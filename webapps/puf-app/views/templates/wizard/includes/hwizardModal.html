@@ -12,9 +12,9 @@
 	    				</div>
 			  		</div>
 	</form>		  		
-		<form name="elementForm" class="form-horizontal">
-			<ps-wizard id="horizontal_wizard" on-step-changing="onStepChanging" on-step-changed="onStepChanged" on-finishing="onFinishing">
-				<ps-wizard-step title="step1Title">
+		<form id="elementForm" name="elementForm" class="form-horizontal">
+			<ps-wizard id="horizontal_wizard" on-step-changing="onStepChanging" on-step-changed="onStepChanged" on-finishing="onFinishing" on-finished="onFinished">
+				<ps-wizard-step title="step1Title" validate-step="validateStep1">
 				
 					<div class="form-group">
 						<label class="col-md-2 control-label">비밀번호</label>
@@ -49,8 +49,7 @@
 			  		
 				</ps-wizard-step>
 				
-				<ps-wizard-step title="step2Title">
-					Second Content
+				<ps-wizard-step title="step2Title" template-url="/puf-app/views/templates/wizard/includes/includeStep.html">
 				</ps-wizard-step>
 				
 				<ps-wizard-step title="stepSummaryTitle">
