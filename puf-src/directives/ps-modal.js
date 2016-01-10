@@ -29,7 +29,11 @@ angular.module('ps.directives.modal', [])
 			 className: '@',
 			 width:		'@',
 			 size: 		'@',
-			 backdrop: 	'@'
+			 backdrop: 	'@',
+			 onShow:	'=',	// function(event) {}
+			 onShown:	'=',	// function(event) {}
+			 onHide:	'=',	// function(event) {}
+			 onHidden:	'='		// function(event) {}
 		 },
 		 template: '<div class="modal fade" ng-class="className" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">' +
 		    			'<div class="modal-dialog" ng-class="{\'modal-sm\': size == \'sm\', \'modal-lg\': size == \'lg\'}" ng-style="{width: width}">' +
@@ -45,6 +49,25 @@ angular.module('ps.directives.modal', [])
 		    	 element.attr('data-backdrop', attrs.backdrop);
 		    	 element.attr('data-keyboard', false);
 		     }
+		     
+		     if(scope.onShow) {
+		    	 $(element).on('show.bs.modal', scope.onShow);
+		     };
+		     
+		     $(element).on('shown.bs.modal', function(event) {
+		    	 $(window).trigger('resize');
+		    	 if(scope.onShown) {
+		    		 scope.onShown(event);
+		    	 }
+		     });
+		     
+		     if(scope.onHide) {
+		    	 $(element).on('hide.bs.modal', scope.onHide);
+		     };
+		     
+		     if(scope.onHidden) {
+		    	 $(element).on('hidden.bs.modal', scope.onHidden);
+		     };
 		 }
 	 };
 })

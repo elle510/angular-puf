@@ -115,6 +115,11 @@ angular.module('ps.directives.wizard', [])
 			$scope.finishDisabled = false;
 		}
 		
+		// step changed 시 resize 이벤트 발생(jqgrid width 설정을 위해)
+		setTimeout(function() {
+			$(window).trigger('resize');
+		}, 1);
+		
 		if(typeof $scope.onStepChanged === 'function') {
 			$scope.onStepChanged(event, currentIndex, oldIndex);
 		}
@@ -208,11 +213,8 @@ angular.module('ps.directives.wizard', [])
         	}
         	
         	if($(element).parent().get(0).tagName.toLowerCase() == 'form') {
-//        		scope.finishType = 'submit';
         		scope.form = $(element).parent();
-        	}/*else {
-        		scope.finishType = 'button';
-        	}*/
+        	}
         	
         	scope.getWizardElement = function() {
         		return element;
@@ -296,7 +298,20 @@ angular.module('ps.directives.wizard', [])
 	    },*/
 	    link: function(scope, element, attrs, ctrl, transclude) {
 //	    	scope.title = scope.$parent.$eval(scope.title);
-	    	scope.title = scope.$parent.$eval(attrs.title);
+//	    	scope.title = angular.isDefined(attrs.title) ? scope.$parent.$eval(attrs.title) : '';
+	    	
+	    	if(angular.isDefined(attrs.title)) {
+	    		try {
+	    			if(scope.$parent.$eval(attrs.title)) {
+	    				scope.title = scope.$parent.$eval(attrs.title);
+	    			}else {
+	    				scope.title = attrs.title;
+	    			}
+	    			
+	    		}catch(e) {
+	    			scope.title = attrs.title;
+	    		}
+	    	}
 	    	
 	    	scope.selected = false;
 	    	scope.goToClick = function() {

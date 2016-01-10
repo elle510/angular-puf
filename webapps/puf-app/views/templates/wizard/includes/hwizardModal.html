@@ -4,17 +4,9 @@
 	<ps-modal-header title="hwizardTitle">
 	</ps-modal-header>
 	<ps-modal-body>
-	<form name="elementForm1" class="form-horizontal">
-	<div class="form-group">
-						<label class="col-md-2 control-label">비밀번호</label>
-	    				<div class="col-md-10 form-inline">
-	      					<input name="input_test" type="password" ng-model="password" class="form-control" placeholder="비밀번호를 입력하세요." ps-password-validate required>
-	    				</div>
-			  		</div>
-	</form>		  		
 		<form id="elementForm" name="elementForm" class="form-horizontal">
 			<ps-wizard id="horizontal_wizard" on-step-changing="onStepChanging" on-step-changed="onStepChanged" on-finishing="onFinishing" on-finished="onFinished">
-				<ps-wizard-step title="step1Title" validate-step="validateStep1">
+				<ps-wizard-step title="formStepTitle" validate-step="validateStep1">
 				
 					<div class="form-group">
 						<label class="col-md-2 control-label">비밀번호</label>
@@ -47,12 +39,21 @@
 	    				</div>
 			  		</div>
 			  		
+			  		<!-- <div class="row">
+						<div class="col-md-12">
+							<ps-grid options="options" api="gridApi"></ps-grid>
+						</div>
+					</div> -->
 				</ps-wizard-step>
 				
-				<ps-wizard-step title="step2Title" template-url="/puf-app/views/templates/wizard/includes/includeStep.html">
+				<ps-wizard-step title="deviceSearchStepTitle" template-url="/puf-app/views/templates/wizard/includes/include-deviceSearchStep.html">
 				</ps-wizard-step>
 				
-				<ps-wizard-step title="stepSummaryTitle">
+				<ps-wizard-step title="roleStepTitle">
+					Role Setting
+				</ps-wizard-step>
+				
+				<ps-wizard-step title="summaryStepTitle">
 					요약화면
 				</ps-wizard-step>
 				

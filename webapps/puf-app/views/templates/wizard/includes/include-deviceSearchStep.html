@@ -1,0 +1,19 @@
+<div ng-controller="wizardMainCtrl">
+	<div class="row">
+		<div class="col-md-9">
+			<button type="button" class="btn btn-default" ng-click="search()">조회</button>
+			<button type="button" class="btn btn-default" ng-click="search()"><i class="fa fa-plus"></i></button>
+			<button type="button" class="btn btn-default" ng-click="search()"><i class="fa fa-trash-o"></i></button>
+		</div>
+		<div class="col-md-3">
+			<div class="pull-right">
+				<button class="btn btn-default" type="button"><i class="fa fa-file-excel-o"></i></button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ps-grid options="options" api="gridApi"></ps-grid>
+		</div>
+	</div>
+</div>
