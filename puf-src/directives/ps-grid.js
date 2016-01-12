@@ -87,8 +87,14 @@ angular.module('ps.directives.grid', [])
 //	        $('#' + grid_id).setGridWidth($('#' + div_id).width() , false); //Resized to new width as per window
 //	    	console.log($('.ui-jqgrid').parent().width());
 //	    	var width = $('.ui-jqgrid').parent().width();
-	    	var width = $(element).width();
-	        $('#' + grid_id).setGridWidth(width , true); // shrinkToFit 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
+	    	
+	    	// link에서 scope 변수로 설정
+//	    	var autowidth = $('#' + grid_id).jqGrid('getGridParam', 'autowidth');
+	    	if($scope.autowidth == true) {
+	    		var width = $(element).width();
+		        $('#' + grid_id).setGridWidth(width , true); // shrinkToFit 컬럼 width가 자동조절인지(true) 지정한 값인지(false)
+	    	}
+	    	
 	     }).trigger('resize');
 	}
 	
@@ -257,6 +263,7 @@ angular.module('ps.directives.grid', [])
 //                console.log(opts);
                 table.jqGrid(opts);
                 
+                scope.autowidth = opts.autowidth;
                 ctrl.resizeJqGridWidth(element, attrs.id);
                 
                 // context menu

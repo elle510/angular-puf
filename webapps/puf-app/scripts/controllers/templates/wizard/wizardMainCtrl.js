@@ -127,7 +127,8 @@ define(['app'], function(app) {
 		
 		$scope.options = {
 			data: mydata,
-			datatype: 'local',			
+			datatype: 'local',
+			height: 300,
 		   	colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
 		   	colModel:[
 		   		{name:'id',index:'id', width:60, sorttype:'int'},

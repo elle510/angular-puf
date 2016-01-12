@@ -20,7 +20,7 @@
  */
 
 angular.module('ps.directives.modal', [])
-.directive('psModal', function() {
+.directive('psModal', [ 'psUtil', function(psUtil) {
 	return {
 		 restrict: 'E',
 		 transclude: true,
@@ -56,6 +56,7 @@ angular.module('ps.directives.modal', [])
 		     
 		     $(element).on('shown.bs.modal', function(event) {
 		    	 $(window).trigger('resize');
+		    	 psUtil.tooltip();
 		    	 if(scope.onShown) {
 		    		 scope.onShown(event);
 		    	 }
@@ -70,7 +71,7 @@ angular.module('ps.directives.modal', [])
 		     };
 		 }
 	 };
-})
+}])
 .directive('psModalHeader', ['$compile', function($compile) {
 	return {
 		//require: '^psModal',

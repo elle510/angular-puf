@@ -42,5 +42,14 @@ angular.module('ps.services.util', [])
 		}); 
 	};
 	
+	// tooltip
+	root.tooltip = function(selector) {
+		if(typeof selector === 'undefined') {
+			selector = '[data-toggle="tooltip"]';
+		}
+//		$(selector).bsTooltip();
+		$(selector).tooltip();
+	};
+	
     return root;
 }]);

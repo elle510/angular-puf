@@ -33,7 +33,7 @@ require.config({
     	// 뒤에 js 확장자는 생략한다.
         'text': 'puf/libs/text', // HTML 데이터를 가져올때 text! 프리픽스를 붙여준다.
         'jquery': 'puf/libs/jquery-1.11.0.min',
-        'jquery-ui': 'puf/libs/jquery-ui-1.10.4.custom.min',
+        'jquery-ui': 'puf/libs/jquery-ui.min',	// 1.11.4 Base
         'angular': 'puf/libs/angular.min',
         'angular-route': 'puf/libs/angular-route.min',
         'bootstrap': 'puf/libs/bootstrap.min',
@@ -162,16 +162,16 @@ require.config({
 
 // requireJS를 활용하여 모듈 로드
 require( [
-		'jquery', 	// 미리 선언해둔 path, jQuery는 AMD를 지원하기 때문에 이렇게 로드해도 jQuery 또는 $로 호출할 수 있다.
-		'angular', 	// 미리 선언해둔 path
+		'jquery', 		// 미리 선언해둔 path, jQuery는 AMD를 지원하기 때문에 이렇게 로드해도 jQuery 또는 $로 호출할 수 있다.
+		'angular', 		// 미리 선언해둔 path
 		'jquery-ui',
-		'text', 	// 미리 선언해둔 path, css나 html을 로드하기 위한 requireJS 플러그인
+		'text', 		// 미리 선언해둔 path, css나 html을 로드하기 위한 requireJS 플러그인
 		'bootstrap',
-		'prettify',			// google code prettify
-		'app', 				// app.js
-		'routes', 			// routes.js
+		'prettify',		// google code prettify
+		'app', 			// app.js
+		'routes', 		// routes.js
 		//'plugins/jquery.metisMenu',
-		'ps-common'
+		//'ps-common'
 	],
 
 	// 디펜던시 로드뒤 콜백함수
@@ -186,6 +186,8 @@ require( [
 			// 임의로 앵귤러 부트스트래핑을 수행한다.
 			
 			angular.bootstrap(document, ['pufApp']);
+//			console.log($.fn.tooltip.noConflict);
+//			$.fn.bsTooltip = $.fn.tooltip.noConflict();
 			
 			//$('.googlePlayMenu').googlePlayMenu('json/googlePlay-menu.json');
 			//psGooglePlayMenu.registerApp(app);

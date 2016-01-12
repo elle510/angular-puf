@@ -47,6 +47,9 @@ define(['app'], function(app) {
 			//datatype: "local",
 			rowNum: 10,
 			rowList: [10,20,30],
+//			autowidth: false,
+//			width: 800,
+//			height: 200,
     		colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
     	   	colModel:[
     	   		{name:'id',index:'id', width:60, sorttype:"int"},

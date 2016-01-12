@@ -282,7 +282,7 @@ angular.module('ps.directives.wizard', [])
 //	    	scope.selected = false;
 //	    },
 	    template: '<li ng-class="{disabled: !completed && !selected, current: selected, done: completed && !selected, error: errored}">' +
-					'<a ng-click="goToClick()" title="{{title}}"><span class="number">{{index+1}}.</span>{{title}}</a>' +
+					'<a ng-click="goToClick()" data-toggle="tooltip" title="{{title}}"><span class="number">{{index+1}}.</span>{{title}}</a>' +
 				  '</li>',
 //	    template: '<div ng-show="selected" ng-class="{current: selected, done: completed}" class="content" ng-transclude>' + 
 //	    			'<div ng-if="templateUrl" ng-include="templateUrl"></div>' +
