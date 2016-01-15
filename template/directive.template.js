@@ -45,7 +45,7 @@ angular.module('ps.directives.menu', [])
 		},
 		controller: 'psMenuCtrl',
 		template: '<a ng-click="func()"></a>',
-		link: function(scope, element, attrs, ctrl) {
+		link: function(scope, element, attrs, ctrl, transclude) {
 			ctrl.createMeunu();
 			scope.updateDisplay();
 			

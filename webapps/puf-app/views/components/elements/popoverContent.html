@@ -1,0 +1,62 @@
+<div class="page-content">
+	<div class="page-header">
+		<h1>{{pageTitle}}</h1>
+	</div>
+	
+	<div class="page-body">
+		<div class="row"><!-- start sm modal -->
+			<div class="row">
+				<h5>Popover Content(팝업 컨텐츠)</h5>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="button" class="btn btn-default" id="btn" data-toggle="popover"><i class="fa fa-plus"></i></button>
+					<ps-popover-content title="Popover Header" pop-selector="#btn" width="900px">
+		  				<div>This is your div content</div>
+		  				<div class="row">
+							<label class="col-md-2 control-label">테스트</label>
+		    				<div class="col-md-10">
+		      					<input name="input_test" ng-model="testPopover" class="form-control">    					
+		      					<button type="button" class="btn btn-primary" ng-click="testPopoverClick()">Click</button>
+		    				</div>
+				  		</div>
+					</ps-popover-content>
+					
+				</div>
+			</div>
+			<div class="row">
+				<ps-hidden-content expand-label="소스 보기" collapse-label="소스 닫기" 
+									expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+									on-click="prettyPrint()">
+					<ps-tabset>
+	    				<ps-tab heading="HTML코드">
+	    					<pre class="prettyprint linenums">
+	    					
+&lt;ps-hidden-content expand-label="펼치기" collapse-label="접기" 
+				   expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down"
+				   on-click="clickFunc()"&gt;
+  &lt;div&gt;
+    내용
+  &lt;/div&gt;
+&lt;/ps-hidden-content&gt;
+
+							</pre>
+	    				</ps-tab>
+	    				<ps-tab heading="JS코드">
+	    					<pre class="prettyprint linenums">
+// js
+							</pre>
+	    				</ps-tab>
+	  				</ps-tabset>
+	  			</ps-hidden-content>				
+			</div>
+		</div><!-- end sm modal -->
+		<div class="vspace-12"></div>
+		
+	</div>
+	
+	<div class="page-footer">
+	
+	</div>
+	
+</div>

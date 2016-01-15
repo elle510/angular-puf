@@ -91,10 +91,36 @@ define(['app'], function(app) {
 			$scope.test = '테스트111';
 		};
 		
+		$scope.testPopover = '테스트 Popover';
+		$scope.testPopoverClick = function() {
+			console.log('testClick');
+			$scope.testPopover = '테스트 Popover 111';
+		};
+		
 //		$scope.password = '';
 //		$scope.email = '';
 		
 		// Device Search Step
+		$('[data-toggle="popover1"]').popover();
+//		$('[data-toggle="popover1"]').popover({ 
+//			html : true,
+//		    content: function(){
+//		    	return $('#popover_content_wrapper').html();
+//		    }
+//		});
+		$scope.popoverIp = function() {
+//			$('#ipModal').modal('show');
+//			$('[data-toggle="popover"]').popover();
+		};
+		
+		$scope.addIp = function() {
+			
+		};
+		
+		$scope.closePopIp = function() {
+			$scope.popIpApi.hide();
+		};
+		
 		var mydata = [
       		{id:'1',invdate:'2010-05-24',name:'test',note:'note',tax:'10.00',total:'2111.00'} ,
       		{id:'2',invdate:'2010-05-25',name:'test2',note:'note2',tax:'20.00',total:'320.00'},

@@ -79,13 +79,26 @@ angular.module('ps.directives.modal', [])
 		transclude: true,
 		replace: true,
 		scope: {
-			title: '='
+//			title: '='
 		},
 		template: '<div class="modal-header">' +
 					'<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
 					'<span class="modal-title">{{title}}</span>' +
 				  '</div>',
 		link: function(scope, element, attrs, ctrl) {
+			
+			if(angular.isDefined(attrs.title)) {
+	    		try {
+	    			if(scope.$parent.$eval(attrs.title)) {
+	    				scope.title = scope.$parent.$eval(attrs.title);
+	    			}else {
+	    				scope.title = attrs.title;
+	    			}
+	    			
+	    		}catch(e) {
+	    			scope.title = attrs.title;
+	    		}
+	    	}
 			
 		}
 	}

@@ -2,8 +2,80 @@
 	<div class="row">
 		<div class="col-md-9">
 			<button type="button" class="btn btn-default" ng-click="search()">조회</button>
-			<button type="button" class="btn btn-default" ng-click="search()"><i class="fa fa-plus"></i></button>
-			<button type="button" class="btn btn-default" ng-click="search()"><i class="fa fa-trash-o"></i></button>
+			<!-- <button type="button" class="btn btn-default" ng-click="popoverIp()" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><i class="fa fa-plus"></i></button> -->
+			<button type="button" class="btn btn-default" ng-click="popoverIp()" data-toggle="popover"><i class="fa fa-plus"></i></button>
+			<ps-popover-content title="IP 추가" pop-selector="[data-toggle='popover']" width="650px" api="popIpApi">
+  				<div class="row">
+  					<div class="col-md-12">조회할 서버IP 추가</div>
+  				</div>
+  				<div class="row">
+  					<div class="col-md-12">
+  						<ps-hidden-content expand-label="일괄입력" collapse-label="일괄입력" 
+									   expand-icon="fa fa-caret-right" collapse-icon="fa fa-caret-down">						   
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-inline">
+										<div>
+											<label>IP</label>
+										    <input type="text" class="form-control" ng-model="startIp" placeholder="시작IP 입력">
+										    ~
+										    <input type="text" class="form-control" ng-model="endIp" placeholder="마지막IP 입력">
+										</div>
+										
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-inline">
+										<div>
+											<label>PORT</label>
+											<input type="text" class="form-control" ng-model="port" placeholder="PORT 입력">
+										</div>
+										<button type="button" class="btn btn-primary" ng-click="inputIp()">IP입력추가</button>
+									</div>
+								</div>
+  								<!-- <div class="col-md-1">
+  									<label>IP</label>
+  								</div>
+  								<div class="col-md-3">
+  									<input type="text" class="form-control" ng-model="startIp" placeholder="시작IP 입력">
+  								</div>
+  								<div class="col-md-3">
+  									<input type="text" class="form-control" ng-model="endIp" placeholder="마지막IP 입력">
+  								</div>
+								<div class="col-md-1">
+  									<label>PORT</label>
+  								</div>
+  								<div class="col-md-2">
+  									<input type="text" class="form-control" ng-model="port" placeholder="PORT 입력">
+  								</div>
+								<div class="col-md-1">	
+									<button type="button" class="btn btn-primary" ng-click="inputIp()">IP입력추가</button>
+								</div> -->
+							</div>
+						</ps-hidden-content>
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="col-md-12">
+  						<label class="control-label">서버IP</label>
+    					<textarea class="form-control" rows="10" placeholder="탐색할 장비 정보를 입력 하십시오.(예: 127.0.0.1,22003)"></textarea>
+  					</div>
+  				</div>
+  				<!-- <div class="row">
+					<label class="col-md-2 control-label">테스트</label>
+    				<div class="col-md-10">
+      					<input name="input_test" ng-model="testPopover" class="form-control">    					
+      					<button type="button" class="btn btn-primary" ng-click="testPopoverClick()">Click</button>
+    				</div>
+		  		</div> -->
+		  		<div class="row">
+		  			<div class="col-md-12">
+  						<button type="button" class="btn btn-primary" ng-click="addIp()">추가</button>
+  						<button type="button" class="btn btn-primary" ng-click="closePopIp()">닫기</button>
+  					</div>
+  				</div>
+			</ps-popover-content>
+			<button type="button" class="btn btn-default" ng-click="removeIp()" data-toggle="popover1" title="Popover Header" data-content="Some content inside the popover"><i class="fa fa-trash-o"></i></button>
 		</div>
 		<div class="col-md-3">
 			<div class="pull-right">

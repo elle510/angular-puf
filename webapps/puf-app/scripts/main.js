@@ -28,7 +28,7 @@ require.config({
     의 형태로 설정한 뒤에, define에서 "exam/module" 로 불러오게 되면, 스크립트 태그에서는 실제로는 src="aaaa/bbbb/module.js" 로 잡을 것이다.
     path는 또한 아래와 같이 특정 라이브러리 경로 선언을 위해 사용될 수 있는데, path 매핑 코드는 자동적으로 .js 확장자를 붙여서 모듈명을 매핑한다.
 */
-    paths:{
+    paths: {
  
     	// 뒤에 js 확장자는 생략한다.
         'text': 'puf/libs/text', // HTML 데이터를 가져올때 text! 프리픽스를 붙여준다.
@@ -97,7 +97,7 @@ require.config({
     AMD 형식을 지원하지 않는 라이브러리의 경우 아래와 같이 SHIM을 사용해서 모듈로 불러올 수 있다.
     참고 : http://gregfranko.com/blog/require-dot-js-2-dot-0-shim-configuration/
 */
-    shim:{
+    shim: {
 //    	'jquery':{
 //    		exports: 'jQuery'
 //    	},
@@ -110,7 +110,8 @@ require.config({
         },
         'bootstrap': {
         	//deps: ['text!styles/jbootstrap.min.css']
-        	deps: ['jquery']
+        	deps: ['jquery'],
+        	exports: 'bs'
         },
         'ps-common': {
             deps: ['jquery']
@@ -158,14 +159,15 @@ require.config({
 			deps:['app']
 		}
     }
+    
 });
 
 // requireJS를 활용하여 모듈 로드
 require( [
 		'jquery', 		// 미리 선언해둔 path, jQuery는 AMD를 지원하기 때문에 이렇게 로드해도 jQuery 또는 $로 호출할 수 있다.
 		'angular', 		// 미리 선언해둔 path
-		'jquery-ui',
 		'text', 		// 미리 선언해둔 path, css나 html을 로드하기 위한 requireJS 플러그인
+		'jquery-ui',
 		'bootstrap',
 		'prettify',		// google code prettify
 		'app', 			// app.js

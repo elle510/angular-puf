@@ -21,6 +21,7 @@
             		{ "text": "Modal", 				"id": "comp_modal", 			"icon": "fa fa-flag", 	"route": "modal" },
             		{ "text": "Panel", 				"id": "comp_panel", 			"icon": "fa fa-flag", 	"route": "panel" },
             		{ "text": "Hidden Content", 	"id": "comp_hidden_content", 	"icon": "fa fa-flag", 	"route": "hiddenContent" },
+            		{ "text": "Popover Content", 	"id": "comp_popover_content", 	"icon": "fa fa-flag", 	"route": "popoverContent" },
             		{ "text": "Context Menu", 		"id": "comp_context_menu", 		"icon": "fa fa-flag", 	"route": "contextMenu" }
             	]
         	},

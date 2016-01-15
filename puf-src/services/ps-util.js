@@ -13,17 +13,17 @@
 
 angular.module('ps.services.util', [])
 .factory('psUtil', ['$window', '$location', function($window, $location) {
-	var root = {};
-    root.show = function(msg) {
+	var factory = {};
+	factory.show = function(msg) {
         $window.alert(msg);
     };
     
-    root.reverse = function(name) {
+    factory.reverse = function(name) {
 		return name.split("").reverse().join("");
 	};
 	
 	// root path
-	root.getRootPath = function() {
+	factory.getRootPath = function() {
 		// js에서 ContextPath 를 얻을 수 없음 - Root Path를 얻어서 응용하자.
 		/*var offset=location.href.indexOf(location.host)+location.host.length;
 	    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
@@ -35,7 +35,7 @@ angular.module('ps.services.util', [])
 	};
 	
 	// uuid
-	root.getUUID = function() {
+	factory.getUUID = function() {
 		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 			var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
 			return v.toString(16);
@@ -43,7 +43,8 @@ angular.module('ps.services.util', [])
 	};
 	
 	// tooltip
-	root.tooltip = function(selector) {
+	factory.tooltip = function(selector) {
+		
 		if(typeof selector === 'undefined') {
 			selector = '[data-toggle="tooltip"]';
 		}
@@ -51,5 +52,5 @@ angular.module('ps.services.util', [])
 		$(selector).tooltip();
 	};
 	
-    return root;
+    return factory;
 }]);
