@@ -1,0 +1,101 @@
+<div ng-controller="systemInfoCtrl">
+<!-- System Information Objects -->
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">System Information Objects</h3>
+  	</div>
+  	<div class="panel-body">
+  		<div class="row">
+    		<div class="col-md-12">
+				<button class="btn btn-default" type="button" ng-click="refreshSystemInfo()"><i class="fa fa-refresh"></i></button>
+			</div>
+ 		</div>
+ 		<div class="vspace-2"></div>
+ 		<div class="row">
+			<div class="col-md-12">
+				<ps-grid id="systemInfo_grid" options="systemInfoOptions" api="systemInfoGridApi"></ps-grid>
+			</div>
+		</div>
+ 		<div class="space"></div>
+ 		
+ 	</div>
+</div>
+
+<!-- Modal (수정) -->
+<div class="modal fade" id="systemInfoModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog" role="document">
+	<form class="form-horizontal" id="modalForm" name="modalForm" method="post">
+		<input type="hidden" name="systemInfoName" ng-value="systemInfoModal.name">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" ng-bind="modalTitle"></h4>
+      		</div>
+      		<div class="modal-body">
+      			<div class="form-group">
+	    			<label class="col-md-3 control-label">이름</label>
+	    			<div class="col-md-6">
+	      				<input type="text" class="form-control" name="name" ng-model="systemInfoModal.name" disabled>
+	    			</div>
+	    			
+	    			<!-- <label class="col-md-2 control-label">적용여부</label> -->
+	    			<div class="col-md-3">
+	      				<ps-checkbox name="apply" ng-model="apply"> 적용여부</ps-checkbox>
+	    			</div>
+	  			</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">타임아웃(초)</label>
+					<div class="col-md-9">
+						<ps-stepper name="timeout" ng-model="timeoutValue" width="80px" min="0" max="1000" step="5"></ps-stepper>
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">구문분석기</label>
+					<div class="col-md-9">
+						<ps-select name="grammer" ng-model="selectedGrammar" array="grammarList"></ps-select>
+<!-- 						<ps-select name="grammer" ng-model="selectedGrammar" ng-options="o as o for o in grammarList"></ps-select> -->
+<!-- 						<div ng-repeat="item in grammarList">{{item}}</div> -->
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">스크립트 종류</label>
+					<div class="col-md-9">
+						<ps-select name="scriptType" ng-model="selectedScriptType" array="scriptTypeList"></ps-select>
+					</div>
+		  		</div>
+				  		
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">OS</label>
+					<div class="col-md-9">
+						<ps-select name="os" ng-model="selectedOsType" array="osTypeList"></ps-select>							
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">명령어</label>
+					<div class="col-md-9">
+						<textarea class="form-control" rows="8" name="command" ng-model="systemInfoModal.command" placeholder="명령어를 입력하세요."></textarea>
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">설명</label>
+					<div class="col-md-9">
+						<textarea class="form-control" rows="3" name="desc" ng-model="systemInfoModal.desc" placeholder="명령어를 입력하세요."></textarea>
+					</div>
+		  		</div>
+	  			
+      		</div>
+      		<div class="modal-footer">
+      			<span ng-bind="localizedMessage"></span>
+      			<button type="submit" class="btn btn-primary">저장</button>
+       			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     		 </div>
+    	</div>
+    </form>
+  	</div>
+</div>
+</div>

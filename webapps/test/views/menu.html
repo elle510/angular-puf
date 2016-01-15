@@ -1,0 +1,89 @@
+<div class="page-content">
+	<div class="page-header">
+		<h4>메뉴 설정</h4>
+	</div>
+	<div class="page-body">
+		<div class="panel-group">
+		<form>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			    	<h3 class="panel-title">대시보드</h3>
+			  	</div>
+			  	<div class="panel-body">
+			  		<div class="row col-md-12">
+			    		<label class="checkbox-inline"><input type="checkbox" name="dashboard.daily_inspection" ng-model="dashboard.daily_inspection">일일 점검 현황</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.os_patch" ng-model="dashboard.os_patch">OS 패치 현황</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.config_status" ng-model="dashboard.config_status">구성현황</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.sw_status" ng-model="dashboard.sw_status">Software Asset 현황</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.service_dashboard" ng-model="dashboard.service_dashboard">서비스 대시보드</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.os_dashboard" ng-model="dashboard.os_dashboard">OS 대시보드</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.operation_level_dashboard" ng-model="dashboard.operation_level_dashboard">운영수준 대시보드</label>
+			 			<div class="space"></div>
+			 		</div>
+			 		
+			 		<div class="row col-md-12">
+			    		<label class="checkbox-inline"><input type="checkbox" name="dashboard.daily_inspection" ng-model="dashboard.daily_inspection">일일점검대시보드</label>
+						<label class="checkbox-inline"><input type="checkbox" name="dashboard.operation_level" ng-model="dashboard.operation_level">운영수준대시보드</label>
+						<label class="checkbox-inline"><input type="checkbox" name="string" ng-model="string">운영수준대시보드</label>
+			 			<div class="space"></div>
+			 		</div>
+			 	</div>
+			</div>
+			<div class="vspace-10"></div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			    	<h3 class="panel-title">운영</h3>
+			  	</div>
+			  	<div class="panel-body">
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="a">즉시 명령 실행</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="b">등록된 명령어 실행</label>
+			    	<label class="checkbox-inline"><input type="checkbox" name="" ng-model="c">LiveObject 조회</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="d">점검 결과 조회</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="e">작업 결과 조회</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="f">점검항목 조치이력</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="g">OS 패치 현황 조회</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="h">Windows 업데이트 관리</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="i">공지사항</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="j">QnA 게시판</label>
+					<label class="checkbox-inline"><input type="checkbox" name="" ng-model="k">운영수준 요약</label>
+			 	</div>
+			</div>
+			<div class="vspace-10"></div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			    	<h3 class="panel-title">구성</h3>
+			  	</div>
+			  	<div class="panel-body">
+			  		<div class="row col-md-12">
+			    		장비등록:
+			    		<span class="well well-sm">
+							<label class="checkbox-inline"><input type="checkbox" name="" ng-model="config.server_reg">서버</label>
+							<label class="checkbox-inline"><input type="checkbox" name="" ng-model="config.network_reg">네트워크</label>
+							<label class="checkbox-inline"><input type="checkbox" name="" ng-model="config.storage_reg">스토리지</label>
+							<label class="checkbox-inline"><input type="checkbox" name="" ng-model="config.etc_reg">기타장비</label>
+						</span>
+						<div class="space"></div>
+					</div>
+					
+					
+					<div class="row col-md-12">
+						<label class="checkbox-inline"><input type="checkbox" name="" ng-model="string">LiveObject 조회</label>
+						<label class="checkbox-inline"><input type="checkbox" name="" ng-model="string">운영수준대시보드</label>
+						<label class="checkbox-inline"><input type="checkbox" name="" ng-model="string">운영수준대시보드</label>
+			 			<div class="space"></div>
+			 		</div>
+			 	</div>
+			</div>
+			<div class="vspace-10"></div>
+			
+			<div class="row col-md-12">
+				<button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+			  		Save
+				</button>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>

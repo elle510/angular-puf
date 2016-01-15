@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="TestApp">
+  <head>
+    <meta charset="UTF-8">
+	<title>AngularJS Test</title>
+	<!-- could easily use a custom property of the state here instead of 'name' -->
+<!--     <title ng-bind="$state.current.name + ' - ui-router'">ui-router</title> -->
+    
+    <link rel="stylesheet" type="text/css" href="../puf/styles/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../puf/styles/font-awesome.min.css" />
+	
+	<link rel="stylesheet" type="text/css" href="styles/ui.jqgrid-bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap-select.min.css" />
+	<link rel="stylesheet" type="text/css" href="styles/stepper.css" />
+	
+    <!-- styles for ng-animate are located here -->
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    
+  </head>
+  <body>
+	<div class="wrapper" ng-controller="AppController">
+		<div class="header">
+			<h4>Polestar Automation 설치 설정</h4>
+		</div>
+	
+		<div class="main">
+			<div class="row">
+				<div class="col-md-3">
+			    	<div class="well">
+			      		<ul class="nav nav-list">
+			        		<li class="nav-header active"><a ui-sref="menu">메뉴</a></li>
+							<li class="nav-header"><a ui-sref="workspace">워크스페이스</a></li>
+							<li class="nav-header"><a ui-sref="systemInfo">System Information</a></li>
+			        		<li class="nav-header"><a ui-sref="excel">엑셀버튼</a></li>
+			        		<li class="nav-header"><a ui-sref="report">보고서</a></li>			
+			      		</ul>
+			    	</div>
+			  	</div>
+				
+			  	<!-- Our unnamed main ui-view for this template -->
+			  	<div class="col-md-9">
+			  		<div ui-view></div>
+			  	</div>
+			</div>
+		</div>
+		
+<!-- 		<div class="footer"></div> -->
+	</div>
+	
+	<script type="text/javascript" src="../puf/libs/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../puf/libs/angular.min.js"></script>
+	<script type="text/javascript" src="../puf/libs/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="../puf/libs/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="../puf/libs/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../puf/libs/plugins/jquery.form.min.js"></script>
+	<script type="text/javascript" src="../puf/libs/plugins/jqgrid/i18n/grid.locale-en.js"></script>
+	<script type="text/javascript" src="../puf/libs/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="../puf/libs/plugins/bootstrap-select.min.js"></script>
+	
+	<script type="text/javascript" src="../puf/scripts/i18n/ps-locale_ko.min.js"></script>
+	<script type="text/javascript" src="../puf/scripts/puf.min.js"></script>
+	
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/controllers/menuCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/workspaceCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/systemInfoCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/excelCtrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/reportCtrl.js"></script>
+    
+    <script type="text/javascript" src="scripts/services/menuService.js"></script>
+    <script type="text/javascript" src="scripts/services/systemInfoService.js"></script>
+    <script type="text/javascript" src="scripts/services/excelService.js"></script>
+	
+</body>
+</html>

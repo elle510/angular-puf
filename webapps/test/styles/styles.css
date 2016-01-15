@@ -1,0 +1,111 @@
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+.wrapper {
+	padding: 0 5px;
+	margin: 0 auto;
+}
+
+.page-content {
+	padding: 0;
+}
+
+.page-header {
+	padding-bottom: 9px;
+	margin: 0;
+	border-bottom: 1px solid #eee;
+}
+
+.space {
+  max-height: 1px;
+  min-height: 1px;
+/*   overflow: hidden; */
+  margin: 5px 0;
+}
+
+.vspace-2 {
+	max-height: 1px;
+	min-height: 1px;
+	/*   overflow: hidden; */
+	margin: 2px 0;
+}
+
+.vspace-3 {
+	max-height: 1px;
+	min-height: 1px;
+	/*   overflow: hidden; */
+	margin: 3px 0;
+}
+
+.vspace-5 {
+	max-height: 1px;
+	min-height: 1px;
+	/*   overflow: hidden; */
+	margin: 5px 0;
+}
+
+.vspace-10 {
+	max-height: 1px;
+	min-height: 1px;
+	/*   overflow: hidden; */
+	margin: 10px 0;
+}
+
+.hspace {
+	max-height: 1px;
+	min-height: 1px;
+	/*   overflow: hidden; */
+	margin: 0 5px;
+}
+
+li a {
+	font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+/* .nav-list>li>a:active, .nav-list>li>a:hover {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+    background-color: #08c;
+} */
+
+.nav-list>li.active>a {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+    background-color: #08c;
+}
+
+button.link {
+/*	text-decoration: underline;*/
+	background: transparent;
+	border: 0;
+}
+
+/* bootstrap-select override */
+/* puf directive width control
+.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: 150px|auto;
+}
+*/
+
+.nav-tabs>li>a {
+	cursor: pointer;
+}
+
+span.error-msg {
+	color: red;
+	/*width: 100%;
+	float: right;*/
+	display: inline-block;
+	width: auto;
+	vertical-align: middle;
+	padding-left: 10px;
+}

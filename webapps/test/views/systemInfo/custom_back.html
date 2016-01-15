@@ -1,0 +1,159 @@
+<div ng-controller="systemInfoCtrl">
+<!-- System Information Custom Objects -->
+<form id="customForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">System Information Custom Objects</h3>
+	  	</div>
+	  	<div class="panel-body">
+	  		<div class="row">
+	    		<div class="col-md-12">
+<!-- 							<button class="btn btn-default" type="button" data-toggle="modal" data-target="#customModal"><i class="fa fa-plus"></i></button> -->
+					<button class="btn btn-default" type="button" ng-click="showCustomModal(true)"><i class="fa fa-plus"></i></button>
+					<button class="btn btn-default" type="button" ng-click="removeSystemInfoCustom()"><i class="fa fa-trash-o"></i></button>
+					<button class="btn btn-default" type="button" ng-click="refreshSystemInfoCustom()"><i class="fa fa-refresh"></i></button>
+				</div>
+	 		</div>
+	 		<div class="vspace-2"></div>
+	 		<div class="row">
+				<div class="col-md-12">
+					<ps-grid id="custom_grid" options="options" api="gridApi" on-loadcomplete="customLoadComplete()"></ps-grid>
+				</div>
+			</div>
+	 		<div class="space"></div>
+	 		
+	 	</div>
+	 	<!-- <div class="panel-footer">
+	    	<button type="submit" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+	  			Save
+			</button>
+	  	</div> -->
+	</div>
+</form>
+
+<!-- Modal : Custom Modal(추가/수정) -->
+<div class="modal fade" id="customModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	<form class="form-horizontal" id="customModalForm" method="post">
+		<input type="hidden" name="systemInfoName" ng-value="systemInfoModal.name">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" ng-bind="customModalTitle"></h4>
+      		</div>
+      		<div class="modal-body">
+      			<div class="row">
+	      			<div class="col-md-6">
+		        		<div class="form-group">
+			    			<label class="col-md-4 control-label">이름</label>
+			    			<div class="col-md-8">
+			      				<input type="text" class="form-control" name="name" ng-model="systemInfoCustom.name" placeholder="이름을 입력하세요.">
+			    			</div>
+			  			</div>
+			  		</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	  				<div class="col-md-6">
+	  					<div class="form-group">
+			    			<label class="col-md-4 control-label">그룹</label>
+							<div class="col-md-8">
+								<ps-select name="group" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>									
+							</div>
+				  		</div>
+	  				</div>
+	  				<div class="col-md-6">
+	  					<div class="form-group">
+			    			<label class="col-md-4 control-label">중요도</label>
+							<div class="col-md-8">
+								<ps-select name="importLevel" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+							</div>
+				  		</div>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	  				<div class="col-md-6">
+	  					<div class="form-group">
+			    			<label class="col-md-4 control-label">실행계정</label>
+			    			<div class="col-md-8">
+			      				<input type="text" class="form-control" name="execAccount" ng-model="systemInfoCustom.account" placeholder="실행계정을 입력하세요.">
+			    			</div>
+			  			</div>
+	  				</div>
+	  				<div class="col-md-6">
+	  					<div class="form-group">
+			    			<label class="col-md-4 control-label">타임아웃</label>
+							<div class="col-md-4">
+								<ps-select name="timeout" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+							</div>
+				  		</div>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	      			<div class="col-md-6">
+		        		<div class="form-group">
+			    			<label class="col-md-4 control-label">구문분석기</label>
+							<div class="col-md-8">
+								<ps-select name="grammer" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+							</div>
+				  		</div>
+			  		</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	      			<div class="col-md-6">
+		        		<div class="form-group">
+			    			<label class="col-md-4 control-label">스크립트 종류</label>
+							<div class="col-md-8">
+								<ps-select name="scriptType" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>
+							</div>
+				  		</div>
+			  		</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	      			<div class="col-md-6">
+		        		<div class="form-group">
+			    			<label class="col-md-4 control-label">OS</label>
+							<div class="col-md-8">
+								<ps-select name="os" ng-model="myColor" array="colors" option-name="name" option-value="code" option-group="shade"></ps-select>							
+							</div>
+				  		</div>
+			  		</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	      			<div class="col-md-12">
+		        		<div class="form-group">
+			    			<label class="col-md-2 control-label">명령어</label>
+							<div class="col-md-10">
+								<textarea class="form-control" rows="8" name="command" ng-model="systemInfoCustom.command" placeholder="명령어를 입력하세요."></textarea>
+							</div>
+				  		</div>
+			  		</div>
+	  			</div>
+	  			
+	  			<div class="row">
+	      			<div class="col-md-12">
+		        		<div class="form-group">
+			    			<label class="col-md-2 control-label">설명</label>
+							<div class="col-md-10">
+								<textarea class="form-control" rows="3" name="desc" ng-model="systemInfoCustom.desc" placeholder="명령어를 입력하세요."></textarea>
+							</div>
+				  		</div>
+			  		</div>
+	  			</div>
+	  			
+      		</div>
+      		<div class="modal-footer">
+      			<span ng-bind="localizedMessage"></span>
+      			<button type="submit" class="btn btn-primary">저장</button>
+       			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     		 </div>
+    	</div>
+    </form>
+  	</div>
+</div>
+</div>

@@ -1,0 +1,150 @@
+<div ng-controller="systemInfoCtrl">
+<form id="systemInfoForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">System Information Objects</h3>
+	  	</div>
+	  	<div class="panel-body">
+	  		<div class="row">
+	  			<div class="col-md-2">
+	  				<ps-checkbox name="agent" ng-model="systemInfo.agent" inline="true">Agent</ps-checkbox>
+	  				<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="cpus" ng-model="systemInfo.cpus" inline="true">CPUs</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="diskGroups" ng-model="systemInfo.diskGroups" inline="true">Disk Groups</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="disks" ng-model="systemInfo.disks" inline="true">Disks</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 			</div>
+ 			<div class="space"></div>
+ 			
+ 			<div class="row">
+ 				<div class="col-md-2">
+					<ps-checkbox name="filesystems" ng-model="systemInfo.filesystems" inline="true">Filesystems</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>							
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="hbas" ng-model="systemInfo.hbas" inline="true">HBAs</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>					
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="logicalVolumes" ng-model="systemInfo.logicalVolumes" inline="true">Logical Volumes</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="memory" ng-model="systemInfo.memory" inline="true">Memory</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 			</div>
+ 			<div class="space"></div>
+ 			
+ 			<div class="row">
+ 				<div class="col-md-2">
+					<ps-checkbox name="networkInterfaces" ng-model="systemInfo.networkInterfaces" inline="true">Network Interfaces</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>							
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="operatingSystem" ng-model="systemInfo.operatingSystem" inline="true">Operating System</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>							
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="physicalDisks" ng-model="systemInfo.physicalDisks" inline="true">Physical Disks</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>						
+ 				</div>
+ 				
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="physicalVolumes" ng-model="systemInfo.physicalVolumes" inline="true">Physical Volumes</ps-checkbox>
+					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 			</div>
+ 			<div class="space"></div>
+ 			
+ 			<div class="row">
+ 				<div class="col-md-2">
+ 					<ps-checkbox name="volumeGroups" ng-model="systemInfo.volumeGroups" inline="true">Volume Groups</ps-checkbox>
+ 					<button type="button" class="link" ng-click="scriptModalFunc()" data-toggle="modal" data-target="#scriptModal">[스크립트]</button>
+ 				</div>
+ 			</div>
+ 			<div class="space"></div>
+ 			
+	 	</div>
+	 	<div class="panel-footer">
+	 		<div class="row">
+	 			<div class="col-md-1">
+	 				<button type="submit" id="systemInfoButton" data-loading-text="<i class='fa fa-spinner fa-spin fa-lg'></i> Loading..." class="btn btn-primary" autocomplete="off">
+			  			저장
+					</button>
+	 			</div>
+	 			
+				<div class="col-md-11">
+					<button type="button" class="btn btn-primary" ng-click="selectAll()">
+			  			모두선택
+					</button>
+					<button type="button" class="btn btn-primary" ng-click="cancelAll()">
+			  			모두취소
+					</button>
+				</div>
+	 		</div>
+	    	
+	  	</div>
+	</div>
+</form>
+<div class="vspace-10"></div>
+
+<!-- Modal : Script Modal -->
+<div class="modal fade" id="scriptModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	<form id="scriptModalForm" method="post">
+		<input type="hidden" name="systemInfoName" ng-value="systemInfoModal.name">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" ng-bind="scriptModalTitle"></h4>
+      		</div>
+      		<div class="modal-body">
+        		<div class="form-group">
+   					<label>스크립트</label>
+     					<textarea class="form-control" rows="15" name="systemInfoScript" ng-model="systemInfoModal.script" placeholder="내용을 입력하세요."></textarea>
+ 					</div>
+      		</div>
+      		<div class="modal-footer">
+      			<span ng-bind="localizedMessage"></span>
+      			<button type="submit" id="scriptModalButton" class="btn btn-primary">저장</button>
+       			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     		 </div>
+    	</div>
+    </form>
+  	</div>
+</div>
+
+<!-- Modal : Result Message Modal -->
+<div class="modal fade bs-example-modal-sm" id="msgModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm">
+  			<div class="modal-content">
+  				<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title"></h4>
+      		</div>
+      		<div class="modal-body">
+        		<span ng-bind="resultMessage"></span>
+      		</div>
+    				
+  			</div>
+			</div>
+</div>
+</div>

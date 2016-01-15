@@ -1,0 +1,110 @@
+<div ng-controller="systemInfoCtrl">
+<!-- System Information Custom Objects -->
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">System Information Custom Objects</h3>
+  	</div>
+  	<div class="panel-body">
+  		<div class="row">
+    		<div class="col-md-12">
+<!-- 							<button class="btn btn-default" type="button" data-toggle="modal" data-target="#customModal"><i class="fa fa-plus"></i></button> -->
+				<button class="btn btn-default" type="button" ng-click="showCustomModal(true)"><i class="fa fa-plus"></i></button>
+				<button class="btn btn-default" type="button" ng-click="removeSystemInfoCustom()"><i class="fa fa-trash-o"></i></button>
+				<button class="btn btn-default" type="button" ng-click="refreshSystemInfoCustom()"><i class="fa fa-refresh"></i></button>
+			</div>
+ 		</div>
+ 		<div class="vspace-2"></div>
+ 		<div class="row">
+			<div class="col-md-12">
+				<ps-grid id="custom_grid" options="options" api="gridApi" on-loadcomplete="customLoadComplete()"></ps-grid>
+			</div>
+		</div>
+ 		<div class="space"></div>
+ 		
+ 	</div>
+ 	<!-- <div class="panel-footer">
+    	<button type="submit" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+  			Save
+		</button>
+  	</div> -->
+</div>
+
+<!-- Modal : Custom Modal(추가/수정) -->
+<div class="modal fade" id="customModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog" role="document">
+	<form class="form-horizontal" id="customModalForm" name="customModalForm" method="post">
+		<input type="hidden" name="systemInfoName" ng-value="systemInfoModal.name">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" ng-bind="customModalTitle"></h4>
+      		</div>
+      		<div class="modal-body">
+      			<div class="form-group">
+	    			<label class="col-md-3 control-label">이름(*)</label>
+	    			<div class="col-md-6">
+	      				<input type="text" class="form-control" name="name" ng-model="systemInfoCustom.name" placeholder="이름을 입력하세요." required>
+	      				<span class="error-msg" ng-show="customModalForm.name.$error.required">(*) 필수 입력 항목입니다.</span>
+	    			</div>
+	    			
+	    			<!-- <label class="col-md-2 control-label">적용여부</label> -->
+	    			<div class="col-md-3">
+	      				<ps-checkbox name="apply" ng-model="apply"> 적용여부</ps-checkbox>
+	    			</div>
+	  			</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">타임아웃(초)</label>
+					<div class="col-md-9">
+						<ps-stepper name="timeout" ng-model="timeoutValue" width="80px" min="0" max="1000" step="5"></ps-stepper>
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">구문분석기</label>
+					<div class="col-md-9">
+						<ps-select name="grammer" ng-model="selectedGrammar" array="grammarList"></ps-select>
+<!-- 						<ps-select name="grammer" ng-model="selectedGrammar" ng-options="o as o for o in grammarList"></ps-select> -->
+<!-- 						<div ng-repeat="item in grammarList">{{item}}</div> -->
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">스크립트 종류</label>
+					<div class="col-md-9">
+						<ps-select name="scriptType" ng-model="selectedScriptType" array="scriptTypeList"></ps-select>
+					</div>
+		  		</div>
+				  		
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">OS</label>
+					<div class="col-md-9">
+						<ps-select name="os" ng-model="selectedOsType" array="osTypeList"></ps-select>							
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">명령어</label>
+					<div class="col-md-9">
+						<textarea class="form-control" rows="8" name="command" ng-model="systemInfoCustom.command" placeholder="명령어를 입력하세요."></textarea>
+					</div>
+		  		</div>
+	  			
+	  			<div class="form-group">
+	    			<label class="col-md-3 control-label">설명</label>
+					<div class="col-md-9">
+						<textarea class="form-control" rows="3" name="desc" ng-model="systemInfoCustom.desc" placeholder="설명을 입력하세요."></textarea>
+					</div>
+		  		</div>
+	  			
+      		</div>
+      		<div class="modal-footer">
+      			<span ng-bind="localizedMessage"></span>
+      			<button type="submit" class="btn btn-primary">저장</button>
+       			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    		</div>
+    	</div>
+    </form>
+  	</div>
+</div>
+</div>
