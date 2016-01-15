@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .controller('menuCtrl', function($scope) {
 	$scope.dashboard = {
 		daily_inspection: true,

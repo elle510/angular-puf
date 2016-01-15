@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .controller('reportCtrl', function($scope) {
     $scope.firstName = "Ahn";
     $scope.lastName = "Hyung-Ro";

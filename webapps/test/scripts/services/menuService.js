@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .factory('menuService', ['$http', '$q', function($http, $q) {
 	var factory = {};
 	

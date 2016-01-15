@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .factory('excelService', ['$http', '$q', function($http, $q) {
 	var factory = {};
 	

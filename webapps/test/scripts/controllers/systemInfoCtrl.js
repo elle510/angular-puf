@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .controller('systemInfoCtrl', function($scope, systemInfoService, $compile) {
 	/*
 	 * System Information Objects

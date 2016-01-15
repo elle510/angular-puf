@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .factory('systemInfoService', ['$http', '$q', function($http, $q) {
 	var factory = {};
 	

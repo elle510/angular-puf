@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AutomationSettingApp')
+angular.module('TestApp')
 .controller('excelCtrl', function($scope, excelService) {
 	$scope.excelButton = 'xls';
     
