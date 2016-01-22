@@ -95,12 +95,12 @@ angular.module('ps.directives.hiddenContent', [])
 		template: '<div class="hidden-content" ng-class="className">' + 
 					'<a href="javascript:void(0)" ng-click="expandCollapse($event)" name="{{id}}"><i class="{{expandIcon}}" ng-if="expandIcon"></i> {{expandLabel}}</a>' +
 					'<div style="display:none">' +
-						'<div id="{{id}}" ng-transclude>' +
+						'<div id="{{id}}" ps-hidden-content-transclude>' +
 						'</div>' +
 						'<a href="#{{id}}" ng-click="collapse($event)" ng-if="isBottom"><i class="{{collapseIcon}}" ng-if="collapseIcon"></i> {{collapseLabel}}</a>' +
 					'</div>' +
 				  '</div>',
-		link: function(scope, element, attrs, ctrl) {
+		link: function(scope, element, attrs, ctrl, transclude) {
 			//scope.id = angular.isDefined(attrs.id) ? attrs.id : '';//psUtil.getUUID();
 			//scope.expandLabel = angular.isDefined(attrs.expandLabel) ? attrs.expandLabel : 'Expand';
 			//scope.collapseLabel = angular.isDefined(attrs.collapseLabel) ? attrs.collapseLabel : 'Collapse';
@@ -128,6 +128,25 @@ angular.module('ps.directives.hiddenContent', [])
     		scope.collapse = function(event) {
     			ctrl.collapse(event.target);
     		};
+    		
+    		/* directive 최상위 태그에 element 추가함 (템플릿 안의 ng-transclude 와 별개임)
+    		transclude(scope.$parent, function(clone) {
+    			console.log('transclude');
+//    			element.empty();
+    			element.append(clone);
+    		});
+    		*/
 		}
 	}
-}]);
+}])
+.directive('psHiddenContentTransclude', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs, controller, transclude) {
+	        transclude(scope.$parent, function(clone) {
+//	          element.empty();
+	          element.append(clone);
+	        });
+		}
+	};
+});

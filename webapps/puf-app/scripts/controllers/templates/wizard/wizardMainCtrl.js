@@ -113,12 +113,75 @@ define(['app'], function(app) {
 //			$('[data-toggle="popover"]').popover();
 		};
 		
-		$scope.addIp = function() {
+		$scope.port = 22003;
+		$scope.inputIp = function() {			
+			var startIps = $scope.startIp.split('.'),
+			endIps = $scope.endIp.split('.'),
+			cClassIp = startIps[0] + '.' + startIps[1] + '.' + startIps[2] + '.',
+			startN = startIps[startIps.length-1],
+			endN = endIps[endIps.length-1],
+			inputIpResult = '';
 			
+			/*
+			console.log($scope.port);
+			if(typeof $scope.port === 'string') {
+				//$scope.port = $scope.port.trim();
+			}else {
+				
+			}
+			*/
+			
+			for(var i=startN; i<=endN; i++) {
+				inputIpResult += cClassIp + i + ',' + $scope.port;
+				if(i < endN) {
+					inputIpResult += '\n';
+				}
+			}
+			$scope.inputIpText = inputIpResult;		
+		};
+		
+		$scope.addIp = function() {
+			var deviceInfos = $scope.inputIpText.split('\n'),
+			values, rowdata;
+			$.each(deviceInfos, function(index, value) {
+				//console.log(index);
+				//console.log(value);
+				values = value.split(',');
+				rowdata = {ip: values[0], port: values[1]};
+				$scope.gridApi.addData(rowdata);
+			});
+			
+			setTimeout(function() {
+				$scope.popIpApi.hide();
+    		}, 500);
 		};
 		
 		$scope.closePopIp = function() {
 			$scope.popIpApi.hide();
+		};
+		
+		$scope.removeIp = function() {
+			console.log('removeIp');
+			$scope.gridApi.grid().jqGrid('groupingGroupBy', 'state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
+		};
+		
+		$scope.searchIp = function() {
+//			console.log($scope.gridApi.getAllData());
+			var ids = $scope.gridApi.getDataIDs(),
+			rowData;
+			$.each(ids, function(index, rowid) {
+				rowData = $scope.gridApi.getData(rowid);
+				if(rowData.ip == '192.168.0.2') {
+					rowData.state = '등록가능'; // 등록됨/연결안됨
+					rowData.hostname = 'localhost';
+					rowData.osType = 'Linux';
+					$scope.gridApi.setData(rowid, rowData);
+					setTimeout(function() {
+						$scope.gridApi.grid().jqGrid('groupingGroupBy', 'state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
+					}, 500);
+				}
+			});
+			
 		};
 		
 		var mydata = [
@@ -152,10 +215,10 @@ define(['app'], function(app) {
       	];
 		
 		$scope.options = {
-			data: mydata,
-			datatype: 'local',
+//			data: mydata,
+//			datatype: 'local',
 			height: 300,
-		   	colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+		   	/*colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
 		   	colModel:[
 		   		{name:'id',index:'id', width:60, sorttype:'int'},
 		   		{name:'invdate',index:'invdate', width:90, sorttype:'date', formatter:'date'},
@@ -164,11 +227,20 @@ define(['app'], function(app) {
 		   		{name:'tax',index:'tax', width:80, align:'right',sorttype:'float', editable:true},		
 		   		{name:'total',index:'total', width:80,align:'right',sorttype:'float'},		
 		   		{name:'note',index:'note', width:150, sortable:false}		
-		   	],		   	
-		   	sortname: 'name',
-		   	grouping:true,
+		   	],	*/
+			colNames: ['상태','IP주소', '포트', '호스트명', 'OS종류', 'Agent버전'],
+		   	colModel: [
+		   		{name: 'state',		index: 'state', 	width: 60},
+		   		{name: 'ip',		index: 'ip', 		width: 100},
+		   		{name: 'port',		index: 'port', 		width: 60},
+		   		{name: 'hostname',	index: 'hostname', 	width: 100},
+		   		{name: 'osType',	index: 'osType', 	width: 80},		
+		   		{name: 'agent',		index: 'agent', 	width: 80}		   		
+		   	],
+		   	sortname: 'ip',
+		   	grouping: true,
 		   	groupingView : {
-		   		groupField : ['name']
+		   		groupField : ['state']
 		   	}
         };
 		

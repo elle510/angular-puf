@@ -107,7 +107,7 @@ angular.module('ps.directives.grid', [])
         	id: 				'@',
         	className:			'@',
         	options: 			'=',
-        	paging:				'=',	// default: true
+        	//paging:				'=',	// default: true (attrs 속성으로 판단)
             //data:   			'=?',
             contextMenu:		'=',
             onLoadcomplete:		'=',	// function(e, data) {}
@@ -173,7 +173,7 @@ angular.module('ps.directives.grid', [])
     		  	multiselect: true,
     		  	multiboxonly: false,
     		  	grouping: false,		// grouping 할 경우 default groupText 설정 (grouping 제어는 ctrl에서 한다.)
-    		   	groupingView : {
+    		   	groupingView: {
 //    		   		groupField : ['invdate'],
 //    		   		groupColumnShow : [true],
     		   		groupText : ['<b>{0} ({1})</b>']
@@ -184,10 +184,13 @@ angular.module('ps.directives.grid', [])
     		  	recordtext: $ps_locale.grid.recordtext,
     			emptyrecords: $ps_locale.grid.emptyrecords,
     			loadtext: $ps_locale.grid.loadtext,
-    			pgtext : $ps_locale.grid.pgtext,
+    			pgtext: $ps_locale.grid.pgtext,
     			loadComplete: function(data) {
 //        			console.log('loadComplete: ' + scope.id);
         			//$(window).trigger('resize');
+    				if(scope.paging == false) {
+    					element.find('.record-count').text(scope.api.recordCount());
+    				}
         			$compile(angular.element('#' + scope.id))(scope.$parent);
         			//$(this).triggerHandler('jqGridLoadComplete', data);
         		},
@@ -207,6 +210,11 @@ angular.module('ps.directives.grid', [])
     					$(this).jqGrid('resetSelection');		// setSelection 의 toggle 로 인해 모두 선택해제
         				$(this).jqGrid('setSelection', rowid);	// select row 
     				}   	
+    			},
+    			afterInsertRow: function(rowid, rowdata, rowelem) {
+    				if(scope.paging == false) {
+    					element.find('.record-count').text(scope.api.recordCount());
+    				}
     			}
             };
             //var opts =  $.extend(defaults, opts);
@@ -245,13 +253,16 @@ angular.module('ps.directives.grid', [])
                 element.append(table);
 
                 // 페이징 처리
+                /*
                 var isPage;
                 if(angular.isDefined(scope.paging) == false) {
                 	isPage = true;
                 }else {
                 	isPage = scope.paging;
                 }
-                if(isPage) {
+                */
+                scope.paging = angular.isDefined(attrs.paging) ? scope.$parent.$eval(attrs.paging) : true; // default true
+                if(scope.paging == true /*isPage*/) {
                 	var pagerId = psUtil.getUUID();;
                 	opts.pager = '#' + pagerId;
                     var pager = angular.element(opts.pager);
@@ -259,7 +270,11 @@ angular.module('ps.directives.grid', [])
                         div = angular.element('<div id="' + pagerId + '"></div>');
                         element.append(div);
                     }
+                }else {
+                	var countBox = angular.element('<div class="record-count"></div>');
+                    element.append(countBox);
                 }
+                
 //                console.log(opts);
                 table.jqGrid(opts);
                 
@@ -322,6 +337,26 @@ angular.module('ps.directives.grid', [])
                     },
                     grid: function() {
                     	return table;
+                    },
+                    addData: function(data) {
+                    	var ids = table.jqGrid('getDataIDs'),
+                    	rowid = ids.length == 0 ? 1 : parseInt(ids[ids.length-1])+1;                  	
+                    	table.jqGrid('addRowData', rowid, data);
+                    },
+                    setData: function(rowid, data, cssprop) {
+                    	table.jqGrid('setRowData', rowid, data, cssprop);
+                    },
+                    recordCount: function() {
+                    	return table.jqGrid('getGridParam', 'reccount');
+                    },
+                    getAllData: function() {
+                    	return table.jqGrid('getRowData');
+                    },
+                    getData: function(rowid) {
+                    	return table.jqGrid('getRowData', rowid);
+                    },
+                    getDataIDs: function() {
+                    	return table.jqGrid('getDataIDs');
                     },
                     selectedRows: function() {
                     	// jqGrid에서 1부터 순차적으로 붙여주는 값
