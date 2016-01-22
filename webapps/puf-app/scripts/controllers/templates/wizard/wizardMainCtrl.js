@@ -162,7 +162,7 @@ define(['app'], function(app) {
 		
 		$scope.removeIp = function() {
 			console.log('removeIp');
-			$scope.gridApi.grid().jqGrid('groupingGroupBy', 'state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
+			$scope.gridApi.groupingGroupBy('state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
 		};
 		
 		$scope.searchIp = function() {

@@ -373,6 +373,9 @@ angular.module('ps.directives.grid', [])
 //                    	table.jqGrid('getRowData', rowid);
 //                    	table.getRowData( rowid );                	
                     },
+                    groupingGroupBy: function(groupField) {
+                    	table.jqGrid('groupingGroupBy', groupField/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
+                    },
                     refresh: function() {
                         table
                             //.jqGrid('clearGridData')
