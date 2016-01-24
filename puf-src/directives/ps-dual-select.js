@@ -5,8 +5,11 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  * 
  * example:
- * <ps-dual-select></ps-dual-select>
- * 
+ * <ps-dual-select selectable-title="선택 가능한 항목" selected-title="선택된 항목" 
+				   selectable-data="selectableCols" selected-data="selectedCols">
+   </ps-dual-select>
+   data
+   [{index: 0,	label: 'Inv No', value: 'id'}]
  */
 
 angular.module('ps.directives.dualSelect', [])
@@ -90,6 +93,7 @@ angular.module('ps.directives.dualSelect', [])
 			selectedTitle:		'@',
 			selectableData:		'=',
 			selectedData:		'=',
+//			order:				'@',	// default true
 			api:				'=?'
 		},
 		controller: 'psDualSelectCtrl',
@@ -108,7 +112,7 @@ angular.module('ps.directives.dualSelect', [])
 						'<label class="dual-select-title">{{selectedTitle}}</label>' +
 						'<select class="dual-select-picker" ng-attr-size="{{size}}" multiple></select>' +
 					'</div>' +
-					'<div class="dual-select-btn">' +
+					'<div class="dual-select-btn" ng-style="isOrder ? {display: \'block\'} : {display: \'none\'}">' +
 						'<button type="button" class="btn btn-default arrow-up-first" ng-click="upFirst()"><i class="fa fa-angle-double-up"></i></button>' +
 						'<button type="button" class="btn btn-default arrow-up" ng-click="up()"><i class="fa fa-angle-up"></i></button>' +
 						'<button type="button" class="btn btn-default arrow-down" ng-click="down()"><i class="fa fa-angle-down"></i></button>' +
@@ -120,6 +124,8 @@ angular.module('ps.directives.dualSelect', [])
 			var divs = element[0].children,
 			selectableSelect = angular.element(divs[0]).find('select.dual-select-picker'),
 			selectedSelect = angular.element(divs[2]).find('select.dual-select-picker');
+			
+			scope.isOrder = angular.isDefined(attrs.order) ? scope.$parent.$eval(attrs.order) : true; // default true
 			
 			if(angular.isDefined(attrs.size) == false) {
 				attrs.size = 5;

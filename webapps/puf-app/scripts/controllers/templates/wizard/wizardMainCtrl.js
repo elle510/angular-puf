@@ -162,7 +162,7 @@ define(['app'], function(app) {
 		
 		$scope.removeIp = function() {
 			console.log('removeIp');
-			$scope.gridApi.groupingGroupBy('state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
+			//$scope.gridApi.groupingGroupBy('state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
 		};
 		
 		$scope.searchIp = function() {
@@ -176,12 +176,15 @@ define(['app'], function(app) {
 					rowData.hostname = 'localhost';
 					rowData.osType = 'Linux';
 					$scope.gridApi.setData(rowid, rowData);
-					setTimeout(function() {
-						$scope.gridApi.grid().jqGrid('groupingGroupBy', 'state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
-					}, 500);
+				}else {
+					rowData.state = '등록됨'; // 등록됨/연결안됨
+					rowData.hostname = 'localhost' + index;
+					rowData.osType = 'Linux';
+					$scope.gridApi.setData(rowid, rowData);
 				}
 			});
 			
+			$scope.gridApi.groupingGroupBy('state'/*, { groupText: ['<b>Product(s): "{0}" - {1} item(s)</b>'] }*/);
 		};
 		
 		var mydata = [
@@ -216,9 +219,10 @@ define(['app'], function(app) {
 		
 		$scope.options = {
 //			data: mydata,
-//			datatype: 'local',
+			datatype: 'local',
 			height: 300,
-		   	/*colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+			/*
+		   	colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
 		   	colModel:[
 		   		{name:'id',index:'id', width:60, sorttype:'int'},
 		   		{name:'invdate',index:'invdate', width:90, sorttype:'date', formatter:'date'},
@@ -227,7 +231,8 @@ define(['app'], function(app) {
 		   		{name:'tax',index:'tax', width:80, align:'right',sorttype:'float', editable:true},		
 		   		{name:'total',index:'total', width:80,align:'right',sorttype:'float'},		
 		   		{name:'note',index:'note', width:150, sortable:false}		
-		   	],	*/
+		   	],
+		   	*/
 			colNames: ['상태','IP주소', '포트', '호스트명', 'OS종류', 'Agent버전'],
 		   	colModel: [
 		   		{name: 'state',		index: 'state', 	width: 60},
@@ -238,13 +243,22 @@ define(['app'], function(app) {
 		   		{name: 'agent',		index: 'agent', 	width: 80}		   		
 		   	],
 		   	sortname: 'ip',
-		   	grouping: true,
+		   	grouping: true/*,
 		   	groupingView : {
 		   		groupField : ['state']
-		   	}
+		   	}*/
         };
 		
-		// Vertical Wizard(Not Form)
+		// Role Step
+		$scope.selectableRoles = [
+		    {index: 0,	label: 'Admin', value: 'admin'},
+		    {index: 0,	label: 'Everyone', value: 'everyone'}
+		];
+		$scope.selectedRoles = [];
+		
+		/**
+		 * Vertical Wizard(Not Form)
+		 *--------------------------------------------------------------*/
 		// step1 validation check
 		$scope.validateNotFormStep1 = function() {
 			console.log('validateNotFormStep1');

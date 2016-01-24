@@ -188,7 +188,7 @@ angular.module('ps.directives.grid', [])
     			loadComplete: function(data) {
 //        			console.log('loadComplete: ' + scope.id);
         			//$(window).trigger('resize');
-    				if(scope.paging == false) {
+    				if(scope.paging == false && typeof scope.api !== 'undefined') { 					
     					element.find('.record-count').text(scope.api.recordCount());
     				}
         			$compile(angular.element('#' + scope.id))(scope.$parent);
