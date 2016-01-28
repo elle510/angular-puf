@@ -9,29 +9,26 @@ System.register(['angular2/core'], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var AppComponent;
+    var CrisisListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
-                    this.name = 'Ahn Hyung-Ro';
-                    //this.name = 'Max';
+            CrisisListComponent = (function () {
+                function CrisisListComponent() {
                 }
-                AppComponent = __decorate([
+                CrisisListComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: '<h1>My First Angular 2 App</h1>{{name}}'
+                        template: "\n    <h2>CRISIS CENTER</h2>\n    <p>Get your crisis here</p>"
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], CrisisListComponent);
+                return CrisisListComponent;
             })();
-            exports_1("AppComponent", AppComponent);
+            exports_1("CrisisListComponent", CrisisListComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=crisis-list.component.js.map
